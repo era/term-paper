@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.findplaces</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0.0-SNAPSHOT</version>
+	<name>Find Places</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.javaVersion>1.7</project.build.javaVersion>
+		<junit.version>4.10</junit.version>
+		<log4j.version>1.2.17</log4j.version>
+	</properties>
+
+	<dependencies>		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>			
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<fork>true</fork>
+						<verbose>true</verbose>
+						<source>${project.build.javaVersion}</source>
+						<target>${project.build.javaVersion}</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+          <id>jboss-public-repository-group</id>
+          <name>JBoss Public Maven Repository Group</name>
+          <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+          <layout>default</layout>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+        </repository>
+	</repositories>
+	<modules>
+		<module>model</module>
+		<module>persistence</module>
+		<module>web</module>
+	</modules>
+</project>
