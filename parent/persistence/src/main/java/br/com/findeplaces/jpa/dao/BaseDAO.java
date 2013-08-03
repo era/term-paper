@@ -18,7 +18,7 @@ public abstract class BaseDAO<TO extends BaseEntity,ID> implements Serializable 
 
 	public abstract EntityManager getEManager();
 	
-	public abstract void setEMManager(EntityManager em);
+	public abstract void setEManager(EntityManager em);
 	
 	public Session getSession() {
     	return (Session) getEManager().getDelegate();
