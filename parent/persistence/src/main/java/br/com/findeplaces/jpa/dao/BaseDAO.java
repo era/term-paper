@@ -35,7 +35,7 @@ public abstract class BaseDAO<TO extends BaseEntity,ID> implements Serializable 
 	public ID create(TO to) throws DAOException {
         try {
             this.getEManager().persist(to);
-            return (ID) ((BaseEntity) to).getId();
+            return (ID) ((BaseEntity) to).getPrimaryKey();
         } catch (Exception e) {
             throw new DAOException(e);
         }

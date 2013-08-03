@@ -5,14 +5,30 @@ import java.lang.reflect.Field;
 
 import javax.persistence.MappedSuperclass;
 
+import br.com.findplaces.commons.reflection.PropertyUtils;
+
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
 	    private static final long serialVersionUID = 2206198812084135853L;
 	    
-	    public abstract Field getPrimaryKeyField();
+	    public Field getPrimaryKeyField(){
+	    	try {
+				return PropertyUtils.getField(this.getClass(), getPrimaryKeyField().getName());
+			} catch (Exception e) {
+				return null;
+			}
+	    }
 	    
-	    public abstract Object getPrimaryKey();
+	    public Object getPrimaryKey(){
+	    	Object object;
+	    	try {
+	    		object = PropertyUtils.getProperty(this, getPrimaryKeyField().getName());
+			} catch (Exception e) {
+				object = null;
+			} 
+	    	return object;
+	    }
 
 	    public String toString() {
 	        try {
@@ -22,8 +38,6 @@ public abstract class BaseEntity implements Serializable {
 	        }
 	    }
 	    
-	    public abstract Object getId();
-
 	    public String getEntityName() {
 	        String className = this.getClass().getSimpleName();
 	        return className.substring(0, className.length() - 2);

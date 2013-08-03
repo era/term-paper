@@ -75,5 +75,6 @@
 		<module>model</module>
 		<module>persistence</module>
 		<module>web</module>
+		<module>commons</module>
 	</modules>
 </project>
