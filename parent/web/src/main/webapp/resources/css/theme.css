@@ -1,2 +1,33 @@
 @CHARSET "UTF-8";
 /*REALLY COOL STUFF HERE*/
+
+#map {
+	height:250px;
+	width:900px;
+	margin: 0 auto;
+}
+
+header,section {
+	float:left;
+}
+
+nav{
+	float:right;
+	width:500px !important;
+}
+
+footer{
+	float:left;
+	width:100%;
+}
+
+#home_central {
+	width:100%;
+	margin-top: 50px;
+}
+
+#searchMapHome, #explanation{
+	width:900px;
+	margin: 0 auto;
+	display:block;
+}

@@ -6,22 +6,39 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:h5="http://java.sun.com/jsf/composite/html"
 	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fb="http://www.facebook.com/2008/fbml"
 	template="/template/theme.xhtml">
 	
+	<ui:define name="jsScripts">
+	<script>
+	$(document).ready(function(){
+		findplaces.home.init();	
+	});
+	</script>
+	</ui:define>
+	
 	<ui:define name="header">
-		<h1>Our cool project</h1>
+		<h1><h:outputText value="#{msg['home.header.name']}" /></h1>
 	</ui:define>
 	<ui:define name="menu">
 		<ul>
-			<li>One link</li>
-			<li>Two Links</li>
+			<li class="pure-menu-selected"><a><h:outputText value="#{msg['home.menu.home']}" /></a></li>
+			<li><a><h:outputText value="#{msg['home.menu.login']}" /></a></li>
+			<li><a><h:outputText value="#{msg['home.menu.about']}" /></a></li>
+			<li><a><h:outputText value="#{msg['home.menu.buy']}" /></a></li>
 		</ul>
 	</ui:define>
 	
 	<ui:define name="content">
-		<div>
-			WOW, there is something very cool here.
+		<div id="home_central">
+			<div id="explanation">
+				<h:outputText value="#{msg['home.explanation']}" />
+				<br />
+				<div class="fb-login-button" style="margin: 0 auto;" data-width="200"></div>
+			</div>
+			<h:inputText id="searchMapHome" value="#{homeMB.searchingFor}" placeholder="#{msg['home.map.search']}" />
+			<div id="map">
+			</div>
 		</div>
 	</ui:define>
 	

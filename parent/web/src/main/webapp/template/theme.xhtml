@@ -2,18 +2,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fb="http://www.facebook.com/2008/fbml">
 <h:head>
 	<meta charset="utf-8"></meta>
 	<title>Findplaces <ui:insert name="title"></ui:insert></title>
 	<h:outputStylesheet name="css/theme.css" />
+	<h:outputStylesheet name="css/leaflet.css" />
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css" />
+	<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+	<![endif]-->
+	
+	<h:outputScript library="js" name="jquery.js"></h:outputScript>
 	<h:outputScript library="js" name="app.js"></h:outputScript>
+	<h:outputScript library="js" name="findplaces.maps.js"></h:outputScript>
+	<h:outputScript library="js" name="leaflet.js"></h:outputScript>
+	<ui:insert name="jsScripts"></ui:insert>
 </h:head>
 <body>
+<div id="fb-root"></div>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=366454610124937";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+/* ]]> */
+</script>
 	<header>
     	<ui:insert name="header" />
     </header>
-    <nav>
+    <nav class="pure-menu pure-menu-open pure-menu-horizontal">
     	<ui:insert name="menu" />
     </nav>
     <section>
@@ -23,5 +47,6 @@
     <footer>
     	<ui:insert name="footer" />
     </footer>
+
 </body>
 </html>
