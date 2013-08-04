@@ -6,28 +6,24 @@
 		<artifactId>parent</artifactId>
 		<version>1.0.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>web</artifactId>
-	<name>FindPlaces - Website</name>
+	<artifactId>UserModule</artifactId>
 	<packaging>war</packaging>
-
 	<dependencies>
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>3.4.2</version>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-
 		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>2.2.0</version>
-			<scope>provided</scope>
+			<groupId>br.com.findplaces</groupId>
+			<artifactId>UserModuleClient</artifactId>
+			<version>1.0.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.findplaces.persistence</groupId>
+			<artifactId>persistence</artifactId>
+			<version>1.0.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -36,28 +32,18 @@
 			<version>6.0</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
-			<groupId>br.com.findplaces</groupId>
-			<artifactId>model</artifactId>
-			<version>1.0.0.0-SNAPSHOT</version>
+			<groupId>javax.ejb</groupId>
+			<artifactId>ejb-api</artifactId>
+			<version>3.0</version>
+			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
-			<groupId>com.restfb</groupId>
-			<artifactId>restfb</artifactId>
-			<version>1.6.12</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>prime-repo</id>
-			<name>PrimeFaces Maven Repository</name>
-			<url>http://repository.primefaces.org</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
-
 </project>

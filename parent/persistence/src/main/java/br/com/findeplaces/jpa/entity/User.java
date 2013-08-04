@@ -6,13 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQueries({
+	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID")
+})
 @Entity
 @Table(name="TB_USER")
 public class User extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String findUserBySocialID = "FindUserBySocialId";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,6 +27,9 @@ public class User extends BaseEntity {
 	
 	@Column
 	private String name;
+	
+	@Column
+	private String email;
 	
 	@Column
 	private String socialID;
@@ -68,6 +78,14 @@ public class User extends BaseEntity {
 
 	public void setType(UserType type) {
 		this.type = type;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

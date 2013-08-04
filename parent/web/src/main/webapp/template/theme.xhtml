@@ -38,7 +38,14 @@
     	<ui:insert name="header" />
     </header>
     <nav class="pure-menu pure-menu-open pure-menu-horizontal">
-    	<ui:insert name="menu" />
+    	<ui:insert name="menu">
+	    	<ul>
+				<li class="pure-menu-selected"><a><h:outputText value="#{msg['home.menu.home']}" /></a></li>
+				<li><a><h:outputText value="#{msg['home.menu.login']}" /></a></li>
+				<li><a><h:outputText value="#{msg['home.menu.about']}" /></a></li>
+				<li><a><h:outputText value="#{msg['home.menu.buy']}" /></a></li>
+			</ul>
+    	</ui:insert>
     </nav>
     <section>
     	<ui:insert name="content" />

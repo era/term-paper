@@ -8,12 +8,14 @@ public class UserTO implements Serializable {
 
 	private String name;
 	
+	private String email;
+	
 	private Long id;
 	
 	private String socialID;
 	
 	private String password;
-	
+
 	private UserTypeTO type;
 
 	public String getName() {
@@ -54,5 +56,13 @@ public class UserTO implements Serializable {
 
 	public void setType(UserTypeTO type) {
 		this.type = type;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
