@@ -8,6 +8,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.findplaces.facebook.utils.Converter;
+
 import com.restfb.DefaultFacebookClient;
 import com.restfb.types.User;
 
@@ -22,7 +24,7 @@ public class LoginMB implements Serializable {
 		HttpServletRequest request = (HttpServletRequest) context.getRequest();
 		DefaultFacebookClient facebook = new DefaultFacebookClient(request.getParameter("token"));
 		User user = facebook.fetchObject("me", User.class);
-		user.getName();
+		Converter.converter(user);
 	}
 
 }
