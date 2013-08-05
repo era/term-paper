@@ -1,4 +1,4 @@
-package br.com.findeplaces.jpa.dao;
+package br.com.findeplaces.jpa.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -8,11 +8,12 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
 
+import br.com.findeplaces.jpa.dao.impl.interfaces.BaseDAO;
 import br.com.findeplaces.jpa.entity.BaseEntity;
 import br.com.findeplaces.jpa.exception.DAOException;
 
 
-public abstract class BaseDAO<TO extends BaseEntity,ID> implements Serializable,IBaseDao<TO,ID> {
+public abstract class BaseDAOImpl<TO extends BaseEntity,ID> implements Serializable,BaseDAO<TO,ID> {
 
 	private static final long serialVersionUID = 1L;
 

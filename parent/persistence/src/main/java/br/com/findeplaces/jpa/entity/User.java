@@ -1,5 +1,7 @@
 package br.com.findeplaces.jpa.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,10 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @NamedQueries({
-	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID")
+	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID"),
+	@NamedQuery(name="FindUserByLike", query="SELECT u FROM User u where u.likes.name = :like")
 })
 @Entity
 @Table(name="TB_USER")
@@ -20,6 +24,8 @@ public class User extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	public static final String findUserBySocialID = "FindUserBySocialId";
+	
+	public static final String findUserByLike = "FindUserByLike";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -39,6 +45,9 @@ public class User extends BaseEntity {
 	
 	@ManyToOne
 	private UserType type;
+	
+	@OneToMany
+	private List<Likes> likes;
 
 	public Long getId() {
 		return id;
@@ -86,6 +95,14 @@ public class User extends BaseEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Likes> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(List<Likes> likes) {
+		this.likes = likes;
 	}
 
 }

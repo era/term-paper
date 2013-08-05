@@ -12,7 +12,7 @@
 	<ui:define name="jsScripts">
 	<script>
 	$(document).ready(function(){
-		findplaces.home.init();	
+		findplaces.login.init();	
 	});
 	</script>
 	</ui:define>
@@ -21,16 +21,10 @@
 		<h1><h:outputText value="#{msg['home.header.name']}" /></h1>
 	</ui:define>
 	<ui:define name="content">
-		<div id="home_central">
-			<div id="explanation">
-				<h:outputText value="#{msg['home.explanation']}" />
-				<br />
-				<div class="fb-login-button" style="margin: 0 auto;" data-width="200"></div>
-			</div>
-			<h:inputText id="searchMapHome" value="#{homeMB.searchingFor}" placeholder="#{msg['home.map.search']}" />
-			<div id="map">
-			</div>
+		<div>
+			<h:outputText value="#{msg['login.facebook.welcome']}" /><h:outputText value="#{loginMB.userTO.name}" />
 		</div>
+		
 	</ui:define>
 	
 	<ui:define name="footer">
