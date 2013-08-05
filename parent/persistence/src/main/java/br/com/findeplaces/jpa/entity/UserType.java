@@ -1,13 +1,10 @@
 package br.com.findeplaces.jpa.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -24,8 +21,6 @@ public class UserType extends BaseEntity {
 	@Column
 	private String name;
 	
-	@ManyToOne
-	private List<User> user;
 	
 	public void setId(Long id){
 		this.id = id;
@@ -42,13 +37,5 @@ public class UserType extends BaseEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public List<User> getUser() {
-		return user;
-	}
-
-	public void setUser(List<User> user) {
-		this.user = user;
-	} 
 
 }

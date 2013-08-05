@@ -12,7 +12,7 @@ import br.com.findeplaces.jpa.entity.BaseEntity;
 import br.com.findeplaces.jpa.exception.DAOException;
 
 
-public abstract class BaseDAO<TO extends BaseEntity,ID> implements Serializable {
+public abstract class BaseDAO<TO extends BaseEntity,ID> implements Serializable,IBaseDao<TO,ID> {
 
 	private static final long serialVersionUID = 1L;
 

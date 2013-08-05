@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
-import br.com.findeplaces.jpa.dao.UserDAO;
+import br.com.findeplaces.jpa.dao.IUserDAO;
 import br.com.findeplaces.jpa.entity.User;
 import br.com.findeplaces.jpa.exception.DAOException;
 import br.com.findplaces.model.to.UserTO;
@@ -21,10 +21,10 @@ public class UserLoginImpl implements UserLogin {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static final Logger logger = Logger.getLogger(UserDAO.class);
+	private static final Logger logger = Logger.getLogger(UserLoginImpl.class);
 	
 	@EJB
-	private UserDAO userDAO;
+	private IUserDAO userDAO;
 
 	@Override
 	public UserTO findUserById(Long id) throws CouldNotFindUserException {

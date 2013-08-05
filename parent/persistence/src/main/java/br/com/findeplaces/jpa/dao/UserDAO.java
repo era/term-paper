@@ -9,12 +9,12 @@ import javax.persistence.Query;
 import br.com.findeplaces.jpa.entity.User;
 
 @Stateless
-@Local
-public class UserDAO extends BaseDAO<User, Long> {
+@Local(IUserDAO.class)
+public class UserDAO extends BaseDAO<User, Long> implements IUserDAO {
 
 	private static final long serialVersionUID = 1L;
 	
-	@PersistenceContext
+	@PersistenceContext(name="findplaces")
 	private EntityManager em;
 
 	@Override
