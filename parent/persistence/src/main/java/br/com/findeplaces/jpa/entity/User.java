@@ -7,10 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @NamedQueries({
@@ -43,7 +43,7 @@ public class User extends BaseEntity {
 	@Column
 	private String password;
 	
-	@ManyToOne
+	@OneToOne
 	private UserType type;
 	
 	@OneToMany

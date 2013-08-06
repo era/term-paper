@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -19,13 +20,16 @@ public class Likes implements Serializable {
 	private static final long serialVersionUID = 6555240534112708730L;
 	
 	public static final String findLikesByUserSocialID = "FindLikesByUserSocialID";
-
+	
+	@Id
 	@OneToOne
 	private User user;
 	
+	@Id
 	@Column
 	private String name;
 	
+	@Id
 	@Column
 	private String socialID;
 
