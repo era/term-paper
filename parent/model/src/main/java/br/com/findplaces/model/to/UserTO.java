@@ -1,6 +1,7 @@
 package br.com.findplaces.model.to;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class UserTO implements Serializable {
 	
@@ -17,6 +18,8 @@ public class UserTO implements Serializable {
 	private String password;
 
 	private UserTypeTO type;
+	
+	private List<LikesTO> likes;
 
 	public String getName() {
 		return name;
@@ -64,5 +67,13 @@ public class UserTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<LikesTO> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(List<LikesTO> likes) {
+		this.likes = likes;
 	}
 }
