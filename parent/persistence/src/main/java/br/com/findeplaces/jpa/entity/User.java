@@ -14,8 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @NamedQueries({
-	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID"),
-	@NamedQuery(name="FindUserByLike", query="SELECT u FROM User u where u.likes.name = :like")
+	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID")
 })
 @Entity
 @Table(name="TB_USER")
