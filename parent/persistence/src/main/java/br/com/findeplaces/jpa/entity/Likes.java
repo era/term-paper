@@ -21,11 +21,9 @@ public class Likes implements Serializable {
 	
 	public static final String findLikesByUserSocialID = "FindLikesByUserSocialID";
 	
-	@Id
 	@OneToOne
 	private User user;
 	
-	@Id
 	@Column
 	private String name;
 	

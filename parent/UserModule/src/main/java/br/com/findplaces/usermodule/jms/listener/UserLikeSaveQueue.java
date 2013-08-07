@@ -14,11 +14,11 @@ import org.apache.log4j.Logger;
 import br.com.findeplaces.jpa.dao.impl.interfaces.UserDAO;
 import br.com.findeplaces.jpa.entity.Likes;
 
-@MessageDriven(activationConfig = {
-        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
-        @ActivationConfigProperty(propertyName = "destination", propertyValue = "queue/UserLikeSaveQueue"),
-        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
-        @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "0") })
+//@MessageDriven(activationConfig = {
+//        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+//        @ActivationConfigProperty(propertyName = "destination", propertyValue = "queue/UserLikeSaveQueue"),
+//        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
+//        @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "0") })
 public class UserLikeSaveQueue implements MessageListener {
 
 	private static final String LIKES = "likes";
