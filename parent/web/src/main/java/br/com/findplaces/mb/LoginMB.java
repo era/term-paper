@@ -41,7 +41,7 @@ public class LoginMB implements Serializable {
 
 	public void SingupFacebook() throws CouldNotSaveUserException {
 		try {
-			UserTO user = Converter.converter(facebook.fetchObject("me", User.class));
+			UserTO user = Converter.converter(facebook.fetchObject(request.getParameter("userID"), User.class)); //?fields=id,name,likes,email
 			this.user = userLogin.findUserBySocialID(user.getSocialID());
 		} catch (CouldNotFindUserException e) {
 			this.user = userLogin.createUser(user);
