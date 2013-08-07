@@ -2,6 +2,7 @@ package br.com.findeplaces.jpa.dao.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,6 +19,7 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Resource
 	@PersistenceContext(name="findplaces")
 	private EntityManager em;
 

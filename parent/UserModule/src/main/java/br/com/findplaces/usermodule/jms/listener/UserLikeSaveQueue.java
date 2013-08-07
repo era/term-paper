@@ -10,15 +10,17 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 
 import org.apache.log4j.Logger;
+import org.jboss.annotation.ejb.ResourceAdapter;
 
 import br.com.findeplaces.jpa.dao.impl.interfaces.UserDAO;
 import br.com.findeplaces.jpa.entity.Likes;
 
-//@MessageDriven(activationConfig = {
-//        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
-//        @ActivationConfigProperty(propertyName = "destination", propertyValue = "queue/UserLikeSaveQueue"),
-//        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
-//        @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "0") })
+/*@MessageDriven(activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+        @ActivationConfigProperty(propertyName = "destination", propertyValue = "queue/UserLikeSaveQueue"),
+        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
+        @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "0") })
+@ResourceAdapter("activemq-rar-5.8.0.rar")*/
 public class UserLikeSaveQueue implements MessageListener {
 
 	private static final String LIKES = "likes";

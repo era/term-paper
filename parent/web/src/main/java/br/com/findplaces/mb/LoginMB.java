@@ -24,7 +24,7 @@ public class LoginMB implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@EJB
+	@EJB(mappedName = "UserLogin")
 	private UserLogin userLogin;
 
 	private HttpServletRequest request;

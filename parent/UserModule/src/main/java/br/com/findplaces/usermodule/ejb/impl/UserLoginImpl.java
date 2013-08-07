@@ -15,7 +15,7 @@ import br.com.findplaces.usermodule.exceptions.CouldNotFindUserException;
 import br.com.findplaces.usermodule.exceptions.CouldNotSaveUserException;
 import br.com.findplaces.usermodule.utils.ConverterTO;
 
-@Stateless
+@Stateless(mappedName = "UserLogin")
 @Remote(UserLogin.class)
 public class UserLoginImpl implements UserLogin {
 
