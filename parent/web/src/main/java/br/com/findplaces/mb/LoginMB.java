@@ -3,6 +3,7 @@ package br.com.findplaces.mb;
 import java.io.Serializable;
 
 import javax.annotation.ManagedBean;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -33,19 +34,23 @@ public class LoginMB implements Serializable {
 
 	private UserTO user;
 
+	@PostConstruct 
 	public void init() {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		request = (HttpServletRequest) context.getRequest();
-		facebook = new DefaultFacebookClient(request.getParameter("token"));
 	}
 
-	public void SingupFacebook() throws CouldNotSaveUserException {
+	public String singupFacebook() throws CouldNotSaveUserException {
 		try {
+			facebook = new DefaultFacebookClient(request.getParameter("token"));
 			UserTO user = Converter.converter(facebook.fetchObject(request.getParameter("userID"), User.class)); //?fields=id,name,likes,email
 			this.user = userLogin.findUserBySocialID(user.getSocialID());
 		} catch (CouldNotFindUserException e) {
 			this.user = userLogin.createUser(user);
+			return "Seu usuário foi salvo. Estamos lhe redirecionando.";
 		}
+		
+		return "Bem vindo de volta.";
 			
 	}
 

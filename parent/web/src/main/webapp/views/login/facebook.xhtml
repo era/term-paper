@@ -10,6 +10,7 @@
 	template="/template/theme.xhtml">
 	
 	<ui:define name="jsScripts">
+	
 	<script>
 	$(document).ready(function(){
 		findplaces.login.init();	
@@ -22,6 +23,7 @@
 	</ui:define>
 	<ui:define name="content">
 		<div>
+			<h:outputText value="#{loginMB.singupFacebook()}" />
 			<h:outputText value="#{msg['login.facebook.welcome']}" /><h:outputText value="#{loginMB.userTO.name}" />
 		</div>
 		
