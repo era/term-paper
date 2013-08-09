@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -13,6 +15,7 @@ import br.com.findeplaces.jpa.dao.impl.interfaces.UserDAO;
 import br.com.findeplaces.jpa.entity.Likes;
 import br.com.findeplaces.jpa.entity.User;
 
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Stateless
 @Local(UserDAO.class)
 public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
@@ -20,7 +23,7 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 	private static final long serialVersionUID = 1L;
 	
 	@Resource
-	@PersistenceContext(name="findplaces")
+	@PersistenceContext(unitName="findplaces")
 	private EntityManager em;
 
 	@Override
@@ -35,9 +38,13 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 	
 	public User findUserBySocialID(String id){
 		Query query = getEManager().createNamedQuery(User.findUserBySocialID, User.class);
-		query.setParameter(":socialID", id);
-		
-		return (User) query.getSingleResult();
+		query.setParameter("socialID", id);
+		List resultList = query.getResultList();
+		if(resultList.isEmpty()){
+			return null;
+		} else{
+			return (User) resultList.get(0);
+		}
 	}
 
 	@Override

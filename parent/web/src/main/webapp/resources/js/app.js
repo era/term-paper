@@ -21,7 +21,8 @@ findplaces.home.init = function(){
 findplaces.facebook.initLogin = function(){
 	 FB.Event.subscribe('auth.authResponseChange', function(response) {
 		    if (response.status === 'connected') {
-		    	window.window.location = findplaces.constantes.LOGIN_FB_URL + "?token="+response.authResponse.accessToken;
+		    	window.window.location = findplaces.constantes.LOGIN_FB_URL + "?token="+response.authResponse.accessToken
+		    					+"&userID="+response.authResponse.userID;
 		    }
 	 });
 };

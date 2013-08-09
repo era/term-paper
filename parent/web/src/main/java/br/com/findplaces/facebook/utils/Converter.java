@@ -10,6 +10,7 @@ public class Converter {
 	
 	public static UserTO converter(User user){
 		UserTO userTO = new UserTO();
+		userTO.setName(user.getName());
 		userTO.setEmail(user.getEmail());
 		userTO.setSocialID(user.getId());
 		return userTO;

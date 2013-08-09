@@ -2,9 +2,14 @@ package br.com.findeplaces.jpa.entity;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import br.com.findplaces.commons.reflection.ClassUtils;
 import br.com.findplaces.commons.reflection.PropertyUtils;
 
 @MappedSuperclass
@@ -12,12 +17,20 @@ public abstract class BaseEntity implements Serializable {
 
 	    private static final long serialVersionUID = 2206198812084135853L;
 	    
+	    private static Map<Class, Field> primaryKeyFields = new HashMap<Class, Field>();
+	    
 	    public Field getPrimaryKeyField(){
-	    	try {
-				return PropertyUtils.getField(this.getClass(), getPrimaryKeyField().getName());
-			} catch (Exception e) {
-				return null;
-			}
+	    	if (!primaryKeyFields.containsKey(getClass())) {
+	            synchronized (primaryKeyFields) {
+	                for (Field field : ClassUtils.getAllFields(getClass())) {
+	                    if ((field.getAnnotation(Id.class) != null) || (field.getAnnotation(EmbeddedId.class) != null)) {
+	                        primaryKeyFields.put(getClass(), field);
+	                        break;
+	                    }
+	                }
+	            }
+	        }
+	        return primaryKeyFields.get(getClass());
 	    }
 	    
 	    public Object getPrimaryKey(){

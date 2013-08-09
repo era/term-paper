@@ -3,6 +3,7 @@ package br.com.findplaces.usermodule.ejb.impl;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 
 import org.apache.log4j.Logger;
 
@@ -15,7 +16,7 @@ import br.com.findplaces.usermodule.exceptions.CouldNotFindUserException;
 import br.com.findplaces.usermodule.exceptions.CouldNotSaveUserException;
 import br.com.findplaces.usermodule.utils.ConverterTO;
 
-@Stateless(mappedName = "UserLogin")
+@Stateless(name="UserLoginEJB", mappedName = "UserLogin")
 @Remote(UserLogin.class)
 public class UserLoginImpl implements UserLogin {
 
@@ -46,10 +47,15 @@ public class UserLoginImpl implements UserLogin {
 
 	@Override
 	public UserTO findUserBySocialID(String id) throws CouldNotFindUserException {
-		User user = userDAO.findUserBySocialID(id);
-		if(user == null){
-			logger.info("Não foi encontrado o usuário "+ id);
-			throw new CouldNotFindUserException();
+		User user = null;
+		try{
+			user = userDAO.findUserBySocialID(id);
+			if(user == null){
+				logger.info("Não foi encontrado o usuário "+ id);
+				throw new CouldNotFindUserException();
+			}
+		}catch(NoResultException e){
+			throw new CouldNotFindUserException(e);
 		}
 		return ConverterTO.converter(user);
 	}
@@ -57,11 +63,13 @@ public class UserLoginImpl implements UserLogin {
 	@Override
 	public UserTO createUser(UserTO user) throws CouldNotSaveUserException {
 		try {
-			userDAO.save(ConverterTO.converter(user));
+			Long id = userDAO.create(ConverterTO.converter(user));
+			return this.findUserById(id);
 		} catch (DAOException e) {
 			throw new CouldNotSaveUserException(e);
+		} catch (CouldNotFindUserException e) {
+			throw new CouldNotSaveUserException(e);
 		}
-		return null;
 	}
 
 	@Override

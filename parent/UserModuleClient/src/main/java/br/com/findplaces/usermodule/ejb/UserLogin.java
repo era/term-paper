@@ -10,6 +10,10 @@ import br.com.findplaces.usermodule.exceptions.CouldNotSaveUserException;
 
 @Remote
 public interface UserLogin extends Serializable {
+	
+	public static String FACEBOOK_USER = "FACEBOOK_USER";
+	public static Long FACEBOOK_USER_ID = 1L;
+	
 
 	UserTO findUserBySocialID(String id) throws CouldNotFindUserException;
 	

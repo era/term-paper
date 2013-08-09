@@ -29,12 +29,13 @@ public class ConverterTO {
 	
 	public static User converter(UserTO userTO){
 		User user = new User();
+		user.setName(userTO.getName());
 		user.setId(userTO.getId());
 		user.setEmail(userTO.getEmail());
 		user.setPassword(userTO.getPassword());
 		user.setSocialID(userTO.getSocialID());
 		user.setType(converter(userTO.getType()));
-		return null;
+		return user;
 	}
 	
 	public static UserType converter(UserTypeTO userTypeTO){

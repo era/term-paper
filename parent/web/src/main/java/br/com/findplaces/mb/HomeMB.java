@@ -2,10 +2,10 @@ package br.com.findplaces.mb;
 
 import java.io.Serializable;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-@ManagedBean("homeMB")
+@ManagedBean(name = "homeMB")
 @ViewScoped
 public class HomeMB implements Serializable {
 
