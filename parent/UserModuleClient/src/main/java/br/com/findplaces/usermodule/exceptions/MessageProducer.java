@@ -14,6 +14,8 @@ public class MessageProducer {
 	private ConnectionFactory factory;
 	private Connection connection;
 	private InitialContext initialContext;
+	
+	public static final String QUEUE_SAVE_LIKES = "java:/UserLikeSaveQueue";
 
 	public MessageProducer() throws NamingException, JMSException{
 		initialContext = new InitialContext();

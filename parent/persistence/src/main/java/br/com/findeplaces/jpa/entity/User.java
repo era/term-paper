@@ -15,7 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @NamedQueries({
-	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID")
+	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID"),
+	@NamedQuery(name="LoginUserWithPassword", query="SELECT u FROM User u where u.email = :email and u.password = :password"),
 })
 @Entity
 @Table(name="TB_USER")
@@ -27,6 +28,8 @@ public class User extends BaseEntity {
 	
 	public static final String findUserByLike = "FindUserByLike";
 	
+	public static final String loginUserWithPassword = "LoginUserWithPassword";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -34,7 +37,7 @@ public class User extends BaseEntity {
 	@Column
 	private String name;
 	
-	@Column
+	@Column(unique=true)
 	private String email;
 	
 	@Column(unique=true)

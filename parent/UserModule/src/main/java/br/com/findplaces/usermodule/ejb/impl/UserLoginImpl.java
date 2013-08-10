@@ -63,6 +63,7 @@ public class UserLoginImpl implements UserLogin {
 	@Override
 	public UserTO createUser(UserTO user) throws CouldNotSaveUserException {
 		try {
+			//TODO Encrypt password
 			Long id = userDAO.create(ConverterTO.converter(user));
 			return this.findUserById(id);
 		} catch (DAOException e) {
@@ -76,6 +77,17 @@ public class UserLoginImpl implements UserLogin {
 	public UserTO updateUser(UserTO user) throws CouldNotSaveUserException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public UserTO login(UserTO user) throws CouldNotFindUserException {
+		User userFound = userDAO.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
+		
+		if(userFound==null){
+			throw new CouldNotFindUserException();
+		}
+		
+		return ConverterTO.converter(userFound);
 	}
 
 

@@ -20,6 +20,7 @@ import br.com.findeplaces.jpa.entity.User;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.Parameter;
 import com.restfb.json.JsonObject;
+
 @MessageDriven(activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "destination", propertyValue = "java:/UserLikeSaveQueue"),

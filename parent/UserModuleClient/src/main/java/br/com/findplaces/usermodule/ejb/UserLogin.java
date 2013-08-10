@@ -23,4 +23,6 @@ public interface UserLogin extends Serializable {
 	
 	UserTO updateUser(UserTO user) throws CouldNotSaveUserException;
 	
+	UserTO login(UserTO user) throws CouldNotFindUserException;
+	
 }

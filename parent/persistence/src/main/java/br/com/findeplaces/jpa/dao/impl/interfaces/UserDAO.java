@@ -12,4 +12,6 @@ public interface UserDAO extends BaseDAO<User, Long> {
 	void saveLikesFromUser(List<Likes> likes);
 	
 	void saveLikesFromUser(Likes likes);
+	
+	User findUserByEmailAndPassword(String email, String password);
 }
