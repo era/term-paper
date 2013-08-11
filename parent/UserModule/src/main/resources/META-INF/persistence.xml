@@ -10,6 +10,7 @@
 	<class>br.com.findeplaces.jpa.entity.Likes</class>
      <class>br.com.findeplaces.jpa.entity.User</class>
      <class>br.com.findeplaces.jpa.entity.UserType</class>
+     <class>br.com.findeplaces.jpa.entity.Seller</class>
      <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> 
          <!--<property name="hibernate.connection.url" value="jdbc:postgresql://192.168.1.102:5432/findplacesdb"/>-->

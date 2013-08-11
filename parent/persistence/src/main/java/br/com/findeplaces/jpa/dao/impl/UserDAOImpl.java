@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 
 import br.com.findeplaces.jpa.dao.impl.interfaces.UserDAO;
 import br.com.findeplaces.jpa.entity.Likes;
+import br.com.findeplaces.jpa.entity.Seller;
 import br.com.findeplaces.jpa.entity.User;
 
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -72,6 +73,11 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		} else{
 			return (User) resultList.get(0);
 		}
+	}
+
+	@Override
+	public void saveSellerConfigurations(Seller seller) {
+		getEManager().merge(seller);
 	}
 
 }
