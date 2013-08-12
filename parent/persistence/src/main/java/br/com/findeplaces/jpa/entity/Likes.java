@@ -27,7 +27,6 @@ public class Likes implements Serializable {
 	@Column
 	private String name;
 	
-	@Id
 	@Column
 	private String socialID;
 
