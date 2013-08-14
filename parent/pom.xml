@@ -73,14 +73,14 @@
         </repository>
 	</repositories>
 	<modules>
-		<module>model</module>
-		<module>persistence</module>
+		<module>commons</module>
+		<module>DataMining</module>
 		<module>geocoding</module>
 		<module>geopersist</module>
-		<module>web</module>
-		<module>commons</module>
-		<module>UserModuleClient</module>
+		<module>model</module>
+		<module>persistence</module>
 		<module>UserModule</module>
-		<module>DataMining</module>
+		<module>UserModuleClient</module>
+		<module>web</module>
 	</modules>
 </project>

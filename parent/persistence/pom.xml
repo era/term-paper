@@ -1,15 +1,14 @@
 <project xmlns = "http://maven.apache.org/POM/4.0.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>br.com.findplaces</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>br.com.findplaces.parent</artifactId>
         <version>1.0.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>br.com.findplaces.persistence</groupId>
     <artifactId>br.com.findplaces.persistence</artifactId>
     <name>FindPlaces - PERSISTENCE</name>
     <description>JPA</description>
-    <dependencies>        
+    <dependencies>
         <dependency>
             <groupId>br.com.findplaces.commons</groupId>
             <artifactId>br.com.findplaces.commons</artifactId>
@@ -20,20 +19,15 @@
             <artifactId>hibernate-core</artifactId>
             <version>4.2.1.Final</version>
         </dependency>
-       <dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-spatial</artifactId>
-			<version>4.0-M1</version>
-		</dependency>
-		<dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-spatial</artifactId>
+            <version>4.0-M1</version>
+        </dependency>
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.2-1003-jdbc4</version>
-        </dependency>
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.0-801.jdbc4</version>
         </dependency>
         <dependency>
             <groupId>org.postgis</groupId>
@@ -64,15 +58,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-	<repositories>
-	<repository>
-		<id>OSGEO GeoTools repo</id>
-		<url>http://download.osgeo.org/webdav/geotools</url>
-	</repository>
-	<repository>
-		<id>Hibernate Spatial repo</id>
-		<url>http://www.hibernatespatial.org/repository</url>
-	</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>OSGEO GeoTools repo</id>
+            <url>http://download.osgeo.org/webdav/geotools</url>
+        </repository>
+        <repository>
+            <id>Hibernate Spatial repo</id>
+            <url>http://www.hibernatespatial.org/repository</url>
+        </repository>
+    </repositories>
 </project>
-
