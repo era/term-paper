@@ -11,7 +11,7 @@ import com.google.code.geocoder.model.GeocoderStatus;
  * @author coradini
  *
  */
-public class GeocodeGoogle {
+public class GeocodeAddress {
 	
 	public static final String DEFAULT_LANGUAGE ="pt-br";
 
