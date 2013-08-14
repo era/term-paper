@@ -7,8 +7,8 @@
 		<version>1.0.0.0-SNAPSHOT</version>
 	</parent>
 	<groupId>br.com.findplaces.commons</groupId>
-	<artifactId>commons</artifactId>
-	<name>Commons</name>
+	<artifactId>br.com.findplaces.commons</artifactId>
+	<name>FindPlaces - COMMONS</name>
 
 	<dependencies>
 		<dependency>

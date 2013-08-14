@@ -6,13 +6,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.findplaces.persistence</groupId>
-    <artifactId>persistence</artifactId>
-    <name>FindPlaces Persistence</name>
+    <artifactId>br.com.findplaces.persistence</artifactId>
+    <name>FindPlaces - PERSISTENCE</name>
     <description>JPA</description>
     <dependencies>        
         <dependency>
             <groupId>br.com.findplaces.commons</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>br.com.findplaces.commons</artifactId>
             <version>1.0.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -5,8 +5,8 @@
     <artifactId>parent</artifactId>
     <version>1.0.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>UserModuleClient</artifactId>
-  <name>UserModule</name>
+  <artifactId>br.com.findplaces.usermoduleclient</artifactId>
+  <name>FindPlaces - USERMODULE-CLIENT</name>
   <dependencies>
       <dependency>
           <groupId>br.com.findplaces</groupId>
