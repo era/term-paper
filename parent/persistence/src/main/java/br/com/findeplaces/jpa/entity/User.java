@@ -12,7 +12,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @NamedQueries({
 	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID"),
