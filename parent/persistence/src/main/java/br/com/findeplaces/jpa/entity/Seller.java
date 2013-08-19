@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,6 +22,9 @@ public class Seller extends BaseEntity {
 	
 	@OneToOne
 	private User user;
+	
+	@OneToMany
+	private Apartment apartment;
 	
 	@Column
 	private String name;
@@ -114,6 +118,14 @@ public class Seller extends BaseEntity {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public Apartment getApartment() {
+		return apartment;
+	}
+
+	public void setApartment(Apartment apartment) {
+		this.apartment = apartment;
 	}
 
 }

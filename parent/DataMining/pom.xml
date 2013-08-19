@@ -6,10 +6,10 @@
 		<artifactId>parent</artifactId>
 		<version>1.0.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>DataMining</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>Data Mining</name>
+	<artifactId>br.com.findplaces.datamining</artifactId>
+	<version>1.0.0.-SNAPSHOT</version>
+	<name>FindPlaces  - DATA-MINING</name>
+    <description>MINING</description>
 
 	<dependencies>
 	</dependencies>
