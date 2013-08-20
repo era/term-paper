@@ -1,23 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="web">
-        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-<<<<<<< HEAD
-        <dependent-module archiveName="br.com.findplaces.model-1.0.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/model/model">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="br.com.findplaces.usermoduleclient-1.0.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/UserModuleClient/UserModuleClient">
-=======
-        <dependent-module archiveName="br.com.findplaces.model-1.0.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/br.com.findplaces.model/br.com.findplaces.model">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="br.com.findplaces.usermoduleclient-1.0.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/br.com.findplaces.usermoduleclient/br.com.findplaces.usermoduleclient">
->>>>>>> d7acb1e22ea0a23b8d992bcd788b71eff40d864c
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <property name="context-root" value="web"/>
-        <property name="java-output-path" value="/web/target/classes"/>
-    </wb-module>
-</project-modules>
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId"/>

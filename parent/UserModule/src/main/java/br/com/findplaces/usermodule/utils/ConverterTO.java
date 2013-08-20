@@ -1,7 +1,7 @@
 package br.com.findplaces.usermodule.utils;
 
-import br.com.findeplaces.jpa.entity.User;
-import br.com.findeplaces.jpa.entity.UserType;
+import br.com.findplaces.jpa.entity.User;
+import br.com.findplaces.jpa.entity.UserType;
 import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.model.to.UserTypeTO;
 
