@@ -82,5 +82,6 @@
 		<module>UserModule</module>
 		<module>UserModuleClient</module>
 		<module>web</module>
-	</modules>
+    <module>br.com.findplaces.hibernate.tests</module>
+  </modules>
 </project>
