@@ -9,6 +9,8 @@
 	<title>Findplaces <ui:insert name="title"></ui:insert></title>
 	<h:outputStylesheet name="css/theme.css" />
 	<h:outputStylesheet name="css/leaflet.css" />
+	<h:outputStylesheet name="css/openlayers.css" />
+	<h:outputStylesheet name="css/flexslider.css" />
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css" />
 	<!--[if lte IE 8]>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
@@ -18,6 +20,8 @@
 	<h:outputScript library="js" name="app.js"></h:outputScript>
 	<h:outputScript library="js" name="findplaces.maps.js"></h:outputScript>
 	<h:outputScript library="js" name="leaflet.js"></h:outputScript>
+	<h:outputScript library="js" name="jquery.flexslider.js"></h:outputScript>
+	<h:outputScript library="js" name="openlayers.js"></h:outputScript>
 	<ui:insert name="jsScripts"></ui:insert>
 </h:head>
 <body>
@@ -38,8 +42,23 @@
 /* ]]> */
 </script>
 	<header>
-    	<ui:insert name="header" />
-    </header>
+		<div>
+			<div>
+				<a href="#"><h:outputText value="#{msg['home.header.name']}" /></a>
+			</div>
+			<nav>
+				<ul>				
+					<li>
+						<a href="" class="first" title="#{msg['theme.find_offers']}" alt="#{msg['theme.find_offers']}"><h:outputText value="#{msg['theme.find_offers']}" /></a>
+					</li>
+					<li>
+						<a href="" class="last" title="Anuncie no Findplaces" alt="Anuncie no Findplaces">Anuncie no Findplaces</a>
+					</li>
+					<br class="clr" />
+				</ul>
+			</nav>
+		</div>
+	</header>	
     <nav class="pure-menu pure-menu-open pure-menu-horizontal">
     	<ui:insert name="menu">
 	    	<ul>
