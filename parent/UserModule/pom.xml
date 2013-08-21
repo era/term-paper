@@ -181,4 +181,11 @@
             </dependencies>
         </profile>
     </profiles>
+	<repositories>
+	<repository>
+		<id>repository.jboss.org-public</id>
+		<name>JBoss repository</name>
+		<url>https://repository.jboss.org/nexus/content/groups/public</url>
+	</repository>
+	</repositories>
 </project>
