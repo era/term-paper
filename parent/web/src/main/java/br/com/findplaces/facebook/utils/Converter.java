@@ -1,8 +1,8 @@
 package br.com.findplaces.facebook.utils;
 
-import com.restfb.types.User;
-
 import br.com.findplaces.model.to.UserTO;
+
+import com.restfb.types.User;
 
 public class Converter {
 	
@@ -14,6 +14,7 @@ public class Converter {
 		userTO.setEmail(user.getEmail());
 		userTO.setSocialID(user.getId());
 		return userTO;
-	}
+	}	
+	
 
 }
