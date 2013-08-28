@@ -16,3 +16,4 @@ bin
 parent/UserModule/.settings/org.eclipse.wst.common.component
 parent/web/.settings/org.eclipse.wst.common.component
 
+/build
