@@ -11,13 +11,13 @@
     <name>FindPlaces Application</name>
     <modules>
         <module>commons</module>
-        <module>datamining</module>
+        <module>DataMining</module>
         <module>geocoding</module>
         <module>geopersist</module>
 		<module>model</module>
 		<module>persistence</module>
-		<module>usermoduleclient</module>
-		<module>usermodule</module>
+		<module>UserModuleClient</module>
+		<module>UserModule</module>
 		<module>web</module>
         <module>ear</module>
     </modules>
