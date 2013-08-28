@@ -1,13 +1,18 @@
 package br.com.findplaces.usermodule.utils;
 
+import br.com.findplaces.jpa.entity.Apartment;
 import br.com.findplaces.jpa.entity.User;
 import br.com.findplaces.jpa.entity.UserType;
+import br.com.findplaces.model.to.ApartmentTO;
 import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.model.to.UserTypeTO;
 
 public class ConverterTO {
 	
 	private ConverterTO(){}
+	
+	
+	
 	
 	public static UserTO converter(User user){
 		UserTO userTO = new UserTO();
@@ -36,6 +41,12 @@ public class ConverterTO {
 		user.setSocialID(userTO.getSocialID());
 		user.setType(converter(userTO.getType()));
 		return user;
+	}
+	
+	public static Apartment converter(ApartmentTO apartTO){
+		Apartment apart = new Apartment();
+		apart.setM2(apartTO.getM2());		
+		return apart;
 	}
 	
 	public static UserType converter(UserTypeTO userTypeTO){

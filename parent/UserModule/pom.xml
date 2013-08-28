@@ -4,44 +4,54 @@
     xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-		<groupId>findplaces</groupId>
-        <artifactId>findplaces-parent</artifactId>       
+        <groupId>findplaces</groupId>
+        <artifactId>findplaces-parent</artifactId>
         <version>1.0.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>findplaces-persistence</artifactId>
+    <artifactId>findplaces-usermodule</artifactId>
     <packaging>ejb</packaging>
-    <name>FindPlaces PERSISTENCE</name>
+    <name>FindPlaces USERMODULE</name>
     <dependencies>
-		<dependency>
+        <dependency>
             <groupId>findplaces</groupId>
-            <artifactId>findplaces-commons</artifactId>
+            <artifactId>findplaces-persistence</artifactId>
             <version>1.0.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.2.1.Final</version>
+            <groupId>findplaces</groupId>
+            <artifactId>findplaces-model</artifactId>
+            <version>1.0.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-spatial</artifactId>
-            <version>4.0-M1</version>
+            <groupId>findplaces</groupId>
+            <artifactId>findplaces-usermoduleclient</artifactId>
+            <version>1.0.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.2-1003-jdbc4</version>
+            <groupId>com.restfb</groupId>
+            <artifactId>restfb</artifactId>
+            <version>1.6.12</version>
         </dependency>
         <dependency>
-            <groupId>org.postgis</groupId>
-            <artifactId>postgis-jdbc</artifactId>
-            <version>1.3.3</version>
+            <groupId>jboss</groupId>
+            <artifactId>jboss-annotations-ejb3</artifactId>
+            <version>4.2.2.GA</version>
+            <scope>provided</scope>
         </dependency>
-		
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.8.3</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.jms</groupId>
+            <artifactId>jms</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
         </dependency>
         <!--Declare the APIs we depend on and need for compilation. All of 
         them are provided by JBoss AS 7 -->
@@ -171,15 +181,11 @@
             </dependencies>
         </profile>
     </profiles>
-	
 	<repositories>
 	<repository>
-		<id>OSGEO GeoTools repo</id>
-		<url>http://download.osgeo.org/webdav/geotools</url>
-	</repository>
-	<repository>
-		<id>Hibernate Spatial repo</id>
-		<url>http://www.hibernatespatial.org/repository</url>
+		<id>repository.jboss.org-public</id>
+		<name>JBoss repository</name>
+		<url>https://repository.jboss.org/nexus/content/groups/public</url>
 	</repository>
 	</repositories>
 </project>
