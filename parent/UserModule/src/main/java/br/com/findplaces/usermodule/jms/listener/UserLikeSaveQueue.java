@@ -13,9 +13,9 @@ import javax.jms.TextMessage;
 
 import org.apache.log4j.Logger;
 
-import br.com.findeplaces.jpa.dao.impl.interfaces.UserDAO;
-import br.com.findeplaces.jpa.entity.Likes;
-import br.com.findeplaces.jpa.entity.User;
+import br.com.findplaces.jpa.dao.impl.interfaces.UserDAO;
+import br.com.findplaces.jpa.entity.Likes;
+import br.com.findplaces.jpa.entity.User;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.Parameter;

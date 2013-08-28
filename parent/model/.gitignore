@@ -1,1 +1,18 @@
-/target
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+bin
+.metadata 
+*/.settings/*
+*/*/.settings/*
+*/*/.settings/*/*
+*/target/*
+*/.classpath
+*/.project
+parent/UserModule/.settings/org.eclipse.wst.common.component
+parent/web/.settings/org.eclipse.wst.common.component
+

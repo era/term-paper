@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @NamedQueries({
 	@NamedQuery(name="FindUserBySocialId", query="SELECT u FROM User u where u.socialID = :socialID"),
-	@NamedQuery(name="LoginUserWithPassword", query="SELECT u FROM User u where u.email = :email and u.password = :password"),
+	@NamedQuery(name="LoginUserWithPassword", query="SELECT u FROM User u where u.email = :email and u.password = :password")
 })
 @Entity
 @Table(name="TB_USER")

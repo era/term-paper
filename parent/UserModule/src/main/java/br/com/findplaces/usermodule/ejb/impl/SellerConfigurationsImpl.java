@@ -4,7 +4,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-import br.com.findeplaces.jpa.dao.impl.interfaces.UserDAO;
+import br.com.findplaces.jpa.dao.impl.interfaces.UserDAO;
 import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.usermodule.ejb.SellerConfigurations;
 

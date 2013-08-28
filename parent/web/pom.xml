@@ -1,76 +1,122 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>br.com.findplaces</groupId>
-		<artifactId>parent</artifactId>
-		<version>1.0.0.0-SNAPSHOT</version>
-	</parent>
-	<artifactId>web</artifactId>
-	<name>FindPlaces - WEBSITE</name>
-	<packaging>war</packaging>
-
-	<dependencies>
-
+<project
+    xmlns = "http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+		<groupId>findplaces</groupId>
+        <artifactId>findplaces-parent</artifactId>       
+        <version>1.0.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>findplaces-web</artifactId>
+    <packaging>war</packaging>
+    <name>FindPlaces WEB</name>
+    <dependencies>
+		<dependency>
+			<groupId>findplaces</groupId>
+			<artifactId>findplaces-model</artifactId>
+			<version>1.0.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>findplaces</groupId>
+			<artifactId>findplaces-usermoduleclient</artifactId>
+			<version>1.0.0.0-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>1.0</version>
-		</dependency>
-		
+		</dependency>		
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>3.4.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>2.2.0</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>6.0</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>br.com.findplaces</groupId>
-			<artifactId>br.com.findplaces.model</artifactId>
-			<version>1.0.0.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.findplaces</groupId>
-			<artifactId>br.com.findplaces.usermoduleclient</artifactId>
-			<version>1.0.0.0-SNAPSHOT</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.restfb</groupId>
 			<artifactId>restfb</artifactId>
 			<version>1.6.12</version>
 		</dependency>
-
-	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>prime-repo</id>
-			<name>PrimeFaces Maven Repository</name>
-			<url>http://repository.primefaces.org</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
-
+       
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <!--Tell Maven we are using EJB 3.1 -->
+                    <ejbVersion>3.1</ejbVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <!--The default profile skips all tests, though you can tune it 
+            to run just unit tests based on a custom pattern -->
+            <!--Seperate profiles are provided for running all tests, including 
+            Arquillian tests that execute in the specified container -->
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.4.3</version>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!--An optional Arquillian testing profile that executes tests 
+            in your JBoss AS instance -->
+            <!--This profile will start a new JBoss AS instance, and execute 
+            the test, shutting it down when done -->
+            <!--Run with: mvn clean test -Parq-jbossas-managed -->
+            <id>arq-jbossas-managed</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <!--An optional Arquillian testing profile that executes tests 
+            in a remote JBoss AS instance -->
+            <!--Run with: mvn clean test -Parq-jbossas-remote -->
+            <id>arq-jbossas-remote</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>
