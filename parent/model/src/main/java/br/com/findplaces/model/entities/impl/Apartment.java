@@ -1,46 +1,59 @@
-package br.com.findplaces.model.to;
+package br.com.findplaces.model.entities.impl;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-public class ApartmentTO implements Serializable {
+import br.com.findplaces.model.entities.BaseEntity;
+import br.com.findplaces.model.entities.spatial.impl.ApartmentSpatial;
 
-	private static final long serialVersionUID = 1L;
+@Entity
+@Table(name = "APARTMENT")
+public class Apartment extends BaseEntity{
 
-	private Long id;
+	public static final String FIND_APARTMENT_BY_REGION = "FindByRegion";
 	
-	private String address;
-
+	private static final long serialVersionUID = 1L;
+	
+	@Column
 	private String description;
 	
-	private Long code;
+	@OneToOne
+	private ApartmentSpatial spatialObject;		
 
+	@Column
+	private Long code;	
+	
+	@Column
 	private Double rentPrice;
-
+	
+	@Column
 	private Double complexPrice;
-
+	
+	@Column
 	private Double sellPrice;
-
+	
+	@Column
 	private Double m2;
-
+	
+	@Column
 	private Integer garage;
-
+	
+	@Column
 	private Integer bathRoomNum;
-
+	
+	@Column
 	private Integer bedRoomNum;
-
-	private Integer bedRoomSpecialNum;
 	
+	@Column
+	private Integer bedRoomSpecialNum;	
 
-	
-	private SellerTO seller;
-
-	public SellerTO getSeller() {
-		return seller;
-	}
-
-	public void setSeller(SellerTO seller) {
-		this.seller = seller;
-	}
 
 	public Long getId() {
 		return id;
@@ -129,19 +142,17 @@ public class ApartmentTO implements Serializable {
 	public void setBedRoomSpecialNum(Integer bedRoomSpecialNum) {
 		this.bedRoomSpecialNum = bedRoomSpecialNum;
 	}
-	
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public ApartmentSpatial getSpatialObject() {
+		return spatialObject;
+	}
+
+	public void setSpatialObject(ApartmentSpatial spatialObject) {
+		this.spatialObject = spatialObject;
 	}
 
 }
