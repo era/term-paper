@@ -1,0 +1,55 @@
+Crie o diretorio no seu JBOSS
+
+$jbossdiretorie%/modules/org/postgresql/main
+
+Coloque os arquivos nas pastas:
+
+$jbossdiretorie%/modules/org/postgresql/main/postgresql-9.2-1003.jdbc4
+$jbossdiretorie%/modules/org/postgresql/main/postgis-1.5.2.jar
+
+Crie o arquivo no seguinte local:
+
+$jbossdiretorie%/modules/org/postgresql/main/module.xml
+
+Conteudo do arquivo:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.0" name="org.postgresql">
+    <resources>
+        <resource-root path="postgresql-8.3-607.jdbc4.jar"/>
+        <resource-root path="postgis-1.5.3.jar"/>
+    </resources>
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="javax.transaction.api"/>
+    </dependencies>
+</module>
+
+Coloque os arquivos nas pastas:
+
+/modules/org/hibernate/main/hibernate-spatial-4.0-M1.jar
+/modules/org/hibernate/main/jts-1.12.jar
+
+Adicione dentro do xml do modulo do Hibernate as seguintes tag:
+MODULO HIBERNATE:  $jbossdiretorie%/modules/org/hibernate/main/module.xml:
+
+<resource-root path="hibernate-spatial-4.0-M1.jar"/>
+<resource-root path="jts-1.12.jar"/>
+
+Dentro do proprio xml adicione a tag de dependencia no module:
+
+/modules/org/hibernate/main/module.xml
+
+TAG
+<module name="org.postgresql"/>
+
+Finalmente adicione na configuração STANDALONE a tag de driver postgre
+(/standalone/configuration/standalone.xml):
+
+<driver name="postgresql" module="org.postgresql">
+    <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+</driver>
+
+
+Baseado em https://gist.github.com/t0kieu/3176186
+Com mudanças nas bibliotecas
