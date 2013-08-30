@@ -7,9 +7,10 @@
     <packaging>pom</packaging>
     <name>FindPlaces Application</name>
     <modules>
-        <module>commons</module>
-        <module>model</module>
-        <module>ear</module>
+		<module>findplaces-commons</module>  
+        <module>findplaces-model</module>        
+		<module>findplaces-web</module> 
+		<module>findplaces-ear</module> 
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +20,7 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-            <dependency>
+			<dependency>
                 <groupId>findplaces</groupId>
                 <artifactId>findplaces-commons</artifactId>
                 <version>1.0.0.0-SNAPSHOT</version>
@@ -30,13 +31,13 @@
                 <artifactId>findplaces-model</artifactId>
                 <version>1.0.0.0-SNAPSHOT</version>
                 <type>ejb</type>
-            </dependency> 
+            </dependency>
 			<dependency>
                 <groupId>findplaces</groupId>
-                <artifactId>findplaces-webmodule</artifactId>
+                <artifactId>findplaces-web</artifactId>
                 <version>1.0.0.0-SNAPSHOT</version>
                 <type>war</type>
-            </dependency>     
+            </dependency> 		
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
