@@ -10,6 +10,7 @@
     <packaging>ear</packaging>
     <name>FINDPLACES EAR</name>
     <dependencies>
+	
 		<dependency>
             <groupId>findplaces</groupId>
             <artifactId>findplaces-commons</artifactId>
