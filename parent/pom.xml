@@ -9,7 +9,7 @@
     <name>FindPlaces Application</name>
     <modules>
 		<module>findplaces-commons</module>  
-        <module>findplaces-model</module>        
+        <module>findplaces-services</module>        
 		<module>findplaces-web</module> 
 		<module>findplaces-ear</module> 
     </modules>
@@ -62,7 +62,7 @@
             </dependency>
             <dependency>
                 <groupId>findplaces</groupId>
-                <artifactId>findplaces-model</artifactId>
+                <artifactId>findplaces-services</artifactId>
                 <version>1.0.0.0-SNAPSHOT</version>
                 <type>ejb</type>
             </dependency>

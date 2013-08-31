@@ -6,9 +6,9 @@
         <artifactId>findplaces-parent</artifactId>       
         <version>1.0.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>findplaces-model</artifactId>
+    <artifactId>findplaces-services</artifactId>
     <packaging>ejb</packaging>
-    <name>FindPlaces MODEL</name>
+    <name>Services</name>
     <url>http://jboss.org/jbossas</url>
     <licenses>
         <license>

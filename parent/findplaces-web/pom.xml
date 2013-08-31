@@ -22,7 +22,7 @@
       <!-- Dependency on the EJB module so we can use it's services if needed -->
       <dependency>
          <groupId>findplaces</groupId>
-         <artifactId>findplaces-model</artifactId>
+         <artifactId>findplaces-services</artifactId>
          <type>ejb</type>
          <scope>provided</scope>
       </dependency>
