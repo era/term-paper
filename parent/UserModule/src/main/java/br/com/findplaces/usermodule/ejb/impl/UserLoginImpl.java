@@ -8,8 +8,10 @@ import javax.persistence.NoResultException;
 import org.apache.log4j.Logger;
 
 import br.com.findeplaces.jpa.dao.impl.interfaces.UserDAO;
+import br.com.findeplaces.jpa.entity.Seller;
 import br.com.findeplaces.jpa.entity.User;
 import br.com.findeplaces.jpa.exception.DAOException;
+import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.usermodule.ejb.UserLogin;
 import br.com.findplaces.usermodule.exceptions.CouldNotFindUserException;
@@ -75,7 +77,6 @@ public class UserLoginImpl implements UserLogin {
 
 	@Override
 	public UserTO updateUser(UserTO user) throws CouldNotSaveUserException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -88,6 +89,27 @@ public class UserLoginImpl implements UserLogin {
 		}
 		
 		return ConverterTO.converter(userFound);
+	}
+
+	@Override
+	public SellerTO saveSeller(SellerTO sellerTO)
+			throws CouldNotSaveUserException {
+		Seller seller = ConverterTO.converter(sellerTO);
+		
+		return ConverterTO.converter(userDAO.saveSellerConfigurations(seller));
+		
+	}
+
+	@Override
+	public SellerTO findSeller(String socialID)
+			throws CouldNotFindUserException {
+		Seller sellerFound = userDAO.findSellerBySocialID(socialID);
+		
+		if(sellerFound==null){
+			throw new CouldNotFindUserException();
+		}
+		
+		return ConverterTO.converter(sellerFound);
 	}
 
 

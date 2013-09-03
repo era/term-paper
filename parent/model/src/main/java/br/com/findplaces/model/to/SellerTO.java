@@ -2,10 +2,15 @@ package br.com.findplaces.model.to;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+@XmlRootElement
 public class SellerTO implements Serializable {
 
 	private static final long serialVersionUID = -794700263779565877L;
 	
+	@XmlTransient
 	private Long id;
 	
 	private UserTO userTO;
@@ -23,7 +28,7 @@ public class SellerTO implements Serializable {
 	private String state;
 	
 	private String country;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -95,5 +100,7 @@ public class SellerTO implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
+	
 
 }

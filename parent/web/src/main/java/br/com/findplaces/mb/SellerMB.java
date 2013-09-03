@@ -11,8 +11,9 @@ import br.com.findplaces.helpers.SellerHelper;
 import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.usermodule.ejb.SellerConfigurations;
 
-@ManagedBean(name = "loginMB")
+@ManagedBean(name = "sellerMB")
 @ViewScoped
+@Deprecated
 public class SellerMB implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -21,7 +22,7 @@ public class SellerMB implements Serializable {
 	
 	private List<String> errors;
 	
-	@EJB(mappedName = "java:global/UserModule-1.0.0.0-SNAPSHOT/SellerConfigurationsEJB!br.com.findplaces.usermodule.ejb.SellerConfigurations")
+//	@EJB(mappedName = "java:global/UserModule-1.0.0.0-SNAPSHOT/SellerConfigurationsEJB!br.com.findplaces.usermodule.ejb.SellerConfigurations")
 	private SellerConfigurations sellerEJB;
 	
 	public void saveConfiguration(){

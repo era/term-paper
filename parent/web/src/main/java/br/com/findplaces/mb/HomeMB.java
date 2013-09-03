@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "homeMB")
 @ViewScoped
+@Deprecated
 public class HomeMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -28,13 +28,14 @@ import com.restfb.types.User;
 
 @ManagedBean(name = "loginMB")
 @SessionScoped
+@Deprecated
 public class LoginMB implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = Logger.getLogger(LoginMB.class);
 	
-	@EJB(mappedName = "java:global/UserModule-1.0.0.0-SNAPSHOT/UserLoginEJB!br.com.findplaces.usermodule.ejb.UserLogin")
+//	@EJB(mappedName = "java:global/UserModule-1.0.0.0-SNAPSHOT/UserLoginEJB!br.com.findplaces.usermodule.ejb.UserLogin")
 	private UserLogin userLogin;
 
 	private HttpServletRequest request;

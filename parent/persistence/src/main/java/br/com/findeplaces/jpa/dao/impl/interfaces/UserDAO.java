@@ -16,5 +16,7 @@ public interface UserDAO extends BaseDAO<User, Long> {
 	
 	User findUserByEmailAndPassword(String email, String password);
 	
-	void saveSellerConfigurations(Seller seller);
+	Seller saveSellerConfigurations(Seller seller);
+	
+	Seller findSellerBySocialID(String id);
 }

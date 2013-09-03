@@ -1,7 +1,9 @@
 package br.com.findplaces.usermodule.utils;
 
+import br.com.findeplaces.jpa.entity.Seller;
 import br.com.findeplaces.jpa.entity.User;
 import br.com.findeplaces.jpa.entity.UserType;
+import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.model.to.UserTypeTO;
 
@@ -43,6 +45,35 @@ public class ConverterTO {
 		userType.setId(userTypeTO.getId());
 		userType.setName(userTypeTO.getName());
 		return userType;
+	}
+
+	public static Seller converter(SellerTO sellerTO) {
+		Seller seller = new Seller();
+		seller.setCity(sellerTO.getCity());
+		seller.setCountry(sellerTO.getCountry());
+		seller.setId(sellerTO.getId());
+		seller.setLatitude(sellerTO.getLatitude());
+		seller.setLongitude(sellerTO.getLongitude());
+		seller.setName(sellerTO.getName());
+		seller.setState(sellerTO.getWebsite());
+		seller.setUser(ConverterTO.converter(sellerTO.getUserTO()));
+		seller.setWebsite(sellerTO.getWebsite());
+		
+		return seller;
+	}
+
+	public static SellerTO converter(Seller seller) {
+		SellerTO sellerTO = new SellerTO();
+		sellerTO.setCity(seller.getCity());
+		sellerTO.setCountry(seller.getCountry());
+		sellerTO.setId(seller.getId());
+		sellerTO.setLatitude(seller.getLatitude());
+		sellerTO.setLongitude(seller.getLongitude());
+		sellerTO.setName(seller.getName());
+		sellerTO.setState(seller.getWebsite());
+		sellerTO.setUserTO(ConverterTO.converter(seller.getUser()));
+		sellerTO.setWebsite(seller.getWebsite());
+		return sellerTO;
 	}
 
 }

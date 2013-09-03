@@ -10,7 +10,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import br.com.findeplaces.jpa.dao.impl.interfaces.UserDAO;
 import br.com.findeplaces.jpa.entity.Likes;
@@ -76,8 +75,20 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 	}
 
 	@Override
-	public void saveSellerConfigurations(Seller seller) {
-		getEManager().merge(seller);
+	public Seller saveSellerConfigurations(Seller seller) {
+		return getEManager().merge(seller);
+	}
+	
+	@Override
+	public Seller findSellerBySocialID(String id){
+		Query query = getEManager().createNamedQuery(Seller.FIND_SELLER_BY_SOCIAL_ID, Seller.class);
+		query.setParameter("socialID", id);
+		List resultList = query.getResultList();
+		if(resultList.isEmpty()){
+			return null;
+		} else{
+			return (Seller) resultList.get(0);
+		}
 	}
 
 }

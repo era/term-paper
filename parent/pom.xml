@@ -79,6 +79,7 @@
 		<module>commons</module>
 		<module>UserModuleClient</module>
 		<module>UserModule</module>
-		<module>DataMining</module>
+		<module>ear</module>
+		<!--<module>DataMining</module> -->
 	</modules>
 </project>

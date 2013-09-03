@@ -5,15 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
+@NamedQueries({
+	@NamedQuery(name=Seller.FIND_SELLER_BY_SOCIAL_ID, query="SELECT s FROM Seller s where s.user.socialID = :socialID"),
+})
 @Entity
 @Table(name="TB_SELLER")
 public class Seller extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_SELLER_BY_SOCIAL_ID = "Seller.findSellerBySocialID";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

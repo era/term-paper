@@ -2,7 +2,12 @@ package br.com.findplaces.model.to;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="type")
 public class UserTypeTO implements Serializable {
+	
+	public static final Long USER_FB_ID = 1L;
 	
 	private static final long serialVersionUID = 1L;
 	

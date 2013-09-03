@@ -21,11 +21,11 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.Parameter;
 import com.restfb.json.JsonObject;
 
-@MessageDriven(activationConfig = {
-        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
-        @ActivationConfigProperty(propertyName = "destination", propertyValue = "java:/UserLikeSaveQueue"),
-        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
-        @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "1") })
+//@MessageDriven(activationConfig = {
+//        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+//        @ActivationConfigProperty(propertyName = "destination", propertyValue = "java:/UserLikeSaveQueue"),
+//        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
+//        @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "1") })
 public class UserLikeSaveQueue implements MessageListener {
 
 	private static final Logger logger = Logger.getLogger(UserLikeSaveQueue.class);

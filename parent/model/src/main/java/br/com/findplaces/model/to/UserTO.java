@@ -3,6 +3,10 @@ package br.com.findplaces.model.to;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+@XmlRootElement(name="user")
 public class UserTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -11,14 +15,17 @@ public class UserTO implements Serializable {
 	
 	private String email;
 	
+	@XmlTransient
 	private Long id;
 	
 	private String socialID;
 	
+	@XmlTransient
 	private String password;
 
 	private UserTypeTO type;
 	
+	@XmlTransient
 	private List<LikesTO> likes;
 
 	public String getName() {
