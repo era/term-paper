@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"    
+   xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+   xsi:schemaLocation="    
+        http://java.sun.com/xml/ns/persistence    
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"> 
+    <persistence-unit name = "FindPlaces">
+    
+        <class>br.com.findplaces.jpa.entity.User</class>
+        <class>br.com.findplaces.jpa.entity.UserType</class>
+        <class>br.com.findplaces.jpa.entity.Seller</class>
+        <class>br.com.findplaces.jpa.entity.Likes</class>
+        <class>br.com.findplaces.jpa.entity.Place</class>     
+        <class>br.com.findplaces.jpa.entity.PlaceType</class>  
+        
+        <class>br.com.findplaces.jpa.entity.geographic.City</class>  
+        <class>br.com.findplaces.jpa.entity.geographic.Country</class>  
+        <class>br.com.findplaces.jpa.entity.geographic.Neighborhood</class>  
+        <class>br.com.findplaces.jpa.entity.geographic.Region</class>  
+        <class>br.com.findplaces.jpa.entity.geographic.Street</class>  
+         
+         
+        <class>br.com.findplaces.jpa.entity.spatial.PlaceSpatial</class>
+        
+        <jta-data-source>java:jboss/datasources/FindPlaces</jta-data-source>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name = "hibernate.dialect" value = "org.hibernate.spatial.dialect.postgis.PostgisDialect"/>
+            <property name = "hibernate.hbm2ddl.auto" value = "create"/>
+        </properties>
+    </persistence-unit>
+    
+    <!-- persistence-unit name = "FindPlacesSpatial">
+        <class>br.com.findplaces.jpa.entity.spatial.PlaceSpatial</class>
+        <jta-data-source>java:jboss/datasources/FindPlaces</jta-data-source>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.spatial.dialect.postgis.PostgisDialect"/>
+            <property name = "hibernate.hbm2ddl.auto" value = "create"/>
+        </properties>
+    </persistence-unit> -->
+    
+</persistence>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns = "http://maven.apache.org/POM/4.0.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project
+    xmlns = "http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>findplaces-parent</artifactId>
@@ -10,10 +13,15 @@
     <packaging>ear</packaging>
     <name>FINDPLACES EAR</name>
     <dependencies>
-	
-		<dependency>
+        <dependency>
             <groupId>findplaces</groupId>
             <artifactId>findplaces-commons</artifactId>
+            <version>1.0.0.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>findplaces</groupId>
+            <artifactId>findplaces-model</artifactId>
             <version>1.0.0.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>
@@ -23,7 +31,7 @@
             <version>1.0.0.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>
-		<dependency>
+        <dependency>
             <groupId>findplaces</groupId>
             <artifactId>findplaces-web</artifactId>
             <version>1.0.0.0-SNAPSHOT</version>
@@ -32,19 +40,19 @@
     </dependencies>
     <build>
         <finalName>findplaces</finalName>
-        <plugins>			
+        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
                     <modules>
-						<ejbModule>
+                        <ejbModule>
                             <groupId>findplaces</groupId>
                             <artifactId>findplaces-commons</artifactId>
                             <bundleFileName>findplaces-commons.jar</bundleFileName>
                         </ejbModule>
-						<ejbModule>
+                        <ejbModule>
                             <groupId>findplaces</groupId>
                             <artifactId>findplaces-services</artifactId>
                             <bundleFileName>findplaces-services.jar</bundleFileName>
@@ -55,7 +63,6 @@
                             <bundleFileName>findplaces-web.war</bundleFileName>
                             <contextRoot>/findplaces-web</contextRoot>
                         </webModule>
-                        
                     </modules>
                 </configuration>
             </plugin>
@@ -64,6 +71,13 @@
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <configuration>
                     <skip>false</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <defaultLibBundleDir>lib/</defaultLibBundleDir>
                 </configuration>
             </plugin>
         </plugins>
