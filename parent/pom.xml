@@ -1,133 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns = "http://maven.apache.org/POM/4.0.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>findplaces</groupId>
-    <artifactId>findplaces-parent</artifactId>
-    <version>1.0.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-	
-    <name>FindPlaces Application</name>
-    <modules>
-		<module>findplaces-commons</module>  
-		<module>findplaces-model</module>  
-        <module>findplaces-services</module>        
-		<module>findplaces-web</module> 
-		<module>findplaces-ear</module> 
-    </modules>
-    <properties>	
-        <junit.version>4.10</junit.version>
-        <log4j.version>1.2.17</log4j.version>
-		  <!-- Explicitly declaring the source encoding eliminates the following 
-            message: -->
-        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
-            resources, i.e. build is platform dependent! -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.findplaces</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0.0-SNAPSHOT</version>
+	<name>Find Places</name>
 
-        <!-- JBoss dependency versions -->
-        
-        <version.jboss.maven.plugin>7.3.Final</version.jboss.maven.plugin>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.javaVersion>1.7</project.build.javaVersion>
+		<junit.version>4.10</junit.version>
+		<log4j.version>1.2.17</log4j.version>
+	</properties>
 
-        <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
-        <jboss.bom.version>1.0.0.Final</jboss.bom.version>
-        <!-- Alternatively, comment out the above line, and un-comment the line
-            below to use version 1.0.2.Final-redhat-1 which is a release certified to
-            work with JBoss EAP 6. It requires you have access to the JBoss EAP 6
-            maven repository. -->
-        <!-- <version.jboss.bom>1.0.2.Final-redhat-1</version.jboss.bom>> -->
+	<dependencies>		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>			
+	</dependencies>
 
-        <version.jboss.as>7.2.0.Final</version.jboss.as>
-        <!-- Alternatively, comment out the above line, and un-comment the 
-            line below to use version 7.2.0.Final-redhat-1 which is a release certified 
-            to work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 
-            maven repository. -->
-        <!-- <version.jboss.as>7.2.0.Final-redhat-1</version.jboss.as> -->
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<debug>true</debug>
+						<fork>true</fork>
+						<verbose>true</verbose>
+						<source>${project.build.javaVersion}</source>
+						<target>${project.build.javaVersion}</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
-        <!-- other plugin versions -->
-        <version.compiler.plugin>2.3.1</version.compiler.plugin>
-        <version.ear.plugin>2.6</version.ear.plugin>
-        <version.ejb.plugin>2.3</version.ejb.plugin>
-        <version.surefire.plugin>2.4.3</version.surefire.plugin>
-        <version.war.plugin>2.1.1</version.war.plugin>
-
-        <!-- maven-compiler-plugin -->
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <maven.compiler.source>1.6</maven.compiler.source>
-    </properties>
-    <dependencyManagement>
-        <dependencies>
-			<dependency>
-                <groupId>findplaces</groupId>
-                <artifactId>findplaces-commons</artifactId>
-                <version>1.0.0.0-SNAPSHOT</version>
-                <type>ejb</type>
-            </dependency>
-			<dependency>
-                <groupId>findplaces</groupId>
-                <artifactId>findplaces-model</artifactId>
-                <version>1.0.0.0-SNAPSHOT</version>
-                <type>ejb</type>
-            </dependency>
-            <dependency>
-                <groupId>findplaces</groupId>
-                <artifactId>findplaces-services</artifactId>
-                <version>1.0.0.0-SNAPSHOT</version>
-                <type>ejb</type>
-            </dependency>
-			<dependency>
-                <groupId>findplaces</groupId>
-                <artifactId>findplaces-web</artifactId>
-                <version>1.0.0.0-SNAPSHOT</version>
-                <type>war</type>
-            </dependency> 		
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
-                <version>${jboss.bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-                <version>${jboss.bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
-                    <configuration>
-                        <source>1.6</source>
-                        <target>1.6</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.jboss.as.plugins</groupId>
-                    <artifactId>jboss-as-maven-plugin</artifactId>
-                    <version>7.1.1.Final</version>
-                    <inherited>true</inherited>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-	
+	<repositories>
+		<repository>
+          <id>jboss-public-repository-group</id>
+          <name>JBoss Public Maven Repository Group</name>
+          <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+          <layout>default</layout>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+        </repository>
+	</repositories>
+	<modules>
+		<module>model</module>
+		<module>persistence</module>
+		<module>web</module>
+		<module>commons</module>
+		<module>UserModuleClient</module>
+		<module>UserModule</module>
+		<module>ear</module>
+		<!--<module>DataMining</module> -->
+	</modules>
 </project>

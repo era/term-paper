@@ -1,4 +1,4 @@
-package br.com.findplaces.jpa.entity;
+package br.com.findeplaces.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 
 @NamedQueries({
-	@NamedQuery(name=Seller.FIND_SELLER_BY_SOCIAL_ID, query="SELECT s FROM Seller s where s.user.socialID = :socialID")
+	@NamedQuery(name=Seller.FIND_SELLER_BY_SOCIAL_ID, query="SELECT s FROM Seller s where s.user.socialID = :socialID"),
 })
 @Entity
 @Table(name="TB_SELLER")
