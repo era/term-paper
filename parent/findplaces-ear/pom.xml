@@ -15,18 +15,6 @@
     <dependencies>
         <dependency>
             <groupId>findplaces</groupId>
-            <artifactId>findplaces-commons</artifactId>
-            <version>1.0.0.0-SNAPSHOT</version>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>findplaces</groupId>
-            <artifactId>findplaces-model</artifactId>
-            <version>1.0.0.0-SNAPSHOT</version>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>findplaces</groupId>
             <artifactId>findplaces-services</artifactId>
             <version>1.0.0.0-SNAPSHOT</version>
             <type>ejb</type>
@@ -44,58 +32,23 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
-                <version>2.6</version>
                 <configuration>
+                    <displayName>FindPlaces EAR</displayName>
+                    <description>FindPlaces EAR</description>
+                    <earSourceDirectory>${project.build.outputDirectory}</earSourceDirectory>
+                    <defaultJavaBundleDir>lib/</defaultJavaBundleDir>
                     <modules>
-                        <ejbModule>
-                            <groupId>findplaces</groupId>
-                            <artifactId>findplaces-commons</artifactId>
-                            <bundleFileName>findplaces-commons.jar</bundleFileName>
-                        </ejbModule>
-                        <ejbModule>
-                            <groupId>findplaces</groupId>
-                            <artifactId>findplaces-services</artifactId>
-                            <bundleFileName>findplaces-services.jar</bundleFileName>
-                        </ejbModule>
+						 <ejbModule>
+							<groupId>findplaces</groupId>
+							<artifactId>findplaces-services</artifactId>
+						  </ejbModule>
                         <webModule>
                             <groupId>findplaces</groupId>
                             <artifactId>findplaces-web</artifactId>
-                            <bundleFileName>findplaces-web.war</bundleFileName>
-                            <contextRoot>/findplaces-web</contextRoot>
                         </webModule>
                     </modules>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-ear-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <defaultLibBundleDir>lib/</defaultLibBundleDir>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>openshift</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-ear-plugin</artifactId>
-                        <version>2.6</version>
-                        <configuration>
-                            <outputDirectory>deployments</outputDirectory>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

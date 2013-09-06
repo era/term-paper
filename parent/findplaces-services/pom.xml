@@ -12,6 +12,10 @@
     <artifactId>findplaces-services</artifactId>
     <packaging>ejb</packaging>
     <name>FindPlaces SERVICES</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <hibernate.version>4.0.0.Final</hibernate.version>
+    </properties>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -23,15 +27,64 @@
         <dependency>
             <groupId>findplaces</groupId>
             <artifactId>findplaces-commons</artifactId>
-            <type>ejb</type>
-        </dependency>		
+			 <version>1.0.0.0-SNAPSHOT</version>
+			<scope>compile</scope>
+        </dependency>
+		
+        <!--SPATIAL-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-spatial</artifactId>
+            <version>4.0-M1</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.postgis</groupId>
+            <artifactId>postgis-jdbc</artifactId>
+            <version>1.3.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+            <version>3.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.2-1003-jdbc4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.5.11</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vividsolutions</groupId>
+            <artifactId>jts</artifactId>
+            <version>1.8</version>
+            <scope>compile</scope>
+        </dependency>
 		<dependency>
-            <groupId>findplaces</groupId>
-            <artifactId>findplaces-model</artifactId>
-            <type>ejb</type>
-        </dependency>  
-
-       
+            <groupId>com.restfb</groupId>
+            <artifactId>restfb</artifactId>
+            <version>1.6.12</version>
+			<scope>compile</scope>
+        </dependency>
+		
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -40,7 +93,6 @@
                 <artifactId>maven-ejb-plugin</artifactId>
                 <version>${version.ejb.plugin}</version>
                 <configuration>
-                    <!--Tell Maven we are using EJB 3.1 -->
                     <ejbVersion>3.1</ejbVersion>
                 </configuration>
             </plugin>
@@ -48,10 +100,6 @@
     </build>
     <profiles>
         <profile>
-            <!--The default profile skips all tests, though you can tune it 
-            to run just unit tests based on a custom pattern -->
-            <!--Seperate profiles are provided for running all tests, including 
-            Arquillian tests that execute in the specified container -->
             <id>default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -67,34 +115,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
-            <!--An optional Arquillian testing profile that executes tests 
-            in your JBoss AS instance -->
-            <!--This profile will start a new JBoss AS instance, and execute 
-            the test, shutting it down when done -->
-            <!--Run with: mvn clean test -Parq-jbossas-managed -->
-            <id>arq-jbossas-managed</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-managed</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <!--An optional Arquillian testing profile that executes tests 
-            in a remote JBoss AS instance -->
-            <!--Run with: mvn clean test -Parq-jbossas-remote -->
-            <id>arq-jbossas-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
         </profile>
     </profiles>
     <repositories>

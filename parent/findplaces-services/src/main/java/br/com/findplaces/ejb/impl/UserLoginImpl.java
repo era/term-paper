@@ -1,7 +1,6 @@
 package br.com.findplaces.ejb.impl;
 
 import javax.ejb.EJB;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 
@@ -15,7 +14,6 @@ import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.util.ConverterTO;
 
 @Stateless(name="UserLoginEJB", mappedName = "UserLogin")
-@Remote(UserLogin.class)
 public class UserLoginImpl implements UserLogin {
 
 	private static final long serialVersionUID = 1L;

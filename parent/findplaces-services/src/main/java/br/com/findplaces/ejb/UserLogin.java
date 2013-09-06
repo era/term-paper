@@ -2,12 +2,10 @@ package br.com.findplaces.ejb;
 
 import java.io.Serializable;
 
-import javax.ejb.Remote;
-
 import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.model.to.UserTO;
 
-@Remote
+
 public interface UserLogin extends Serializable {
 	
 	public static String FACEBOOK_USER = "FACEBOOK_USER";

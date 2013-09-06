@@ -2,16 +2,15 @@ package br.com.findplaces.ejb.impl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.PersistenceContext;
 
-import br.com.findplaces.ejb.PlaceConfiguration;
+import br.com.findplaces.ejb.PlaceConfigurations;
 import br.com.findplaces.jpa.dao.interfaces.PlaceDAO;
 import br.com.findplaces.jpa.exception.DAOException;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.util.ConverterTO;
 
-@Stateless
-public class PlaceConfigurationsImpl implements PlaceConfiguration {
+@Stateless(name = "PlaceConfigurationsEJB", mappedName = "PlaceConfigurationsImpl")
+public class PlaceConfigurationsImpl implements PlaceConfigurations {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,17 +19,13 @@ public class PlaceConfigurationsImpl implements PlaceConfiguration {
 
 	public PlaceTO createPlace(PlaceTO place) {
 		try {
-
-			System.out.println(place);
-			int bla = 3123;
-			long ble = 4325;
-			System.out.println(bla+ble);
-
-			Long id = placeDAO.createPlace(ConverterTO.converter(place));
+			
+			Long id = placeDAO.createPlaceTest(ConverterTO.converter(place));
 
 			return place;
 
 		} catch (DAOException e) {
+			e.printStackTrace();
 		}
 
 		return place;

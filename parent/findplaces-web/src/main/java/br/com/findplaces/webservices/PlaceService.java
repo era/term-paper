@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import br.com.findplaces.ejb.PlaceConfiguration;
+import br.com.findplaces.ejb.PlaceConfigurations;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.responses.webservices.PlaceResponse;
 import br.com.findplaces.utils.FacebookUtils;
@@ -37,7 +37,7 @@ public class PlaceService implements Serializable {
 	private static final long serialVersionUID = -1278778592971168795L;	
 
 	@EJB
-	private PlaceConfiguration place;
+	private PlaceConfigurations place;
 	
 	@Context
 	UriInfo uriInfo;
@@ -140,11 +140,11 @@ public class PlaceService implements Serializable {
 	}
 
 
-	public PlaceConfiguration getPlaceConfiguration() {
+	public PlaceConfigurations getPlaceConfiguration() {
 		return place;
 	}
 
-	public void setPlaceConfiguration(PlaceConfiguration place) {
+	public void setPlaceConfiguration(PlaceConfigurations place) {
 		this.place = place;
 	}
 
