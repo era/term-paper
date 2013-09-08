@@ -18,17 +18,17 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	private PlaceDAO placeDAO;
 
 	public PlaceTO createPlace(PlaceTO place) {
-		try {
+//		try {
 			
-			Long id = placeDAO.createPlaceTest(ConverterTO.converter(place));
+//			Long id = placeDAO.createPlaceTest(ConverterTO.converter(place));
 
 			return place;
 
-		} catch (DAOException e) {
-			e.printStackTrace();
-		}
+//		} catch (DAOException e) {
+//			e.printStackTrace();
+//		}
 
-		return place;
+//		return place;
 	}
 
 	@Override

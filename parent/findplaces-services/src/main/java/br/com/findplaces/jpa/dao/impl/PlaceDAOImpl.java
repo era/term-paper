@@ -41,43 +41,5 @@ public class PlaceDAOImpl extends BaseDAOImpl<Place, Long> implements PlaceDAO {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Long createPlaceTest(Place entity) throws DAOException {
-		try {
-
-			Place entityTest = new Place();
-
-			PlaceType type = new PlaceType();
-			type.setId(1L);
-
-			Country country = new Country();
-			country.setId(1L);
-			Region region = new Region();
-			region.setId(1L);
-			region.setCountry(country);
-			City city = new City();
-			city.setId(1L);
-			city.setRegion(region);
-			Neighborhood hood = new Neighborhood();
-			hood.setId(1L);
-			hood.setCity(city);
-			Street street = new Street();
-			street.setId(1L);
-			street.setHood(hood);
-
-			entityTest
-					.setAddress("Rua Barão de Jaguará, 141, Campinas - São Paulo");
-			entityTest.setCity(city);
-			entityTest.setNeighborhood(hood);
-			entityTest.setStreet(street);
-			entityTest.setType(type);
-			entityTest.setDescription("blablabla");
-			this.getEntityManager().persist(entityTest);
-			return (Long) ((BaseEntity) entity).getPrimaryKey();
-		} catch (Exception e) {
-			throw new DAOException(e);
-		}
-	}
 
 }

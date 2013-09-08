@@ -43,7 +43,7 @@ public class UserService implements Serializable {
 			@PathParam(value = "id") String id) {
 		UserResponse response = new UserResponse();
 		try {
-			//isValidToken(token, id);
+			isValidToken(token, id);
 			UserTO userTO = getUserLogin().findUserBySocialID(id);
 			response.setUser(userTO);
 			setSuccessResponse(response);
@@ -60,7 +60,7 @@ public class UserService implements Serializable {
 	public UserResponse insertUser(@FormParam(value="user") UserServiceRequest request){
 		UserResponse response = new UserResponse();
 		try {
-			//isValidToken(request.getToken(), request.getUserFacebookID());
+			isValidToken(request.getToken(), request.getUserFacebookID());
 			
 			UserTO user = new UserTO();
 			UserTypeTO type = new UserTypeTO();

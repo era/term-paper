@@ -2,7 +2,6 @@ package br.com.findplaces.jpa.dao.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -16,14 +15,12 @@ import br.com.findplaces.jpa.entity.Likes;
 import br.com.findplaces.jpa.entity.Seller;
 import br.com.findplaces.jpa.entity.User;
 
-@TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Stateless
 @Remote(UserDAO.class)
 public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Resource
 	@PersistenceContext(unitName="FindPlaces")
 	private EntityManager em;
 
@@ -32,7 +29,7 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		return em;
 	}
 
-	@Override
+	@Override()
 	public void setEntityManager(EntityManager em) {
 		this.em = em;
 	}

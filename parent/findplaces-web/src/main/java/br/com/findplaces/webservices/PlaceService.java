@@ -39,45 +39,16 @@ public class PlaceService implements Serializable {
 	@EJB
 	private PlaceConfigurations place;
 	
-	@Context
-	UriInfo uriInfo;
-	@Context
-	Request request;
-
-	// TODO EJB for Places
-	
-	
-	@GET
-	@Path("/placetest")
-	@Produces({MediaType.APPLICATION_JSON })
-	public PlaceResponse getPlace() {
-		PlaceResponse response = new PlaceResponse();
-		try {
-			//isValidToken(token, id);
-			place = getPlaceConfiguration();
-			PlaceTO to = new PlaceTO();
-			PlaceTO placeTO = place.createPlace(to);
-			List<PlaceTO> places = new ArrayList<PlaceTO>();
-			places.add(placeTO);
-			response.setPlaces(places);
-			
-			setSuccessResponse(response);
-		} catch (Exception e) {
-			setErrorResponse(response);
-		}
-		
-		return response;
-	}
 	
 	@GET
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON })
-	public PlaceResponse getUser(@QueryParam(value = "token") String token,
+	public PlaceResponse getPlace(@QueryParam(value = "token") String token,
 			@QueryParam(value = "type") String type,
 			@PathParam(value = "id") String id) {
 		PlaceResponse response = new PlaceResponse();
 		try {
-			//isValidToken(token, id);
+			isValidToken(token, id);
 			Long ide = Long.parseLong(id);
 			PlaceTO to = getPlaceConfiguration().findPlaceById(ide);
 			List<PlaceTO> list = new ArrayList<PlaceTO>();

@@ -27,6 +27,7 @@
         <version.war.plugin>2.1.1</version.war.plugin>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
+        <hibernate.version>3.5.1-Final</hibernate.version>
     </properties>
     <dependencyManagement>
         <dependencies>

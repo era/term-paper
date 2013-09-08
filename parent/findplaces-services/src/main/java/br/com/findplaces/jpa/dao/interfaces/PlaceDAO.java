@@ -5,6 +5,5 @@ import br.com.findplaces.jpa.exception.DAOException;
 
 public interface PlaceDAO extends BaseDAO<Place, Long> {
 
-	Long createPlaceTest(Place entity) throws DAOException;
 
 }
