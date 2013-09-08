@@ -26,8 +26,6 @@ INSERT INTO tb_place_type(id, name) VALUES (2, 'HOUSE');
 
 INSERT INTO tb_place_type(id, name) VALUES (3, 'CONTAINER');
 
-INSERT INTO tb_user(id, email, name, password, socialid, type_id)  VALUES (1, 'test@test.com', 'test', 'tst', 1, '2');
-
 
 
 INSERT INTO tb_country(id, name)  VALUES (1, 'Brazil');
