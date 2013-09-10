@@ -37,3 +37,5 @@ INSERT INTO tb_city(id, name, region_id)  VALUES (1, 'Campinas', 1);
 INSERT INTO tb_neighborhood(id, hoodname, city_id)  VALUES (1, 'Centro', 1);
 
 INSERT INTO TB_STREET(id, streetname, neighborhood_id)  VALUES (1, 'Barão de Jaguara', 1);
+
+INSERT INTO tb_place(id, address)  VALUES (1, 'blablablabla');

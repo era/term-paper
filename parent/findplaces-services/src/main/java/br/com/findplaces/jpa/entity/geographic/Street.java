@@ -8,16 +8,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import br.com.findplaces.jpa.entity.BaseEntity;
 
 
+@NamedQueries({
+	@NamedQuery(name="FindStreetByName", query="SELECT s FROM Street s where s.streetName = :name")
+})
 @Entity
 @Table(name="TB_STREET")
 public class Street extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 7150118755881112499L;
+	
+	public static final String findStreetByName = "FindUserBySocialId";
 	
 	@Id
 	@GeneratedValue

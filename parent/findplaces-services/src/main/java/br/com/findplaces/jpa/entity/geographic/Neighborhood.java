@@ -11,16 +11,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.findplaces.jpa.entity.BaseEntity;
 
+@NamedQueries({
+	@NamedQuery(name="FindNeighborhoodByName", query="SELECT n FROM Neighborhood n where n.hoodName = :name")
+})
 @Entity
 @Table(name="TB_NEIGHBORHOOD")
 public class Neighborhood extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 7150118755881112499L;
+	
+	public static final String findNeighborhoodByName = "FindNeighborhoodByName";
 	
 	@Id
 	@GeneratedValue
