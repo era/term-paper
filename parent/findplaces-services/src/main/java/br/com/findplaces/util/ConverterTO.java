@@ -10,11 +10,13 @@ import br.com.findplaces.jpa.entity.geographic.Country;
 import br.com.findplaces.jpa.entity.geographic.Neighborhood;
 import br.com.findplaces.jpa.entity.geographic.Region;
 import br.com.findplaces.jpa.entity.geographic.Street;
+import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.CountryTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.RegionTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
+import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.PlaceTypeTO;
 import br.com.findplaces.model.to.SellerTO;
@@ -99,27 +101,49 @@ public class ConverterTO {
 		entity.setCity(converter(place.getCity()));
 		entity.setNeighborhood(converter(place.getNeighborhood()));
 		entity.setStreet(converter(place.getStreet()));
-		entity.setType(converter(place.getType()));
+		//entity.setType(converter(place.getType()));
+		//entity.setSpatial(converter(place.getSpatialTO()));
+		return entity;
+	}
+	
+	public static PlaceTO converter(Place place) {
+		PlaceTO to = new PlaceTO();
+		to.setId(place.getId());
+		to.setAddress(place.getAddress());
+		to.setCity(converter(place.getCity()));
+		to.setNeighborhood(converter(place.getNeighborhood()));
+		to.setStreet(converter(place.getStreet()));
+		to.setDescription(place.getDescription());
+		//to.setType(converter(place.getType()));
+		
+		return to;
+	}
+	
+	public static PlaceSpatial converter(PlaceSpatialTO to) {
+		PlaceSpatial entity = new PlaceSpatial();
+		entity.setId(to.getId());
+		entity.setPlace(converter(to.getPlace()));
+		entity.setGeom(to.getGeom());		
 		return entity;
 	}
 
 	
 	
-	private static PlaceType converter(PlaceTypeTO type) {
+	public static PlaceType converter(PlaceTypeTO type) {
 		PlaceType entity = new PlaceType();
 		entity.setId(type.getId());
 		entity.setName(type.getName());
 		return entity;
 	}
 
-	private static Country converter(CountryTO country) {
+	public static Country converter(CountryTO country) {
 		Country entity = new Country();
 		entity.setId(country.getId());
 		entity.setName(country.getName());
 		return entity;
 	}
 	
-	private static Region converter(RegionTO region) {
+	public static Region converter(RegionTO region) {
 		Region entity = new Region();
 		entity.setId(region.getId());
 		entity.setName(region.getName());
@@ -127,7 +151,7 @@ public class ConverterTO {
 		return entity;
 	}
 
-	private static City converter(CityTO city) {
+	public static City converter(CityTO city) {
 		City entity = new City();
 		entity.setId(city.getId());
 		entity.setName(city.getName());
@@ -135,7 +159,7 @@ public class ConverterTO {
 		return entity;
 	}
 	
-	private static Neighborhood converter(NeighborhoodTO neighborhood) {
+	public static Neighborhood converter(NeighborhoodTO neighborhood) {
 		Neighborhood entity = new Neighborhood();
 		entity.setId(neighborhood.getId());
 		entity.setHoodName(neighborhood.getName());
@@ -144,7 +168,7 @@ public class ConverterTO {
 	}
 	
 	
-	private static Street converter(StreetTO street) {
+	public static Street converter(StreetTO street) {
 		Street entity = new Street();
 		entity.setId(street.getId());
 		entity.setStreetName(street.getStreetName());
@@ -154,9 +178,12 @@ public class ConverterTO {
 
 	
 
-	public static PlaceTO converter(Place place) {
-		PlaceTO to = new PlaceTO();
-		to.setAddress(place.getAddress());
+	
+
+	private static PlaceTypeTO converter(PlaceType type) {
+		PlaceTypeTO to = new PlaceTypeTO();
+		to.setId(type.getId());
+		to.setName(type.getName());
 		return to;
 	}
 

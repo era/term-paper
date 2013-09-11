@@ -16,14 +16,18 @@ import com.google.gson.GsonBuilder;
 
 @XmlRootElement
 public class PlaceRequest implements Serializable {
-	
+
 	private static final long serialVersionUID = 329237857291104899L;
-	
-	public static PlaceRequest fromString(String json){
+
+	public static PlaceRequest fromString(String json) {
 		Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, PlaceRequest.class);
 	}
-	
+
+	private Double lat;
+
+	private Double log;
+
 	private String address;
 
 	private CityTO city;
@@ -37,9 +41,9 @@ public class PlaceRequest implements Serializable {
 	private String description;
 
 	private PlaceSpatialTO spatial;
-	
+
 	private SellerTO seller;
-	
+
 	public String getAddress() {
 		return address;
 	}
@@ -96,7 +100,6 @@ public class PlaceRequest implements Serializable {
 		this.spatial = spatial;
 	}
 
-
 	public SellerTO getSeller() {
 		return seller;
 	}
@@ -105,7 +108,20 @@ public class PlaceRequest implements Serializable {
 		this.seller = seller;
 	}
 
-	
+	public Double getLat() {
+		return lat;
+	}
 
-	
+	public Double getLog() {
+		return log;
+	}
+
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
+
+	public void setLog(Double log) {
+		this.log = log;
+	}
+
 }

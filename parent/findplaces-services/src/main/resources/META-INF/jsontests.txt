@@ -1,0 +1,1 @@
+place = {'placetype':"1", 'address': "blablablabla",  'lat': "-22.912448",  'log': "-47.054962", 'city':{'name':'Campinas'}, 'street':{'name':'Jaguara'}, 'country':{'name':'Brazil'}, 'region':{'name':'São Paulo'}, 'neighborhood':{'name':'Centro'}}

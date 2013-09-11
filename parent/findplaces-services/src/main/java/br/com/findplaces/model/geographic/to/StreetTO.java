@@ -15,6 +15,9 @@ public class StreetTO implements Serializable{
 
 	@XmlTransient
 	private NeighborhoodTO hood;
+	
+	@XmlTransient
+	private String name;
 
 	public Long getId() {
 		return id;
@@ -25,7 +28,7 @@ public class StreetTO implements Serializable{
 	}
 
 	public String getStreetName() {
-		return streetName;
+		return name;
 	}
 
 	public void setId(Long id) {
@@ -37,8 +40,8 @@ public class StreetTO implements Serializable{
 	}
 
 	public void setStreetName(String streetName) {
-		this.streetName = streetName;
+		this.name = streetName;
 	}
 
-	private String streetName;
+	
 }

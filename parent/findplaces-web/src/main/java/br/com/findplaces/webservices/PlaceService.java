@@ -93,10 +93,10 @@ public class PlaceService implements Serializable {
 
 		PlaceRequest re = request;
 		PlaceTypeTO typeTO = re.getType();
-
-		if (typeTO.getName().equals("1")) {
-			typeTO.setId(1L);
-		}
+		
+		//if (typeTO.getName().equals("1")) {
+		///	typeTO.setId(1L);
+		//}
 
 		NeighborhoodTO neighTo = re.getNeighborhood();
 		neighTo = getPlaceConfiguration().findNeighborhoodByName(
@@ -110,11 +110,14 @@ public class PlaceService implements Serializable {
 		cityTo = getPlaceConfiguration().findCityByName(cityTo.getName());
 		PlaceTO to = new PlaceTO();
 		to.setAddress(re.getAddress());
-		to.setCity(re.getCity());
-		to.setDescription(re.getDescription());
-		to.setNeighborhood(re.getNeighborhood());
-		to.setStreet(re.getStreet());
+		to.setCity(cityTo);
+		to.setNeighborhood(neighTo);
+		to.setStreet(streetTo);
+		
+		to.setDescription(re.getDescription());		
 		to.setType(re.getType());
+		to.setLat(re.getLat());
+		to.setLog(re.getLog());
 
 		PlaceTO placeCreated = getPlaceConfiguration().createPlace(to);
 		PlaceResponse response = new PlaceResponse();

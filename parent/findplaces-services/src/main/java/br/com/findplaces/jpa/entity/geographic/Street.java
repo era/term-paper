@@ -24,7 +24,7 @@ public class Street extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 7150118755881112499L;
 	
-	public static final String findStreetByName = "FindUserBySocialId";
+	public static final String findStreetByName = "FindStreetByName";
 	
 	@Id
 	@GeneratedValue
