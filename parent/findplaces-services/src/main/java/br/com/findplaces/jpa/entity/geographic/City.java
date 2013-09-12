@@ -12,14 +12,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.findplaces.jpa.entity.BaseEntity;
 
+@NamedQueries({
+	@NamedQuery(name="FindCityByName", query="SELECT c FROM City c where c.name = :name")
+})
 @Entity
 @Table(name="TB_CITY")
 public class City extends BaseEntity implements Serializable {
+	
+	public static final String findCityByName = "FindCityByName";
 	
 	private static final long serialVersionUID = 1L;
 

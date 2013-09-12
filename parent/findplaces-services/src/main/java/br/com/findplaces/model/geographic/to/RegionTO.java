@@ -2,13 +2,22 @@ package br.com.findplaces.model.geographic.to;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+
+@XmlRootElement(name="region")
 public class RegionTO implements Serializable {
 
+	private static final long serialVersionUID = 9210091287956666312L;
+
+	@XmlTransient
 	private Long id;
 
+	@XmlTransient
 	private String name;
 
+	@XmlTransient
 	private CountryTO country;
 
 	public Long getId() {

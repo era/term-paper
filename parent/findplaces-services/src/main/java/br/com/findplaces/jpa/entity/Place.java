@@ -2,10 +2,14 @@ package br.com.findplaces.jpa.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,10 +45,11 @@ public class Place extends BaseEntity implements Serializable {
 	private PlaceType type;
 	
 	@Column
-	private String description;
+	private String description;	
 	
-	@OneToOne
+	@OneToOne(mappedBy="place", fetch = FetchType.LAZY)
 	private PlaceSpatial spatial;
+	
 
 	public Long getId() {
 		return id;
@@ -100,6 +105,14 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public PlaceSpatial getSpatial() {
+		return spatial;
+	}
+
+	public void setSpatial(PlaceSpatial spatial) {
+		this.spatial = spatial;
 	}
 
 }

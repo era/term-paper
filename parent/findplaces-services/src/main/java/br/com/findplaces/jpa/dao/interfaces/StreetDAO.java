@@ -4,4 +4,5 @@ import br.com.findplaces.jpa.entity.geographic.Street;
 
 public interface StreetDAO extends BaseDAO<Street, Long> {
 
+	Street findByName(String name);
 }

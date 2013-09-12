@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
 
-import br.com.findplaces.jpa.dao.interfaces.BaseDAO;
 import br.com.findplaces.jpa.dao.spatial.interfaces.BaseSpatialDAO;
 import br.com.findplaces.jpa.entity.BaseEntity;
 import br.com.findplaces.jpa.exception.DAOException;

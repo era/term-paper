@@ -3,7 +3,7 @@ package br.com.findplaces.jpa.dao.spatial.impl;
 import java.io.Serializable;
 
 import javax.annotation.Resource;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -15,7 +15,7 @@ import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Stateless
-@Local(PlaceSpatialDAO.class)
+@Remote(PlaceSpatialDAO.class)
 public class PlaceSpatialDAOImpl extends BaseSpatialDAOImpl<PlaceSpatial, Long>
 		implements Serializable {
 

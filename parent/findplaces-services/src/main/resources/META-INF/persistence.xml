@@ -26,18 +26,11 @@
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name = "hibernate.dialect" value = "org.hibernate.spatial.dialect.postgis.PostgisDialect"/>
-            <property name = "hibernate.hbm2ddl.auto" value = "create"/>
+            <property name = "hibernate.hbm2ddl.auto" value = "create-drop"/>
+            <property name = "hibernate.show_sql" value = "true"/>
         </properties>
     </persistence-unit>
     
-    <!-- persistence-unit name = "FindPlacesSpatial">
-        <class>br.com.findplaces.jpa.entity.spatial.PlaceSpatial</class>
-        <jta-data-source>java:jboss/datasources/FindPlaces</jta-data-source>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
-        <properties>
-            <property name="hibernate.dialect" value="org.hibernate.spatial.dialect.postgis.PostgisDialect"/>
-            <property name = "hibernate.hbm2ddl.auto" value = "create"/>
-        </properties>
-    </persistence-unit> -->
+   
     
 </persistence>

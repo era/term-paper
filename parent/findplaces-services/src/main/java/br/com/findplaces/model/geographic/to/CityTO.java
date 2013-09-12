@@ -4,15 +4,20 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 @XmlRootElement(name="city")
 public class CityTO implements Serializable {
 
 	private static final long serialVersionUID = 3983833284361662445L;
 
+
 	private Long id;
+
 
 	private String name;
 
+	@XmlTransient
 	private RegionTO region;
 
 	public Long getId() {
