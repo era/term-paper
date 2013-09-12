@@ -19,7 +19,7 @@ import br.com.findplaces.webservices.requests.ImageServiceRequest;
 @Stateless
 public class ImageService implements Serializable {
 
-	private static final long serialVersionUID = 363628388707863072L;
+	private static final long serialVersionUID = 36362838870786307\2L;
 	
 	@POST
 	@Produces({MediaType.APPLICATION_JSON })

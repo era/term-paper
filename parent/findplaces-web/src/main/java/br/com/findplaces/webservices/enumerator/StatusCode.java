@@ -2,8 +2,9 @@ package br.com.findplaces.webservices.enumerator;
 
 public enum StatusCode{
 	
-	SUCCESS("SUCCESS",0),
-	ERROR("OPS, BAD BAD SERVER", 1);
+	SUCCESS("SUCCESS",0),	
+	ERROR("OPS, BAD BAD SERVER", 1),
+	NOT_ALLOWED("HUM...I THINK YOU SHOULD'T BE HERE",2);
 	
 
 	private String message;

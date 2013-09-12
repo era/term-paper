@@ -47,8 +47,10 @@ public class UserService implements Serializable {
 			UserTO userTO = getUserLogin().findUserBySocialID(id);
 			response.setUser(userTO);
 			setSuccessResponse(response);
+		} catch (NotAuthorizedException e) {
+			setErrorResponse(response, StatusCode.NOT_ALLOWED);
 		} catch (Exception e) {
-			setErrorResponse(response);
+			setErrorResponse(response, StatusCode.ERROR);
 		}
 
 		return response;
@@ -71,8 +73,10 @@ public class UserService implements Serializable {
 			response.setUser(createdUser);
 			setSuccessResponse(response);
 
+		} catch (NotAuthorizedException e) {
+			setErrorResponse(response, StatusCode.NOT_ALLOWED);
 		} catch (Exception e) {
-			setErrorResponse(response);
+			setErrorResponse(response, StatusCode.ERROR);
 		}
 		return response;
 	}
@@ -99,8 +103,10 @@ public class UserService implements Serializable {
 
 			setSuccessResponse(response);
 
+		} catch (NotAuthorizedException e) {
+			setErrorResponse(response, StatusCode.NOT_ALLOWED);
 		} catch (Exception e) {
-			setErrorResponse(response);
+			setErrorResponse(response, StatusCode.ERROR);
 		}
 		return response;
 	}
@@ -121,8 +127,10 @@ public class UserService implements Serializable {
 
 			setSuccessResponse(response);
 
+		} catch (NotAuthorizedException e) {
+			setErrorResponse(response, StatusCode.NOT_ALLOWED);
 		} catch (Exception e) {
-			setErrorResponse(response);
+			setErrorResponse(response, StatusCode.ERROR);
 		}
 		return response;
 	}
@@ -132,9 +140,9 @@ public class UserService implements Serializable {
 		response.setMessage(StatusCode.SUCCESS.getMessage());
 	}
 
-	private void setErrorResponse(BaseJSONObject response) {
-		response.setCode(StatusCode.ERROR.getCode());
-		response.setMessage(StatusCode.ERROR.getMessage());
+	private void setErrorResponse(BaseJSONObject response, StatusCode error) {
+		response.setCode(error.getCode());
+		response.setMessage(error.getMessage());
 	}
 
 	private void isValidToken(String token, String id)

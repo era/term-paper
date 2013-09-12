@@ -2,7 +2,12 @@ package br.com.findplaces.model.geographic.to;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="city")
 public class CityTO implements Serializable {
+
+	private static final long serialVersionUID = 3983833284361662445L;
 
 	private Long id;
 

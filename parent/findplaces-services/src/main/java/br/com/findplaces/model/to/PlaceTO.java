@@ -29,6 +29,8 @@ public class PlaceTO implements Serializable {
 	private String description;
 
 	private PlaceSpatialTO spatial;
+	
+	private SellerTO seller;
 
 	public Long getId() {
 		return id;
@@ -92,6 +94,14 @@ public class PlaceTO implements Serializable {
 
 	public void setSpatial(PlaceSpatialTO spatial) {
 		this.spatial = spatial;
+	}
+
+	public SellerTO getSeller() {
+		return seller;
+	}
+
+	public void setSeller(SellerTO seller) {
+		this.seller = seller;
 	}
 
 }
