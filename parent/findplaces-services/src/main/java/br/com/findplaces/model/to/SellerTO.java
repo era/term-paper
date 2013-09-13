@@ -13,20 +13,28 @@ public class SellerTO implements Serializable {
 	@XmlTransient
 	private Long id;
 	
+	@XmlTransient
 	private UserTO userTO;
 	
+	@XmlTransient
 	private String name;
 	
+	@XmlTransient
 	private String latitude;
 	
+	@XmlTransient
 	private String longitude;
 	
+	@XmlTransient
 	private String website;
 	
+	@XmlTransient
 	private String city;
 	
+	@XmlTransient
 	private String state;
 	
+	@XmlTransient
 	private String country;
 	
 	public Long getId() {

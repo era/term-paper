@@ -1,7 +1,12 @@
 package br.com.findplaces.ejb.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+
+import org.apache.log4j.Logger;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateFilter;
@@ -25,10 +30,13 @@ import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
 import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
 import br.com.findplaces.model.to.PlaceTO;
+import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.util.ConverterTO;
 
 @Stateless(name = "PlaceConfigurationsEJB", mappedName = "PlaceConfigurationsImpl")
 public class PlaceConfigurationsImpl implements PlaceConfigurations {
+	
+	private static final Logger logger = Logger.getLogger(PlaceConfigurationsImpl.class);
 
 	private static final long serialVersionUID = 1L;
 	
@@ -47,8 +55,8 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	private NeighborhoodDAO neighDAO;
 	
 	@EJB
-	private PlaceSpatialDAO spatialDAO;
-
+	private PlaceSpatialDAO spatialDAO;	
+	
 	public PlaceTO createPlace(PlaceTO place) {
 		try {	
 			
@@ -80,6 +88,25 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		}
 		return place;
 	}
+	
+	@Override
+	public List<PlaceTO> findPlaceByLatLogDistance(Double lat, Double log, Double distance) {
+
+		List<Place> places = spatialDAO.findPlaceByLatLogDistance(lat, log, distance);
+
+		if (places == null) {
+			 logger.info("Não foi encontrado o lugar pela latitude e longitude ");
+			 return null;
+		}
+
+		List<PlaceTO> placesTO = new ArrayList<PlaceTO>();
+		for(Place place: places){
+			PlaceTO to = ConverterTO.converter(place);
+			placesTO.add(to);
+		}
+		
+		return placesTO;
+	}
 
 	@Override
 	public PlaceTO findPlaceById(Long id) {
@@ -88,7 +115,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			Place place = placeDAO.findById(id);
 
 			if (place == null) {
-				// logger.info("Não foi encontrado o usuário "+ id.toString());
+				logger.info("Não foi encontrado o usuário "+ id.toString());
 			}
 
 			return ConverterTO.converter(place);
@@ -105,7 +132,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		City city = cityDAO.findByName(name);
 
 		if (city == null) {
-			// logger.info("Não foi encontrado o usuário "+ id.toString());
+			logger.info("Não foi encontrado o usuário ");
 		}
 
 		return ConverterTO.converter(city);
@@ -127,10 +154,10 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		Neighborhood neigh = neighDAO.findByName(name);
 
 		if (neigh == null) {
-			// logger.info("Não foi encontrado o usuário "+ id.toString());
+			logger.info("Não foi encontrado o usuário ");
 		}
 
 		return ConverterTO.converter(neigh);
-	}
+	}	
 
 }

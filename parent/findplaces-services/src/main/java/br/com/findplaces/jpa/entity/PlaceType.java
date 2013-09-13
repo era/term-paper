@@ -8,24 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_PLACE_TYPE")
+@Table(name = "TB_PLACE_TYPE")
 public class PlaceType {
-	
-private static final long serialVersionUID = 1L;
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column
 	private String name;
-	
-	
-	public void setId(Long id){
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}

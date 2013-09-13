@@ -24,6 +24,10 @@ public class PlaceRequest implements Serializable {
 		return gson.fromJson(json, PlaceRequest.class);
 	}
 
+	private String token;
+	
+	private String socialid;
+
 	private Double lat;
 
 	private Double log;
@@ -36,7 +40,7 @@ public class PlaceRequest implements Serializable {
 
 	private StreetTO street;
 
-	private PlaceTypeTO type;
+	private PlaceTypeTO placetype;
 
 	private String description;
 
@@ -58,10 +62,6 @@ public class PlaceRequest implements Serializable {
 
 	public StreetTO getStreet() {
 		return street;
-	}
-
-	public PlaceTypeTO getType() {
-		return type;
 	}
 
 	public String getDescription() {
@@ -86,11 +86,7 @@ public class PlaceRequest implements Serializable {
 
 	public void setStreet(StreetTO street) {
 		this.street = street;
-	}
-
-	public void setType(PlaceTypeTO type) {
-		this.type = type;
-	}
+	}	
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -122,6 +118,30 @@ public class PlaceRequest implements Serializable {
 
 	public void setLog(Double log) {
 		this.log = log;
+	}
+	
+	public String getToken() {
+		return token;
+	}
+
+	public String getSocialId() {
+		return socialid;
+	}
+
+	public void setSocialId(String socialId) {
+		this.socialid = socialId;
+	}
+
+	public PlaceTypeTO getPlacetype() {
+		return placetype;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public void setPlacetype(PlaceTypeTO placetype) {
+		this.placetype = placetype;
 	}
 
 }

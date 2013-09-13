@@ -76,16 +76,6 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		return getEntityManager().merge(seller);
 	}
 	
-	@Override
-	public Seller findSellerBySocialID(String id){
-		Query query = getEntityManager().createNamedQuery(Seller.FIND_SELLER_BY_SOCIAL_ID, Seller.class);
-		query.setParameter("socialID", id);
-		List resultList = query.getResultList();
-		if(resultList.isEmpty()){
-			return null;
-		} else{
-			return (Seller) resultList.get(0);
-		}
-	}
+	
 
 }

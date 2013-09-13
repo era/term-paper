@@ -4,7 +4,10 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 
+import org.apache.log4j.Logger;
+
 import br.com.findplaces.ejb.UserLogin;
+import br.com.findplaces.jpa.dao.interfaces.SellerDAO;
 import br.com.findplaces.jpa.dao.interfaces.UserDAO;
 import br.com.findplaces.jpa.entity.Seller;
 import br.com.findplaces.jpa.entity.User;
@@ -18,10 +21,13 @@ public class UserLoginImpl implements UserLogin {
 
 	private static final long serialVersionUID = 1L;
 	
-	//private static final Logger logger = Logger.getLogger(UserLoginImpl.class);
+	private static final Logger logger = Logger.getLogger(UserLoginImpl.class);
 	
 	@EJB
 	private UserDAO userDAO;
+	
+	@EJB
+	private SellerDAO sellerDAO;
 
 	@Override
 	public UserTO findUserById(Long id)   {
@@ -91,7 +97,7 @@ public class UserLoginImpl implements UserLogin {
 
 	@Override
 	public SellerTO findSeller(String socialID){
-		Seller sellerFound = userDAO.findSellerBySocialID(socialID);
+		Seller sellerFound = sellerDAO.findSellerByUserSocialId(socialID);
 		
 		if(sellerFound==null){
 		}

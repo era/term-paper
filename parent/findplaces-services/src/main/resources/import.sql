@@ -16,26 +16,25 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
-INSERT INTO tb_user_type(id, name) VALUES (1, 'FACEBOOK_USER');
+INSERT INTO tb_user_type (id, name) VALUES (1, 'FACEBOOK_USER');
 
-INSERT INTO tb_user_type(id, name) VALUES (2, 'COMMON_USER');
+INSERT INTO tb_user_type (id, name) VALUES (2, 'COMMON_USER');
 
-INSERT INTO tb_place_type(id, name) VALUES (1, 'APART');
+INSERT INTO TB_PLACE_TYPE (id, name) VALUES (1, 'APARTMENT');
 
-INSERT INTO tb_place_type(id, name) VALUES (2, 'HOUSE');
-
-INSERT INTO tb_place_type(id, name) VALUES (3, 'CONTAINER');
+INSERT INTO TB_PLACE_TYPE (id, name) VALUES (2, 'HOUSE');
 
 
+INSERT INTO tb_country (id, name)  VALUES (1, 'Brazil');
 
-INSERT INTO tb_country(id, name)  VALUES (1, 'Brazil');
+INSERT INTO tb_region (id, name, country_id)  VALUES (1, 'São Paulo', 1);
 
-INSERT INTO tb_region(id, name, country_id)  VALUES (1, 'São Paulo', 1);
+INSERT INTO tb_city (id, name, region_id)  VALUES (1, 'Campinas', 1);
 
-INSERT INTO tb_city(id, name, region_id)  VALUES (1, 'Campinas', 1);
+INSERT INTO tb_neighborhood (id, hoodname, city_id)  VALUES (1, 'Centro', 1);
 
-INSERT INTO tb_neighborhood(id, hoodname, city_id)  VALUES (1, 'Centro', 1);
+INSERT INTO TB_STREET (id, streetname, neighborhood_id)  VALUES (1, 'Jaguara', 1);
 
-INSERT INTO TB_STREET(id, streetname, neighborhood_id)  VALUES (1, 'Jaguara', 1);
 
-INSERT INTO tb_place(id, address)  VALUES (1, 'blablablabla');
+
+

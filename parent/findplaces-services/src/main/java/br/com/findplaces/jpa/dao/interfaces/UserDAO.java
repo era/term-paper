@@ -18,5 +18,4 @@ public interface UserDAO extends BaseDAO<User, Long> {
 	
 	Seller saveSellerConfigurations(Seller seller);
 	
-	Seller findSellerBySocialID(String id);
 }

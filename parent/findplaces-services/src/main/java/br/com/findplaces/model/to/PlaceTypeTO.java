@@ -5,14 +5,14 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-@XmlRootElement(name="placetype")
+@XmlRootElement(name = "placetype")
 public class PlaceTypeTO implements Serializable {
 
 	private static final long serialVersionUID = 590328857891269254L;
 
 	@XmlTransient
 	private Long id;
-
+	
 	@XmlTransient
 	private String name;
 

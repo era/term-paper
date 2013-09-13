@@ -11,9 +11,7 @@ public class CityTO implements Serializable {
 
 	private static final long serialVersionUID = 3983833284361662445L;
 
-
 	private Long id;
-
 
 	private String name;
 

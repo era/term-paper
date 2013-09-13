@@ -2,14 +2,13 @@ package br.com.findplaces.jpa.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,16 +21,17 @@ import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 @Entity
 @Table(name = "TB_PLACE")
 public class Place extends BaseEntity implements Serializable {
+	
 	/** Default value included to remove warning. Remove or modify at will. **/
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column
 	private String address;
-	
+
 	@ManyToOne
 	private City city;
 
@@ -43,13 +43,17 @@ public class Place extends BaseEntity implements Serializable {
 
 	@ManyToOne
 	private PlaceType type;
-	
+
 	@Column
-	private String description;	
+	private String description;
 	
-	@OneToOne(mappedBy="place", fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seller_id")
+	private Seller seller;
+
+	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY)
+	@JoinColumn(name = "fid")
 	private PlaceSpatial spatial;
-	
 
 	public Long getId() {
 		return id;
@@ -113,6 +117,14 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setSpatial(PlaceSpatial spatial) {
 		this.spatial = spatial;
+	}
+
+	public Seller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
 	}
 
 }

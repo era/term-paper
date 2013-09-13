@@ -28,17 +28,15 @@ public class PlaceTO implements Serializable {
 
 	private String description;
 
-
 	private PlaceSpatialTO spatial;
-	
+
 	private SellerTO seller;
 
 	private Double lat;
-	
-	private Double log;
-	
-	private PlaceSpatialTO spatialTO;
 
+	private Double log;
+
+	private PlaceSpatialTO spatialTO;
 
 	public Long getId() {
 		return id;
@@ -104,7 +102,6 @@ public class PlaceTO implements Serializable {
 		return log;
 	}
 
-
 	public SellerTO getSeller() {
 		return seller;
 	}
@@ -128,6 +125,5 @@ public class PlaceTO implements Serializable {
 	public void setSpatialTO(PlaceSpatialTO spatialTO) {
 		this.spatialTO = spatialTO;
 	}
-	
 
 }
