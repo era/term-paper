@@ -23,5 +23,7 @@ public interface PlaceConfigurations extends Serializable {
 
 	List<PlaceTO> findPlaceByLatLogDistance(Double lat, Double log, Double distance);
 	
+	List<PlaceTO> findByFilter(Double lat, Double log, Double distance);
+	
 
 }

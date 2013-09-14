@@ -43,7 +43,7 @@ public class PlaceService implements Serializable {
 
 	@EJB
 	private PlaceConfigurations place;
-	
+
 	@EJB
 	private SellerConfigurations seller;
 
@@ -77,29 +77,35 @@ public class PlaceService implements Serializable {
 			@QueryParam(value = "socialid") String socialid,
 			@QueryParam(value = "lat") String latitude,
 			@QueryParam(value = "log") String longitude,
-			@QueryParam(value = "distance") String distance) throws NotAuthorizedException {
+			@QueryParam(value = "distance") String distance)
+			throws NotAuthorizedException {
 		if (token == null && socialid == null) {
 			return searchByLatLong(latitude, longitude, distance);
 		}
 		isValidToken(token, socialid);
-		
-		List<PlaceTO> places = getPlaceConfiguration().findPlaceByLatLogDistance(
-				Double.parseDouble(latitude), Double.parseDouble(longitude), Double.parseDouble(distance));
+
+		List<PlaceTO> places = getPlaceConfiguration()
+				.findPlaceByLatLogDistance(Double.parseDouble(latitude),
+						Double.parseDouble(longitude),
+						Double.parseDouble(distance));
 		PlaceResponse response = new PlaceResponse();
-		
+
 		response.setPlaces(places);
 		setSuccessResponse(response);
 
 		return response;
 	}
-	
+
 	@Produces({ MediaType.APPLICATION_JSON })
-	public PlaceResponse searchByLatLong(String latitude, String longitude,	String distance) throws NotAuthorizedException {	
-		
-		List<PlaceTO> places = getPlaceConfiguration().findPlaceByLatLogDistance(
-				Double.parseDouble(latitude), Double.parseDouble(longitude), Double.parseDouble(distance));
+	public PlaceResponse searchByLatLong(String latitude, String longitude,
+			String distance) throws NotAuthorizedException {
+
+		List<PlaceTO> places = getPlaceConfiguration()
+				.findPlaceByLatLogDistance(Double.parseDouble(latitude),
+						Double.parseDouble(longitude),
+						Double.parseDouble(distance));
 		PlaceResponse response = new PlaceResponse();
-		
+
 		response.setPlaces(places);
 		setSuccessResponse(response);
 
@@ -109,51 +115,78 @@ public class PlaceService implements Serializable {
 	@GET
 	@Path("/search/byFilter")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public PlaceResponse searchByFilter(@QueryParam(value = "token") String token,
-			@QueryParam(value = "filter") FilterSearchRequest filter) {
+	public PlaceResponse searchByFilter(
+			@QueryParam(value = "token") String token,
+			@QueryParam(value = "filter") FilterSearchRequest filter) throws NotAuthorizedException {
+
+		String socialid = null;
+		String latitude = null;
+		String longitude = null;
+		String distance = null;
+
+		isValidToken(token, socialid);
+
+		List<PlaceTO> places = getPlaceConfiguration().findByFilter(Double.parseDouble(latitude),
+						Double.parseDouble(longitude),
+						Double.parseDouble(distance));
+		PlaceResponse response = new PlaceResponse();
+
+		response.setPlaces(places);
+		setSuccessResponse(response);
 
 		return null;
 	}
 
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
-	public PlaceResponse insertPlace(@FormParam(value = "place") PlaceRequest request,
-			@Context HttpServletResponse servletResponse) throws NotAuthorizedException {
+	public PlaceResponse insertPlace(
+			@FormParam(value = "place") PlaceRequest request,
+			@Context HttpServletResponse servletResponse)
+			throws NotAuthorizedException {
 
-		//Validação do Token e User SocialID
+		// Validação do Token e User SocialID
 		PlaceRequest re = request;
-		String socialId = re.getSocialId();		
-		SellerTO sellerTO = getSellerConfigurations().findBySocialId(socialId);		
+		String socialId = re.getSocialid();
+		SellerTO sellerTO = getSellerConfigurations().findBySocialId(socialId);
 		UserTO userTO = sellerTO.getUserTO();
 		isValidToken(re.getToken(), userTO.getSocialID());
-		
-		//PlaceType - Tipo de casa
+
+		// PlaceType - Tipo de casa
 		PlaceTypeTO typeTO = re.getPlacetype();
 		typeTO.setId(re.getPlacetype().getId());
-		
-		//Busca MUB(Dados geograficos)
+
+		// Busca MUB(Dados geograficos)
 		NeighborhoodTO neighTo = re.getNeighborhood();
-		neighTo = getPlaceConfiguration().findNeighborhoodByName(neighTo.getName());
+		neighTo = getPlaceConfiguration().findNeighborhoodByName(
+				neighTo.getName());
 		StreetTO streetTo = re.getStreet();
-		streetTo = getPlaceConfiguration().findStreetByName(streetTo.getStreetName());
+		streetTo = getPlaceConfiguration().findStreetByName(
+				streetTo.getStreetName());
 		CityTO cityTo = re.getCity();
 		cityTo = getPlaceConfiguration().findCityByName(cityTo.getName());
-		
-		//Conversao das buscas para o PlaceTO a ser criado
+
+		// Conversao das buscas para o PlaceTO a ser criado
 		PlaceTO to = new PlaceTO();
 		to.setAddress(re.getAddress());
-		to.setCity(cityTo);
-		to.setNeighborhood(neighTo);
-		to.setStreet(streetTo);
+		to.setBathroom(re.getBathroom());
+		to.setBedroom(re.getBedroom());
+		to.setCity(re.getCity());
+		to.setCode(re.getCode());
+		to.setComplexPrice(re.getComplexPrice());
 		to.setDescription(re.getDescription());
+		to.setGarage(re.getGarage());
+		to.setM2(re.getM2());
+		to.setNeighborhood(re.getNeighborhood());
+		to.setPrice(re.getPrice());
+		to.setRoom(re.getRoom());
+		to.setSeller(re.getSeller());
+		to.setStreet(re.getStreet());
+		to.setSuite(re.getSuite());
 		to.setType(re.getPlacetype());
-		to.setLat(re.getLat());
-		to.setLog(re.getLog());
-		to.setSeller(sellerTO);
-		
-		//Criacao
+
+		// Criacao
 		PlaceTO placeCreated = getPlaceConfiguration().createPlace(to);
-		//Resposta
+		// Resposta
 		PlaceResponse response = new PlaceResponse();
 		List<PlaceTO> list = new ArrayList<PlaceTO>();
 		list.add(placeCreated);
@@ -202,7 +235,5 @@ public class PlaceService implements Serializable {
 	public void setSellerConfigurations(SellerConfigurations seller) {
 		this.seller = seller;
 	}
-	
-	
 
 }

@@ -97,12 +97,22 @@ public class ConverterTO {
 		Place entity = new Place();
 		entity.setId(place.getId());
 		entity.setAddress(place.getAddress());
-		entity.setDescription(place.getDescription());
+		entity.setBathroom(place.getBathroom());
+		entity.setBedroom(place.getBedroom());
 		entity.setCity(converter(place.getCity()));
+		entity.setCode(place.getCode());
+		entity.setComplexPrice(place.getComplexPrice());
+		entity.setDescription(place.getDescription());
+		entity.setGarage(place.getGarage());
+		entity.setM2(place.getM2());
 		entity.setNeighborhood(converter(place.getNeighborhood()));
+		entity.setPrice(place.getPrice());
+		entity.setRoom(place.getRoom());
+		entity.setSeller(converter(place.getSeller()));
 		entity.setStreet(converter(place.getStreet()));
-		//entity.setType(converter(place.getType()));
-		//entity.setSpatial(converter(place.getSpatialTO()));
+		entity.setSuite(place.getSuite());
+		entity.setType(converter(place.getType()));
+		//SPATIAL
 		return entity;
 	}
 	
@@ -110,12 +120,22 @@ public class ConverterTO {
 		PlaceTO to = new PlaceTO();
 		to.setId(place.getId());
 		to.setAddress(place.getAddress());
+		to.setBathroom(place.getBathroom());
+		to.setBedroom(place.getBedroom());
 		to.setCity(converter(place.getCity()));
-		to.setNeighborhood(converter(place.getNeighborhood()));
-		to.setStreet(converter(place.getStreet()));
+		to.setCode(place.getCode());
+		to.setComplexPrice(place.getComplexPrice());
 		to.setDescription(place.getDescription());
-		//to.setType(converter(place.getType()));
-		
+		to.setGarage(place.getGarage());
+		to.setM2(place.getM2());
+		to.setNeighborhood(converter(place.getNeighborhood()));
+		to.setPrice(place.getPrice());
+		to.setRoom(place.getRoom());
+		to.setSeller(converter(place.getSeller()));
+		to.setStreet(converter(place.getStreet()));
+		to.setSuite(place.getSuite());
+		to.setType(converter(place.getType()));
+		//SPATIAL		
 		return to;
 	}
 	

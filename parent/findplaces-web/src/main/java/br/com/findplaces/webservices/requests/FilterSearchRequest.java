@@ -4,6 +4,13 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import br.com.findplaces.model.geographic.to.CityTO;
+import br.com.findplaces.model.geographic.to.NeighborhoodTO;
+import br.com.findplaces.model.geographic.to.StreetTO;
+import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
+import br.com.findplaces.model.to.PlaceTypeTO;
+import br.com.findplaces.model.to.SellerTO;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,6 +24,47 @@ public class FilterSearchRequest implements Serializable {
 		Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, FilterSearchRequest.class);
 	}
-	//TODO What fields will be "searchable" here?
+	
+	private String address;
+
+	private Integer bathroom;
+
+	private Integer bedroom;
+
+	private CityTO city;
+
+	private String code;
+
+	private Double complexPrice;
+
+	private String description;
+
+	private Integer garage;
+
+	private Double lat;
+
+	private Double log;
+
+	private Double m2;
+
+	private NeighborhoodTO neighborhood;
+
+	private PlaceTypeTO placetype;
+
+	private Double price;
+
+	private Integer room;
+
+	private SellerTO seller;
+
+	private String socialid;
+
+	private PlaceSpatialTO spatial;
+
+	private StreetTO street;
+
+	private Integer suite;
+	
+	private String token;
 
 }

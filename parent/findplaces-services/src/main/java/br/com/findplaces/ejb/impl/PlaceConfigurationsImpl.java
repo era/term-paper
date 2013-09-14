@@ -8,12 +8,6 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.CoordinateFilter;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
-
 import br.com.findplaces.ejb.PlaceConfigurations;
 import br.com.findplaces.jpa.dao.interfaces.CityDAO;
 import br.com.findplaces.jpa.dao.interfaces.NeighborhoodDAO;
@@ -30,8 +24,11 @@ import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
 import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
 import br.com.findplaces.model.to.PlaceTO;
-import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.util.ConverterTO;
+
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
 
 @Stateless(name = "PlaceConfigurationsEJB", mappedName = "PlaceConfigurationsImpl")
 public class PlaceConfigurationsImpl implements PlaceConfigurations {
@@ -158,6 +155,12 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		}
 
 		return ConverterTO.converter(neigh);
+	}
+
+	@Override
+	public List<PlaceTO> findByFilter(Double lat, Double log, Double distance) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 
 }

@@ -28,8 +28,6 @@ public class PlaceTO implements Serializable {
 
 	private String description;
 
-	private PlaceSpatialTO spatial;
-
 	private SellerTO seller;
 
 	private Double lat;
@@ -37,6 +35,25 @@ public class PlaceTO implements Serializable {
 	private Double log;
 
 	private PlaceSpatialTO spatialTO;
+	
+	private String code;		
+
+	private Double price;	
+	
+	private Double complexPrice;	
+	
+	private Integer room;	
+	
+	private Integer bathroom;
+		
+	private Integer bedroom;	
+	
+	private Integer suite;	
+	
+	private Double m2;	
+	
+	private Integer garage;
+
 
 	public Long getId() {
 		return id;
@@ -124,6 +141,78 @@ public class PlaceTO implements Serializable {
 
 	public void setSpatialTO(PlaceSpatialTO spatialTO) {
 		this.spatialTO = spatialTO;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public Double getComplexPrice() {
+		return complexPrice;
+	}
+
+	public Integer getRoom() {
+		return room;
+	}
+
+	public Integer getBathroom() {
+		return bathroom;
+	}
+
+	public Integer getBedroom() {
+		return bedroom;
+	}
+
+	public Integer getSuite() {
+		return suite;
+	}
+
+	public Double getM2() {
+		return m2;
+	}
+
+	public Integer getGarage() {
+		return garage;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public void setComplexPrice(Double complexPrice) {
+		this.complexPrice = complexPrice;
+	}
+
+	public void setRoom(Integer room) {
+		this.room = room;
+	}
+
+	public void setBathroom(Integer bathroom) {
+		this.bathroom = bathroom;
+	}
+
+	public void setBedroom(Integer bedroom) {
+		this.bedroom = bedroom;
+	}
+
+	public void setSuite(Integer suite) {
+		this.suite = suite;
+	}
+
+	public void setM2(Double m2) {
+		this.m2 = m2;
+	}
+
+	public void setGarage(Integer garage) {
+		this.garage = garage;
 	}
 
 }

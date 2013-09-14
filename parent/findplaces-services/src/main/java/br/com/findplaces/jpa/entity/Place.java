@@ -28,6 +28,14 @@ public class Place extends BaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY)
+	@JoinColumn(name = "fid")
+	private PlaceSpatial spatial;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seller_id")
+	private Seller seller;
 
 	@Column
 	private String address;
@@ -42,18 +50,39 @@ public class Place extends BaseEntity implements Serializable {
 	private Street street;
 
 	@ManyToOne
-	private PlaceType type;
-
+	private PlaceType type;		
+	
+	@Column
+	private String code;
+	
 	@Column
 	private String description;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "seller_id")
-	private Seller seller;
-
-	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY)
-	@JoinColumn(name = "fid")
-	private PlaceSpatial spatial;
+	@Column
+	private Double price;
+	
+	@Column
+	private Double complexPrice;
+	
+	@Column
+	private Integer room;
+	
+	@Column
+	private Integer bathroom;
+	
+	@Column
+	private Integer bedroom;
+	
+	@Column
+	private Integer suite;
+	
+	@Column
+	private Double m2;
+	
+	@Column
+	private Integer garage;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -102,14 +131,7 @@ public class Place extends BaseEntity implements Serializable {
 	public void setType(PlaceType type) {
 		this.type = type;
 	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
 
 	public PlaceSpatial getSpatial() {
 		return spatial;
@@ -118,7 +140,87 @@ public class Place extends BaseEntity implements Serializable {
 	public void setSpatial(PlaceSpatial spatial) {
 		this.spatial = spatial;
 	}
+	
+	public String getCode() {
+		return code;
+	}
 
+	public Double getPrice() {
+		return price;
+	}
+
+	public Double getComplexPrice() {
+		return complexPrice;
+	}
+
+	public Integer getRoom() {
+		return room;
+	}
+
+	public Integer getBathroom() {
+		return bathroom;
+	}
+
+	public Integer getBedroom() {
+		return bedroom;
+	}
+
+	public Integer getSuite() {
+		return suite;
+	}
+
+	public Double getM2() {
+		return m2;
+	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public void setComplexPrice(Double complexPrice) {
+		this.complexPrice = complexPrice;
+	}
+
+	public void setRoom(Integer room) {
+		this.room = room;
+	}
+
+	public void setBathroom(Integer bathroom) {
+		this.bathroom = bathroom;
+	}
+
+	public void setBedroom(Integer bedroom) {
+		this.bedroom = bedroom;
+	}
+
+	public void setSuite(Integer suite) {
+		this.suite = suite;
+	}
+
+	public Integer getGarage() {
+		return garage;
+	}
+
+	public void setGarage(Integer garage) {
+		this.garage = garage;
+	}
+
+	public void setM2(Double m2) {
+		this.m2 = m2;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	public Seller getSeller() {
 		return seller;
 	}
@@ -126,5 +228,7 @@ public class Place extends BaseEntity implements Serializable {
 	public void setSeller(Seller seller) {
 		this.seller = seller;
 	}
+
+	
 
 }

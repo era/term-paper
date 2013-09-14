@@ -24,29 +24,63 @@ public class PlaceRequest implements Serializable {
 		return gson.fromJson(json, PlaceRequest.class);
 	}
 
-	private String token;
-	
-	private String socialid;
+	private String address;
+
+	private Integer bathroom;
+
+	private Integer bedroom;
+
+	private CityTO city;
+
+	private String code;
+
+	private Double complexPrice;
+
+	private String description;
+
+	private Integer garage;
 
 	private Double lat;
 
 	private Double log;
 
-	private String address;
-
-	private CityTO city;
+	private Double m2;
 
 	private NeighborhoodTO neighborhood;
 
-	private StreetTO street;
-
 	private PlaceTypeTO placetype;
 
-	private String description;
+	private Double price;
+
+	private Integer room;
+
+	private SellerTO seller;
+
+	private String socialid;
 
 	private PlaceSpatialTO spatial;
 
-	private SellerTO seller;
+	private StreetTO street;
+
+	private Integer suite;
+	
+	private String token;
+
+	public String getToken() {
+		return token;
+	}
+
+	public String getSocialid() {
+		return socialid;
+	}
+
+	public Double getLat() {
+		return lat;
+	}
+
+	public Double getLog() {
+		return log;
+	}
 
 	public String getAddress() {
 		return address;
@@ -64,12 +98,72 @@ public class PlaceRequest implements Serializable {
 		return street;
 	}
 
+	public PlaceTypeTO getPlacetype() {
+		return placetype;
+	}
+
 	public String getDescription() {
 		return description;
 	}
 
 	public PlaceSpatialTO getSpatial() {
 		return spatial;
+	}
+
+	public SellerTO getSeller() {
+		return seller;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public Double getComplexPrice() {
+		return complexPrice;
+	}
+
+	public Integer getRoom() {
+		return room;
+	}
+
+	public Integer getBathroom() {
+		return bathroom;
+	}
+
+	public Integer getBedroom() {
+		return bedroom;
+	}
+
+	public Integer getSuite() {
+		return suite;
+	}
+
+	public Double getM2() {
+		return m2;
+	}
+
+	public Integer getGarage() {
+		return garage;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public void setSocialid(String socialid) {
+		this.socialid = socialid;
+	}
+
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
+
+	public void setLog(Double log) {
+		this.log = log;
 	}
 
 	public void setAddress(String address) {
@@ -86,7 +180,11 @@ public class PlaceRequest implements Serializable {
 
 	public void setStreet(StreetTO street) {
 		this.street = street;
-	}	
+	}
+
+	public void setPlacetype(PlaceTypeTO placetype) {
+		this.placetype = placetype;
+	}
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -96,52 +194,44 @@ public class PlaceRequest implements Serializable {
 		this.spatial = spatial;
 	}
 
-	public SellerTO getSeller() {
-		return seller;
-	}
-
 	public void setSeller(SellerTO seller) {
 		this.seller = seller;
 	}
 
-	public Double getLat() {
-		return lat;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public Double getLog() {
-		return log;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
-	public void setLat(Double lat) {
-		this.lat = lat;
+	public void setComplexPrice(Double complexPrice) {
+		this.complexPrice = complexPrice;
 	}
 
-	public void setLog(Double log) {
-		this.log = log;
-	}
-	
-	public String getToken() {
-		return token;
+	public void setRoom(Integer room) {
+		this.room = room;
 	}
 
-	public String getSocialId() {
-		return socialid;
+	public void setBathroom(Integer bathroom) {
+		this.bathroom = bathroom;
 	}
 
-	public void setSocialId(String socialId) {
-		this.socialid = socialId;
+	public void setBedroom(Integer bedroom) {
+		this.bedroom = bedroom;
 	}
 
-	public PlaceTypeTO getPlacetype() {
-		return placetype;
+	public void setSuite(Integer suite) {
+		this.suite = suite;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public void setM2(Double m2) {
+		this.m2 = m2;
 	}
 
-	public void setPlacetype(PlaceTypeTO placetype) {
-		this.placetype = placetype;
+	public void setGarage(Integer garage) {
+		this.garage = garage;
 	}
 
 }
