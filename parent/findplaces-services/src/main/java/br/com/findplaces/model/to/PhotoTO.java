@@ -1,17 +1,23 @@
 package br.com.findplaces.model.to;
 
+import java.io.File;
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name="photo")
 public class PhotoTO implements Serializable {
 
 	private static final long serialVersionUID = 1538360621929918773L;
 	
+	@XmlTransient
 	private String url;
 	
-	private String id;
+	private Long id;
+	
+	@XmlTransient
+	private File file;
 	
 	public String getUrl() {
 		return url;
@@ -21,12 +27,20 @@ public class PhotoTO implements Serializable {
 		this.url = url;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
 	}
 
 	

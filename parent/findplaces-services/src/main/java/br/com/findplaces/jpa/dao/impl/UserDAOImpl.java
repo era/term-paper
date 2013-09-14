@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -34,6 +32,8 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		this.em = em;
 	}
 	
+	@SuppressWarnings("rawtypes")
+	
 	public User findUserBySocialID(String id){
 		Query query = getEntityManager().createNamedQuery(User.findUserBySocialID, User.class);
 		query.setParameter("socialID", id);
@@ -57,6 +57,7 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		getEntityManager().persist(likes);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public User findUserByEmailAndPassword(String email, String password){
 		Query query  = getEntityManager().createNamedQuery(User.loginUserWithPassword, User.class);
 		query.setParameter("email", email);
@@ -76,6 +77,18 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		return getEntityManager().merge(seller);
 	}
 	
-	
+	@Override
+	@SuppressWarnings("rawtypes")
+	public Seller findSellerBySocialID(String id) {
+		Query query = getEntityManager().createNamedQuery(
+				Seller.FIND_SELLER_BY_SOCIAL_ID, Seller.class);
+		query.setParameter("socialID", id);
+		List resultList = query.getResultList();
+		if (resultList.isEmpty()) {
+			return null;
+		} else {
+			return (Seller) resultList.get(0);
+		}
+	}
 
 }

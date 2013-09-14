@@ -1,5 +1,6 @@
 package br.com.findplaces.util;
 
+import br.com.findplaces.jpa.entity.Image;
 import br.com.findplaces.jpa.entity.Place;
 import br.com.findplaces.jpa.entity.PlaceType;
 import br.com.findplaces.jpa.entity.Seller;
@@ -17,6 +18,7 @@ import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.RegionTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
 import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
+import br.com.findplaces.model.to.PhotoTO;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.PlaceTypeTO;
 import br.com.findplaces.model.to.SellerTO;
@@ -244,6 +246,27 @@ public class ConverterTO {
 		to.setStreetName(street.getStreetName());
 		to.setHood(converter(street.getHood()));
 		return to;
+	}
+
+	public static PhotoTO converter(Image image) {
+		
+		PhotoTO photoTO = new PhotoTO();
+		
+		photoTO.setId(image.getId());
+		photoTO.setUrl(image.getPath());
+		
+		return photoTO;
+		
+	}
+
+	public static Image converter(PhotoTO photoTO) {
+		
+		Image image = new Image();
+		
+		image.setId(photoTO.getId());
+		image.setPath(photoTO.getUrl());
+		
+		return image;
 	}
 
 }

@@ -21,6 +21,7 @@ import br.com.findplaces.model.to.UserTypeTO;
 import br.com.findplaces.responses.webservices.SellerResponse;
 import br.com.findplaces.responses.webservices.UserResponse;
 import br.com.findplaces.utils.FacebookUtils;
+import br.com.findplaces.utils.Validator;
 import br.com.findplaces.webservices.enumerator.StatusCode;
 import br.com.findplaces.webservices.exceptions.NotAuthorizedException;
 import br.com.findplaces.webservices.requests.BaseJSONObject;
@@ -43,7 +44,7 @@ public class UserService implements Serializable {
 			@PathParam(value = "id") String id) {
 		UserResponse response = new UserResponse();
 		try {
-			isValidToken(token, id);
+			Validator.isValidToken(token, id);
 			UserTO userTO = getUserLogin().findUserBySocialID(id);
 			response.setUser(userTO);
 			setSuccessResponse(response);
@@ -62,7 +63,7 @@ public class UserService implements Serializable {
 			@FormParam(value = "user") UserServiceRequest request) {
 		UserResponse response = new UserResponse();
 		try {
-			isValidToken(request.getToken(), request.getUserFacebookID());
+			Validator.isValidToken(request.getToken(), request.getUserFacebookID());
 
 			UserTO user = FacebookUtils.getUser(request.getToken());
 			UserTypeTO type = new UserTypeTO();
@@ -88,7 +89,7 @@ public class UserService implements Serializable {
 			@FormParam(value = "user") UserServiceRequest request) {
 		SellerResponse response = new SellerResponse();
 		try {
-			isValidToken(request.getToken(), request.getUserFacebookID());
+			Validator.isValidToken(request.getToken(), request.getUserFacebookID());
 
 			if (request.getSellerTO() == null
 					|| request.getSellerTO().getUserTO() == null) {
@@ -119,7 +120,7 @@ public class UserService implements Serializable {
 			@PathParam(value = "id") String id) {
 		SellerResponse response = new SellerResponse();
 		try {
-			isValidToken(token, id);
+			Validator.isValidToken(token, id);
 
 			SellerTO findSeller = userLogin.findSeller(id);
 
@@ -143,13 +144,6 @@ public class UserService implements Serializable {
 	private void setErrorResponse(BaseJSONObject response, StatusCode error) {
 		response.setCode(error.getCode());
 		response.setMessage(error.getMessage());
-	}
-
-	private void isValidToken(String token, String id)
-			throws NotAuthorizedException {
-		if (!FacebookUtils.isValidToken(token, id)) {
-			throw new NotAuthorizedException();
-		}
 	}
 
 	public UserLogin getUserLogin() {

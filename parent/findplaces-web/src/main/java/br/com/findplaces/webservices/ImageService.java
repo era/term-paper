@@ -13,6 +13,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.findplaces.responses.webservices.ImageResponse;
+import br.com.findplaces.utils.Validator;
+import br.com.findplaces.webservices.enumerator.StatusCode;
+import br.com.findplaces.webservices.exceptions.NotAuthorizedException;
+import br.com.findplaces.webservices.requests.BaseJSONObject;
 import br.com.findplaces.webservices.requests.ImageServiceRequest;
 
 @Path("/image")
@@ -24,7 +28,19 @@ public class ImageService implements Serializable {
 	@POST
 	@Produces({MediaType.APPLICATION_JSON })
 	public ImageResponse saveImage(@FormParam(value="image")ImageServiceRequest request){
-		return null;
+		
+		ImageResponse response = new ImageResponse();
+		
+		try {
+			Validator.isValidToken(request.getToken(), request.getUserID());
+			setSuccessResponse(response);
+		} catch (NotAuthorizedException e) {
+			setErrorResponse(response, StatusCode.NOT_ALLOWED);
+		} catch (Exception e) {
+			setErrorResponse(response, StatusCode.ERROR);
+		}
+
+		return response;
 	}
 	
 	@GET
@@ -40,6 +56,16 @@ public class ImageService implements Serializable {
 	     String mt = new MimetypesFileTypeMap().getContentType(f);
 	     return Response.ok(f, mt).build();*/
 		return null;
+	}
+	
+	private void setSuccessResponse(BaseJSONObject response) {
+		response.setCode(StatusCode.SUCCESS.getCode());
+		response.setMessage(StatusCode.SUCCESS.getMessage());
+	}
+
+	private void setErrorResponse(BaseJSONObject response, StatusCode error) {
+		response.setCode(error.getCode());
+		response.setMessage(error.getMessage());
 	}
 	
 	
