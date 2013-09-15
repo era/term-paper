@@ -38,6 +38,9 @@ public class ConverterTO {
 		userTO.setPassword(user.getPassword());
 		userTO.setSocialID(user.getSocialID());
 		userTO.setType(converter(user.getType()));
+		userTO.setRelationship(user.getRelationship());
+		userTO.setAge(user.getAge());
+		userTO.setStudyAt(user.getStudyAt());
 		return userTO;
 	}
 
@@ -56,6 +59,9 @@ public class ConverterTO {
 		user.setPassword(userTO.getPassword());
 		user.setSocialID(userTO.getSocialID());
 		user.setType(converter(userTO.getType()));
+		user.setRelationship(userTO.getRelationship());
+		user.setAge(userTO.getAge());
+		user.setStudyAt(userTO.getStudyAt());
 		return user;
 	}
 

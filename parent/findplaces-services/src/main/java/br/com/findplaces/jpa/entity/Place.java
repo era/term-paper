@@ -1,6 +1,7 @@
 package br.com.findplaces.jpa.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -82,6 +84,8 @@ public class Place extends BaseEntity implements Serializable {
 	@Column
 	private Integer garage;
 	
+	@OneToMany
+	private List<Image> photos;
 	
 
 	public Long getId() {
@@ -227,6 +231,14 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setSeller(Seller seller) {
 		this.seller = seller;
+	}
+
+	public List<Image> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Image> photos) {
+		this.photos = photos;
 	}
 
 	

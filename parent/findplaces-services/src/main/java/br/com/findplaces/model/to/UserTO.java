@@ -26,6 +26,15 @@ public class UserTO implements Serializable {
 	private UserTypeTO type;
 	
 	@XmlTransient
+	private String age;
+	
+	@XmlTransient
+	private String studyAt;
+	
+	@XmlTransient
+	private String relationship;
+	
+	@XmlTransient
 	private List<LikesTO> likes;
 
 	public String getName() {
@@ -82,5 +91,29 @@ public class UserTO implements Serializable {
 
 	public void setLikes(List<LikesTO> likes) {
 		this.likes = likes;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getStudyAt() {
+		return studyAt;
+	}
+
+	public void setStudyAt(String studyAt) {
+		this.studyAt = studyAt;
+	}
+
+	public String getRelationship() {
+		return relationship;
+	}
+
+	public void setRelationship(String relationship) {
+		this.relationship = relationship;
 	}
 }

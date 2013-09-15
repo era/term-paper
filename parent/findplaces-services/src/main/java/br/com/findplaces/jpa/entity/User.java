@@ -29,6 +29,7 @@ public class User extends BaseEntity {
 	
 	public static final String loginUserWithPassword = "LoginUserWithPassword";
 	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -44,6 +45,15 @@ public class User extends BaseEntity {
 	
 	@Column
 	private String password;
+	
+	@Column
+	private String age;
+	
+	@Column
+	private String studyAt;
+	
+	@Column
+	private String relationship;
 	
 	@OneToOne
 	private UserType type;
@@ -105,6 +115,30 @@ public class User extends BaseEntity {
 
 	public void setLikes(List<Likes> likes) {
 		this.likes = likes;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getRelationship() {
+		return relationship;
+	}
+
+	public void setRelationship(String relationship) {
+		this.relationship = relationship;
+	}
+
+	public String getStudyAt() {
+		return studyAt;
+	}
+
+	public void setStudyAt(String studyAt) {
+		this.studyAt = studyAt;
 	}
 
 }
