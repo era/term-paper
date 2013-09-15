@@ -11,13 +11,13 @@ public class ImageResponse extends BaseJSONObject implements Serializable {
 
 	private static final long serialVersionUID = 4421962723991301979L;
 	
-	private Integer imageID;
+	private Long imageID;
 
-	public Integer getImageID() {
+	public Long getImageID() {
 		return imageID;
 	}
 
-	public void setImageID(Integer imageID) {
+	public void setImageID(Long imageID) {
 		this.imageID = imageID;
 	}
 

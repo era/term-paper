@@ -1,6 +1,5 @@
 package br.com.findplaces.webservices.requests;
 
-import java.io.File;
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,7 +16,9 @@ public class ImageServiceRequest implements Serializable {
 	
 	private String token;
 	
-	private File file;
+	private String base64IMG;
+	
+	private String format;
 	
 	public static ImageServiceRequest fromString(String json){
 		Gson gson = new GsonBuilder().create();
@@ -40,12 +41,20 @@ public class ImageServiceRequest implements Serializable {
 		this.token = token;
 	}
 
-	public File getFile() {
-		return file;
+	public String getBase64IMG() {
+		return base64IMG;
 	}
 
-	public void setFile(File file) {
-		this.file = file;
+	public void setBase64IMG(String base64IMG) {
+		this.base64IMG = base64IMG;
+	}
+
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
 	}
 
 }

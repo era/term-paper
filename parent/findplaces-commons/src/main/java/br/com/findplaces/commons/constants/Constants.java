@@ -16,14 +16,14 @@ public class Constants {
 	public static String USER_SAVE_LIKES_QUEUE;
 	
 	private Constants() throws FileNotFoundException, IOException{
-		String path = System.getProperty("findPlacesProperties");
+		/*String path = System.getProperty("findPlacesProperties");
 		prop.load(new FileInputStream(path));
 		CONNECTION_FACTORY = prop.getProperty("connection.factory");
-		USER_SAVE_LIKES_QUEUE = prop.getProperty("user.queue.save.likes");
+		USER_SAVE_LIKES_QUEUE = prop.getProperty("user.queue.save.likes");*/
 		
 	}
 	
-	public Constants getInstance(){
+	public static Constants getInstance(){
 		if(constant==null){
 			try {
 				constant = new Constants();
@@ -34,6 +34,10 @@ public class Constants {
 			}
 		}
 		return constant;
+	}
+	
+	public String pathToImageFolder(){
+		return "/home/elias/findplaces/"; //prop.getProperty("photos.folder");
 	}
 
 }

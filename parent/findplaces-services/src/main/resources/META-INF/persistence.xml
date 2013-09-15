@@ -11,7 +11,10 @@
         <class>br.com.findplaces.jpa.entity.Seller</class>
         <class>br.com.findplaces.jpa.entity.Likes</class>
         <class>br.com.findplaces.jpa.entity.Place</class>     
-        <class>br.com.findplaces.jpa.entity.PlaceType</class>  
+        <class>br.com.findplaces.jpa.entity.PlaceType</class>
+        <class>br.com.findplaces.jpa.entity.Image</class>
+        <class>br.com.findplaces.jpa.entity.PlaceImage</class>  
+           
         
         <class>br.com.findplaces.jpa.entity.geographic.City</class>  
         <class>br.com.findplaces.jpa.entity.geographic.Country</class>  

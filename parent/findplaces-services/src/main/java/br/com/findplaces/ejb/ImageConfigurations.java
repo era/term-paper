@@ -8,9 +8,9 @@ public interface ImageConfigurations extends Serializable {
 	
 	PhotoTO findPhotoById(Long id);
 	
-	PhotoTO savePhoto(PhotoTO photoTO);
-	
-	PhotoTO deletePhoto(Long id);
+	void deletePhoto(Long id);  //TODO Refact to throw exception
+
+	PhotoTO savePhoto(PhotoTO photoTO, String type);
 	
 
 }

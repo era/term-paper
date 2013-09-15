@@ -1,6 +1,5 @@
 package br.com.findplaces.model.to;
 
-import java.io.File;
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,7 +16,7 @@ public class PhotoTO implements Serializable {
 	private Long id;
 	
 	@XmlTransient
-	private File file;
+	private String file;
 	
 	public String getUrl() {
 		return url;
@@ -35,11 +34,11 @@ public class PhotoTO implements Serializable {
 		this.id = id;
 	}
 
-	public File getFile() {
+	public String getFile() {
 		return file;
 	}
 
-	public void setFile(File file) {
+	public void setFile(String file) {
 		this.file = file;
 	}
 
