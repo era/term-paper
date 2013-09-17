@@ -1,4 +1,13 @@
-﻿$.consultaCidade = function (ufSigla, target) {
+﻿$.StringFormat = function () {
+    var s = arguments[0];
+    for (var i = 0; i < arguments.length - 1; i++) {
+        var reg = new RegExp("\\{" + i + "\\}", "gm");
+        s = s.replace(reg, arguments[i + 1]);
+    }
+    return s;
+};
+
+$.consultaCidade = function (ufSigla, target) {
     $(target).empty();
     $.each(uf_cidade.estados, function (u, uf) {
         if (ufSigla === uf.sigla) {
@@ -28,4 +37,9 @@ $.consultaMapa = function (lat, lng) {
             map.getProjectionObject()
         ), 15
     );
+};
+
+$.openURLContent = function (target, anchor) {
+    $(target).load($.StringFormat('_{0}.html', anchor));
+    return false;
 };

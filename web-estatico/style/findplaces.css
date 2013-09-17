@@ -1,5 +1,4 @@
 /* GERAL */
-
 body
 {
 	-moz-box-sizing:border-box;
@@ -31,8 +30,19 @@ ul
 	width:1180px;
 }
 
-/* HEADER */
+.inputSizeShort {
+	width: 75px;
+}
 
+.inputSizeMedium {
+	width: 150px;
+}
+
+.inputSizeHigh {
+	width: 300px;
+}
+
+/* HEADER */
 header
 {
 	background:#373737;
@@ -106,15 +116,27 @@ header > div > nav > ul > li > a.last
 }
 
 /* CONTENT */
-
 div#content
 {
 	border-top:5px solid #dfdfdf;
 }
 
+div#content > .content-title {
+	background: #f2f2f2;
+	border-bottom: 1px solid #ddd;
+}
+
+div#content > .content-title > .wrapper > h1
+{
+	margin: 0;
+	padding: 10px 0;
+	border: 0;
+	font-size: 20px;
+}
+
 div#map
 {
-	height:650px;
+	height:500px;
 	min-width:1180px;
 }
 
@@ -122,7 +144,7 @@ div#map > form
 {
 	position:absolute;
 	text-align:center;
-	top:350px;
+	top:250px;
 	width:100%;
 	z-index:1000;
 }
@@ -179,7 +201,6 @@ div#map > form > div.form-header > button
 }
 
 /* CONTENT SLIDES */
-
 div.flexslider
 {
 	border:0!important;
@@ -325,4 +346,72 @@ footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img:hover
 	-webkit-transition:all .5s;
 	opacity:.7;
 	transition:all .5s;
+}
+
+/* SUBMITPROPERTY */
+.wrapper > form > div#proprietary
+{
+	border:1px solid #909090;
+	margin-top:-1px;
+	z-index:0;
+}
+ 
+.wrapper > form > div#proprietary,.wrapper > form > div#real-estate
+{
+	margin-bottom:10px;
+	width:100%;
+}
+ 
+div#proprietary > div
+{
+	margin:10px 0;
+}
+ 
+div#proprietary > div > label
+{
+	display:inline-block;
+	font-weight:400;
+	text-align:right;
+	width:120px;
+}
+ 
+div#proprietary > div > input,div#proprietary > div > select
+{
+	background-color:#fff;
+	border:1px solid #909090;
+	color:#666;
+	display:inline-block;
+	font-size:15px;
+	margin:0 10px 0 0;
+	outline:none;
+	padding:7px 6px;
+}
+ 
+.proprietary-tab,.real-estate-tab
+{
+	cursor:pointer;
+	display:inline-block;
+	float:left;
+	margin-top:10px;
+	padding:10px;
+}
+ 
+.active-tab
+{
+	background-color:#fff;
+	border-bottom:1px solid #fff;
+	border-left:1px solid #909090;
+	border-top:1px solid #909090;
+	z-index:1000;
+}
+ 
+.inactive-tab
+{
+	background-color:#f7f7f7;
+	border-bottom:1px solid #909090;
+	border-left:1px solid #909090;
+	border-right:1px solid #909090;
+	border-top:1px solid #909090;
+	color:#777;
+	z-index:1000;
 }
