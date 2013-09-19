@@ -1,19 +1,61 @@
 ﻿<div class="content-title">
     <div class="wrapper">
         <h1>
-            <img alt="Facebook" src="img/sign.png" title="Facebook">
-            Anuncie no Findplaces
+            Home > Anuncie no Findplaces
         </h1>
     </div>
 </div>
 <div class="wrapper">
-    <div id="login">
-        <div id="login-ask">
-            <h1>PROCURANDO PELO CADASTRO? NÃO PRECISA, LOGUE-SE COM O FACEBOOK!</h1>
+    <div id="property">
+        <div id="property-title">
+            <h1>
+                <img alt="Anuncie no Findplaces" src="img/sign.png" title="Anuncie no Findplaces">
+                ANUNCIE NO FINDPLACES
+            </h1>
         </div>
-        <div id="login-triangle"></div>
-        <div id="login-aut">
-            <a alt="Facebook" id="facebook" href="#" title="Facebook">Facebook</a>
+        <div id="property-triangle"></div>
+        <div id="property-form">
+            <form>
+                <div>
+                    <label for="property-type">Tipo de imóvel:</label>
+                    <select id="property-type">
+                        <option value="0">Selecione</option>
+                        <option value="1">Apartamento</option>
+                        <option value="2">Casa</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cep">Cep:</label>
+                    <input class="inputSizeMedium" id="cep" maxlength="9" name="cep" type="text" />
+                </div>
+                <div>
+                    <label for="address1">Endereço:</label>
+                    <input class="inputSizeHigh" id="address1" name="address1" type="text" />
+                </div>
+                <div>
+                    <label for="number">Número:</label>
+                    <input class="inputSizeShort" id="number" maxlength="10" name="number" type="text" />
+                </div>
+                <div>
+                    <label for="address2">Complemento:</label>
+                    <input class="inputSizeHigh" id="address2" maxlength="70" name="address2" type="text" />
+                </div>
+                <div>
+                    <label for="phone1">Telefone 1:</label>
+                    <input class="inputSizeMedium" id="phone1" maxlength="16" name="phone1" type="text" />
+                </div>
+                <div>
+                    <label for="phone2">Telefone 2:</label>
+                    <input class="inputSizeMedium" id="phone2" maxlength="16" name="phone2" type="text" />
+                </div>
+                <div>
+                    <label for="phone3">Telefone 3:</label>
+                    <input class="inputSizeMedium" id="phone3" maxlength="16" name="phone3" type="text" />
+                </div>
+                <div class="right-button">
+                    <button alt="Salvar" id="submit-property" title="Salvar" type="submit">Salvar</button>
+                </div>
+            </form>
         </div>
     </div>
     <div id="account-actions">
@@ -29,48 +71,7 @@
             </li>
         </ul>
     </div>
-
-
     <br class="clr" />
-    <form style="display: none;">
-        <div class="proprietary-tab active-tab">
-            Proprietário
-        </div>
-        <div class="real-estate-tab inactive-tab">
-            Imobiliária ou Corretor
-        </div>
-        <br class="clr" />
-        <div id="proprietary">
-            <div>
-                <label>Tipo de imóvel:</label>
-                <select id="proprietary-type">
-                    <option value="0">Selecione</option>
-                    <option value="1">Apartamento</option>
-                    <option value="2">Casa</option>
-                </select>
-            </div>
-            <div>
-                <label>Cep:</label>
-                <input class="inputSizeMedium" id="cep" maxlength="9" name="cep" type="text" />
-            </div>
-            <div>
-                <label>Endereço:</label>
-                <input class="inputSizeHigh" id="address1" name="address1" type="text" />
-            </div>
-            <div>
-                <label>Número:</label>
-                <input class="inputSizeShort" id="number" maxlength="10" name="number" type="text" />
-            </div>
-            <div>
-                <label>Complemento:</label>
-                <input class="inputSizeHigh" id="address2" maxlength="70" name="address2" type="text" />
-            </div>
-        </div>
-        
-        <!--<div id="real-estate" style="border: 1px solid green;">
-                
-            </div>-->
-        
-        <br class="clr" />
-    </form>
 </div>
+<script type="text/javascript" charset="utf-8">
+</script>
