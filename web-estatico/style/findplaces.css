@@ -108,7 +108,7 @@ header > div > nav > ul > li > a
 
 header > div > nav > ul > li > a.first
 {
-	background:#f1592a;
+	background:#F96F44;
 	color:#fff;
 	text-shadow:1px 1px 0 #777;
 }
@@ -174,7 +174,7 @@ div#map > form > div.form-header
 
 div#map > form > div.form-header > select.form-header-alt-select
 {
-	background:#f1592a;
+	background:#F96F44;
 	border-bottom:4px solid #bb3d16;
 	color:#fff;
 }
@@ -265,7 +265,7 @@ ul.slides > li > h3
 
 footer
 {
-	border-bottom:15px solid #f1592a;
+	border-bottom:15px solid #F96F44;
 	border-top:5px solid #dfdfdf;
 	overflow:hidden;
 	position:relative;
@@ -301,7 +301,7 @@ footer > div.footer-1 > div.wrapper > div > ul > li > a
 
 footer > div.footer-1 > div.wrapper > div > ul > li > a:hover
 {
-	color:#f1592a;
+	color:#F96F44;
 }
 
 footer > div.footer-2
@@ -380,7 +380,7 @@ div#property
 }
 
 div#property > div#property-title {
-	background: #fbd919;
+	background: #F96F44;
 	line-height: 100px;
 }
 
@@ -395,7 +395,7 @@ div#property > div#property-title > h1
 div#property > div#property-triangle 
 {
 	border: medium solid transparent;
-	border-color: #fbd919 #fbd919 #fafafa;
+	border-color: #F96F44 #F96F44 #fafafa;
 	border-width: 15px;
 	left: 40%;
 	margin-left: -15px;
@@ -456,8 +456,8 @@ div#property-form > form > div > input, div#property-form > form > div > select
 
 div#property-form > form > div > button
 {
-	background:#00aeef;
-	border:1px solid #297EA9;
+	background:#2D9F1E;
+	border:1px solid #36732E;
 	border-bottom-width:4px;
 	color:#fff;
 	cursor:pointer;
