@@ -16,46 +16,85 @@
         <div id="property-triangle"></div>
         <div id="property-form">
             <form>
-                <div>
-                    <label for="property-type">Tipo de imóvel:</label>
-                    <select id="property-type">
-                        <option value="0">Selecione</option>
-                        <option value="1">Apartamento</option>
-                        <option value="2">Casa</option>
-                    </select>
+                <div id='property-info'>
+                    <div>
+                        <label for="placetype">Tipo de imóvel:</label>
+                        <select id="placetype">
+                            <option value="0">Selecione</option>
+                            <option value="1">Apartamento</option>
+                            <option value="2">Casa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="address1">Endereço:</label>
+                        <input class="inputSizeBig" id="address1" name="address1" type="text" />
+                    </div>
+                    <div>
+                        <label for="number">Número:</label>
+                        <input class="inputSizeSmaller" id="number" maxlength="10" name="number" type="text" />
+                    </div>
+                    <div>
+                        <label for="neighborhood">Bairro:</label>
+                        <input class="inputSizeMedium" id="neighborhood" name="neighborhood" type="text" />
+                    </div>
+                    <div>
+                        <label for="address2">Complemento:</label>
+                        <input class="inputSizeBig" id="address2" name="address2" type="text" />
+                    </div>
+                    <div>
+                        <label for="region_name">Estado:</label>
+                        <select id="region_name" name="region_name"></select>                    
+                    </div>
+                    <div>
+                        <label for="city_name">Cidade:</label>
+                        <select id="city_name" name="city_name"></select>
+                    </div>
+                    <div>
+                        <label for="phone1">Telefone 1:</label>
+                        <input class="inputSizeMedium" id="phone1" maxlength="16" name="phone1" type="text" />
+                    </div>
+                    <div>
+                        <label for="phone2">Telefone 2:</label>
+                        <input class="inputSizeMedium" id="phone2" maxlength="16" name="phone2" type="text" />
+                    </div>
+                    <div>
+                        <label for="phone3">Telefone 3:</label>
+                        <input class="inputSizeMedium" id="phone3" maxlength="16" name="phone3" type="text" />
+                    </div>
                 </div>
-                <div>
-                    <label for="cep">Cep:</label>
-                    <input class="inputSizeMedium" id="cep" maxlength="9" name="cep" type="text" />
+                <div id='property-details'>
+                    <div>
+                        <div>
+                            <label>Área (m²)</label><br />
+                            <input class="inputSizeLittleSmaller" id="m2" name="m2" type="text" />
+                        </div>
+                        <div>
+                            <label>Quarto</label><br />
+                            <input class="inputSizeLittleSmaller" id="bedroom" name="bedroom" type="text" />
+                        </div>
+                        <div>
+                            <label>Suite</label><br />
+                            <input class="inputSizeLittleSmaller" id="suite" name="suite" type="text" />
+                        </div>
+                        <div>
+                            <label>Sala</label><br />
+                            <input class="inputSizeLittleSmaller" id="room" name="room" type="text" />
+                        </div>
+                        <div>
+                            <label>Banheiro</label><br />
+                            <input class="inputSizeLittleSmaller" id="bathroom" name="bathroom" type="text" />
+                        </div>
+                        <div>
+                            <label>Garagem</label><br />
+                            <input class="inputSizeLittleSmaller" id="garage" name="garage" type="text" />
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label for="address1">Endereço:</label>
-                    <input class="inputSizeHigh" id="address1" name="address1" type="text" />
-                </div>
-                <div>
-                    <label for="number">Número:</label>
-                    <input class="inputSizeShort" id="number" maxlength="10" name="number" type="text" />
-                </div>
-                <div>
-                    <label for="address2">Complemento:</label>
-                    <input class="inputSizeHigh" id="address2" maxlength="70" name="address2" type="text" />
-                </div>
-                <div>
-                    <label for="phone1">Telefone 1:</label>
-                    <input class="inputSizeMedium" id="phone1" maxlength="16" name="phone1" type="text" />
-                </div>
-                <div>
-                    <label for="phone2">Telefone 2:</label>
-                    <input class="inputSizeMedium" id="phone2" maxlength="16" name="phone2" type="text" />
-                </div>
-                <div>
-                    <label for="phone3">Telefone 3:</label>
-                    <input class="inputSizeMedium" id="phone3" maxlength="16" name="phone3" type="text" />
-                </div>
+                <br class="clr" />
                 <div class="right-button">
                     <button alt="Salvar" id="submit-property" title="Salvar" type="submit">Salvar</button>
                 </div>
-            </form>
+            </form>            
         </div>
     </div>
     <div id="account-actions">
@@ -74,4 +113,11 @@
     <br class="clr" />
 </div>
 <script type="text/javascript" charset="utf-8">
-</script>
+    // Lista os estados
+    $.each(uf_cidade.estados, function (key, val) {
+        $('#region_name').append('<option value="' + val.sigla + '">' + val.sigla + '</option>');
+    });
+
+    // Lista as cidades com base no estado default
+    $.consultaCidade($('#region_name :selected').text(), '#city_name');    
+    </script>
