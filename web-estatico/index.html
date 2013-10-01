@@ -5,9 +5,14 @@
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href="style/findplaces.css" rel="stylesheet" type="text/css">
     <link href="style/flexslider.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.ie.css" /><![endif]-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet-src.js"></script>
+
     <script charset="utf-8" src="js/jquery.js" type="text/javascript"></script>
     <script charset="utf-8" src="js/jquery.flexslider.js" type="text/javascript"></script>
-    <script charset="utf-8" src="js/openlayers.js" type="text/javascript"></script>
+    <!--<script charset="utf-8" src="js/openlayers.js" type="text/javascript"></script>-->
     <script charset="utf-8" src="js/findplaces.js" type="text/javascript"></script>
 
     <!-- Temporário para testes até termos as tabelas/webservices -->
@@ -22,78 +27,17 @@
             <nav>
                 <ul>
                     <li>
-                        <a alt="Buscar ofertas" class="first" href="" title="Buscar ofertas">Buscar ofertas</a>
+                        <a alt="Buscar ofertas" class="first" href="#" title="Buscar ofertas">Buscar ofertas</a>
                     </li>
                     <li>
-                        <a alt="Anuncie no Findplaces" class="last" href="" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
+                        <a alt="Anuncie no Findplaces" class="last" href="index.html#management" onclick="$.loadUrl('management');" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
                     </li>
                     <br class="clr" />
                 </ul>
             </nav>
         </div>
     </header>
-    <div id="content">
-        <div id="map">
-            <form id="buscaRapida">
-                <div class="form-header">
-                    <select class="form-header-alt-select" id="tiposAquisicao" name="tiposAquisicao">
-                        <option value="0">Comprar</option>
-                        <option value="1">Alugar</option>
-                        <option value="2">Temporada</option>
-                    </select>
-                    <select id="tiposResidencia" name="tiposResidencia"></select>
-                    <select id="estados" name="estados"></select>
-                    <select id="cidades" name="cidades"></select>
-                    <button alt="Buscar" id="buscar" title="Buscar" type="submit">
-                        Buscar</button>
-                </div>
-            </form>
-        </div>
-        <div class="flexslider">
-            <ul class="slides">
-                <li>
-                    <img src="img/slide1.jpg" />
-                    <span>APARTAMENTO</span>
-                    <h3>Cambuí</h3>
-                    <p>
-                        Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-                    </p>
-                </li>
-                <li>
-                    <img src="img/slide2.jpg" />
-                    <span>APARTAMENTO</span>
-                    <h3>Centro</h3>
-                    <p>
-                        Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-                    </p>
-                </li>
-                <li>
-                    <img src="img/slide3.jpg" />
-                    <span>APARTAMENTO</span>
-                    <h3>Novo Cambuí</h3>
-                    <p>
-                        Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-                    </p>
-                </li>
-                <li>
-                    <img src="img/slide4.jpg" />
-                    <span>CASA</span>
-                    <h3>Alphavile</h3>
-                    <p>
-                        Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-                    </p>
-                </li>
-                <li>
-                    <img src="img/slide5.jpg" />
-                    <span>CASA</span>
-                    <h3>Valinhos</h3>
-                    <p>
-                        Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-                    </p>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <div id="content"></div>
     <footer>
         <div class="footer-1">
             <div class="wrapper">
@@ -101,7 +45,7 @@
                     <h2>Acesso rápido</h2>
                     <ul>
                         <li>
-                            <a href="#">Home</a>
+                            <a href="index.html" onclick="$.loadUrl('home');">Home</a>
                         </li>
                         <li>
                             <a href="#">Buscar ofertas</a>
@@ -112,7 +56,7 @@
                     <h2>Institucional</h2>
                     <ul>
                         <li>
-                            <a href="#">Quem somos</a>
+                            <a href="index.html#about" onclick="$.loadUrl('about');">Quem somos</a>
                         </li>
                         <li>
                             <a href="#">Termos de serviço</a>
@@ -121,7 +65,7 @@
                             <a href="#">Política de privacidade</a>
                         </li>
                         <li>
-                            <a href="#">Fale conosco</a>
+                            <a href="index.html#contact" onclick="$.loadUrl('contact');">Fale conosco</a>
                         </li>
                     </ul>
                 </div>
@@ -129,10 +73,10 @@
                     <h2>Anuncie no Findplaces</h2>
                     <ul>
                         <li>
-                            <a href="#">Proprietário</a>
+                            <a href="index.html#management" onclick="$.loadUrl('management');">Proprietário</a>
                         </li>
                         <li>
-                            <a href="">Imobiliárias e corretores</a>
+                            <a href="index.html#management" onclick="$.loadUrl('management');">Imobiliárias e corretores</a>
                         </li>
                     </ul>
                 </div>
@@ -164,70 +108,16 @@
 </body>
 
 <script type="text/javascript" charset="utf-8">
-    /* Eventos */
+    if(window.location.hash) {
+        var hash = window.location.hash.substring(1);            
+        $.loadUrl(hash);
+    } else {
+        $('#content').load('_home.html');
+    }
 
-    /* Abertura da janela */
-    $(window).load(function () {
-        /* Inicio - Grupo de comandos de carga de plugins */
-
-        // OpenStreetMaps
-        $.consultaMapa(-22.972075, -47.14946);
-
-        // Flexslider
-        $('.flexslider').flexslider({
-            animation: "slide",
-            slideshow: false,
-            itemWidth: 520,
-            keyboard: false,
-            mousewheel: false,
-            animationLoop: false,
-            controlNav: false
-        });
-        /* Fim - Grupo de comandos de carga de plugins */
-
-        /* Inicio - Grupo de comandos para carga dos selects de busca */
-
-        // Lista os tipos de residência
-        
-        $.each(tipos_residencia.tipos, function (key, val) {
-            $('#tiposResidencia').append('<option value="' + key + '">' + val + '</option>');
-        });
-
-        // Lista os estados
-        $.each(uf_cidade.estados, function (key, val) {
-            $('#estados').append('<option value="' + val.sigla + '">' + val.sigla + '</option>');
-        });
-
-        // Lista as cidades com base no estado default
-        $.consultaCidade($('#estados :selected').text(), '#cidades');
-        /* Fim - Grupo de comandos para carga dos selects de busca */
-    });
-
-    /* Troca de valor do select estados */
-    $('#estados').change(function () {
-        $.consultaCidade($('#estados :selected').text(), '#cidades');
-    });
-
-    /* Ação para busca rápida */
-    $('#buscar').click(function () {
-        var form = $('#buscaRapida').serializeArray();
-        var lat = 0, lng = 0;
-
-        var url = 'http://maps.google.com/maps/api/geocode/json?address=' + form[3].value.replace(/[áàâã]/g, 'a').replace(/[éèê]/g, 'e').replace(/[óòôõ]/g, 'o').replace(/[úùû]/g, 'u') + '+' + form[2].value + '&sensor=false';
-
-        console.log(url);
-
-        $.getJSON(url, function (data) {
-            $.each(data.results, function (key, val) {
-                lat = val.geometry.location.lat;
-                lng = val.geometry.location.lng;
-            });
-
-            // OpenStreetMaps
-            $.consultaMapa(parseFloat(lat), parseFloat(lng));
-        });
-
+    $.loadUrl = function(location) {
+        $('#content').load('_' + location + '.html');
         return false;
-    });
+    };
 </script>
 </html>
