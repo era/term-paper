@@ -1,4 +1,13 @@
-﻿$.consultaCidade = function (ufSigla, target) {
+﻿$.StringFormat = function () {
+    var s = arguments[0];
+    for (var i = 0; i < arguments.length - 1; i++) {
+        var reg = new RegExp("\\{" + i + "\\}", "gm");
+        s = s.replace(reg, arguments[i + 1]);
+    }
+    return s;
+};
+
+$.consultaCidade = function (ufSigla, target) {
     $(target).empty();
     $.each(uf_cidade.estados, function (u, uf) {
         if (ufSigla === uf.sigla) {
@@ -10,7 +19,14 @@
 };
 
 $.consultaMapa = function (lat, lng) {
-    $('#map > div').remove();
+
+    var map = L.map('map').setView([lat, lng], 15);
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; Findplaces.com.br | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+       }).addTo(map);
+
+    /*$('#map > div').remove();
 
     var map = new OpenLayers.Map("map");
     var layer = new OpenLayers.Layer.OSM("Simple OSM Map");
@@ -27,5 +43,10 @@ $.consultaMapa = function (lat, lng) {
             new OpenLayers.Projection("EPSG:4326"),
             map.getProjectionObject()
         ), 15
-    );
+    );*/
+};
+
+$.openURLContent = function (target, anchor) {
+    $(target).load($.StringFormat('_{0}.html', anchor));
+    return false;
 };

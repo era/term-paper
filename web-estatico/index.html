@@ -22,15 +22,18 @@
     <header>
         <div class="wrapper">
             <div>
-                <a alt="Findplaces" href="#" title="Findplaces">Findplaces</a>
+                <a alt="Findplaces" href="index.html" onclick="$.openURLContent('#content', 'home');" title="Findplaces">Findplaces</a>
             </div>
             <nav>
                 <ul>
                     <li>
-                        <a alt="Buscar ofertas" class="first" href="#" title="Buscar ofertas">Buscar ofertas</a>
+                        <a alt="Buscar ofertas" class="first" href="index.html" onclick="$.openURLContent('#content', 'home');" title="Página inical">Página inical</a>
                     </li>
                     <li>
-                        <a alt="Anuncie no Findplaces" class="last" href="index.html#management" onclick="$.loadUrl('management');" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
+                        <a alt="Buscar ofertas" class="first" href="#" title="Listar ofertas">Listar ofertas</a>
+                    </li>
+                    <li>
+                        <a alt="Anuncie no Findplaces" class="last" href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
                     </li>
                     <br class="clr" />
                 </ul>
@@ -45,10 +48,10 @@
                     <h2>Acesso rápido</h2>
                     <ul>
                         <li>
-                            <a href="index.html" onclick="$.loadUrl('home');">Home</a>
+                            <a href="index.html" onclick="$.openURLContent('#content', 'home');" >Página inicial</a>
                         </li>
                         <li>
-                            <a href="#">Buscar ofertas</a>
+                            <a href="#">Listar ofertas</a>
                         </li>
                     </ul>
                 </div>
@@ -56,7 +59,7 @@
                     <h2>Institucional</h2>
                     <ul>
                         <li>
-                            <a href="index.html#about" onclick="$.loadUrl('about');">Quem somos</a>
+                            <a href="#">Quem somos</a>
                         </li>
                         <li>
                             <a href="#">Termos de serviço</a>
@@ -65,7 +68,7 @@
                             <a href="#">Política de privacidade</a>
                         </li>
                         <li>
-                            <a href="index.html#contact" onclick="$.loadUrl('contact');">Fale conosco</a>
+                            <a href="#">Fale conosco</a>
                         </li>
                     </ul>
                 </div>
@@ -73,10 +76,10 @@
                     <h2>Anuncie no Findplaces</h2>
                     <ul>
                         <li>
-                            <a href="index.html#management" onclick="$.loadUrl('management');">Proprietário</a>
+                            <a href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');" >Proprietário</a>
                         </li>
                         <li>
-                            <a href="index.html#management" onclick="$.loadUrl('management');">Imobiliárias e corretores</a>
+                            <a href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');" >Imobiliárias e corretores</a>
                         </li>
                     </ul>
                 </div>
@@ -106,18 +109,15 @@
         </div>
     </footer>
 </body>
-
 <script type="text/javascript" charset="utf-8">
-    if(window.location.hash) {
-        var hash = window.location.hash.substring(1);            
-        $.loadUrl(hash);
-    } else {
-        $('#content').load('_home.html');
-    }
-
-    $.loadUrl = function(location) {
-        $('#content').load('_' + location + '.html');
-        return false;
-    };
+    /* Abertura da janela */
+    $(document).ready(function () {
+        if (window.location.hash) {
+            var hash = window.location.hash.substring(1);
+            $.openURLContent('#content', hash);
+        } else {
+            $.openURLContent('#content', 'home');
+        }
+    });
 </script>
 </html>

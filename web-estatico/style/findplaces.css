@@ -1,5 +1,4 @@
 /* GERAL */
-
 body
 {
 	-moz-box-sizing:border-box;
@@ -31,8 +30,28 @@ ul
 	width:1180px;
 }
 
-/* HEADER */
+.inputSizeLittleSmaller {
+	width: 50px;
+}
 
+.inputSizeSmaller {
+	width: 75px;
+}
+
+.inputSizeMedium {
+	width: 150px;
+}
+
+.inputSizeBig {
+	width: 300px;
+}
+
+.right-button {
+	text-align: right;
+	padding-right: 30px;
+}
+
+/* HEADER */
 header
 {
 	background:#373737;
@@ -93,7 +112,7 @@ header > div > nav > ul > li > a
 
 header > div > nav > ul > li > a.first
 {
-	background:#f1592a;
+	background:#F96F44;
 	color:#fff;
 	text-shadow:1px 1px 0 #777;
 }
@@ -106,15 +125,28 @@ header > div > nav > ul > li > a.last
 }
 
 /* CONTENT */
-
 div#content
 {
 	border-top:5px solid #dfdfdf;
 }
 
+div#content > .content-title {
+	background: #fafafa;
+	border-bottom: 1px solid #ddd;
+}
+
+div#content > .content-title > .wrapper > h1
+{
+	border: 0;
+	color: #666;	
+	font-size: 16px;	
+	margin: 0;
+	padding: 20px 0;	
+}
+
 div#map
 {
-	height:650px;
+	height:500px;
 	min-width:1180px;
 }
 
@@ -122,7 +154,7 @@ div#map > form
 {
 	position:absolute;
 	text-align:center;
-	top:350px;
+	top:250px;
 	width:100%;
 	z-index:1000;
 }
@@ -146,7 +178,7 @@ div#map > form > div.form-header
 
 div#map > form > div.form-header > select.form-header-alt-select
 {
-	background:#f1592a;
+	background:#F96F44;
 	border-bottom:4px solid #bb3d16;
 	color:#fff;
 }
@@ -179,7 +211,6 @@ div#map > form > div.form-header > button
 }
 
 /* CONTENT SLIDES */
-
 div.flexslider
 {
 	border:0!important;
@@ -238,7 +269,7 @@ ul.slides > li > h3
 
 footer
 {
-	border-bottom:15px solid #f1592a;
+	border-bottom:15px solid #F96F44;
 	border-top:5px solid #dfdfdf;
 	overflow:hidden;
 	position:relative;
@@ -274,7 +305,7 @@ footer > div.footer-1 > div.wrapper > div > ul > li > a
 
 footer > div.footer-1 > div.wrapper > div > ul > li > a:hover
 {
-	color:#f1592a;
+	color:#F96F44;
 }
 
 footer > div.footer-2
@@ -325,4 +356,186 @@ footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img:hover
 	-webkit-transition:all .5s;
 	opacity:.7;
 	transition:all .5s;
+}
+
+/* SUBMITPROPERTY */
+.wrapper > form > div#proprietary
+{
+	border:1px solid #909090;
+	margin-top:-1px;
+	z-index:0;
+}
+ 
+.wrapper > form > div#proprietary,.wrapper > form > div#real-estate
+{
+	margin-bottom:10px;
+	width:100%;
+}
+
+div#account-actions, div#property 
+{
+	display: inline-block;
+	margin: 20px 0;
+}
+
+div#property
+{
+	width: 80%;
+}
+
+div#property > div#property-title {
+	background: #F96F44;
+	line-height: 100px;
+}
+
+div#property > div#property-title > h1 
+{
+	font-size: 30px;
+	margin: 0 0 0 20px;	
+	color: #fff;
+	letter-spacing: 2px;
+}
+
+div#property > div#property-triangle 
+{
+	border: medium solid transparent;
+	border-color: #F96F44 #F96F44 #fafafa;
+	border-width: 15px;
+	left: 40%;
+	margin-left: -15px;
+	top: 90px;
+	content: " ";
+	height: 0;
+	position: absolute;
+	width: 0;
+}
+
+div#property > div#property-form 
+{
+	background: #fafafa;
+	padding: 20px 0;	
+}
+
+/*
+div#property > div#property-form > a 
+{
+	background: transparent url('../img/facebook-property.png');
+	height: 25px;
+	text-indent: -9999px;
+	display: block;
+}
+
+div#property > div#property-form > a#facebook 
+{
+	background-position: 0 0;
+	width: 101px;
+	margin: 0 auto;
+}
+*/
+
+div#property-info {
+	float: left;
+	width: 550px;	
+}
+
+div#property-info > div
+{
+	margin:10px 0;
+}
+ 
+div#property-info > div > label
+{
+	display:inline-block;
+	font-weight:400;
+	text-align:right;
+	width:120px;
+}
+ 
+div#property-info > div > input, div#property-info > div > select
+{
+	background-color:#fff;
+	border:1px solid #909090;
+	color:#666;
+	display:inline-block;
+	font-size:15px;
+	margin:0 10px 0 0;
+	outline:none;
+	padding:7px 6px;
+}
+
+div#property-form > form > div > button
+{
+	background:#C8C8C8;
+	border:1px solid #818181;
+	border-bottom-width:4px;
+	color:#fff;
+	cursor:pointer;
+	font-size:17px;
+	line-height:24px;
+	padding:5px 15px;
+	text-shadow:1px 1px 0 #818181;
+}
+
+div#property-details {
+	float: left;
+	width: 390px;		
+}
+
+div#property-details > div {
+	margin: 0 20px;
+	background: #f4f4f4;
+	padding: 10px;
+	font-size: 13px;
+}
+
+div#property-details > div > div {
+	display: inline-block;
+	margin: 0 0 5px 7px;
+}
+
+div#property-details > div > div > input
+{
+	background-color:#fff;
+	border:1px solid #909090;
+	color:#666;
+	outline:none;
+	margin-top: 5px;
+	padding: 2px;
+}
+
+div#account-actions
+{
+	background: #fafafa;
+	height: 200px;
+	width: 18%;
+	float: right;
+}
+
+div#account-actions > div {
+	color: #00a4ec;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 50px;
+	margin-left: 20px;
+}
+
+div#account-actions > ul 
+{
+	list-style: disc;
+}
+
+div#account-actions > ul > li > a {
+	text-decoration: none;
+	color: #000;
+}
+
+div#account-actions > ul > li > a:hover {
+	color: #2ba6cb;
+	text-decoration: underline;
+}
+
+div#account-actions > ul > li
+{
+	margin: 10px 0 10px 40px;
+	font-size: 13px;
 }
