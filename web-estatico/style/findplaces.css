@@ -197,6 +197,20 @@ div#map > form > div.form-header > select
 	padding:7px 6px;
 }
 
+div#map input
+{
+	background-color:#fff;
+	border:0;
+	border-bottom:4px solid #dfdfdf;
+	color:#666;
+	display:inline-block;
+	font-size:15px;
+	margin:0 10px 0 0;
+	outline:none;
+	padding:7px 6px;
+	width:650px;
+}
+
 div#map > form > div.form-header > button
 {
 	background:#00aeef;

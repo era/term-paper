@@ -22,28 +22,10 @@ $.consultaMapa = function (lat, lng) {
 
     var map = L.map('map').setView([lat, lng], 15);
 
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; Findplaces.com.br | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-       }).addTo(map);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; Findplaces.com.br | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+   }).addTo(map);
 
-    /*$('#map > div').remove();
-
-    var map = new OpenLayers.Map("map");
-    var layer = new OpenLayers.Layer.OSM("Simple OSM Map");
-    var vector = new OpenLayers.Layer.Vector('vector');
-    var controls = map.getControlsByClass('OpenLayers.Control.Navigation');
-
-    for (var i = 0; i < controls.length; ++i)
-        controls[i].disableZoomWheel();
-
-    map.addLayers([layer, vector]);
-
-    map.setCenter(
-        new OpenLayers.LonLat(lng, lat).transform(
-            new OpenLayers.Projection("EPSG:4326"),
-            map.getProjectionObject()
-        ), 15
-    );*/
 };
 
 $.openURLContent = function (target, anchor) {
