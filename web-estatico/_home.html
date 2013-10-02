@@ -6,7 +6,9 @@
                 <option value="1">Alugar</option>
                 <option value="2">Temporada</option>
             </select>
-            <input type="text" name="bairro" placeholder="Bairro de Campinas" />
+            <input type="text" name="bairro" placeholder="Bairro de Campinas, estabelecimento ou código do apartamento" id="bairro" />
+            <input type="hidden" name="lat" id="lat" />
+            <input type="hidden" name="lng" id="lng" />
             <button alt="Buscar" id="buscar" title="Buscar" type="submit">
                 Buscar</button>
         </div>
@@ -57,17 +59,15 @@
     </ul>
 </div>
 <script type="text/javascript" charset="utf-8">
-    /* Inicio - Grupo de comandos de carga de plugins */
-    // OpenStreetMaps
-    if(navigator.geolocation){
+
+    $.consultaMapa(-22.902532, -47.0607349);
+    $.searchPlace('bairro');
+    /*if(navigator.geolocation){
          navigator.geolocation.getCurrentPosition(function(position){
             $.consultaMapa(position.coords.latitude, position.coords.longitude);        
          });
-    } else {
-        $.consultaMapa(-22.972075, -47.14946);
-    }
+    }*/
     
-
     // Flexslider
     $('.flexslider').flexslider({
         animation: "slide",
@@ -80,45 +80,10 @@
     });
     /* Fim - Grupo de comandos de carga de plugins */
 
-    /* Inicio - Grupo de comandos para carga dos selects de busca */
-    // Lista os tipos de residência
-    $.each(tipos_residencia.tipos, function (key, val) {
-        $('#tiposResidencia').append('<option value="' + key + '">' + val + '</option>');
-    });
-
-    // Lista os estados
-    $.each(uf_cidade.estados, function (key, val) {
-        $('#estados').append('<option value="' + val.sigla + '">' + val.sigla + '</option>');
-    });
-
-    // Lista as cidades com base no estado default
-    $.consultaCidade($('#estados :selected').text(), '#cidades');    
-
-    /* Troca de valor do select estados */
-    $('#estados').change(function () {
-        $.consultaCidade($('#estados :selected').text(), '#cidades');
-    });
-    /* Fim - Grupo de comandos para carga dos selects de busca */
-
+    
     /* Ação para busca rápida */
     $('#buscar').click(function () {
         var form = $('#buscaRapida').serializeArray();
-        var lat = 0, lng = 0;
-
-        var url = 'http://maps.google.com/maps/api/geocode/json?address=' + form[3].value.replace(/[áàâã]/g, 'a').replace(/[éèê]/g, 'e').replace(/[óòôõ]/g, 'o').replace(/[úùû]/g, 'u') + '+' + form[2].value + '&sensor=false';
-
-        console.log(url);
-
-        $.getJSON(url, function (data) {
-            $.each(data.results, function (key, val) {
-                lat = val.geometry.location.lat;
-                lng = val.geometry.location.lng;
-            });
-
-            // OpenStreetMaps
-            $.consultaMapa(parseFloat(lat), parseFloat(lng));
-        });
-
         return false;
     });
 </script>

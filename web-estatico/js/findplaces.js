@@ -20,15 +20,43 @@ $.consultaCidade = function (ufSigla, target) {
 
 $.consultaMapa = function (lat, lng) {
 
-    var map = L.map('map').setView([lat, lng], 15);
+   //$('#map > div').remove();
 
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; Findplaces.com.br | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-   }).addTo(map);
+   var formulario = $('#buscaRapida').clone(); //fixme
 
+    $('#map').gmap3({
+        map:{
+            options:{
+            center:[lat,lng],
+            zoom:15
+        }}
+    });
+
+    $('#map').append(formulario);
 };
+
+
 
 $.openURLContent = function (target, anchor) {
     $(target).load($.StringFormat('_{0}.html', anchor));
     return false;
 };
+
+$.searchPlace = function(field){
+    var input = document.getElementById(field);
+    var options = {
+              componentRestrictions: {country: 'br'}
+        };
+
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+
+        var place = autocomplete.getPlace();
+        $('#lat').val(place.geometry.location.lb);
+        $('#lng').val(place.geometry.location.mb);
+        
+    });
+
+}
