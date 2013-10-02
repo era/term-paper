@@ -655,19 +655,19 @@ select {
     text-align: center;
 }
 .cluster-1 {
-    background-image: url("/img/m1.png");
+    background-image: url("../img/m1.png");
     height: 52px;
     line-height: 53px;
     width: 53px;
 }
 .cluster-2 {
-    background-image: url("/img/m2.png");
+    background-image: url("../img/m2.png");
     height: 55px;
     line-height: 53px;
     width: 56px;
 }
 .cluster-3 {
-    background-image: url("/img/m3.png");
+    background-image: url("../img/m3.png");
     height: 65px;
     line-height: 66px;
     width: 66px;
