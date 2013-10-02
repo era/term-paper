@@ -18,7 +18,7 @@ $.consultaCidade = function (ufSigla, target) {
     });
 };
 
-$.consultaMapa = function (lat, lng) {
+$.consultaMapa = function (lat, lng,markers) {
 
    //$('#map > div').remove();
 
@@ -27,12 +27,60 @@ $.consultaMapa = function (lat, lng) {
     $('#map').gmap3({
         map:{
             options:{
-            center:[lat,lng],
-            zoom:15
-        }}
+                center:[lat,lng],
+                zoom:15
+            },
+        },
+        marker:{
+        values: [
+          [-22.902532, -47.0607349],
+          {
+            latLng:[-22.912532, -47.0607349],
+            events:{
+              click:function(){
+                alert("I'm the last one, and i have my own click event");
+              }
+            }
+          }
+        ],
+            events:{ // events trigged by markers
+          click: function(){
+            alert("Here is the default click event");
+          }
+            },
+           cluster:{
+          radius: 100,
+          events:{ // events trigged by clusters
+            mouseover: function(cluster){
+              $(cluster.main.getDOMElement()).css("border", "1px solid red");
+            },
+            mouseout: function(cluster){
+              $(cluster.main.getDOMElement()).css("border", "0px");
+            }
+          },
+          0: {
+            content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
+            width: 53,
+            height: 52
+          },
+          20: {
+            content: "<div class='cluster cluster-2'>CLUSTER_COUNT</div>",
+            width: 56,
+            height: 55
+          },
+          50: {
+            content: "<div class='cluster cluster-3'>CLUSTER_COUNT</div>",
+            width: 66,
+            height: 65
+          }
+            }
+        }
+    
     });
-
+    //$('#map').addSimpleMarker(397, '14 Elm Place, Prahran Vic', '-22.902532', '-47.0607349', 'http://live.btoa.com.au/rentbuy/wp-content/uploads/2013/03/pin-red1.png', 'http://live.btoa.com.au/rentbuy/property/14-elm-place/', 'http://live.btoa.com.au/rentbuy/wp-content/uploads/2013/03/main45-170x154.jpg', '14 Elm Place', '3', '1', '3', 'Renovation Inspiration An alluring mix of a prime 375sqm (approx) block, a peaceful cul-de-sac setting an [...]', '$720,000');
     $('#map').append(formulario);
+
+
 };
 
 
