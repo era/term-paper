@@ -645,7 +645,77 @@ select {
 
 }
 
+#detalhesApartamento {
+	width:100%;
+}
 
+#slideFotosApartamento {
+	float:left;
+	height:250px;
+	width:400px;
+	background:#000;
+}
+#detalhesIconesApartamento {
+	float:left;
+	width:860px
+}
+#textoApartamento {
+	float:left;
+	margin-left: 30px;
+	margin-top:30px;
+}
+
+#nomeLocal {
+	float:left;
+	margin-left: 30px;
+	width:860px;
+}
+
+.beds {
+	background: url("../img/bed.png") no-repeat scroll left center transparent;
+    margin-left: 30px;
+    padding: 0 0 0 18px;
+}
+
+.baths {
+	background: url("../img/baths.png") no-repeat scroll left center transparent;
+    margin-left: 30px;
+    padding: 0 0 0 18px;	
+}
+
+.cars {
+	background: url("../img/cars.png") no-repeat scroll left center transparent;
+    margin-left: 30px;
+    padding: 0 0 0 18px;	
+}
+
+
+/** GMAPS **/
+.cluster {
+    color: #FFFFFF;
+    font-family: 'Arial,Helvetica';
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+}
+.cluster-1 {
+    background-image: url("../img/m1.png");
+    height: 52px;
+    line-height: 53px;
+    width: 53px;
+}
+.cluster-2 {
+    background-image: url("../img/m2.png");
+    height: 55px;
+    line-height: 53px;
+    width: 56px;
+}
+.cluster-3 {
+    background-image: url("../img/m3.png");
+    height: 65px;
+    line-height: 66px;
+    width: 66px;
+}
 
 
 

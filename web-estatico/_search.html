@@ -88,8 +88,22 @@
     </form>
 </div>
 <div id="map" class="MediumMap" />
-
-
+<div id="detalhesApartamento" style="display:none">
+    <div id="slideFotosApartamento"></div>
+    <div id="nomeLocal">
+        <h2>Cambuí, Campinas - SP</h2>
+    </div>
+    <div id="detalhesIconesApartamento">
+        <span class="beds">5</span>
+        <span class="baths">3</span>
+        <span class="cars">1</span>
+    </div>
+    <div id="textoApartamento">
+        <p>Uma apartamento Legal de exemplo :D.</p>
+        <a id="maisInformacoes">Para mais informações clique aqui ;)</a>
+    </div>
+</div>
+<div style="clear:both" />
 <script type="text/javascript" charset="utf-8">
     /* Inicio - Grupo de comandos de carga de plugins */
     // OpenStreetMaps
@@ -120,7 +134,7 @@
             $.consultaMapa(position.coords.latitude, position.coords.longitude);        
          });
     }*/
-    $( "#pesoAquisicao" ).slider({
+    $( "#pesoAquisicao" ).slider({ //DRY???? MOTHERFUCKER
         animate: true,
          min: 1,
         max: 10,
@@ -129,7 +143,7 @@
 
     $( "#pesoBairro" ).slider({
         animate: true,
-         min: 1,
+        min: 1,
         max: 10,
         range: "min",
     });
