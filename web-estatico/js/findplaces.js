@@ -34,8 +34,8 @@ $.consultaMapa = function (lat, lng,markers) {
         marker:{
         values: [
           [-22.902532, -47.0607349],
-          [-22.902532, -47.0607349],
-          [-22.902532, -47.0607349],
+          [-22.903692, -47.0607349],
+          [-22.904852, -47.0607349],
           {
             latLng:[-22.912532, -47.0607349],
             events:{
@@ -52,12 +52,9 @@ $.consultaMapa = function (lat, lng,markers) {
             },
            cluster:{
           radius: 100,
-          events:{ // events trigged by clusters
-            mouseover: function(cluster){
-              $(cluster.main.getDOMElement()).css("border", "1px solid red");
-            },
-            mouseout: function(cluster){
-              $(cluster.main.getDOMElement()).css("border", "0px");
+          events:{ 
+            click: function(cluster){
+                $("#map").gmap3("get").setZoom(18);
             }
           },
           0: {
