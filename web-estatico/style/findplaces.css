@@ -645,6 +645,50 @@ select {
 
 }
 
+#detalhesApartamento {
+	width:100%;
+}
+
+#slideFotosApartamento {
+	float:left;
+	height:250px;
+	width:400px;
+	background:#000;
+}
+#detalhesIconesApartamento {
+	float:left;
+	width:860px
+}
+#textoApartamento {
+	float:left;
+	margin-left: 30px;
+	margin-top:30px;
+}
+
+#nomeLocal {
+	float:left;
+	margin-left: 30px;
+	width:860px;
+}
+
+.beds {
+	background: url("../img/bed.png") no-repeat scroll left center transparent;
+    margin-left: 30px;
+    padding: 0 0 0 18px;
+}
+
+.baths {
+	background: url("../img/baths.png") no-repeat scroll left center transparent;
+    margin-left: 30px;
+    padding: 0 0 0 18px;	
+}
+
+.cars {
+	background: url("../img/cars.png") no-repeat scroll left center transparent;
+    margin-left: 30px;
+    padding: 0 0 0 18px;	
+}
+
 
 /** GMAPS **/
 .cluster {

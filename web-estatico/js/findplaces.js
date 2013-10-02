@@ -32,7 +32,9 @@ $.consultaMapa = function (lat, lng,markers) {
             },
         },
         marker:{
-        values: [
+        values:
+//customizavel por variavel
+         [
           [-22.902532, -47.0607349],
           [-22.903692, -47.0607349],
           [-22.904852, -47.0607349],
@@ -44,7 +46,9 @@ $.consultaMapa = function (lat, lng,markers) {
               }
             }
           }
-        ],
+        ]
+//end customização
+        ,
             events:{ // events trigged by markers
           click: function(){
             alert("Here is the default click event");
@@ -73,7 +77,21 @@ $.consultaMapa = function (lat, lng,markers) {
             height: 65
           }
             }
+        },
+/*
+        overlay:{
+            latLng: [-22.904852, -47.0607349],
+            options:{
+                content:  '<div style="color:#000000; border:1px solid #FF0000; ' +
+                    'background-color: #00FF00; width:200px; line-height:20px; ' +
+                    'height: 20px; text-align:center">Hello World !</div>',
+                offset:{
+                    y:-33,
+                    x:18
+                }
+            }
         }
+  */  
     
     });
     //$('#map').addSimpleMarker(397, '14 Elm Place, Prahran Vic', '-22.902532', '-47.0607349', 'http://live.btoa.com.au/rentbuy/wp-content/uploads/2013/03/pin-red1.png', 'http://live.btoa.com.au/rentbuy/property/14-elm-place/', 'http://live.btoa.com.au/rentbuy/wp-content/uploads/2013/03/main45-170x154.jpg', '14 Elm Place', '3', '1', '3', 'Renovation Inspiration An alluring mix of a prime 375sqm (approx) block, a peaceful cul-de-sac setting an [...]', '$720,000');
