@@ -35,6 +35,9 @@ public class Place extends BaseEntity implements Serializable {
 	@JoinColumn(name = "fid")
 	private PlaceSpatial spatial;
 	
+	@OneToOne(mappedBy = "placeFacilities", fetch = FetchType.LAZY)
+	private Facilities facilities;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "seller_id")
 	private Seller seller;
@@ -62,9 +65,6 @@ public class Place extends BaseEntity implements Serializable {
 	
 	@Column
 	private Double price;
-	
-	@Column
-	private Double complexPrice;
 	
 	@Column
 	private Integer room;
@@ -153,9 +153,6 @@ public class Place extends BaseEntity implements Serializable {
 		return price;
 	}
 
-	public Double getComplexPrice() {
-		return complexPrice;
-	}
 
 	public Integer getRoom() {
 		return room;
@@ -183,11 +180,7 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	public void setComplexPrice(Double complexPrice) {
-		this.complexPrice = complexPrice;
-	}
+	}	
 
 	public void setRoom(Integer room) {
 		this.room = room;

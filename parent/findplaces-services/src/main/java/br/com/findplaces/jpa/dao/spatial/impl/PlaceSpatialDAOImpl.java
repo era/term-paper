@@ -10,13 +10,11 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.findplaces.jpa.dao.spatial.interfaces.PlaceSpatialDAO;
 import br.com.findplaces.jpa.entity.Place;
-import br.com.findplaces.jpa.entity.User;
 import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -53,6 +51,27 @@ public class PlaceSpatialDAOImpl extends BaseSpatialDAOImpl<PlaceSpatial, Long>
 		query.setParameter(1, lat);
 		query.setParameter(2, log);
 		query.setParameter(3, distance);
+		List<PlaceSpatial> resultList = query.getResultList();
+
+		if (resultList.isEmpty()) {
+			return null;
+		} else {
+			for(PlaceSpatial spt : resultList){
+				places.add(spt.getPlace());
+			}
+			
+			return places;
+		}
+	}
+	
+	
+	
+	@Override
+	public List<Place> findPlaceByFilterBasic() {
+		List<Place> places = new ArrayList<Place>();	
+		String sql = "SELECT * FROM tb_place_f s WHERE ST_DWithin(Geography(s.geom), Geography(ST_MakePoint(?, ?, 4326)), ?)";
+		Query query = getEntitySpatialManager().createNativeQuery(sql, PlaceSpatial.class);				
+	
 		List<PlaceSpatial> resultList = query.getResultList();
 
 		if (resultList.isEmpty()) {

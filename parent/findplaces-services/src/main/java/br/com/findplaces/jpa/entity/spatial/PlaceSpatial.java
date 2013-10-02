@@ -22,7 +22,7 @@ import br.com.findplaces.jpa.entity.Place;
 import com.vividsolutions.jts.geom.Geometry;
 
 @NamedQueries({
-	@NamedQuery(name="FindByPointLatLogDistance", query="SELECT u FROM PlaceSpatial u"),
+	@NamedQuery(name="FindByPointLatLogDistance", query="SELECT u FROM PlaceSpatial u")
 })
 @Entity
 @Table(name = "TB_PLACE_F")

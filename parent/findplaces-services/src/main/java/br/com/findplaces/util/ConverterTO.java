@@ -1,5 +1,6 @@
 package br.com.findplaces.util;
 
+import br.com.findplaces.jpa.entity.Facilities;
 import br.com.findplaces.jpa.entity.Image;
 import br.com.findplaces.jpa.entity.Place;
 import br.com.findplaces.jpa.entity.PlaceType;
@@ -18,6 +19,7 @@ import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.RegionTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
 import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
+import br.com.findplaces.model.to.FacilitiesTO;
 import br.com.findplaces.model.to.PhotoTO;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.PlaceTypeTO;
@@ -109,7 +111,6 @@ public class ConverterTO {
 		entity.setBedroom(place.getBedroom());
 		entity.setCity(converter(place.getCity()));
 		entity.setCode(place.getCode());
-		entity.setComplexPrice(place.getComplexPrice());
 		entity.setDescription(place.getDescription());
 		entity.setGarage(place.getGarage());
 		entity.setM2(place.getM2());
@@ -132,7 +133,6 @@ public class ConverterTO {
 		to.setBedroom(place.getBedroom());
 		to.setCity(converter(place.getCity()));
 		to.setCode(place.getCode());
-		to.setComplexPrice(place.getComplexPrice());
 		to.setDescription(place.getDescription());
 		to.setGarage(place.getGarage());
 		to.setM2(place.getM2());
@@ -273,6 +273,16 @@ public class ConverterTO {
 		image.setPath(photoTO.getUrl());
 		
 		return image;
+	}
+
+	public static Facilities converter(FacilitiesTO to) {
+		Facilities entity = new Facilities();
+		entity.setAir(to.isAir());
+		entity.setAutomaticDoor(to.isAutomaticDoor());
+		entity.setBarbecue(to.isBarbecue());
+		entity.setBathBoxGlass(to.isBathBoxGlass());
+		entity.setBathroomCloset(to.isBathroomCloset());
+		return null;
 	}
 
 }

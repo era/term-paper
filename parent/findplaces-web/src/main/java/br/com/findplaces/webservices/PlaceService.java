@@ -23,6 +23,7 @@ import br.com.findplaces.ejb.SellerConfigurations;
 import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
+import br.com.findplaces.model.to.FacilitiesTO;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.PlaceTypeTO;
 import br.com.findplaces.model.to.SellerTO;
@@ -126,12 +127,12 @@ public class PlaceService implements Serializable {
 
 		isValidToken(token, socialid);
 
-		List<PlaceTO> places = getPlaceConfiguration().findByFilter(Double.parseDouble(latitude),
-						Double.parseDouble(longitude),
-						Double.parseDouble(distance));
+//		List<PlaceTO> places = getPlaceConfiguration().findByFilter(Double.parseDouble(latitude),
+//						Double.parseDouble(longitude),
+//						Double.parseDouble(distance));
 		PlaceResponse response = new PlaceResponse();
 
-		response.setPlaces(places);
+		//response.setPlaces(places);
 		setSuccessResponse(response);
 
 		return null;
@@ -164,6 +165,8 @@ public class PlaceService implements Serializable {
 				streetTo.getStreetName());
 		CityTO cityTo = re.getCity();
 		cityTo = getPlaceConfiguration().findCityByName(cityTo.getName());
+		
+		FacilitiesTO facilities = new FacilitiesTO();
 
 		// Conversao das buscas para o PlaceTO a ser criado
 		PlaceTO to = new PlaceTO();
@@ -183,6 +186,7 @@ public class PlaceService implements Serializable {
 		to.setStreet(re.getStreet());
 		to.setSuite(re.getSuite());
 		to.setType(re.getPlacetype());
+		to.setFacilities(facilities);
 
 		// Criacao
 		PlaceTO placeCreated = getPlaceConfiguration().createPlace(to);

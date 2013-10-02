@@ -20,7 +20,7 @@ import br.com.findplaces.jpa.entity.User;
 	@NamedQuery(name="FindPlacesWithSameType", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.place.type = :type"),
 	@NamedQuery(name="FindPlacesWithSameUserAge", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.age = :age"),
 	@NamedQuery(name="FindPlacesWithSameRelationship", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.relationship = :relantionship"),
-	@NamedQuery(name="FindPlacesWithSameStudyAt", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.studyAt = :studyAt"),
+	@NamedQuery(name="FindPlacesWithSameStudyAt", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.studyAt = :studyAt")
 })
 @Entity
 @Table(name="TB_PLACE_USER_DM")

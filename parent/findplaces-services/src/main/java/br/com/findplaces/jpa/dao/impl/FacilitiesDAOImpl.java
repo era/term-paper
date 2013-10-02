@@ -8,13 +8,13 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.com.findplaces.jpa.dao.interfaces.PlaceDAO;
-import br.com.findplaces.jpa.entity.Place;
+import br.com.findplaces.jpa.dao.interfaces.FacilitiesDAO;
+import br.com.findplaces.jpa.entity.Facilities;
 
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Stateless
-@Remote(PlaceDAO.class)
-public class PlaceDAOImpl extends BaseDAOImpl<Place, Long> implements PlaceDAO {
+@Remote(FacilitiesDAO.class)
+public class FacilitiesDAOImpl extends BaseDAOImpl<Facilities, Long> implements FacilitiesDAO {
 
 	private static final long serialVersionUID = -2569793427518741401L;
 

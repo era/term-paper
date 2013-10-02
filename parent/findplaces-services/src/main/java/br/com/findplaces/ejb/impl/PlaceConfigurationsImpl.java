@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import br.com.findplaces.ejb.PlaceConfigurations;
 import br.com.findplaces.jpa.dao.interfaces.CityDAO;
+import br.com.findplaces.jpa.dao.interfaces.FacilitiesDAO;
 import br.com.findplaces.jpa.dao.interfaces.NeighborhoodDAO;
 import br.com.findplaces.jpa.dao.interfaces.PlaceDAO;
 import br.com.findplaces.jpa.dao.interfaces.StreetDAO;
@@ -32,76 +33,77 @@ import com.vividsolutions.jts.geom.Point;
 
 @Stateless(name = "PlaceConfigurationsEJB", mappedName = "PlaceConfigurationsImpl")
 public class PlaceConfigurationsImpl implements PlaceConfigurations {
-	
+
 	private static final Logger logger = Logger.getLogger(PlaceConfigurationsImpl.class);
 
 	private static final long serialVersionUID = 1L;
-	
-	public static final int SRID = 4326;
 
-	@EJB
-	private PlaceDAO placeDAO;
+	public static final int SRID = 4326;
 
 	@EJB
 	private CityDAO cityDAO;
 
 	@EJB
-	private StreetDAO streetDAO;
+	private FacilitiesDAO facilitiesDAO;
 
 	@EJB
 	private NeighborhoodDAO neighDAO;
-	
+
 	@EJB
-	private PlaceSpatialDAO spatialDAO;	
-	
+	private PlaceDAO placeDAO;
+
+	@EJB
+	private PlaceSpatialDAO spatialDAO;
+
+	@EJB
+	private StreetDAO streetDAO;
+
 	public PlaceTO createPlace(PlaceTO place) {
-		try {	
-			
+		try {
+
 			Double lat = place.getLat();
 			Double log = place.getLog();
 			GeometryFactory geoFactory = new GeometryFactory();
-			Coordinate coord = new Coordinate();			
+			Coordinate coord = new Coordinate();
 			coord.x = lat;
 			coord.y = log;
 			Point point = geoFactory.createPoint(coord);
 			point.setSRID(SRID);
-			
+
 			place.setSpatialTO(new PlaceSpatialTO());
 			place.getSpatialTO().setGeom(point);
 			place.getSpatialTO().setLat(lat);
 			place.getSpatialTO().setLon(log);
 			place.getSpatialTO().setPlace(place);
-			
-			
+
 			Long id = placeDAO.create(ConverterTO.converter(place));
 			PlaceSpatialTO spatialTO = place.getSpatialTO();
 			spatialTO.setPlace(findPlaceById(id));
 			Long fid = spatialDAO.create(ConverterTO.converter(spatialTO));
-			
-			
+
 			return this.findPlaceById(id);
 		} catch (DAOException e) {
 
 		}
 		return place;
 	}
-	
+
 	@Override
 	public List<PlaceTO> findPlaceByLatLogDistance(Double lat, Double log, Double distance) {
 
 		List<Place> places = spatialDAO.findPlaceByLatLogDistance(lat, log, distance);
 
 		if (places == null) {
-			 logger.info("Não foi encontrado o lugar pela latitude e longitude ");
-			 return null;
+			logger.info("Não foi encontrado o lugar pela latitude e longitude ");
+			return null;
 		}
 
 		List<PlaceTO> placesTO = new ArrayList<PlaceTO>();
-		for(Place place: places){
+		for (Place place : places) {
 			PlaceTO to = ConverterTO.converter(place);
 			placesTO.add(to);
 		}
-		
+
 		return placesTO;
 	}
 
@@ -112,7 +114,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			Place place = placeDAO.findById(id);
 
 			if (place == null) {
-				logger.info("Não foi encontrado o usuário "+ id.toString());
+				logger.info("Não foi encontrado o usuário " + id.toString());
 			}
 
 			return ConverterTO.converter(place);
@@ -161,6 +163,6 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	public List<PlaceTO> findByFilter(Double lat, Double log, Double distance) {
 		// TODO Auto-generated method stub
 		return null;
-	}	
+	}
 
 }

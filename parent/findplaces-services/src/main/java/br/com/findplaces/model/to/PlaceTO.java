@@ -53,6 +53,8 @@ public class PlaceTO implements Serializable {
 	private Double m2;	
 	
 	private Integer garage;
+	
+	private FacilitiesTO facilities;
 
 
 	public Long getId() {
@@ -213,6 +215,14 @@ public class PlaceTO implements Serializable {
 
 	public void setGarage(Integer garage) {
 		this.garage = garage;
+	}
+
+	public FacilitiesTO getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(FacilitiesTO facilities) {
+		this.facilities = facilities;
 	}
 
 }
