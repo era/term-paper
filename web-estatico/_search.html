@@ -1,0 +1,174 @@
+﻿<div id="filtro">
+    <form id="filtroCompleto">
+        <div id="pesoLabel" title="Selecione o quanto você se importa com uma característica do imóvel. Exemplo, se for mais importante ter 2 garagens, selecione o valor máximo nas garagens.">
+            Peso
+        </div>
+        <ul class="componentesFiltros">
+            <li id="tipoAquisicaoFiltro">
+                <label for="tiposAquisicao">Tipo de aquisição</label>
+                <select class="form-header-alt-select" id="tiposAquisicao" name="tiposAquisicao">
+                    <option value="0">Comprar</option>
+                    <option value="1">Alugar</option>
+                    <option value="2">Temporada</option>
+                </select>
+                <div class="peso">
+                    <div id="pesoAquisicao"></div>
+                </div>
+            </li>
+            <li id="tipoImovelFiltro">
+                <label for="tipoImovel">Tipo de imóvel</label>
+                <select class="form-header-alt-select" id="tipoImovel" name="tipoImovel">
+                    <option value="0">Casa</option>
+                    <option value="1">Apartamento</option>
+                    <option value="2">Flat</option>
+                    <option value="3">Kitnet</option>
+                </select>
+                <div class="peso">
+                    <div id="pesoTipoImovel"></div>
+                </div>
+            </li>
+             <li id="precoFiltro">
+                <label for="preco">Preço</label>
+                <input type="text" name="preco" placeholder="R$ 1000,00 até R$ 20000,00" id="preco" />
+                <div class="peso">
+                    <div id="pesoPreco"></div>
+                </div>
+            </li>
+            <li id="bairroFiltro">
+                <label for="bairro">Bairro de escolha</label>
+                <input type="text" name="bairro" placeholder="Bairro de Campinas, estabelecimento ou código do apartamento" id="bairro" />
+                <div class="peso">
+                    <div id="pesoBairro"></div>
+                </div>
+            </li>
+
+             <li id="distanciaFiltro">
+                <label for="bairro">Distância aceita</label>
+                <input type="text" name="distancia" placeholder="1000 metros" id="distancia" />
+                <div class="peso">
+                    <div id="pesoDistancia"></div>
+                </div>
+            </li>
+
+            <li id="dormitoriosFiltro">
+                <label for="dormitorios">Dormitórios</label>
+                <select class="form-header-alt-select" id="dormitorios" name="dormitorios">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+                <div class="peso">
+                    <div id="pesoDormitorios"></div>
+                </div>
+            </li>
+
+            <li id="garagensFiltro">
+                <label for="garagens">Garagens</label>
+                <select class="form-header-alt-select" id="garagens" name="garagens">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3+</option>
+                </select>
+                <div class="peso">
+                    <div id="pesoGaragens"></div>
+                </div>
+            </li>
+        </ul>
+
+        <input type="hidden" name="lat" id="lat" />
+        <input type="hidden" name="lng" id="lng" />
+        <!--<button alt="Buscar" id="buscar" title="Buscar" type="submit">
+                Buscar</button>-->
+    </form>
+</div>
+<div id="map" class="MediumMap" />
+
+
+<script type="text/javascript" charset="utf-8">
+    /* Inicio - Grupo de comandos de carga de plugins */
+    // OpenStreetMaps
+    $.consultaMapa(-22.902532, -47.0607349);
+    $.searchPlace('bairro');
+    $('#bairro').focusin(function(){
+        $(this).css('width','220px');
+        $('#bairroFiltro').css('margin-right','100px');
+    });
+    $('#bairro').focusout(function(){
+        $(this).css('width','105px');
+        $('#bairroFiltro').css('margin-right','0px');
+    });
+
+
+    $('#preco').focusin(function(){
+        $(this).css('width','220px');
+        $('#precoFiltro').css('margin-right','100px');
+    });
+    $('#preco').focusout(function(){
+        $(this).css('width','105px');
+        $('#precoFiltro').css('margin-right','0px');
+    });
+
+    
+    /*if(navigator.geolocation){
+         navigator.geolocation.getCurrentPosition(function(position){
+            $.consultaMapa(position.coords.latitude, position.coords.longitude);        
+         });
+    }*/
+    $( "#pesoAquisicao" ).slider({
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
+    });
+
+    $( "#pesoBairro" ).slider({
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
+    });
+    $( "#pesoTipoImovel" ).slider({
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
+    });
+
+    $( "#pesoPreco" ).slider({
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
+    });
+
+    $( "#pesoDormitorios" ).slider({
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
+    });
+
+    $( "#pesoGaragens" ).slider({
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
+    });
+
+    $( "#pesoDistancia" ).slider({
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
+    });
+
+    $('#pesoLabel').tooltip();
+
+    
+
+    /* Ação para busca rápida */
+    $('#buscar').click(function () {
+        return false;
+    });
+</script>
