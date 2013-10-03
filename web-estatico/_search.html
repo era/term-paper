@@ -129,9 +129,9 @@
         <h2>Cambuí, Campinas - SP</h2>
     </div>
     <div id="detalhesIconesApartamento">
-        <span class="beds">5</span>
-        <span class="baths">3</span>
-        <span class="cars">1</span>
+        <span class="beds" title="Dormitórios">5</span>
+        <span class="baths" title="Banheiros">3</span>
+        <span class="cars" title="Garagens">1</span>
         <span class="costs">R$ 10.0000</span>
     </div>
     <div id="textoApartamento">
@@ -166,62 +166,24 @@
 
     $("#preco").mask("R$999?999 - R$9999999"); //FIXME
 
-
     
     /*if(navigator.geolocation){
          navigator.geolocation.getCurrentPosition(function(position){
             $.consultaMapa(position.coords.latitude, position.coords.longitude);        
          });
     }*/
-    $( "#pesoAquisicao" ).slider({ //DRY???? MOTHERFUCKER
-        animate: true,
-         min: 1,
-        max: 10,
-        range: "min",
-    });
-
-    $( "#pesoBairro" ).slider({
-        animate: true,
-        min: 1,
-        max: 10,
-        range: "min",
-    });
-    $( "#pesoTipoImovel" ).slider({
-        animate: true,
-         min: 1,
-        max: 10,
-        range: "min",
-    });
-
-    $( "#pesoPreco" ).slider({
-        animate: true,
-         min: 1,
-        max: 10,
-        range: "min",
-    });
-
-    $( "#pesoDormitorios" ).slider({
-        animate: true,
-         min: 1,
-        max: 10,
-        range: "min",
-    });
-
-    $( "#pesoGaragens" ).slider({
-        animate: true,
-         min: 1,
-        max: 10,
-        range: "min",
-    });
-
-    $( "#pesoDistancia" ).slider({
-        animate: true,
-         min: 1,
-        max: 10,
-        range: "min",
-    });
+    $.criaPeso($("#pesoAquisicao"));
+    $.criaPeso($("#pesoBairro"));
+    $.criaPeso($("#pesoTipoImovel"));
+    $.criaPeso($("#pesoPreco"));
+    $.criaPeso($("#pesoDormitorios"));
+    $.criaPeso($("#pesoGaragens"));
+    $.criaPeso($("#pesoDistancia"));
 
     $('#pesoLabel').tooltip();
+    $('.beds').tooltip();
+    $('.baths').tooltip();
+    $('.cars').tooltip();
 
     $('.carousel').carousel();
 

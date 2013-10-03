@@ -147,3 +147,14 @@ $.searchPlace = function(field){
     });
 
 }
+
+$.criaPeso = function(campo){
+
+    campo.slider({ //DRY???? MOTHERFUCKER
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
+    });
+
+}
