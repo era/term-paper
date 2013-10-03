@@ -572,10 +572,11 @@ div#account-actions > ul > li
 	padding-top: 20px;
 }
 #filtroCompleto #bairro,
-#filtroCompleto #preco,
+#filtroCompleto #precoDe, #precoAte,
 #filtroCompleto #distancia {
 	width:105px;
 }
+
 
 .componentesFiltros select,.componentesFiltros input {
 	margin-top: 10px;

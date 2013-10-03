@@ -29,7 +29,8 @@
             </li>
              <li id="precoFiltro">
                 <label for="preco">Preço</label>
-                <input type="text" name="preco" placeholder="R$ 1000,00 até R$ 20000,00" id="preco" />
+                <input type="text" name="precoDe" placeholder="De" id="precoDe" />
+                <input type="text" name="precoAte" placeholder="Até" id="precoAte" style="display:none;" />
                 <div class="peso">
                     <div id="pesoPreco"></div>
                 </div>
@@ -154,17 +155,33 @@
         $('#bairroFiltro').css('margin-right','0px');
     });
 
-
-    $('#preco').focusin(function(){
-        $(this).css('width','220px');
-        $('#precoFiltro').css('margin-right','100px');
+    $('input').focusin(function(){
+        if($(this).attr('id')!='precoDe' && $(this).attr('id')!='precoAte'){
+            $('#precoAte').hide();
+            $('#filtro').css('height','140px');
+        }
     });
-    $('#preco').focusout(function(){
-        $(this).css('width','105px');
-        $('#precoFiltro').css('margin-right','0px');
+    //FIXME
+    $('select').focusin(function(){
+        if($(this).attr('id')!='precoDe' && $(this).attr('id')!='precoAte'){
+            $('#precoAte').hide();
+            $('#filtro').css('height','140px');
+        }
     });
 
-    $("#preco").mask("R$999?999 - R$9999999"); //FIXME
+
+    $('#precoDe').focusin(function(){
+        $('#filtro').css('height','200px');
+        $('#precoAte').show();
+    });
+
+    $('#precoAte').focusout(function(){
+       $('#precoAte').hide();
+       $('#filtro').css('height','140px');
+    });
+
+    $("#precoDe").mask("R$999?9999999");
+    $("#precoAte").mask("R$999?9999999");
 
     
     /*if(navigator.geolocation){
