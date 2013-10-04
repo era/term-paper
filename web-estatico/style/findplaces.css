@@ -840,6 +840,44 @@ table#comodidadesCondominio td {
 }
 
 
+/****Management ***/
+.dadosAdministracao{
+	float:left;
+	width:900px;
+}
+.charts .title {
+	font-weight: bold;
+	font-size: 30px;
+	margin: 10px 30px;
+	border-bottom: 3px solid #000;
+	width:450px;
+}
+.charts canvas {
+	
+}
+
+#usersAlsoView span {
+	display: block;
+	margin-left: 30px;
+	margin-top:10px;
+}
+
+.menuAdministracao {
+	float:left;
+	width:200px;
+	margin-top:30px;
+}
+
+.menuAdministracao .item {
+	background: none repeat scroll 0 0 #F96F44;
+    border: 1px solid #C14018;
+    color: #FFFFFF;
+    text-align: center;
+    text-shadow: 1px 1px 0 #777777;    
+}
+
+
+
 /** GMAPS **/
 .cluster {
     color: #FFFFFF;
