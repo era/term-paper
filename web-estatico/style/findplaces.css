@@ -778,12 +778,14 @@ select {
 
 .placeDetails{
 	background: none repeat scroll 0 0 #F4F4F4;
-	border: 1px #DFDFDF solid ;
+	border: 1px #DFDFDF solid;
 	width:700px;
 }
 
 .placeDetails #generalInformations span{
-	
+	margin-top:5px;
+	margin-left: 10px;
+	display:inline-block;
 }
 
 .placeDetails #generalInformations span.title{
@@ -876,7 +878,29 @@ table#comodidadesCondominio td {
     text-shadow: 1px 1px 0 #777777;    
 }
 
+.dadosApartamento {
+	background: none repeat scroll 0 0 #F4F4F4;
+	border: 1px #DFDFDF solid;
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 30px;
+	padding: 10px;
+}
 
+.dadosApartamento .secaoTitle {
+	font-weight: bold;
+	font-size:30px;
+}
+
+.dadosApartamento div {
+	margin-top:10px;
+	background: none repeat scroll 0 0 #F4F4F4;
+}
+
+.dadosApartamento  span.title {
+	font-weight: bold;
+	width:300px;
+}
 
 /** GMAPS **/
 .cluster {
