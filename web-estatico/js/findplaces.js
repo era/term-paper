@@ -32,17 +32,37 @@ $.consultaMapa = function (lat, lng,markers) {
             },
         },
         marker:{
-        values:
-//customizavel por variavel
-         [
-          [-22.902532, -47.0607349],
-          [-22.903692, -47.0607349],
-          [-22.904852, -47.0607349],
+        values:[
+//customizavel por variavel      
           {
             latLng:[-22.912532, -47.0607349],
             events:{
               click:function(){
-                alert("I'm the last one, and i have my own click event");
+                $.showDetailsAboutPlace();
+              }
+            }
+          },
+          {
+            latLng: [-22.902532, -47.0607349],
+            events:{
+              click:function(){
+                $.showDetailsAboutPlace();
+              }
+            }
+          },
+          {
+            latLng:[-22.904852, -47.0607349],
+            events:{
+              click:function(){
+                $.showDetailsAboutPlace();
+              }
+            }
+          },
+          {
+            latLng:[-22.903692, -47.0607349],
+            events:{
+              click:function(){
+                $.showDetailsAboutPlace();
               }
             }
           }
@@ -100,7 +120,9 @@ $.consultaMapa = function (lat, lng,markers) {
 
 };
 
-
+$.showDetailsAboutPlace = function(id) {
+  $('#detalhesApartamento').show();
+}
 
 $.openURLContent = function (target, anchor) {
     $(target).load($.StringFormat('_{0}.html', anchor));
@@ -122,6 +144,17 @@ $.searchPlace = function(field){
         $('#lat').val(place.geometry.location.lb);
         $('#lng').val(place.geometry.location.mb);
         
+    });
+
+}
+
+$.criaPeso = function(campo){
+
+    campo.slider({ //DRY???? MOTHERFUCKER
+        animate: true,
+         min: 1,
+        max: 10,
+        range: "min",
     });
 
 }
