@@ -150,7 +150,7 @@ $.searchPlace = function(field){
 
 $.criaPeso = function(campo){
 
-    campo.slider({ //DRY???? MOTHERFUCKER
+    campo.slider({
         animate: true,
          min: 1,
         max: 10,
