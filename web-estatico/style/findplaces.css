@@ -918,6 +918,35 @@ table#comodidadesCondominio td {
 	margin-top: 5px;
 }
 
+.controle a {
+	cursor: pointer;
+	margin:10px;
+	width:150px;
+	text-align: center;
+	display:inline-block;
+}
+
+.controle .excluir {
+	background: none repeat scroll 0 0 #E82C0C;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 #777777;
+    border: 1px solid #C14018;
+}
+
+.controle .vendido {
+	background: none repeat scroll 0 0 #045923;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 #777777;
+    border: 1px solid #0C9C2A;	
+}
+
+.controle .editar {
+	background: none repeat scroll 0 0 #0D3159;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 #777777;
+    border: 1px solid #03545E;	
+}
+
 /** GMAPS **/
 .cluster {
     color: #FFFFFF;
