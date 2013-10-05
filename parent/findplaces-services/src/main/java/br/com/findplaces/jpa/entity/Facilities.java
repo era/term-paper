@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_TOWNHOUSE")
-	
 public class Facilities extends BaseEntity {
 private static final long serialVersionUID = 1L;
 	
@@ -22,8 +21,6 @@ private static final long serialVersionUID = 1L;
 	
 	@Column
 	private String name;
-	
-	//Condimnio
 	
 	@Column
 	private boolean gatekeeper;
