@@ -947,6 +947,28 @@ table#comodidadesCondominio td {
     border: 1px solid #03545E;	
 }
 
+
+/** management **/
+
+.controleComponente {
+	min-height: 300px;
+	width:500px;
+	background: none repeat scroll 0 0 #F4F4F4;
+	float:left;
+	margin: 30px;
+}
+
+.controleComponente .title {
+	font-weight: bold;
+	margin-left: 10px;
+	font-size: 20px;
+	margin-top:10px;
+}
+
+.controleComponente .item {
+	margin-left: 10px;
+}
+
 /** GMAPS **/
 .cluster {
     color: #FFFFFF;

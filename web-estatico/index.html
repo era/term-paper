@@ -127,11 +127,11 @@
     /* Abertura da janela */
     $(document).ready(function () {
         if (window.location.hash) {
-            var hash = window.location.hash.substring(1);
-            $.openURLContent('#content', hash);
+            $.openHashTagContent();
         } else {
             $.openURLContent('#content', 'home');
         }
+        window.onpopstate =  $.openHashTagContent; //fixme, provavelmente nao funciona no IE
     });
 </script>
 </html>

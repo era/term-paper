@@ -124,7 +124,13 @@ $.showDetailsAboutPlace = function(id) {
   $('#detalhesApartamento').show();
 }
 
+$.openHashTagContent = function(){
+  var hash = window.location.hash.substring(1);
+  $.openURLContent('#content', hash);
+}
+
 $.openURLContent = function (target, anchor) {
+    window.history.pushState(null, null, "index.html#"+anchor); //objState, title, page
     $(target).load($.StringFormat('_{0}.html', anchor));
     return false;
 };
