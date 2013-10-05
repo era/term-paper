@@ -663,6 +663,11 @@ select {
 	margin-bottom: 0px !important;
 	border: #000 solid;
 }
+
+#textoSobreLugar {
+	float:left;
+	width: 400px;
+}
 #detalhesIconesApartamento {
 	float:left;
 	width:860px
@@ -900,6 +905,17 @@ table#comodidadesCondominio td {
 .dadosApartamento  span.title {
 	font-weight: bold;
 	width:300px;
+}
+
+.indiceChart {
+	float:right;
+	width: 300px;
+	margin-right: 350px;
+	margin-top: 30px;
+}
+
+.indiceChart ul li {
+	margin-top: 5px;
 }
 
 /** GMAPS **/
