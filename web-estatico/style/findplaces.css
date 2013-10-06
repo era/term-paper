@@ -147,7 +147,7 @@ div#content > .content-title > .wrapper > h1
 
 div#map
 {
-	height:500px;
+	height:450px;
 	min-width:1180px;
 }
 
@@ -555,6 +555,35 @@ div#account-actions > ul > li
 	font-size: 13px;
 }
 
+.aboutLogin {
+	background: none repeat scroll 0 0 #F4F4F4;
+}
+
+.aboutLogin .login {
+	width:400px;
+	float:left;
+	margin-left:160px;
+	
+}
+
+.aboutLogin .login .title {
+	font-size: 30px;
+	font-weight: bold;
+	margin: 10px;
+	width: 400px;
+	display: block;
+}
+
+.aboutLogin .login .explanation {
+	width:400px;
+	display: block;
+	margin:10px;
+}
+
+.aboutLogin .editar, .aboutLogin .vendido {
+	margin: 10px auto;
+	display: block;
+}
 
 /*** Search page ***/
 
