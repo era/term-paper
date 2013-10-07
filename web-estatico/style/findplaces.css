@@ -998,6 +998,13 @@ table#comodidadesCondominio td {
 	margin-left: 10px;
 }
 
+.controleComponente .item label {
+	float:left;
+}
+.controleComponente .item input {
+	margin: 10px auto;
+}
+
 /** GMAPS **/
 .cluster {
     color: #FFFFFF;
