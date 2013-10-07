@@ -13,8 +13,8 @@
         <class>br.com.findplaces.jpa.entity.Place</class>     
         <class>br.com.findplaces.jpa.entity.PlaceType</class>
         <class>br.com.findplaces.jpa.entity.Image</class>
-        <class>br.com.findplaces.jpa.entity.Facilities</class>
-        
+        <class>br.com.findplaces.jpa.entity.Facilities</class> <!--  FIXME -->
+        <class>br.com.findplaces.jpa.entity.Token</class>
         
         <class>br.com.findplaces.jpa.entity.datamining.PlaceViewed</class>
         <class>br.com.findplaces.jpa.entity.datamining.TestAB</class> 

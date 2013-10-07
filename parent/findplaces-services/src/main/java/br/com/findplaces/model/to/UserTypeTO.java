@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class UserTypeTO implements Serializable {
 	
 	public static final Long USER_FB_ID = 1L;
+	public static final Long USER_EMAIL = 2L;
 	
 	private static final long serialVersionUID = 1L;
 	

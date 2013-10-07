@@ -26,16 +26,14 @@ INSERT INTO tb_place_type(id, name) VALUES (2, 'HOUSE');
 
 INSERT INTO tb_place_type(id, name) VALUES (3, 'CONTAINER');
 
-INSERT INTO tb_user(id, email, name, password, socialid, type_id)  VALUES (1, 'test@test.com', 'test', 'tst', 1, '2');
-
 
 
 INSERT INTO tb_country(id, name)  VALUES (1, 'Brazil');
 
-INSERT INTO tb_region(id, name, country_id)  VALUES (1, 'São Paulo', 1);
+INSERT INTO tb_region(id, name, country_id)  VALUES (1, 'Sao Paulo', 1);
 
 INSERT INTO tb_city(id, name, region_id)  VALUES (1, 'Campinas', 1);
 
 INSERT INTO tb_neighborhood(id, hoodname, city_id)  VALUES (1, 'Centro', 1);
 
-INSERT INTO TB_STREET(id, streetname, neighborhood_id)  VALUES (1, 'Barão de Jaguara', 1);
+INSERT INTO TB_STREET(id, streetname, neighborhood_id)  VALUES (1, 'Barao de Jaguara', 1);

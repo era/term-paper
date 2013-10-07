@@ -1,5 +1,11 @@
 package br.com.findplaces.usermodule.ejb.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -10,13 +16,16 @@ import org.apache.log4j.Logger;
 import br.com.findplaces.ejb.UserLogin;
 import br.com.findplaces.exceptions.CouldNotFindUserException;
 import br.com.findplaces.exceptions.CouldNotSaveUserException;
+import br.com.findplaces.exceptions.TokenInvalidException;
 import br.com.findplaces.jpa.dao.interfaces.UserDAO;
 import br.com.findplaces.jpa.entity.Seller;
+import br.com.findplaces.jpa.entity.Token;
 import br.com.findplaces.jpa.entity.User;
 import br.com.findplaces.jpa.exception.DAOException;
 import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.util.ConverterTO;
+import br.com.findplaces.util.RandomString;
 
 @Stateless(name = "UserLoginEJB", mappedName = "UserLogin")
 @Remote(UserLogin.class)
@@ -66,6 +75,10 @@ public class UserLoginImpl implements UserLogin {
 	@Override
 	public UserTO createUser(UserTO user) throws CouldNotSaveUserException {
 		try {
+			if(user.getPassword()!=null){
+				MessageDigest digest = this.criptgraphPassword(user.getPassword());
+				user.setPassword(String.valueOf(digest.digest()));
+			}
 			Long id = userDAO.create(ConverterTO.converter(user));
 			return this.findUserById(id);
 		} catch (DAOException e) {
@@ -116,6 +129,72 @@ public class UserLoginImpl implements UserLogin {
 		}
 
 		return ConverterTO.converter(sellerFound);
+	}
+
+	@Override
+	public String isValidToken(String token, Long id) throws TokenInvalidException {
+		Token tokenOnDB = userDAO.findToken(token, id);
+		if(tokenOnDB == null) {
+			throw new TokenInvalidException();
+		} else if ( tokenOnDB.getValid().after(new Date())) {
+			userDAO.deleteToken(tokenOnDB);
+			throw new TokenInvalidException();
+		} 
+		
+		tokenOnDB.setValid(this.increaseValidTimeToken());
+		
+		userDAO.saveToken(tokenOnDB);
+		
+		return tokenOnDB.getToken();
+	}
+
+	@Override
+	public String generateTokenForUser(UserTO user) {
+		Date valid = increaseValidTimeToken();
+		
+		StringBuilder token = new StringBuilder();
+		token.append(valid.toString());
+		token.append(new RandomString(30).nextString());
+
+		Token tokenOnDB = new Token();
+		tokenOnDB.setToken(token.toString());
+		tokenOnDB.setUser(ConverterTO.converter(user));
+		tokenOnDB.setValid(valid);
+		userDAO.saveToken(tokenOnDB);
+		
+		return tokenOnDB.getToken();
+	}
+
+	private Date increaseValidTimeToken() {
+		Calendar calendar = Calendar.getInstance();
+		
+		calendar.add(30, Calendar.MINUTE);
+		
+		Date valid = new Date(calendar.getTimeInMillis());
+		return valid;
+	}
+
+	@Override
+	public UserTO findUserByEmailAndPassword(String email, String password)
+			throws CouldNotFindUserException {
+		MessageDigest cript = criptgraphPassword(password);
+		User user = userDAO.findUserByEmailAndPassword(email, String.valueOf(cript.digest()));
+		
+		if(user== null) {
+			throw new CouldNotFindUserException();
+		}
+		
+		return ConverterTO.converter(user);
+	}
+
+	private MessageDigest criptgraphPassword(String password) {
+		try {
+			MessageDigest cript = MessageDigest.getInstance("MD5");
+			cript.update(password.getBytes("UTF-8"));
+			return cript;
+		} catch(Exception e) {
+			return null; //FIXME
+		}
 	}
 
 }

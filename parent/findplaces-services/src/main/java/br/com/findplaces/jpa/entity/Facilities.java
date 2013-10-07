@@ -94,8 +94,7 @@ private static final long serialVersionUID = 1L;
 	@Column
 	private Double price;
 		
-	@OneToOne(mappedBy = "townHouse", fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id")
+	@OneToOne(fetch = FetchType.LAZY)
 	private Place place;
 
 	public Long getId() {

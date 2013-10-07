@@ -13,6 +13,8 @@ public class UserResponse extends BaseJSONObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private UserTO user;
+	
+	private String token;
 
 	public UserTO getUser() {
 		return user;
@@ -20,6 +22,14 @@ public class UserResponse extends BaseJSONObject implements Serializable {
 
 	public void setUser(UserTO user) {
 		this.user = user;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

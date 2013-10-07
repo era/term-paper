@@ -1,14 +1,19 @@
 <div class="loginSection">
 	<div class="controleComponente">
 		<div class="title">Cadastre-se</div>
+		<div class="erros" />
 		<div class="item">
-			<form>
-				<input type="text" placeholder="Nome" name="nome" />
+			<form id="cadastreSeForm">
+				<input type="text" placeholder="Nome" name="name" />
 				<input type="email" placeholder="E-mail" name="email" />
-				<input type="password" placeholder="Senha" name="senha" />
-				<input type="password" placeholder="Confirme a senha" name="ConfirmeSenha" />
+				<input type="password" placeholder="Senha" name="password" />
+				<input type="password" placeholder="Confirme a senha" name="confirmPassword" />
 				<br class="clr" />
-				Cadastre-se! ------ Login com facebook
+				<div class="controle">
+		            <a class="editar" onclick="javascript:$.cadastro()">Cadastre-se!</a>
+    				<div class="fb-login-button" style="margin: 0 auto;" data-width="200" scope="email,user_likes" />
+
+		        </div>
 			</form>
 		</div>
 	</div>
@@ -19,3 +24,23 @@
 	</div>
 </div>
 <br class="clr" />
+<script type="text/javascript">
+	$.cadastro = function() {
+		var userData = $("#cadastreSeForm").serializeObject();
+		var errors = [];
+		if(userData.name== ""){
+			errors.push("Você deve preencher o campo nome.");
+		}
+		if(userData.email==""){
+			errors.push("Você deve preencher o campo E-mail.");
+		}
+		if(userData.confirmPassword != userData.password || userData.password == ""){
+			errors.push("Por favor, verifique a sua senha.");
+		}
+
+		if(errors.length == 0){
+			findplaces.webservice.user.createUserByEmail(userData);
+		}
+
+	};
+</script>

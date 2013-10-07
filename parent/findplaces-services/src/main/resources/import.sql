@@ -27,7 +27,7 @@ INSERT INTO TB_PLACE_TYPE (id, name) VALUES (2, 'HOUSE');
 
 INSERT INTO tb_country (id, name)  VALUES (1, 'Brazil');
 
-INSERT INTO tb_region (id, name, country_id)  VALUES (1, 'São Paulo', 1);
+INSERT INTO tb_region (id, name, country_id)  VALUES (1, 'Sao Paulo', 1);
 
 INSERT INTO tb_city (id, name, region_id)  VALUES (1, 'Campinas', 1);
 

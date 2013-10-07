@@ -35,7 +35,7 @@ public class Place extends BaseEntity implements Serializable {
 	@JoinColumn(name = "fid")
 	private PlaceSpatial spatial;
 	
-	@OneToOne(mappedBy = "placeFacilities", fetch = FetchType.LAZY)
+//	@OneToOne(mappedBy = "placeFacilities", fetch = FetchType.LAZY)
 	private Facilities facilities;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

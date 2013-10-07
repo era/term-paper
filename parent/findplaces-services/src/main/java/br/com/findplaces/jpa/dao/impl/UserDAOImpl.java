@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import br.com.findplaces.jpa.dao.interfaces.UserDAO;
 import br.com.findplaces.jpa.entity.Likes;
 import br.com.findplaces.jpa.entity.Seller;
+import br.com.findplaces.jpa.entity.Token;
 import br.com.findplaces.jpa.entity.User;
 
 @Stateless
@@ -89,6 +90,31 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		} else {
 			return (Seller) resultList.get(0);
 		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Token findToken(String token, Long userID) {
+		Query query = getEntityManager().createNamedQuery(Token.FIND_TOKEN);
+		
+		query.setParameter("token", token);
+		query.setParameter("userID", userID);
+		List resultList = query.getResultList();
+		if (resultList.isEmpty()) {
+			return null;
+		} else {
+			return (Token) resultList.get(0);
+		}
+	}
+
+	@Override
+	public void saveToken(Token token) {
+		getEntityManager().persist(token);
+	}
+	
+	@Override
+	public void deleteToken(Token token){
+		getEntityManager().remove(token);
 	}
 
 }

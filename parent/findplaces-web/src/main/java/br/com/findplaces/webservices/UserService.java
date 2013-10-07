@@ -15,6 +15,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import br.com.findplaces.ejb.UserLogin;
+import br.com.findplaces.exceptions.CouldNotFindUserException;
 import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.model.to.UserTypeTO;
@@ -41,13 +42,25 @@ public class UserService implements Serializable {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public UserResponse getUser(@QueryParam(value = "token") String token,
 			@QueryParam(value = "type") String type,
+			@QueryParam(value = "password") String password,
+			@QueryParam(value = "email") String email,
 			@PathParam(value = "id") String id) {
 		UserResponse response = new UserResponse();
+		UserTO userTO = null;
 		try {
-			Validator.isValidToken(token, id);
-			UserTO userTO = getUserLogin().findUserBySocialID(id);
+			if(UserLogin.FACEBOOK_USER.equals(type)){
+				userTO = getUserFromFacebook(token, id);
+			} else if(UserLogin.EMAIL_USER.equals(type) && password != null && !password.isEmpty()) {
+				userTO = userLogin.findUserByEmailAndPassword(email, password);
+				response.setToken(userLogin.generateTokenForUser(userTO));
+			} else if(UserLogin.EMAIL_USER.equals(type)) {
+				response.setToken(userLogin.isValidToken(token, Long.valueOf(id)));
+				userTO = userLogin.findUserById(Long.valueOf(id));
+			}
+			userTO.setPassword(null); //FIXME
 			response.setUser(userTO);
 			setSuccessResponse(response);
+			
 		} catch (NotAuthorizedException e) {
 			setErrorResponse(response, StatusCode.NOT_ALLOWED);
 		} catch (Exception e) {
@@ -57,20 +70,30 @@ public class UserService implements Serializable {
 		return response;
 	}
 
+
+	private UserTO getUserFromFacebook(String token, String id)
+			throws NotAuthorizedException, CouldNotFindUserException {
+		Validator.isValidToken(token, id);
+		UserTO userTO = getUserLogin().findUserBySocialID(id);
+		return userTO;
+	}
+
+
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
 	public UserResponse insertUser(
 			@FormParam(value = "user") UserServiceRequest request) {
 		UserResponse response = new UserResponse();
+		UserTO user =  null;
 		try {
-			Validator.isValidToken(request.getToken(), request.getUserFacebookID());
-
-			UserTO user = FacebookUtils.getUser(request.getToken());
-			UserTypeTO type = new UserTypeTO();
-			type.setId(UserTypeTO.USER_FB_ID);
-			user.setType(type);
-
+			if(request.getUserFacebookID() !=null && !request.getUserFacebookID().isEmpty()) {
+				user = getUserFromFacebook(request);
+			} else {
+				user = createUserWithEmailAndPassword(request);
+			}
+			
 			UserTO createdUser = getUserLogin().createUser(user);
+			createdUser.setPassword(null); //FIXME
 			response.setUser(createdUser);
 			setSuccessResponse(response);
 
@@ -80,6 +103,33 @@ public class UserService implements Serializable {
 			setErrorResponse(response, StatusCode.ERROR);
 		}
 		return response;
+	}
+
+
+	private UserTO createUserWithEmailAndPassword(UserServiceRequest request) {
+		UserTO user;
+		user = new UserTO();
+		user.setEmail(request.getEmail());
+		user.setPassword(request.getPassword());
+		user.setName(request.getName());
+		
+		UserTypeTO userType = new UserTypeTO();
+		userType.setId(UserTypeTO.USER_EMAIL);
+		
+		user.setType(userType);
+		return user;
+	}
+
+
+	private UserTO getUserFromFacebook(UserServiceRequest request)
+			throws NotAuthorizedException {
+		UserTO user;
+		Validator.isValidToken(request.getToken(), request.getUserFacebookID());
+		user = FacebookUtils.getUser(request.getToken());
+		UserTypeTO type = new UserTypeTO();
+		type.setId(UserTypeTO.USER_FB_ID);
+		user.setType(type);
+		return user;
 	}
 
 	@PUT

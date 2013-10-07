@@ -4,15 +4,24 @@ import java.io.Serializable;
 
 import br.com.findplaces.exceptions.CouldNotFindUserException;
 import br.com.findplaces.exceptions.CouldNotSaveUserException;
+import br.com.findplaces.exceptions.TokenInvalidException;
 import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.model.to.UserTO;
 
 public interface UserLogin extends Serializable {
 
-	public static String FACEBOOK_USER = "FACEBOOK_USER";
+	public static String FACEBOOK_USER = "FB";
+	
+	public static String EMAIL_USER = "EMAIL";
 	
 	public static Long FACEBOOK_USER_ID = 1L;
+	
+	String isValidToken(String token, Long id) throws TokenInvalidException;
+	
+	String generateTokenForUser(UserTO user);
 
+	UserTO findUserByEmailAndPassword(String email, String password) throws CouldNotFindUserException;
+	
 	UserTO findUserBySocialID(String id) throws CouldNotFindUserException;
 
 	UserTO findUserById(Long id) throws CouldNotFindUserException;

@@ -20,6 +20,10 @@ public class UserServiceRequest implements Serializable {
 
 	private String email;
 	
+	private String password;
+	
+	private String name;
+	
 	private SellerTO sellerTO;
 	
 	public static UserServiceRequest fromString(String json){
@@ -57,6 +61,22 @@ public class UserServiceRequest implements Serializable {
 
 	public void setSellerTO(SellerTO sellerTO) {
 		this.sellerTO = sellerTO;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
