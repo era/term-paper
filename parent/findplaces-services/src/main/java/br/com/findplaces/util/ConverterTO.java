@@ -175,6 +175,7 @@ public class ConverterTO {
 		Region entity = new Region();
 		entity.setId(region.getId());
 		entity.setName(region.getName());
+		entity.setAlias(region.getAlias());
 		entity.setCountry(converter(region.getCountry()));
 		return entity;
 	}
@@ -226,6 +227,7 @@ public class ConverterTO {
 		RegionTO to = new RegionTO();
 		to.setId(region.getId());
 		to.setName(region.getName());
+		to.setAlias(region.getAlias());
 		to.setCountry(converter(region.getCountry()));
 		return to;
 	}

@@ -27,13 +27,34 @@ INSERT INTO TB_PLACE_TYPE (id, name) VALUES (2, 'HOUSE');
 
 INSERT INTO tb_country (id, name)  VALUES (1, 'Brazil');
 
-INSERT INTO tb_region (id, name, country_id)  VALUES (1, 'Sao Paulo', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (1, 'Acre', 'AC', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (2, 'Alagoas', 'AL', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (3, 'Amapá','AP', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (4, 'Amazonas','AM', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (5, 'Bahia','BA', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (6, 'Ceará','CE', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (7, 'Distrito Federal','DF', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (8, 'Espírito Santo','ES', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (9, 'Goiás','GO', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (10, 'Maranhão','MA', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (11, 'Mato Grosso','MT', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (12, 'Mato Grosso do Sul','MS', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (13, 'Minas Gerais','MG', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (14, 'Pará','PA', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (15, 'Paraíba','PB', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (16, 'Paraná','PR', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (17, 'Pernambuco','PE', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (18, 'Piauí','PI', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (19, 'Rio de Janeiro','RJ', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (20, 'Rio Grande do Norte','RN', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (21, 'Rio Grande do Sul','RS', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (22, 'Rondônia','RO', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (23, 'Roraima','RR', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (24, 'Santa Catarina','SC', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (25, 'São Paulo','SP', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (26, 'Sergipe','SE', 1);
+INSERT INTO tb_region (id, name, alias, country_id)  VALUES (27, 'Tocatins','TO', 1);
 
-INSERT INTO tb_city (id, name, region_id)  VALUES (1, 'Campinas', 1);
-
-INSERT INTO tb_neighborhood (id, hoodname, city_id)  VALUES (1, 'Centro', 1);
-
-INSERT INTO TB_STREET (id, streetname, neighborhood_id)  VALUES (1, 'Jaguara', 1);
 
 
 

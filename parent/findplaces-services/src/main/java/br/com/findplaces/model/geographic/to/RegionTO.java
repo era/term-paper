@@ -16,6 +16,9 @@ public class RegionTO implements Serializable {
 
 	@XmlTransient
 	private String name;
+	
+	@XmlTransient
+	private String alias;
 
 	@XmlTransient
 	private CountryTO country;
@@ -42,6 +45,14 @@ public class RegionTO implements Serializable {
 
 	public void setCountry(CountryTO country) {
 		this.country = country;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
 	}
 
 }
