@@ -1,4 +1,4 @@
-package br.com.findplaces.usermodule.ejb.impl;
+package br.com.findplaces.ejb.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

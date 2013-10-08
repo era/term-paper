@@ -12,16 +12,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.findplaces.jpa.entity.BaseEntity;
 
+@NamedQueries({
+	@NamedQuery(name="FindRegionByName", query="SELECT r FROM Region r where r.name = :name"),
+	@NamedQuery(name="FindRegionByAlias", query="SELECT r FROM Region r where r.alias = :alias")
+})
 @Entity
 @Table(name="TB_REGION")
 public class Region extends BaseEntity implements Serializable {
 	
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
 	private static final long serialVersionUID = 952781593910418384L;
+	
+	public static final String findRegionByName = "FindRegionByName";
+	
+	public static final String findRegionByAlias = "FindRegionByAlias";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,6 +51,9 @@ public class Region extends BaseEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="country_id")
 	private Country country;
+	
+	@Column
+	private String alias;
 	
 	@OneToMany(mappedBy="region", targetEntity = City.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<City> cities;

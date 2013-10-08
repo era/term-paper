@@ -157,35 +157,35 @@ public class PlaceService implements Serializable {
 		typeTO.setId(re.getPlacetype().getId());
 
 		// Busca MUB(Dados geograficos)
-		NeighborhoodTO neighTo = re.getNeighborhood();
-		neighTo = getPlaceConfiguration().findNeighborhoodByName(
-				neighTo.getName());
-		StreetTO streetTo = re.getStreet();
-		streetTo = getPlaceConfiguration().findStreetByName(
-				streetTo.getStreetName());
-		CityTO cityTo = re.getCity();
-		cityTo = getPlaceConfiguration().findCityByName(cityTo.getName());
-		
+		NeighborhoodTO neighTo = re.getNeighborhood();		
+		StreetTO streetTo = re.getStreet();		
+		CityTO cityTo = re.getCity();		
 		FacilitiesTO facilities = new FacilitiesTO();
 
 		// Conversao das buscas para o PlaceTO a ser criado
 		PlaceTO to = new PlaceTO();
+		
+		to.setSeller(sellerTO);
+		to.setCity(cityTo);
+		to.setNeighborhood(neighTo);
+		to.setStreet(streetTo);
+		to.setType(typeTO);
+		
+		
+		to.setLat(re.getLat());
+		to.setLog(re.getLog());		
 		to.setAddress(re.getAddress());
 		to.setBathroom(re.getBathroom());
-		to.setBedroom(re.getBedroom());
-		to.setCity(re.getCity());
+		to.setBedroom(re.getBedroom());		
 		to.setCode(re.getCode());
 		to.setComplexPrice(re.getComplexPrice());
 		to.setDescription(re.getDescription());
 		to.setGarage(re.getGarage());
 		to.setM2(re.getM2());
-		to.setNeighborhood(re.getNeighborhood());
 		to.setPrice(re.getPrice());
 		to.setRoom(re.getRoom());
-		to.setSeller(re.getSeller());
-		to.setStreet(re.getStreet());
+		
 		to.setSuite(re.getSuite());
-		to.setType(re.getPlacetype());
 		to.setFacilities(facilities);
 
 		// Criacao

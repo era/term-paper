@@ -1,5 +1,7 @@
 package br.com.findplaces.jpa.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_PLACE_TYPE")
-public class PlaceType {
+public class PlaceType extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
