@@ -150,25 +150,29 @@ public class UserLoginImpl implements UserLogin {
 
 	@Override
 	public String generateTokenForUser(UserTO user) {
-		Date valid = increaseValidTimeToken();
-		
-		StringBuilder token = new StringBuilder();
-		token.append(valid.toString());
-		token.append(new RandomString(30).nextString());
-
-		Token tokenOnDB = new Token();
-		tokenOnDB.setToken(token.toString());
-		tokenOnDB.setUser(ConverterTO.converter(user));
-		tokenOnDB.setValid(valid);
-		userDAO.saveToken(tokenOnDB);
-		
-		return tokenOnDB.getToken();
+		try{
+			Date valid = increaseValidTimeToken();
+			
+			StringBuilder token = new StringBuilder();
+			token.append(valid.toString());
+			token.append(new RandomString(30).nextString());
+	
+			Token tokenOnDB = new Token();
+			tokenOnDB.setToken(token.toString());
+			tokenOnDB.setUser(userDAO.findById(user.getId()));
+			tokenOnDB.setValid(valid);
+			userDAO.saveToken(tokenOnDB);
+			
+			return tokenOnDB.getToken();
+		} catch(Exception e) {
+			return null; //FIXME
+		}
 	}
 
 	private Date increaseValidTimeToken() {
 		Calendar calendar = Calendar.getInstance();
 		
-		calendar.add(30, Calendar.MINUTE);
+		calendar.add(Calendar.MINUTE,30);
 		
 		Date valid = new Date(calendar.getTimeInMillis());
 		return valid;

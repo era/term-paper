@@ -90,10 +90,12 @@ public class UserService implements Serializable {
 				user = getUserFromFacebook(request);
 			} else {
 				user = createUserWithEmailAndPassword(request);
+				response.setToken(userLogin.generateTokenForUser(user));
 			}
 			
 			UserTO createdUser = getUserLogin().createUser(user);
 			createdUser.setPassword(null); //FIXME
+			
 			response.setUser(createdUser);
 			setSuccessResponse(response);
 
