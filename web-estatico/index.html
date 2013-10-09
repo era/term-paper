@@ -40,7 +40,13 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=366454610124937";
   fjs.parentNode.insertBefore(js, fjs);
     window.fbAsyncInit = function(){
-      $('.fb-login-button').click($.initLogin);
+      //$('.fb-login-button').click($.initLogin);
+       FB.Event.subscribe('auth.authResponseChange', function(response) {
+    console.log(response);
+        if (response.status === 'connected') {
+          findplaces.webservice.user.loginWithFacebook(response.authResponse.accessToken,response.authResponse.userID)
+        }
+   });
   };
 }(document, 'script', 'facebook-jssdk'));</script>
     <header>

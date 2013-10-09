@@ -63,15 +63,15 @@ public class PlaceService implements Serializable {
 			@PathParam(value = "id") Long id) {
 		PlaceResponse response = new PlaceResponse();
 		UserTO user = null;
+		PlaceViewed viewed = new PlaceViewed();
 		try {
 			if(socialID != null){
 				isValidToken(token, socialID);
 				user = userEJB.findUserBySocialID(socialID);
+				viewed.setUser(ConverterTO.converter(user)); //FIXME should not use User here
 			}
 			PlaceTO placeTO = getPlaceConfiguration().findPlaceById(id);
 			
-			PlaceViewed viewed = new PlaceViewed();
-			viewed.setUser(ConverterTO.converter(user)); //FIXME should not use User here
 			viewed.setPlace(ConverterTO.converter(placeTO)); //FIXME should not use Place here
 			viewed.setDate(new Date());
 			

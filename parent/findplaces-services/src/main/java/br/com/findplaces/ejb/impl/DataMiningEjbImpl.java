@@ -18,6 +18,8 @@ import br.com.findplaces.model.to.Viewed;
 @Remote(DataMiningEJB.class)
 public class DataMiningEjbImpl implements DataMiningEJB {
 	
+	private static final long serialVersionUID = 2910805335687356463L;
+	
 	@EJB
 	private DataMiningDAO dao;
 	
