@@ -2,6 +2,7 @@ package br.com.findplaces.webservices;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -16,15 +17,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import br.com.findplaces.ejb.DataMiningEJB;
 import br.com.findplaces.ejb.PlaceConfigurations;
 import br.com.findplaces.ejb.SellerConfigurations;
 import br.com.findplaces.ejb.UserLogin;
 import br.com.findplaces.exceptions.CouldNotFindUserException;
 import br.com.findplaces.exceptions.TokenInvalidException;
+import br.com.findplaces.jpa.entity.datamining.PlaceViewed;
 import br.com.findplaces.model.to.FacilitiesTO;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.SellerTO;
+import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.responses.webservices.PlaceResponse;
+import br.com.findplaces.util.ConverterTO;
 import br.com.findplaces.utils.FacebookUtils;
 import br.com.findplaces.webservices.enumerator.StatusCode;
 import br.com.findplaces.webservices.exceptions.NotAuthorizedException;
@@ -46,20 +51,34 @@ public class PlaceService implements Serializable {
 	
 	@EJB
 	private UserLogin userEJB;
+	
+	@EJB
+	private DataMiningEJB dataminingEJB;
 
 	@GET
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public PlaceResponse getPlace(@QueryParam(value = "token") String token,
-			@QueryParam(value = "type") String type,
-			@PathParam(value = "id") String id) {
+			@QueryParam(value = "type") String socialID,
+			@PathParam(value = "id") Long id) {
 		PlaceResponse response = new PlaceResponse();
+		UserTO user = null;
 		try {
-			isValidToken(token, id);
-			Long ide = Long.parseLong(id);
-			PlaceTO to = getPlaceConfiguration().findPlaceById(ide);
+			if(socialID != null){
+				isValidToken(token, socialID);
+				user = userEJB.findUserBySocialID(socialID);
+			}
+			PlaceTO placeTO = getPlaceConfiguration().findPlaceById(id);
+			
+			PlaceViewed viewed = new PlaceViewed();
+			viewed.setUser(ConverterTO.converter(user)); //FIXME should not use User here
+			viewed.setPlace(ConverterTO.converter(placeTO)); //FIXME should not use Place here
+			viewed.setDate(new Date());
+			
+			dataminingEJB.savePlaceViewed(viewed);
+			
 			List<PlaceTO> list = new ArrayList<PlaceTO>();
-			list.add(to);
+			list.add(placeTO);
 			response.setPlaces(list);
 			setSuccessResponse(response);
 		} catch (Exception e) {
@@ -252,6 +271,14 @@ public class PlaceService implements Serializable {
 
 	public void setUserEJB(UserLogin userEJB) {
 		this.userEJB = userEJB;
+	}
+
+	public DataMiningEJB getDataminingEJB() {
+		return dataminingEJB;
+	}
+
+	public void setDataminingEJB(DataMiningEJB dataminingEJB) {
+		this.dataminingEJB = dataminingEJB;
 	}
 
 }
