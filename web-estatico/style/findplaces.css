@@ -24,6 +24,11 @@ ul
 	clear:both;
 }
 
+.hide 
+{
+    display: none;    
+}
+
 .wrapper
 {
 	margin:0 auto;
@@ -131,18 +136,22 @@ div#content
 	border-top:5px solid #dfdfdf;
 }
 
-div#content > .content-title {
+div#content > .content-title, form#buscaAvancada > .content-title {
 	background: #fafafa;
 	border-bottom: 1px solid #ddd;
 }
 
-div#content > .content-title > .wrapper > h1
+div#content > .content-title > .wrapper > h1, form#buscaAvancada > .content-title > .wrapper > h1
 {
 	border: 0;
 	color: #666;	
 	font-size: 16px;	
 	margin: 0;
 	padding: 20px 0;	
+}
+
+form#buscaAvancada > .content-title > .wrapper > h1 {
+    padding: 10px 0 !important;
 }
 
 div#map
@@ -155,7 +164,7 @@ div#map > form
 {
 	position:absolute;
 	text-align:center;
-	top:250px;
+	top:170px;
 	width:100%;
 	z-index:1000;
 }
@@ -175,6 +184,11 @@ div#map > form > div.form-header
 	opacity:.9;
 	padding:30px;
 	width:930px;
+}
+
+form#buscaAvancada 
+{
+    height: 140px;    
 }
 
 div#map > form > div.form-header > select.form-header-alt-select
@@ -223,6 +237,14 @@ div#map > form > div.form-header > button
 	line-height:24px;
 	padding:5px 15px;
 	text-shadow:1px 1px 0 #3b3b3b;
+}
+
+div#map > form > div.form-header > a 
+{
+	color: #F96F44;
+	font-weight: 700;
+	margin-left: 10px;
+	text-decoration: none;
 }
 
 /* CONTENT SLIDES */
@@ -555,7 +577,7 @@ div#account-actions > ul > li
 	font-size: 13px;
 }
 
-.aboutLogin {
+/*.aboutLogin {
 	background: none repeat scroll 0 0 #F4F4F4;
 }
 
@@ -583,7 +605,7 @@ div#account-actions > ul > li
 .aboutLogin .editar, .aboutLogin .vendido {
 	margin: 10px auto;
 	display: block;
-}
+}*/
 
 /*** Search page ***/
 
