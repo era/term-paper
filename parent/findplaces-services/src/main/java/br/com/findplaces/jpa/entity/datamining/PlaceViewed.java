@@ -1,5 +1,8 @@
 package br.com.findplaces.jpa.entity.datamining;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,6 +50,9 @@ public class PlaceViewed extends BaseEntity {
 	
 	@OneToOne
 	private User user;
+	
+	@Column
+	private Date date;
 
 	public Long getId() {
 		return id;
@@ -62,6 +68,22 @@ public class PlaceViewed extends BaseEntity {
 
 	public void setPlace(Place place) {
 		this.place = place;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }
