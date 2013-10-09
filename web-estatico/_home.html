@@ -1,4 +1,11 @@
-﻿<div id="map">
+﻿<form id="buscaAvancada" class="hide">
+    <div class="content-title">
+        <div class="wrapper">
+            <h1>Busca avançada</h1>
+        </div>
+    </div>
+</form>
+<div id="map">
     <form id="buscaRapida">
         <div class="form-header">
             <select class="form-header-alt-select" id="tiposAquisicao" name="tiposAquisicao">
@@ -6,50 +13,94 @@
                 <option value="1">Alugar</option>
                 <option value="2">Temporada</option>
             </select>
-            <input type="text" name="bairro" placeholder="Bairro de Campinas, estabelecimento ou código do apartamento" id="bairro" />
-            <input type="hidden" name="lat" id="lat" />
-            <input type="hidden" name="lng" id="lng" />
-            <button alt="Buscar" id="buscar" title="Buscar" type="submit">
-                Buscar</button>
+            <input alt="Bairro, estabelecimento ou código do apartamento" id="bairro" name="bairro" placeholder="Bairro, estabelecimento ou código do apartamento" title="Bairro, estabelecimento ou código do apartamento" type="text" />
+            <button alt="Buscar" id="buscar" title="Buscar" type="submit">Buscar</button><a alt="Busca avançada" id="advancedSearch" href="#" title="Busca avançada">[+]</a>
         </div>
+        <div class="form-header-advanced">
+        </div>
+        <!--hidden fields-->
+        <input type="hidden" name="lat" id="lat" />
+        <input type="hidden" name="lng" id="lng" />
     </form>
 </div>
-<div class="aboutLogin">
-    <div class="login">
-        <span class="title">Buscando imóveis?</span>
-        <span class="explanation">Temos algoritmos de sugestão de imóveis baseado nos perfis dos usuários autenticados. Que tal se cadastrar para ter resultados personalizados?</span>
-
-        <div class="fb-login-button" style="margin-left: 100px;" data-width="200" scope="email,user_likes" />
-    </div>
-    <div class="login">
-        <span class="title">Anúnciar imóveis?</span>
-        <span class="explanation">Tenha acesso a relatórios sobre as visualizações do seu imóvel, feedback sobre o que os usuários acharam do seu anúncio e muito mais. E o melhor? De forma gratuíta!</span>
-        <div class="controle">
-            <a class="editar">Saiba mais!</a>
-        </div>
-    </div>
-    
+<div class="flexslider">
+    <ul class="slides">
+        <li>
+            <img src="img/slide1.jpg" />
+            <span>APARTAMENTO</span>
+            <h3>Cambuí</h3>
+            <p>
+                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
+            </p>
+        </li>
+        <li>
+            <img src="img/slide2.jpg" />
+            <span>APARTAMENTO</span>
+            <h3>Centro</h3>
+            <p>
+                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
+            </p>
+        </li>
+        <li>
+            <img src="img/slide3.jpg" />
+            <span>APARTAMENTO</span>
+            <h3>Novo Cambuí</h3>
+            <p>
+                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
+            </p>
+        </li>
+        <li>
+            <img src="img/slide4.jpg" />
+            <span>CASA</span>
+            <h3>Alphavile</h3>
+            <p>
+                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
+            </p>
+        </li>
+        <li>
+            <img src="img/slide5.jpg" />
+            <span>CASA</span>
+            <h3>Valinhos</h3>
+            <p>
+                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
+            </p>
+        </li>
+    </ul>
 </div>
-<br class="clr" />
-<script type="text/javascript" charset="utf-8">
-
+<script charset="utf-8" type="text/javascript">
     $.consultaMapa(-22.902532, -47.0607349);
     $.searchPlace('bairro');
+
+    // Flexslider
+    $('.flexslider').flexslider({
+        animation: "slide",
+        slideshow: false,
+        itemWidth: 520,
+        keyboard: false,
+        mousewheel: false,
+        animationLoop: false,
+        controlNav: false
+    });
+
     /*if(navigator.geolocation){
          navigator.geolocation.getCurrentPosition(function(position){
             $.consultaMapa(position.coords.latitude, position.coords.longitude);        
          });
-    }*/
-    
+    }
     
     if($('#userID').val()!=''){
         $(".aboutLogin").hide();   
-    }
+    }*/
 
-    
     /* Ação para busca rápida */
     $('#buscar').click(function () {
         var form = $('#buscaRapida').serializeArray();
         return false;
+    });
+
+    $('#advancedSearch').click(function () {
+        $('#buscaRapida').hide();
+        $('#map').css('height', '310px');
+        $('#buscaAvancada').slideDown();
     });
 </script>

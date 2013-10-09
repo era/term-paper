@@ -2,16 +2,15 @@
 <html>
 <head>
     <title>Findplaces</title>
+    <!--google -->
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    
     <link href="style/findplaces.css" rel="stylesheet" type="text/css">
     <link href="style/flexslider.css" rel="stylesheet" type="text/css">
     <link href="style/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
     
-
     <!--google -->
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places,maps&sensor=false"></script>
-
-    
+    <script charset="utf-8" type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places,maps&sensor=false"></script>
 
     <script charset="utf-8" src="js/jquery.js" type="text/javascript"></script>
     <script charset="utf-8" src="js/jquery.flexslider.js" type="text/javascript"></script>   
@@ -24,9 +23,7 @@
 
     <!--bootstrap -->
     <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">-->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    
-    
+    <script charset="utf-8" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
     <!-- Temporário para testes até termos as tabelas/webservices -->
     <script charset="utf-8" src="js/json.js" type="text/javascript"></script>
@@ -67,9 +64,9 @@
                     <li>
                         <a alt="Anuncie no Findplaces" class="last" href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
                     </li>
-                    <!--<li>
-                        <a alt="Login" class="last" id="menuLoginTopo" href="index.html#login" onclick="$.openURLContent('#content', 'login');" title="Login">Login</a>
-                    </li>-->
+                    <li>
+                        <a alt="Login" class="first" href="#" title="Login">Login</a>
+                    </li>
                     <br class="clr" />
                 </ul>
             </nav>
@@ -146,14 +143,14 @@
     <input type="hidden" id="tokenLoginUser" />
     <input type="hidden" id="userID" />
 </body>
-<script type="text/javascript" charset="utf-8">
-    /* Abertura da janela */
-    $(document).ready(function () {
-        if (window.location.hash) {
-            $.openHashTagContent();
-        } else {
-            $.openURLContent('#content', 'home');
-        }
+<script charset="utf-8" type="text/javascript">
+/* Abertura da janela */
+$(document).ready(function () {
+    if (window.location.hash) {
+        $.openHashTagContent();
+    } else {
+        $.openURLContent('#content', 'home');
+    }
         window.onpopstate =  $.openHashTagContent; //fixme, provavelmente nao funciona no IE
     });
 </script>
