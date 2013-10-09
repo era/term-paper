@@ -38,7 +38,7 @@ public class UserService implements Serializable {
 	private UserLogin userLogin;
 
 	@GET
-	@Path("/{id}")
+	@Path("/{id}") //FIXME
 	@Produces({ MediaType.APPLICATION_JSON })
 	public UserResponse getUser(@QueryParam(value = "token") String token,
 			@QueryParam(value = "type") String type,

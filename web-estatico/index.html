@@ -39,9 +39,9 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=366454610124937";
   fjs.parentNode.insertBefore(js, fjs);
-  /*window.fbAsyncInit = function(){
-      $('.fb-login-button').click(findplaces.facebook.initLogin);
-  };*/
+    window.fbAsyncInit = function(){
+      $('.fb-login-button').click($.initLogin);
+  };
 }(document, 'script', 'facebook-jssdk'));</script>
     <header>
         <div class="wrapper">
@@ -59,11 +59,11 @@
                         <a alt="Buscar ofertas" class="first" href="#" title="Listar ofertas">Listar ofertas</a>
                     </li>
                     <li>
-                        <a alt="Anuncie no Findplaces" class="first" href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
+                        <a alt="Anuncie no Findplaces" class="last" href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a alt="Login" class="last" id="menuLoginTopo" href="index.html#login" onclick="$.openURLContent('#content', 'login');" title="Login">Login</a>
-                    </li>
+                    </li>-->
                     <br class="clr" />
                 </ul>
             </nav>

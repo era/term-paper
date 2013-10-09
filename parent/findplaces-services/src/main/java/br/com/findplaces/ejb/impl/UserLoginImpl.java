@@ -1,8 +1,6 @@
 package br.com.findplaces.ejb.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -10,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
+import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 
 import org.apache.log4j.Logger;
 
@@ -76,8 +75,7 @@ public class UserLoginImpl implements UserLogin {
 	public UserTO createUser(UserTO user) throws CouldNotSaveUserException {
 		try {
 			if(user.getPassword()!=null){
-				MessageDigest digest = this.criptgraphPassword(user.getPassword());
-				user.setPassword(String.valueOf(digest.digest()));
+				user.setPassword(criptgraphPassword(user.getPassword()));
 			}
 			Long id = userDAO.create(ConverterTO.converter(user));
 			return this.findUserById(id);
@@ -181,8 +179,7 @@ public class UserLoginImpl implements UserLogin {
 	@Override
 	public UserTO findUserByEmailAndPassword(String email, String password)
 			throws CouldNotFindUserException {
-		MessageDigest cript = criptgraphPassword(password);
-		User user = userDAO.findUserByEmailAndPassword(email, String.valueOf(cript.digest()));
+		User user = userDAO.findUserByEmailAndPassword(email, criptgraphPassword(password));
 		
 		if(user== null) {
 			throw new CouldNotFindUserException();
@@ -191,14 +188,24 @@ public class UserLoginImpl implements UserLogin {
 		return ConverterTO.converter(user);
 	}
 
-	private MessageDigest criptgraphPassword(String password) {
+	private String criptgraphPassword(String password) {
 		try {
 			MessageDigest cript = MessageDigest.getInstance("MD5");
-			cript.update(password.getBytes("UTF-8"));
-			return cript;
+			return (new HexBinaryAdapter()).marshal(cript.digest(password.getBytes("UTF-8")));
 		} catch(Exception e) {
 			return null; //FIXME
 		}
+	}
+
+	@Override
+	public SellerTO findSeller(Long userID) throws CouldNotFindUserException {
+		Seller sellerFound = userDAO.findSellerByUserID(userID);
+
+		if (sellerFound == null) {
+			throw new CouldNotFindUserException();
+		}
+
+		return ConverterTO.converter(sellerFound);
 	}
 
 }

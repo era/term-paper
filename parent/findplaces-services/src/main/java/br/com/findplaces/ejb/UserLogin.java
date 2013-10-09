@@ -35,5 +35,7 @@ public interface UserLogin extends Serializable {
 	SellerTO saveSeller(SellerTO seller);
 
 	SellerTO findSeller(String socialID) throws CouldNotFindUserException;
+	
+	SellerTO findSeller(Long userID)  throws CouldNotFindUserException;
 
 }

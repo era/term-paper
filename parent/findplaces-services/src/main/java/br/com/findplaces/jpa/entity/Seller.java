@@ -12,7 +12,8 @@ import javax.persistence.Table;
 
 
 @NamedQueries({
-	@NamedQuery(name=Seller.FIND_SELLER_BY_SOCIAL_ID, query="SELECT s FROM Seller s where s.user.socialID = :socialID")
+	@NamedQuery(name=Seller.FIND_SELLER_BY_SOCIAL_ID, query="SELECT s FROM Seller s where s.user.socialID = :socialID"),
+	@NamedQuery(name=Seller.FIND_SELLER_BY_USER_ID, query="SELECT s FROM Seller s where s.user.id = :id")
 })
 @Entity
 @Table(name="TB_SELLER")
@@ -21,6 +22,8 @@ public class Seller extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	public static final String FIND_SELLER_BY_SOCIAL_ID = "Seller.findSellerBySocialID";
+	
+	public static final String FIND_SELLER_BY_USER_ID = "Seller.findSellerByUserId";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

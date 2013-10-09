@@ -57,6 +57,8 @@ public class PlaceRequest implements Serializable {
 	private SellerTO seller;
 
 	private String socialid;
+	
+	private Long userID;
 
 	private PlaceSpatialTO spatial;
 
@@ -232,6 +234,14 @@ public class PlaceRequest implements Serializable {
 
 	public void setGarage(Integer garage) {
 		this.garage = garage;
+	}
+
+	public Long getUserID() {
+		return userID;
+	}
+
+	public void setUserID(Long userID) {
+		this.userID = userID;
 	}
 
 }

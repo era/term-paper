@@ -117,4 +117,19 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		getEntityManager().remove(token);
 	}
 
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Seller findSellerByUserID(Long id) {
+		Query query = getEntityManager().createNamedQuery(
+				Seller.FIND_SELLER_BY_USER_ID, Seller.class);
+		query.setParameter("userID", id);
+		
+		List resultList = query.getResultList();
+		if (resultList.isEmpty()) {
+			return null;
+		} else {
+			return (Seller) resultList.get(0);
+		}
+	}
+
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,19 +14,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import br.com.findplaces.ejb.PlaceConfigurations;
 import br.com.findplaces.ejb.SellerConfigurations;
-import br.com.findplaces.model.geographic.to.CityTO;
-import br.com.findplaces.model.geographic.to.NeighborhoodTO;
-import br.com.findplaces.model.geographic.to.StreetTO;
+import br.com.findplaces.ejb.UserLogin;
+import br.com.findplaces.exceptions.CouldNotFindUserException;
+import br.com.findplaces.exceptions.TokenInvalidException;
 import br.com.findplaces.model.to.FacilitiesTO;
 import br.com.findplaces.model.to.PlaceTO;
-import br.com.findplaces.model.to.PlaceTypeTO;
 import br.com.findplaces.model.to.SellerTO;
-import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.responses.webservices.PlaceResponse;
 import br.com.findplaces.utils.FacebookUtils;
 import br.com.findplaces.webservices.enumerator.StatusCode;
@@ -47,6 +43,9 @@ public class PlaceService implements Serializable {
 
 	@EJB
 	private SellerConfigurations seller;
+	
+	@EJB
+	private UserLogin userEJB;
 
 	@GET
 	@Path("/{id}")
@@ -141,35 +140,46 @@ public class PlaceService implements Serializable {
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
 	public PlaceResponse insertPlace(
-			@FormParam(value = "place") PlaceRequest request,
-			@Context HttpServletResponse servletResponse)
-			throws NotAuthorizedException {
+			@FormParam(value = "place") PlaceRequest request)
+			throws NotAuthorizedException, TokenInvalidException, CouldNotFindUserException { //FIXME Shouldn't throw excpetion for the user.
+		
+		//FIXME This method is responsible for more than one thing.
 
-		// Validação do Token e User SocialID
-		PlaceRequest re = request;
-		String socialId = re.getSocialid();
-		SellerTO sellerTO = getSellerConfigurations().findBySocialId(socialId);
-		UserTO userTO = sellerTO.getUserTO();
-		isValidToken(re.getToken(), userTO.getSocialID());
+		SellerTO sellerTO = request.getSocialid()!=null && !request.getSocialid().isEmpty() ? getSellerFromFacebook(request)
+					: getSellerFromEmail(request);
 
-		// PlaceType - Tipo de casa
-		PlaceTypeTO typeTO = re.getPlacetype();
-		typeTO.setId(re.getPlacetype().getId());
+		request.getPlacetype().setId(request.getPlacetype().getId());
 
-		// Busca MUB(Dados geograficos)
-		NeighborhoodTO neighTo = re.getNeighborhood();		
-		StreetTO streetTo = re.getStreet();		
-		CityTO cityTo = re.getCity();		
-		FacilitiesTO facilities = new FacilitiesTO();
+		PlaceTO place = convertToPlaceTO(request, sellerTO);
 
-		// Conversao das buscas para o PlaceTO a ser criado
+		place = getPlaceConfiguration().createPlace(place);
+
+		PlaceResponse response = new PlaceResponse();
+		List<PlaceTO> list = new ArrayList<PlaceTO>();
+		list.add(place);
+		response.setPlaces(list);
+		setSuccessResponse(response);
+
+		return response;
+	}
+
+	private SellerTO getSellerFromEmail(PlaceRequest request) throws TokenInvalidException, CouldNotFindUserException {
+		
+		userEJB.isValidToken(request.getToken(), request.getUserID());
+		
+		
+		return userEJB.findSeller(request.getUserID());
+	}
+
+	//FIXME This Shouldnt be in this class
+	private PlaceTO convertToPlaceTO(PlaceRequest re, SellerTO sellerTO) {
 		PlaceTO to = new PlaceTO();
 		
 		to.setSeller(sellerTO);
-		to.setCity(cityTo);
-		to.setNeighborhood(neighTo);
-		to.setStreet(streetTo);
-		to.setType(typeTO);
+		to.setCity(re.getCity());
+		to.setNeighborhood(re.getNeighborhood());
+		to.setStreet(re.getStreet());
+		to.setType(re.getPlacetype());
 		
 		
 		to.setLat(re.getLat());
@@ -186,18 +196,14 @@ public class PlaceService implements Serializable {
 		to.setRoom(re.getRoom());
 		
 		to.setSuite(re.getSuite());
-		to.setFacilities(facilities);
+		to.setFacilities(new FacilitiesTO()); //TODO Refact to make this work
+		return to;
+	}
 
-		// Criacao
-		PlaceTO placeCreated = getPlaceConfiguration().createPlace(to);
-		// Resposta
-		PlaceResponse response = new PlaceResponse();
-		List<PlaceTO> list = new ArrayList<PlaceTO>();
-		list.add(placeCreated);
-		response.setPlaces(list);
-		setSuccessResponse(response);
-
-		return response;
+	private SellerTO getSellerFromFacebook(PlaceRequest re) throws NotAuthorizedException {
+		SellerTO sellerTO = getSellerConfigurations().findBySocialId(re.getSocialid());
+		isValidToken(re.getToken(), sellerTO.getUserTO().getSocialID());
+		return sellerTO;
 	}
 
 	@PUT
@@ -238,6 +244,14 @@ public class PlaceService implements Serializable {
 
 	public void setSellerConfigurations(SellerConfigurations seller) {
 		this.seller = seller;
+	}
+
+	public UserLogin getUserEJB() {
+		return userEJB;
+	}
+
+	public void setUserEJB(UserLogin userEJB) {
+		this.userEJB = userEJB;
 	}
 
 }

@@ -92,7 +92,7 @@
                 </div>
                 <br class="clr" />
                 <div class="right-button">
-                    <button alt="Salvar" id="submit-property" title="Salvar" type="submit">Salvar</button>
+                    <button alt="Salvar" id="submit-property" title="Salvar" onclick="javascript:$.submitPlace" type="submit">Salvar</button>
                 </div>
             </form>            
         </div>
@@ -113,6 +113,14 @@
     <br class="clr" />
 </div>
 <script type="text/javascript" charset="utf-8">
+
+    if($('#userID').val()==""){
+        $.openURLContent('#content', 'login'); //FIXME
+    }
+
+
+{'token':'CAACEdEose0cBAKdyGHLNu3DCJtWbdDygQ1N8xpMn0NAnXFO7gyU8lZBQralkLwwZCMJU9gqjD9BsGR5pFqeqKj9tgk6UacP4ixrrIpNsxXI5VomT6FUKGeJQOMsbGKXzmJydkCpRMA29TGqgK1OqPUS9JBrmKsH7L9PtM7ZCHZBBBGG76oexEpdvtg5icLEHXdxA34UVswZDZD', 'socialid':"100000485880931", 'address': "rua do bosque",  'lat': "-22.913051",  'log': "-47.054745", 'city':{'name':'Monte Santo', 'region':{'alias':'MG'}}, 'street':{'name':'bla bla'}, 'country':{'name':'Brazil'}, 'neighborhood':{'name':'Centro'}, 'placetype':{'id':'1'}}
+
     // Lista os estados
     $.each(uf_cidade.estados, function (key, val) {
         $('#region_name').append('<option value="' + val.sigla + '">' + val.sigla + '</option>');

@@ -24,6 +24,8 @@ public interface UserDAO extends BaseDAO<User, Long> {
 	Seller saveSellerConfigurations(Seller seller);
 
 	Seller findSellerBySocialID(String socialID);
+	
+	Seller findSellerByUserID(Long id);
 
 	void deleteToken(Token token);
 	
