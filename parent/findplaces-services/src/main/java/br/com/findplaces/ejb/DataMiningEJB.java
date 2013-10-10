@@ -2,6 +2,7 @@ package br.com.findplaces.ejb;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import br.com.findplaces.jpa.entity.datamining.PlaceViewed;
 import br.com.findplaces.model.to.PlaceTO;
@@ -19,5 +20,9 @@ public interface DataMiningEJB extends Serializable {
 	List<Viewed> getNeighboordViews(Long id); 
 	
 	List<Viewed> getPlaceViews(Long id);
+	
+	Map<Integer,Double> getAgeFromUsers(Long placeID);
+	
+	Map<String,Double> getLikesFromUsers(Long placeID);
 	
 }
