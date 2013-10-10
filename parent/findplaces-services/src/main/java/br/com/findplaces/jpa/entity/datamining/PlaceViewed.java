@@ -23,7 +23,9 @@ import br.com.findplaces.jpa.entity.User;
 	@NamedQuery(name="FindPlacesWithSameType", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.place.type = :type"),
 	@NamedQuery(name="FindPlacesWithSameUserAge", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.age = :age"),
 	@NamedQuery(name="FindPlacesWithSameRelationship", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.relationship = :relantionship"),
-	@NamedQuery(name="FindPlacesWithSameStudyAt", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.studyAt = :studyAt")
+	@NamedQuery(name="FindPlacesWithSameStudyAt", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.studyAt = :studyAt"),
+	@NamedQuery(name=PlaceViewed.findViewsByPlace, query="SELECT pv FROM PlaceViewed pv where pv.place.id = :placeID"),
+	@NamedQuery(name=PlaceViewed.findViewsByNeighborhood, query="SELECT pv FROM PlaceViewed pv where pv.place.neighborhood.hoodName = :hoodname")
 })
 @Entity
 @Table(name="TB_PLACE_USER_DM")
@@ -40,6 +42,10 @@ public class PlaceViewed extends BaseEntity {
 	public static final String findPlacesWithSameRelationship = "FindPlacesWithSameRelationship";
 	
 	public static final String findPlacesWithSameStudyAt = "FindPlacesWithSameStudyAt";
+	
+	public static final String findViewsByPlace = "findViewByPlaces";
+	
+	public static final String findViewsByNeighborhood ="findViewsByNeighborhood"; 
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

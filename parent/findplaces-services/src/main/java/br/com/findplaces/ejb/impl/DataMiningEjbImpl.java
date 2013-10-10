@@ -1,6 +1,7 @@
 package br.com.findplaces.ejb.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -53,6 +54,18 @@ public class DataMiningEjbImpl implements DataMiningEJB {
 
 	@Override
 	public List<Viewed> getPlaceViews(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<Integer, Double> getAgeFromUsers(Long placeID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Double> getLikesFromUsers(Long placeID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
