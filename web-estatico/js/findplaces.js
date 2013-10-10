@@ -80,7 +80,7 @@ $.consultaMapa = function (lat, lng, markers) {
             //end customização
             ,
             //events trigged by markers
-            events: { 
+            events: {
                 click: function () {
                     alert("Here is the default click event");
                 }
@@ -113,11 +113,11 @@ $.consultaMapa = function (lat, lng, markers) {
     $('#map').append(formulario);
 };
 
-$.showDetailsAboutPlace = function(id) {
+$.showDetailsAboutPlace = function (id) {
     $('#detalhesApartamento').show();
 };
 
-$.openHashTagContent = function() {
+$.openHashTagContent = function () {
     var hash = window.location.hash.substring(1);
     $.openURLContent('#content', hash);
 };
@@ -128,7 +128,7 @@ $.openURLContent = function (target, anchor) {
     return false;
 };
 
-$.searchPlace = function(field) {
+$.searchPlace = function (field) {
     var input = document.getElementById(field);
     var options = {
         componentRestrictions: {
@@ -138,19 +138,21 @@ $.searchPlace = function(field) {
 
     var autocomplete = new google.maps.places.Autocomplete(input);
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var place = autocomplete.getPlace();
         $('#lat').val(place.geometry.location.lb);
         $('#lng').val(place.geometry.location.mb);
     });
 };
 
-$.criaPeso = function(campo) {
-    campo.slider({
-        animate: true,
-        min: 1,
-        max: 10,
-        range: "min",
+$.criaSlider = function (objects) {
+    $.each(objects, function (i, item) {
+        item.slider({
+            animate: true,
+            min: 1,
+            max: 10,
+            range: "min",
+        });
     });
 };
 
@@ -158,7 +160,7 @@ $.initLogin = function () {
     FB.Event.subscribe('auth.authResponseChange', function (response) {
         console.log(response);
         if (response.status === 'connected') {
-            findplaces.webservice.user.loginWithFacebook(response.authResponse.accessToken, response.authResponse.userID)
+            findplaces.webservice.user.loginWithFacebook(response.authResponse.accessToken, response.authResponse.userID);
             window.window.location = findplaces.constantes.LOGIN_FB_URL + "?token=" + response.authResponse.accessToken + "&userID=" + response.authResponse.userID;
         }
     });

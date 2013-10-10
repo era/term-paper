@@ -5,8 +5,8 @@
         </div>
         <ul class="componentesFiltros">
             <li id="tipoAquisicaoFiltro">
-                <label for="tiposAquisicao">Tipo de aquisição</label>
-                <select class="form-header-alt-select" id="tiposAquisicao" name="tiposAquisicao">
+                <label for="tiposAquisicaoRapida">Tipo de aquisição</label>
+                <select class="form-header-alt-select" id="tiposAquisicaoRapida" name="tiposAquisicaoRapida">
                     <option value="0">Comprar</option>
                     <option value="1">Alugar</option>
                     <option value="2">Temporada</option>
@@ -172,13 +172,13 @@
                 $.consultaMapa(position.coords.latitude, position.coords.longitude);        
              });
         }*/
-        $.criaPeso($("#pesoAquisicao"));
-        $.criaPeso($("#pesoBairro"));
-        $.criaPeso($("#pesoTipoImovel"));
-        $.criaPeso($("#pesoPreco"));
-        $.criaPeso($("#pesoDormitorios"));
-        $.criaPeso($("#pesoGaragens"));
-        $.criaPeso($("#pesoDistancia"));
+        $.criaSlider($("#pesoAquisicao"));
+        $.criaSlider($("#pesoBairro"));
+        $.criaSlider($("#pesoTipoImovel"));
+        $.criaSlider($("#pesoPreco"));
+        $.criaSlider($("#pesoDormitorios"));
+        $.criaSlider($("#pesoGaragens"));
+        $.criaSlider($("#pesoDistancia"));
 
         $('#pesoLabel').tooltip();
         $('.beds').tooltip();
