@@ -1,22 +1,95 @@
 ﻿<form id="buscaAvancada" class="hide">
     <div class="content-title">
         <div class="wrapper">
-            <h1>Busca avançada</h1>
+            <h1>Busca avançada<a id="fastSearch" title="Busca rapida" href="#">[-]</a></h1>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="form-header">
+            <div class="form-header-group">
+                <label for="tiposAquisicaoAvancada">Tipo de aquisição</label>
+                <select class="form-header-alt-select" id="tiposAquisicaoAvancada" name="tiposAquisicaoAvancada">
+                    <option value="0">Comprar</option>
+                    <option value="1">Alugar</option>
+                    <option value="2">Temporada</option>
+                </select>
+                <div>
+                    <div class="peso" id="pesoAquisicao" title="Define a prioridade na busca, por exemplo se o imporante é o tipo de aquisição coloque a barra no máximo"></div>
+                </div>
+            </div>
+            <div class="form-header-group">
+                <label for="tipoImovel">Tipo de imóvel</label>
+                <select class="form-header-alt-select" id="tipoImovel" name="tipoImovel">
+                    <option value="0">Casa</option>
+                    <option value="1">Apartamento</option>
+                    <option value="2">Flat</option>
+                    <option value="3">Kitnet</option>
+                </select>
+                <div>
+                    <div class="peso" id="pesoTipoImovel" title="Define a prioridade na busca, por exemplo se o imporante é o tipo do imóvel coloque a barra no máximo"></div>
+                </div>
+            </div>
+            <div class="form-header-group">
+                <label for="precoDe">Preço</label>
+                <input class="inputSizeMediumSmaller" id="precoDe" name="precoDe" placeholder="De" type="text" />
+                <input class="inputSizeMediumSmaller" id="precoAte" name="precoAte" placeholder="Até" type="text" />
+                <div>
+                    <div class="peso" id="pesoPreco" title="Define a prioridade na busca, por exemplo se o imporante é o preço coloque a barra no máximo"></div>
+                </div>
+            </div>
+            <div class="form-header-group">
+                <label for="bairro">Bairro</label>
+                <input class="inputSizeMediumSmaller" id="bairro" name="bairro" type="text" />
+                <div>
+                    <div class="peso" id="pesoBairro" title="Define a prioridade na busca, por exemplo se o imporante é o bairro coloque a barra no máximo"></div>
+                </div>
+            </div>
+            <div class="form-header-group">
+                <label for="raio">Raio (mts)</label>
+                <input class="inputSizeMediumSmaller" id="raio" name="raio" placeholder="Ex. 1.000" type="text" />
+                <div>
+                    <div class="peso" id="pesoRaio" title="Define a prioridade na busca, por exemplo se o imporante é o raio coloque a barra no máximo"></div>
+                </div>
+            </div>
+            <div class="form-header-group">
+                <label for="dormitorios">Dormitórios</label>
+                <select class="form-header-alt-select" id="dormitorios" name="dormitorios">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+                <div>
+                    <div class="peso" id="pesoDormitorios" title="Define a prioridade na busca, por exemplo se o imporante é a quantidade de dormitórios coloque a barra no máximo"></div>
+                </div>
+            </div>
+            <div class="form-header-group">
+                <label for="garagens">Garagens</label>
+                <select class="form-header-alt-select" id="garagens" name="garagens">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3+</option>
+                </select>
+                <div>
+                    <div class="peso" id="pesoGaragens" title="Define a prioridade na busca, por exemplo se o imporante é a quantidade de vagar na garagem coloque a barra no máximo"></div>
+                </div>
+            </div>
+            <div class="form-header-group">
+                <button alt="Buscar" id="buscarAvancado" title="Buscar" type="submit">Buscar</button>
+            </div>
         </div>
     </div>
 </form>
 <div id="map">
     <form id="buscaRapida">
         <div class="form-header">
-            <select class="form-header-alt-select" id="tiposAquisicao" name="tiposAquisicao">
+            <select class="form-header-alt-select" id="tiposAquisicaoRapida" name="tiposAquisicaoRapida">
                 <option value="0">Comprar</option>
                 <option value="1">Alugar</option>
                 <option value="2">Temporada</option>
             </select>
-            <input alt="Bairro, estabelecimento ou código do apartamento" id="bairro" name="bairro" placeholder="Bairro, estabelecimento ou código do apartamento" title="Bairro, estabelecimento ou código do apartamento" type="text" />
-            <button alt="Buscar" id="buscar" title="Buscar" type="submit">Buscar</button><a alt="Busca avançada" id="advancedSearch" href="#" title="Busca avançada">[+]</a>
-        </div>
-        <div class="form-header-advanced">
+            <input alt="Bairro, estabelecimento ou código do apartamento" id="endereco" name="endereco" placeholder="Bairro, estabelecimento ou código do apartamento" title="Bairro, estabelecimento ou código do apartamento" type="text" />
+            <button alt="Buscar" id="buscarRapido" title="Buscar" type="submit">Buscar</button><a id="advancedSearch" title="Busca avançada" href="#">[+]</a>
         </div>
         <!--hidden fields-->
         <input type="hidden" name="lat" id="lat" />
@@ -69,7 +142,14 @@
 </div>
 <script charset="utf-8" type="text/javascript">
     $.consultaMapa(-22.902532, -47.0607349);
-    $.searchPlace('bairro');
+    $.searchPlace('endereco');
+    $('#advancedSearch').tooltip();
+    $('#fastSearch').tooltip();
+    $('.peso').tooltip();
+    $.criaSlider([$("#pesoAquisicao"), $('#pesoTipoImovel'), $('#pesoPreco'), $('#pesoBairro'), $('#pesoRaio'), $('#pesoDormitorios'), $('#pesoGaragens')]);
+    $("#precoDe").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#precoAte").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false }).attr('style', 'display: none !important;');
+    $("#raio").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
 
     // Flexslider
     $('.flexslider').flexslider({
@@ -98,9 +178,31 @@
         return false;
     });
 
+    $('#buscaRapida').hide();
+    $('#map').css('height', '330px');
+    $('#buscaAvancada').slideDown();
+
     $('#advancedSearch').click(function () {
-        $('#buscaRapida').hide();
-        $('#map').css('height', '310px');
-        $('#buscaAvancada').slideDown();
+        $('#buscaRapida').hide(0, function () {
+            $('#buscaAvancada').slideDown('slow');
+        });
+        $('#map').css('height', '330px');
+    });
+
+    $('#fastSearch').click(function () {
+        $('#buscaAvancada').slideUp('slow', function () {
+            $('#buscaRapida').show();
+        });
+        $('#map').css('height', '450px');
+    });
+
+    $('#precoDe').focus(function () {
+        $('#precoAte').removeAttr('style');
+    });
+
+    $('#bairro').focus(function () {
+        $(this).removeClass('inputSizeMediumSmaller').addClass('inputSizeMedium');
+    }).blur(function () {
+        $(this).removeClass('inputSizeMedium').addClass('inputSizeMediumSmaller');
     });
 </script>
