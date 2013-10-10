@@ -6,7 +6,9 @@ import java.util.List;
 import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
+import br.com.findplaces.model.to.FilterSearchRequest;
 import br.com.findplaces.model.to.PlaceTO;
+
 
 
 public interface PlaceConfigurations extends Serializable {
@@ -23,7 +25,7 @@ public interface PlaceConfigurations extends Serializable {
 
 	List<PlaceTO> findPlaceByLatLogDistance(Double lat, Double log, Double distance);
 	
-	List<PlaceTO> findByFilter(Double lat, Double log, Double distance);
+	List<PlaceTO> findByFilter(FilterSearchRequest filter);
 	
 
 }

@@ -1,4 +1,4 @@
-package br.com.findplaces.webservices.requests;
+package br.com.findplaces.model.to;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,8 +9,6 @@ import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
 import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
-import br.com.findplaces.model.to.PlaceTypeTO;
-import br.com.findplaces.model.to.SellerTO;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,7 +22,7 @@ public class PlaceRequest implements Serializable {
 		Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, PlaceRequest.class);
 	}
-
+	
 	private String address;
 
 	private Integer bathroom;
@@ -254,5 +252,5 @@ public class PlaceRequest implements Serializable {
 	public void setSellType(List<Long> sellType) {
 		this.sellType = sellType;
 	}
-
+	
 }

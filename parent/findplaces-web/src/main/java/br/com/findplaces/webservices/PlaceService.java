@@ -25,6 +25,8 @@ import br.com.findplaces.exceptions.CouldNotFindUserException;
 import br.com.findplaces.exceptions.TokenInvalidException;
 import br.com.findplaces.jpa.entity.datamining.PlaceViewed;
 import br.com.findplaces.model.to.FacilitiesTO;
+import br.com.findplaces.model.to.FilterSearchRequest;
+import br.com.findplaces.model.to.PlaceRequest;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.model.to.UserTO;
@@ -34,8 +36,6 @@ import br.com.findplaces.utils.FacebookUtils;
 import br.com.findplaces.webservices.enumerator.StatusCode;
 import br.com.findplaces.webservices.exceptions.NotAuthorizedException;
 import br.com.findplaces.webservices.requests.BaseJSONObject;
-import br.com.findplaces.webservices.requests.FilterSearchRequest;
-import br.com.findplaces.webservices.requests.PlaceRequest;
 
 @Path("/place")
 @Stateless
@@ -133,6 +133,8 @@ public class PlaceService implements Serializable {
 			isValidToken(filter.getToken(), filter.getSocialid());
 		}
 		
+		
+		getPlaceConfiguration().findByFilter(filter);
 
 //		List<PlaceTO> places = getPlaceConfiguration().findByFilter(Double.parseDouble(latitude),
 //						Double.parseDouble(longitude),

@@ -27,6 +27,7 @@ import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
 import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
+import br.com.findplaces.model.to.FilterSearchRequest;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.util.ConverterTO;
 
@@ -206,10 +207,73 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		return ConverterTO.converter(neigh);
 	}
 
+	/**
+	 * This method is very slow, but when it comes so slow that we can use any more
+	 * we will have to change to MapReduce design pattern.
+	 */
 	@Override
-	public List<PlaceTO> findByFilter(Double lat, Double log, Double distance) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PlaceTO> findByFilter(FilterSearchRequest filter) {
+		
+		List<Place> allPlaces = placeDAO.findAll();
+		
+		List<PlaceTO> placesMatchedWithUser = new ArrayList<PlaceTO>();
+		//FIXME OMG, how many ifs inside ifs are there? D:
+		for(Place place : allPlaces){
+			Double points = 0d;
+			Integer numberOfFilters = 0;
+			if(filter.getSellType() != null){
+				numberOfFilters++;
+				if(place.getSellType().indexOf(filter.getSellType()) != -1){
+					points += filter.getWeightSellType();
+				}
+			}
+			if(filter.getPlaceType()!=null){
+				numberOfFilters++;
+				if(filter.getPlaceType().equals(place.getType().getId())){
+					points += filter.getWeightPlaceType();
+				}
+			}
+			
+			if(filter.getPriceMax()!=null && filter.getPriceMin() != null){
+				numberOfFilters++;
+				if(filter.getPriceMax() >= place.getPrice() && filter.getPriceMin() <= place.getPrice()){
+					points+= filter.getWeightPrice();
+				}
+			}
+			
+			if(filter.getNeibohoord()!=null){
+				numberOfFilters++;
+				if(filter.getNeibohoord().equals(place.getNeighborhood().getHoodName())){
+					points+=filter.getWeightNeiborhood();
+				}
+			}
+			
+			if(filter.getDistance()!=null){
+				//numberOfFilters++;
+				//How we get the distance from here? :(
+			}
+			
+			if(filter.getBedroom()!=null){
+				numberOfFilters++;
+				if(filter.getBedroom().equals(place.getBedroom())){
+					points += filter.getWeightBedroom();
+				}
+			}
+			
+			if(filter.getGarage()!=null){
+				 numberOfFilters++;
+				 if(filter.getGarage().equals(place.getGarage())){
+					 points += filter.getWeightGarage();
+				 }
+			}
+			
+			if( (points / numberOfFilters) > 0.3 ){
+				placesMatchedWithUser.add(ConverterTO.converter(place));
+			}
+		}
+		
+		
+		return placesMatchedWithUser;
 	}
 
 }

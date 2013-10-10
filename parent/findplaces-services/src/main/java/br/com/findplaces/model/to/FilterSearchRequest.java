@@ -1,15 +1,8 @@
-package br.com.findplaces.webservices.requests;
+package br.com.findplaces.model.to;
 
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
-import br.com.findplaces.model.geographic.to.CityTO;
-import br.com.findplaces.model.geographic.to.NeighborhoodTO;
-import br.com.findplaces.model.geographic.to.StreetTO;
-import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
-import br.com.findplaces.model.to.PlaceTypeTO;
-import br.com.findplaces.model.to.SellerTO;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,13 +11,28 @@ import com.google.gson.GsonBuilder;
 public class FilterSearchRequest implements Serializable {
 
 	private static final long serialVersionUID = -5508737983115479710L;
-	
-	
-	public static FilterSearchRequest fromString(String json){
+
+	public static FilterSearchRequest fromString(String json) {
 		Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, FilterSearchRequest.class);
 	}
+
+	private Double weightSellType;
+
+	private Double weightPlaceType;
+
+	private Double weightPrice;
+
+	private Double weightNeiborhood;
+
+	private Double weightDistance;
+
+	private Double weightBedroom;
+
+	private Double weightGarage;
 	
+	private Long placeType;
+
 	private Integer bathroom;
 
 	private Integer bedroom;
@@ -43,7 +51,9 @@ public class FilterSearchRequest implements Serializable {
 
 	private Double m2;
 
-	private Double price;
+	private Double priceMin;
+	
+	private Double priceMax;
 
 	private Integer room;
 
@@ -52,11 +62,14 @@ public class FilterSearchRequest implements Serializable {
 	private String socialid;
 
 	private Integer suite;
-	
-	private String token;
-	
-	private Long sellType;
 
+	private String token;
+
+	private Long sellType;
+	
+	private String neibohoord;
+	
+	private Double distance;
 
 	public Integer getBathroom() {
 		return bathroom;
@@ -72,6 +85,62 @@ public class FilterSearchRequest implements Serializable {
 
 	public void setBedroom(Integer bedroom) {
 		this.bedroom = bedroom;
+	}
+
+	public Double getWeightSellType() {
+		return weightSellType;
+	}
+
+	public void setWeightSellType(Double weightSellType) {
+		this.weightSellType = weightSellType;
+	}
+
+	public Double getWeightPlaceType() {
+		return weightPlaceType;
+	}
+
+	public void setWeightPlaceType(Double weightPlaceType) {
+		this.weightPlaceType = weightPlaceType;
+	}
+
+	public Double getWeightPrice() {
+		return weightPrice;
+	}
+
+	public void setWeightPrice(Double weightPrice) {
+		this.weightPrice = weightPrice;
+	}
+
+	public Double getWeightNeiborhood() {
+		return weightNeiborhood;
+	}
+
+	public void setWeightNeiborhood(Double weightNeiborhood) {
+		this.weightNeiborhood = weightNeiborhood;
+	}
+
+	public Double getWeightDistance() {
+		return weightDistance;
+	}
+
+	public void setWeightDistance(Double weightDistance) {
+		this.weightDistance = weightDistance;
+	}
+
+	public Double getWeightBedroom() {
+		return weightBedroom;
+	}
+
+	public void setWeightBedroom(Double weightBedroom) {
+		this.weightBedroom = weightBedroom;
+	}
+
+	public Double getWeightGarage() {
+		return weightGarage;
+	}
+
+	public void setWeightGarage(Double weightGarage) {
+		this.weightGarage = weightGarage;
 	}
 
 	public String getCode() {
@@ -130,12 +199,20 @@ public class FilterSearchRequest implements Serializable {
 		this.m2 = m2;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getPriceMin() {
+		return priceMin;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setPriceMin(Double priceMin) {
+		this.priceMin = priceMin;
+	}
+
+	public Double getPriceMax() {
+		return priceMax;
+	}
+
+	public void setPriceMax(Double priceMax) {
+		this.priceMax = priceMax;
 	}
 
 	public Integer getRoom() {
@@ -184,6 +261,30 @@ public class FilterSearchRequest implements Serializable {
 
 	public void setSellType(Long sellType) {
 		this.sellType = sellType;
+	}
+
+	public Long getPlaceType() {
+		return placeType;
+	}
+
+	public void setPlaceType(Long placeType) {
+		this.placeType = placeType;
+	}
+
+	public String getNeibohoord() {
+		return neibohoord;
+	}
+
+	public void setNeibohoord(String neibohoord) {
+		this.neibohoord = neibohoord;
+	}
+
+	public Double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Double distance) {
+		this.distance = distance;
 	}
 
 }
