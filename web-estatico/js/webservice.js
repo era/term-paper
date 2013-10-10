@@ -150,3 +150,22 @@ findplaces.webservice.places.get = function(id, callback, socialID, token){
 	});
 }
 
+findplaces.webservice.places.searchByLatLong = function(lat,lng,distance,socialID,token){
+	var place = {};
+	place.token = token;
+	place.lat = lat;
+	place.lng = lng;
+	place.distance = distance || 10000000;
+	$.ajax({
+		url: findplaces.webservice.url + 'place/search/bylatlong',
+		data: place, //{name:"+user.name+"}",//:user.name}},
+		//dataType: "json",
+		method: 'GET',
+		success: function(result) {
+			console.log(result); //FIXME to be more responsible by errors
+			var resultJSON = eval(result);
+			callback(resultJSON);
+		}
+	});
+};
+

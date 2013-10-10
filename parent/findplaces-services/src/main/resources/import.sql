@@ -56,6 +56,10 @@ INSERT INTO tb_region (id, name, alias, country_id)  VALUES (26, 'Sergipe','SE',
 INSERT INTO tb_region (id, name, alias, country_id)  VALUES (27, 'Tocatins','TO', 1);
 
 
+INSERT INTO TB_SELL_TYPE(id,name) VALUES(1,'BOUGHT');
+INSERT INTO TB_SELL_TYPE(id,name) VALUES(2,'RENT');
+INSERT INTO TB_SELL_TYPE(id,name) VALUES(3,'RENT TEMPORARY');
+
 
 
 

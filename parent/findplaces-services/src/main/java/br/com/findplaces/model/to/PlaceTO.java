@@ -1,6 +1,7 @@
 package br.com.findplaces.model.to;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -53,6 +54,8 @@ public class PlaceTO implements Serializable {
 	private Double m2;	
 	
 	private Integer garage;
+	
+	private List<Long> sellType;
 	
 	private FacilitiesTO facilities;
 
@@ -223,6 +226,14 @@ public class PlaceTO implements Serializable {
 
 	public void setFacilities(FacilitiesTO facilities) {
 		this.facilities = facilities;
+	}
+
+	public List<Long> getSellType() {
+		return sellType;
+	}
+
+	public void setSellType(List<Long> sellType) {
+		this.sellType = sellType;
 	}
 
 }

@@ -25,13 +25,9 @@ public class FilterSearchRequest implements Serializable {
 		return gson.fromJson(json, FilterSearchRequest.class);
 	}
 	
-	private String address;
-
 	private Integer bathroom;
 
 	private Integer bedroom;
-
-	private CityTO city;
 
 	private String code;
 
@@ -47,10 +43,6 @@ public class FilterSearchRequest implements Serializable {
 
 	private Double m2;
 
-	private NeighborhoodTO neighborhood;
-
-	private PlaceTypeTO placetype;
-
 	private Double price;
 
 	private Integer room;
@@ -59,22 +51,12 @@ public class FilterSearchRequest implements Serializable {
 
 	private String socialid;
 
-	private PlaceSpatialTO spatial;
-
-	private StreetTO street;
-
 	private Integer suite;
 	
 	private String token;
+	
+	private Long sellType;
 
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 	public Integer getBathroom() {
 		return bathroom;
@@ -90,14 +72,6 @@ public class FilterSearchRequest implements Serializable {
 
 	public void setBedroom(Integer bedroom) {
 		this.bedroom = bedroom;
-	}
-
-	public CityTO getCity() {
-		return city;
-	}
-
-	public void setCity(CityTO city) {
-		this.city = city;
 	}
 
 	public String getCode() {
@@ -156,22 +130,6 @@ public class FilterSearchRequest implements Serializable {
 		this.m2 = m2;
 	}
 
-	public NeighborhoodTO getNeighborhood() {
-		return neighborhood;
-	}
-
-	public void setNeighborhood(NeighborhoodTO neighborhood) {
-		this.neighborhood = neighborhood;
-	}
-
-	public PlaceTypeTO getPlacetype() {
-		return placetype;
-	}
-
-	public void setPlacetype(PlaceTypeTO placetype) {
-		this.placetype = placetype;
-	}
-
 	public Double getPrice() {
 		return price;
 	}
@@ -204,22 +162,6 @@ public class FilterSearchRequest implements Serializable {
 		this.socialid = socialid;
 	}
 
-	public PlaceSpatialTO getSpatial() {
-		return spatial;
-	}
-
-	public void setSpatial(PlaceSpatialTO spatial) {
-		this.spatial = spatial;
-	}
-
-	public StreetTO getStreet() {
-		return street;
-	}
-
-	public void setStreet(StreetTO street) {
-		this.street = street;
-	}
-
 	public Integer getSuite() {
 		return suite;
 	}
@@ -234,6 +176,14 @@ public class FilterSearchRequest implements Serializable {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public Long getSellType() {
+		return sellType;
+	}
+
+	public void setSellType(Long sellType) {
+		this.sellType = sellType;
 	}
 
 }

@@ -1,9 +1,12 @@
 package br.com.findplaces.util;
 
+import java.util.ArrayList;
+
 import br.com.findplaces.jpa.entity.Facilities;
 import br.com.findplaces.jpa.entity.Image;
 import br.com.findplaces.jpa.entity.Place;
 import br.com.findplaces.jpa.entity.PlaceType;
+import br.com.findplaces.jpa.entity.SellType;
 import br.com.findplaces.jpa.entity.Seller;
 import br.com.findplaces.jpa.entity.User;
 import br.com.findplaces.jpa.entity.UserType;
@@ -143,6 +146,13 @@ public class ConverterTO {
 		to.setStreet(converter(place.getStreet()));
 		to.setSuite(place.getSuite());
 		to.setType(converter(place.getType()));
+		ArrayList<Long> sellType = new ArrayList<Long>();
+		if(place.getSellType() != null){
+			for(SellType sell : place.getSellType()){
+				sellType.add(sell.getId());
+			}
+			to.setSellType(sellType);
+		}
 		//SPATIAL		
 		return to;
 	}

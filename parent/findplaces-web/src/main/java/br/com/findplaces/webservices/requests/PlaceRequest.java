@@ -1,6 +1,7 @@
 package br.com.findplaces.webservices.requests;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -67,6 +68,8 @@ public class PlaceRequest implements Serializable {
 	private Integer suite;
 	
 	private String token;
+	
+	private List<Long> sellType;
 
 	public String getToken() {
 		return token;
@@ -242,6 +245,14 @@ public class PlaceRequest implements Serializable {
 
 	public void setUserID(Long userID) {
 		this.userID = userID;
+	}
+
+	public List<Long> getSellType() {
+		return sellType;
+	}
+
+	public void setSellType(List<Long> sellType) {
+		this.sellType = sellType;
 	}
 
 }

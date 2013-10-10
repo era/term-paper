@@ -37,3 +37,9 @@ INSERT INTO tb_city(id, name, region_id)  VALUES (1, 'Campinas', 1);
 INSERT INTO tb_neighborhood(id, hoodname, city_id)  VALUES (1, 'Centro', 1);
 
 INSERT INTO TB_STREET(id, streetname, neighborhood_id)  VALUES (1, 'Barao de Jaguara', 1);
+
+
+
+INSERT INTO TB_SELL_TYPE(id,name) VALUES(1,'BUY');
+INSERT INTO TB_SELL_TYPE(id,name) VALUES(2,'RENT');
+INSERT INTO TB_SELL_TYPE(id,name) VALUES(3,'RENT_TEMPORARY');

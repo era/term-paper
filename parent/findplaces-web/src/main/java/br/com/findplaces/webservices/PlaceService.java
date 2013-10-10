@@ -95,22 +95,14 @@ public class PlaceService implements Serializable {
 			@QueryParam(value = "token") String token,
 			@QueryParam(value = "socialid") String socialid,
 			@QueryParam(value = "lat") String latitude,
-			@QueryParam(value = "log") String longitude,
+			@QueryParam(value = "lng") String longitude,
 			@QueryParam(value = "distance") String distance)
 			throws NotAuthorizedException {
-		if (token == null && socialid == null) {
-			return searchByLatLong(latitude, longitude, distance);
+		if (token != null && socialid != null) {
+			isValidToken(token, socialid);
 		}
-		isValidToken(token, socialid);
-
-		List<PlaceTO> places = getPlaceConfiguration()
-				.findPlaceByLatLogDistance(Double.parseDouble(latitude),
-						Double.parseDouble(longitude),
-						Double.parseDouble(distance));
-		PlaceResponse response = new PlaceResponse();
-
-		response.setPlaces(places);
-		setSuccessResponse(response);
+		
+		PlaceResponse response = searchByLatLong(latitude, longitude, distance);;
 
 		return response;
 	}
@@ -134,16 +126,13 @@ public class PlaceService implements Serializable {
 	@GET
 	@Path("/search/byFilter")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public PlaceResponse searchByFilter(
-			@QueryParam(value = "token") String token,
-			@QueryParam(value = "filter") FilterSearchRequest filter) throws NotAuthorizedException {
+	public PlaceResponse searchByFilter(@QueryParam(value = "filter") FilterSearchRequest filter) 
+			throws NotAuthorizedException {
 
-		String socialid = null;
-		String latitude = null;
-		String longitude = null;
-		String distance = null;
-
-		isValidToken(token, socialid);
+		if(filter.getSocialid() !=null && !filter.getSocialid().isEmpty()){
+			isValidToken(filter.getToken(), filter.getSocialid());
+		}
+		
 
 //		List<PlaceTO> places = getPlaceConfiguration().findByFilter(Double.parseDouble(latitude),
 //						Double.parseDouble(longitude),
@@ -213,6 +202,14 @@ public class PlaceService implements Serializable {
 		to.setM2(re.getM2());
 		to.setPrice(re.getPrice());
 		to.setRoom(re.getRoom());
+		
+		ArrayList<Long> sellTypes = new ArrayList<Long>();
+		
+		for(Long sellType : re.getSellType()){
+			sellTypes.add(sellType);
+		}
+		
+		to.setSellType(sellTypes);
 		
 		to.setSuite(re.getSuite());
 		to.setFacilities(new FacilitiesTO()); //TODO Refact to make this work

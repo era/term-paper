@@ -17,6 +17,7 @@ import br.com.findplaces.jpa.dao.interfaces.RegionDAO;
 import br.com.findplaces.jpa.dao.interfaces.StreetDAO;
 import br.com.findplaces.jpa.dao.spatial.interfaces.PlaceSpatialDAO;
 import br.com.findplaces.jpa.entity.Place;
+import br.com.findplaces.jpa.entity.SellType;
 import br.com.findplaces.jpa.entity.geographic.City;
 import br.com.findplaces.jpa.entity.geographic.Neighborhood;
 import br.com.findplaces.jpa.entity.geographic.Region;
@@ -64,7 +65,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	@EJB
 	private RegionDAO regionDAO;
 
-	public PlaceTO createPlace(PlaceTO place) {
+	public PlaceTO createPlace(PlaceTO place) { //FIXME Should not convert and create in the same method!
 		try {
 
 			Double lat = place.getLat();
@@ -111,6 +112,14 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			place.setCity(ConverterTO.converter(city));
 			place.setNeighborhood(ConverterTO.converter(neigh));
 			place.setStreet(ConverterTO.converter(street));
+			
+			ArrayList<SellType> sellTypes = new ArrayList<SellType>();
+			for(Long sellType : place.getSellType()){
+				SellType type = new SellType();
+				type.setId(sellType);
+				
+				sellTypes.add(type);
+			}
 
 			Long id = placeDAO.create(ConverterTO.converter(place));
 			PlaceSpatialTO spatialTO = place.getSpatialTO();

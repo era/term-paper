@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -44,7 +45,7 @@ public class Place extends BaseEntity implements Serializable {
 
 	@Column
 	private String address;
-
+	
 	@ManyToOne
 	private City city;
 
@@ -86,6 +87,9 @@ public class Place extends BaseEntity implements Serializable {
 	
 	@OneToMany
 	private List<Image> photos;
+	
+	@ManyToMany
+	private List<SellType> sellType;
 	
 
 	public Long getId() {
@@ -232,6 +236,14 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setPhotos(List<Image> photos) {
 		this.photos = photos;
+	}
+
+	public List<SellType> getSellType() {
+		return sellType;
+	}
+
+	public void setSellType(List<SellType> sellType) {
+		this.sellType = sellType;
 	}
 
 	
