@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.findplaces.jpa.entity.datamining.PlaceViewed;
+import br.com.findplaces.model.to.CountPlaceViewedTO;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.model.to.Viewed;
@@ -17,9 +18,9 @@ public interface DataMiningEJB extends Serializable {
 	
 	void savePlaceViewed(PlaceViewed pv);
 	
-	List<Viewed> getNeighboordViews(Long id); 
+	List<CountPlaceViewedTO> getNeighboordViews(String name); 
 	
-	List<Viewed> getPlaceViews(Long id);
+	List<CountPlaceViewedTO> getPlaceViews(Long id);
 	
 	Map<Integer,Double> getAgeFromUsers(Long placeID);
 	

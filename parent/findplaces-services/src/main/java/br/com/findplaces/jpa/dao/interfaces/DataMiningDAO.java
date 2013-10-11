@@ -17,5 +17,9 @@ public interface DataMiningDAO extends BaseDAO<PlaceViewed, Long> {
 	List<PlaceViewed> findPlacesWithSameStudyAt(User user);
 	
 	TestAB saveResultFromTest(TestAB test);
+
+	List<PlaceViewed> getUsersFromPlace(Long placeID);
+
+	List<PlaceViewed> getUsersFromNeighboord(String name);
 	
 }

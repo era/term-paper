@@ -88,4 +88,18 @@ public class DataMiningDAOImpl extends BaseDAOImpl<PlaceViewed, Long> implements
 		this.em = em;
 	}
 
+	@Override
+	public List<PlaceViewed> getUsersFromPlace(Long placeID) {
+		
+		
+		
+		return null;
+	}
+
+	@Override
+	public List<PlaceViewed> getUsersFromNeighboord(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
