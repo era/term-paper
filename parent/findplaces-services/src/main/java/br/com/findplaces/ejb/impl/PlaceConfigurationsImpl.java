@@ -22,6 +22,7 @@ import br.com.findplaces.jpa.entity.geographic.City;
 import br.com.findplaces.jpa.entity.geographic.Neighborhood;
 import br.com.findplaces.jpa.entity.geographic.Region;
 import br.com.findplaces.jpa.entity.geographic.Street;
+import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 import br.com.findplaces.jpa.exception.DAOException;
 import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
@@ -32,8 +33,10 @@ import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.util.ConverterTO;
 
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.operation.distance.DistanceOp;
 
 @Stateless(name = "PlaceConfigurationsEJB", mappedName = "PlaceConfigurationsImpl")
 public class PlaceConfigurationsImpl implements PlaceConfigurations {
@@ -249,8 +252,28 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			}
 			
 			if(filter.getDistance()!=null){
-				//numberOfFilters++;
+				numberOfFilters++;
+				//Entidade espacial
+				PlaceSpatial spatial = place.getSpatial();
+				//Geometria da entidade (Point)
+				Geometry geom = spatial.getGeom();
+				
+				//Esquema para criar uma geometria ou coordenadas
+				Coordinate coord = new Coordinate();
+				GeometryFactory geoFactory = new GeometryFactory();
+				coord.x = filter.getLat();
+				coord.y = filter.getLog();
+				//Point = Geometry (extends)
+				Point point = geoFactory.createPoint(coord);
+				
+				
+				Float distance = distFrom(coord.x, coord.y, geom.getCoordinate().x, geom.getCoordinate().y);
+				//Aqui tem que tomar cuidado pq eh exato, entao o correto seria utilizar uma taxa de variação de 20 metros ou mais,
+				// o google arrendodonda todo mundo +-
+				if(filter.getDistance().equals(distance)){
+				points += filter.getWeightDistance();
 				//How we get the distance from here? :(
+				}
 			}
 			
 			if(filter.getBedroom()!=null){
@@ -275,5 +298,84 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		
 		return placesMatchedWithUser;
 	}
+	
+	public float distFrom(double x, double y, double x2, double y2) {
+		double earthRadius = 3958.75;
+		double dLat = Math.toRadians(x2 - x);
+		double dLng = Math.toRadians(y2 - y);
+		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+				+ Math.cos(Math.toRadians(x))
+				* Math.cos(Math.toRadians(x2)) * Math.sin(dLng / 2)
+				* Math.sin(dLng / 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		double dist = earthRadius * c;
+
+		int meterConversion = 1609;
+
+		return new Float(dist * meterConversion).floatValue();
+	}
+	
+	/**
+	 * 
+	 * 
+	 * FOR TEST USE GOOGLE API MAPS
+	 * RIGHT BUTTON WHAT HAS THERE
+	 * CATCH COORDINATE AND TEST
+	 * 
+	 * 
+	 * 
+	 * 
+	 * public static void main(String[] args) {
+
+		GeometryFactory geoFactory = new GeometryFactory();
+		// -22.909508,-47.057293
+		Coordinate coord = new Coordinate();
+		coord.x = -22.909508;
+		coord.y = -47.057293;
+		Point point = geoFactory.createPoint(coord);
+
+		// -22.912132,-47.055136
+		Coordinate coord2 = new Coordinate();
+		coord2.x = -22.910793;
+		coord2.y = -47.056638;
+		Point point2 = geoFactory.createPoint(coord);
+
+		DistanceOp distance = new DistanceOp(point, point2);
+
+		System.out.println(distFrom(coord.x, coord.y, coord2.x, coord2.y));
+		System.out.println(distance.closestLocations());
+	}
+	
+	public static float distFrom(double x, double y, double x2, double y2) {
+		double earthRadius = 3958.75;
+		double dLat = Math.toRadians(x2 - x);
+		double dLng = Math.toRadians(y2 - y);
+		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+				+ Math.cos(Math.toRadians(x))
+				* Math.cos(Math.toRadians(x2)) * Math.sin(dLng / 2)
+				* Math.sin(dLng / 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		double dist = earthRadius * c;
+
+		int meterConversion = 1609;
+
+		return new Float(dist * meterConversion).floatValue();
+	}
+
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 
 }
