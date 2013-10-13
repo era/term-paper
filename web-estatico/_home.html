@@ -103,9 +103,9 @@
     </form>    
 </div>
 <div class="flexslider">
-    <ul class="slides">
+    <ul class="homeSlides">
         <li id="slide1">
-            <img src="img/slide1.jpg" />
+            <img src="img/photography/1_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Cambuí</h3>
             <p>
@@ -113,7 +113,7 @@
             </p>
         </li>
         <li id="slide2">
-            <img src="img/slide2.jpg" />
+            <img src="img/photography/2_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Centro</h3>
             <p>
@@ -121,7 +121,7 @@
             </p>
         </li>
         <li id="slide3">
-            <img src="img/slide3.jpg" />
+            <img src="img/photography/3_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Novo Cambuí</h3>
             <p>
@@ -129,7 +129,7 @@
             </p>
         </li>
         <li id="slide4">
-            <img src="img/slide4.jpg" />
+            <img src="img/photography/4_0.jpg" />
             <span>CASA</span>
             <h3>Alphavile</h3>
             <p>
@@ -137,7 +137,7 @@
             </p>
         </li>
         <li id='slide5'>
-            <img src="img/slide5.jpg" />
+            <img src="img/photography/5_0.jpg" />
             <span>CASA</span>
             <h3>Valinhos</h3>
             <p>
@@ -145,7 +145,7 @@
             </p>
         </li>
         <li id='slide6'>
-            <img src="img/slide6.jpg" />
+            <img src="img/photography/6_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Sumaré</h3>
             <p>
@@ -153,7 +153,7 @@
             </p>
         </li>
         <li id='slide7'>
-            <img src="img/slide7.jpg" />
+            <img src="img/photography/7_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Valinhos</h3>
             <p>
@@ -177,6 +177,7 @@
 
      //Flexslider
     var flexslider = $('.flexslider').flexslider({
+        selector: ".homeSlides > li",
         animation: "slide",
         slideshow: false,
         itemWidth: 520,
@@ -213,6 +214,10 @@
         $('#showSearch').slideUp('fast', function() {
             $('#buscaRapida').show();
         });
+    });
+
+    $('.slides > li').click(function() {
+        $.openURLContent('#content', 'detailsproperty', $.StringFormat('id={0}', $(this).attr('id')));
     });
 
     $('#advancedSearch').click(function () {

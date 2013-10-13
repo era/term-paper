@@ -6,7 +6,7 @@
     <script charset="utf-8" src="js/jquery.ui.js" type="text/javascript"></script>
     <script charset="utf-8" src="js/jquery.flexslider.js" type="text/javascript"></script>
     <script charset="utf-8" src="js/jquery.gmap3.js" type="text/javascript"></script>
-    <!--<script charset="utf-8" src="js/jquery.maskedinput.js" type="text/javascript"></script>-->
+    <script charset="utf-8" src="js/jquery.maskedinput.js" type="text/javascript"></script>
     <script charset="utf-8" src="js/jquery.maskmoney.js" type="text/javascript"></script>    
     <script charset="utf-8" src="js/findplaces.js" type="text/javascript"></script>
     <script charset="utf-8" src="js/chart.js" type="text/javascript"></script>
@@ -49,13 +49,13 @@
             <nav>
                 <ul>
                     <li>
-                        <a alt="Buscar ofertas" class="first" href="index.html" onclick="$.openURLContent('#content', 'home');" title="Página inical">Página inical</a>
+                        <a alt="Buscar ofertas" class="first" href="index.html" onclick="$.openURLContent('#content', 'home', null);" title="Página inical">Página inical</a>
                     </li>
                     <li>
                         <a alt="Buscar ofertas" class="first" href="#" title="Listar ofertas">Listar ofertas</a>
                     </li>
                     <li>
-                        <a alt="Anuncie no Findplaces" class="last" href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
+                        <a alt="Anuncie no Findplaces" class="last" href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty', null);" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
                     </li>
                     <li>
                         <a alt="Login" class="first" href="#" title="Login">Login</a>
@@ -73,7 +73,7 @@
                     <h2>Acesso rápido</h2>
                     <ul>
                         <li>
-                            <a href="index.html" onclick="$.openURLContent('#content', 'home');">Página inicial</a>
+                            <a href="index.html" onclick="$.openURLContent('#content', 'home', null);">Página inicial</a>
                         </li>
                         <li>
                             <a href="#">Listar ofertas</a>
@@ -101,10 +101,10 @@
                     <h2>Anuncie no Findplaces</h2>
                     <ul>
                         <li>
-                            <a href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');">Proprietário</a>
+                            <a href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty', null);">Proprietário</a>
                         </li>
                         <li>
-                            <a href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty');">Imobiliárias e corretores</a>
+                            <a href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty', null);">Imobiliárias e corretores</a>
                         </li>
                     </ul>
                 </div>
@@ -142,7 +142,7 @@
         if (window.location.hash) {
             $.openHashTagContent();
         } else {
-            $.openURLContent('#content', 'home');
+            $.openURLContent('#content', 'home', null);
         }
         window.onpopstate = $.openHashTagContent; //fixme, provavelmente nao funciona no IE
     });

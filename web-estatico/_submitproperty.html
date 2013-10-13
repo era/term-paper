@@ -1,22 +1,21 @@
 ﻿<div class="content-title">
     <div class="wrapper">
-        <h1>
-            Home > Anuncie no Findplaces
+        <h1>Home > Anuncie no Findplaces
         </h1>
     </div>
 </div>
 <div class="wrapper">
-    <div id="property">
-        <div id="property-title">
+    <div id="default-top">
+        <div id="default-top-title" class="default-top-orange">
             <h1>
                 <img alt="Anuncie no Findplaces" src="img/sign.png" title="Anuncie no Findplaces">
                 ANUNCIE NO FINDPLACES
             </h1>
         </div>
-        <div id="property-triangle"></div>
-        <div id="property-form">
+        <div id="default-top-triangle" class="default-top-triangle-orange"></div>
+        <div id="default-top-form">
             <form>
-                <div id='property-info'>
+                <div id='default-top-info'>
                     <div>
                         <label for="placetype">Tipo de imóvel:</label>
                         <select id="placetype">
@@ -43,7 +42,7 @@
                     </div>
                     <div>
                         <label for="region_name">Estado:</label>
-                        <select id="region_name" name="region_name"></select>                    
+                        <select id="region_name" name="region_name"></select>
                     </div>
                     <div>
                         <label for="city_name">Cidade:</label>
@@ -62,39 +61,39 @@
                         <input class="inputSizeMedium" id="phone3" maxlength="16" name="phone3" type="text" />
                     </div>
                 </div>
-                <div id='property-details'>
+                <div id='default-top-details'>
                     <div>
                         <div>
                             <label>Área (m²)</label><br />
-                            <input class="inputSizeLittleSmaller" id="m2" name="m2" type="text" />
+                            <input class="inputSizeLittleSmaller" id="m2" maxlength="2" name="m2" type="text" />
                         </div>
                         <div>
-                            <label>Quarto</label><br />
-                            <input class="inputSizeLittleSmaller" id="bedroom" name="bedroom" type="text" />
+                            <label>Dormitório</label><br />
+                            <input class="inputSizeLittleSmaller" id="bedroom" maxlength="2" name="bedroom" type="text" />
                         </div>
                         <div>
-                            <label>Suite</label><br />
-                            <input class="inputSizeLittleSmaller" id="suite" name="suite" type="text" />
+                            <label>Suíte</label><br />
+                            <input class="inputSizeLittleSmaller" id="suite" maxlength="2" name="suite" type="text" />
                         </div>
                         <div>
                             <label>Sala</label><br />
-                            <input class="inputSizeLittleSmaller" id="room" name="room" type="text" />
+                            <input class="inputSizeLittleSmaller" id="room" maxlength="2" name="room" type="text" />
                         </div>
                         <div>
                             <label>Banheiro</label><br />
-                            <input class="inputSizeLittleSmaller" id="bathroom" name="bathroom" type="text" />
+                            <input class="inputSizeLittleSmaller" id="bathroom" maxlength="2" name="bathroom" type="text" />
                         </div>
                         <div>
-                            <label>Garagem</label><br />
-                            <input class="inputSizeLittleSmaller" id="garage" name="garage" type="text" />
+                            <label>Vagas de garagem</label><br />
+                            <input class="inputSizeLittleSmaller" id="garage" maxlength="2" name="garage" type="text" />
                         </div>
                     </div>
                 </div>
                 <br class="clr" />
                 <div class="right-button">
-                    <button alt="Salvar" id="submit-property" title="Salvar" onclick="javascript:$.submitPlace" type="submit">Salvar</button>
+                    <button alt="Salvar" id="submit-default-top" title="Salvar" onclick="javascript:$.submitPlace" type="submit">Salvar</button>
                 </div>
-            </form>            
+            </form>
         </div>
     </div>
     <div id="account-actions">
@@ -103,23 +102,31 @@
         </div>
         <ul>
             <li>
-                <a href="#">Meus anúncios</a>                
+                <a href="#">Meus anúncios</a>
             </li>
             <li>
-                <a href="#">Perguntas</a>                
+                <a href="#">Perfil</a>
+            </li>
+            <li>
+                <a href="#">Perguntas</a>
             </li>
         </ul>
     </div>
     <br class="clr" />
 </div>
 <script type="text/javascript" charset="utf-8">
+    //if($('#userID').val()==""){
+    //    $.openURLContent('#content', 'login', null); //FIXME
+    //}
+    
+    $("#m2").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#bedroom").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#suite").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#room").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#bathroom").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#garage").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
 
-    if($('#userID').val()==""){
-        $.openURLContent('#content', 'login'); //FIXME
-    }
-
-
-{'token':'CAACEdEose0cBAKdyGHLNu3DCJtWbdDygQ1N8xpMn0NAnXFO7gyU8lZBQralkLwwZCMJU9gqjD9BsGR5pFqeqKj9tgk6UacP4ixrrIpNsxXI5VomT6FUKGeJQOMsbGKXzmJydkCpRMA29TGqgK1OqPUS9JBrmKsH7L9PtM7ZCHZBBBGG76oexEpdvtg5icLEHXdxA34UVswZDZD', 'socialid':"100000485880931", 'address': "rua do bosque",  'lat': "-22.913051",  'log': "-47.054745", 'city':{'name':'Monte Santo', 'region':{'alias':'MG'}}, 'street':{'name':'bla bla'}, 'country':{'name':'Brazil'}, 'neighborhood':{'name':'Centro'}, 'placetype':{'id':'1'}}
+    //{'token':'CAACEdEose0cBAKdyGHLNu3DCJtWbdDygQ1N8xpMn0NAnXFO7gyU8lZBQralkLwwZCMJU9gqjD9BsGR5pFqeqKj9tgk6UacP4ixrrIpNsxXI5VomT6FUKGeJQOMsbGKXzmJydkCpRMA29TGqgK1OqPUS9JBrmKsH7L9PtM7ZCHZBBBGG76oexEpdvtg5icLEHXdxA34UVswZDZD', 'socialid':"100000485880931", 'address': "rua do bosque",  'lat': "-22.913051",  'log': "-47.054745", 'city':{'name':'Monte Santo', 'region':{'alias':'MG'}}, 'street':{'name':'bla bla'}, 'country':{'name':'Brazil'}, 'neighborhood':{'name':'Centro'}, 'placetype':{'id':'1'}}        
 
     // Lista os estados
     $.each(uf_cidade.estados, function (key, val) {
@@ -128,4 +135,4 @@
 
     // Lista as cidades com base no estado default
     $.consultaCidade($('#region_name :selected').text(), '#city_name');    
-    </script>
+</script>

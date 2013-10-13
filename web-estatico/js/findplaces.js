@@ -1,27 +1,24 @@
-﻿$.fn.serializeObject = function () {
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function () {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
+﻿/*!
+ * FINDPLACES V1.00
+ * Copyright 2013
+ */
+/* ## MÉTODOS MINIMIFICADOS ## */
+//Método para serializar um form ou grupo fields values
+$.fn.serializeObject = function () { var e = {}; var t = this.serializeArray(); $.each(t, function () { if (e[this.name] !== undefined) { if (!e[this.name].push) e[this.name] = [e[this.name]]; e[this.name].push(this.value || ""); } else e[this.name] = this.value || ""; }); return e; };
+//Método para recuperar parametros de url
+$.getUrlParam = function (e, t) { var n = (new RegExp("[\\?&]" + e + "=([^&#]*)")).exec(t); return n[1] || 0; };
+//Método para simular método StringFormat de algumas linguagens
+$.StringFormat = function () { var e = arguments[0]; for (var t = 0; t < arguments.length - 1; t++) { var n = new RegExp("\\{" + t + "\\}", "gm"); e = e.replace(n, arguments[t + 1]); } return e; };
+//Método para verificar se o campo é nulo ou vazio
+$.fn.IsNullOrEmpty = function (e, t) { if (e == "null" || e == null || e == "" || e == "undefined") return t; return e; };
+//Método para criar um slide (utilizado nos pesos da busca avançada)
+$.criaSlider = function (e) { $.each(e, function (t, n) { n.slider({ animate: true, min: 1, max: 10, range: "min" }); }); };
+//Método para abrir uma url, aplicar #nomepágina e enviar paramentros
+$.openURLContent = function (e, t, n) { window.history.pushState(null, null, $.StringFormat("index.html#{0}{1}", t, n === null ? "" : "?" + n)); $(e).load($.StringFormat("_{0}.html", t.split('?')[0])); return false; };
+/* ## MÉTODOS MINIMIFICADOS ## */
 
-$.StringFormat = function () {
-    var s = arguments[0];
-    for (var i = 0; i < arguments.length - 1; i++) {
-        var reg = new RegExp("\\{" + i + "\\}", "gm");
-        s = s.replace(reg, arguments[i + 1]);
-    }
-    return s;
-};
+
+
 
 //Remover e utilizar google
 $.consultaCidade = function (ufSigla, target) {
@@ -101,17 +98,17 @@ $.consultaMapa = function (lat, lng, markers) {
                     }
                 },
                 0: {
-                    content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
+                    content: "<div>CLUSTER_COUNT</div>",
                     width: 53,
                     height: 52
                 },
                 20: {
-                    content: "<div class='cluster cluster-2'>CLUSTER_COUNT</div>",
+                    content: "<div>CLUSTER_COUNT</div>",
                     width: 56,
                     height: 55
                 },
                 50: {
-                    content: "<div class='cluster cluster-3'>CLUSTER_COUNT</div>",
+                    content: "<div>CLUSTER_COUNT</div>",
                     width: 66,
                     height: 65
                 }
@@ -122,11 +119,9 @@ $.consultaMapa = function (lat, lng, markers) {
 };
 
 $.showPlaceInFlexslider = function (id) {
-    console.log(id);
-    $('.slides > li').each(function (i, item) {        
+    $('.homeSlides > li').each(function (i, item) {        
         $(item).removeClass('flexsliderSelectByMap');
         if ($(item).attr('id') === id) {
-            console.log(i);
             $('.flexslider').flexslider(i);
             $('#' + id).addClass('flexsliderSelectByMap');
         }
@@ -135,14 +130,10 @@ $.showPlaceInFlexslider = function (id) {
 
 $.openHashTagContent = function () {
     var hash = window.location.hash.substring(1);
-    $.openURLContent('#content', hash);
+    $.openURLContent('#content', hash, null);
 };
 
-$.openURLContent = function (target, anchor) {
-    window.history.pushState(null, null, "index.html#" + anchor); //objState, title, page
-    $(target).load($.StringFormat('_{0}.html', anchor));
-    return false;
-};
+
 
 $.searchPlace = function (field) {
     var input = document.getElementById(field);
@@ -161,16 +152,7 @@ $.searchPlace = function (field) {
     });
 };
 
-$.criaSlider = function (objects) {
-    $.each(objects, function (i, item) {
-        item.slider({
-            animate: true,
-            min: 1,
-            max: 10,
-            range: "min",
-        });
-    });
-};
+
 
 $.initLogin = function () {
     FB.Event.subscribe('auth.authResponseChange', function (response) {

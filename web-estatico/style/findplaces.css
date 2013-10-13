@@ -9,6 +9,7 @@ body
 	margin:0;
 	min-width:1180px;
 	padding:0;
+    overflow-x: hidden;
 }
  
 ul
@@ -17,6 +18,11 @@ ul
 	margin:0;
 	padding:0;
 }
+
+.clr {
+    clear: both;
+}
+
  
 .hide
 {
@@ -60,7 +66,7 @@ ul
 	padding-right:30px;
 	text-align:right;
 }
- 
+
 header
 {
 	background:#373737;
@@ -329,7 +335,7 @@ div.flexslider
 	margin:0!important;
 }
  
-ul.slides > li
+ul.homeSlides > li
 {
 	background-color:#f6f6f6;
 	border-top:5px solid #dfdfdf;
@@ -339,7 +345,7 @@ ul.slides > li
 	width:500px!important;
 }
  
-ul.slides > li:hover,.flexsliderSelectByMap
+ul.homeSlides > li:hover,.flexsliderSelectByMap
 {
 	-moz-transition:all .5s!important;
 	-o-transition:all .5s!important;
@@ -349,14 +355,14 @@ ul.slides > li:hover,.flexsliderSelectByMap
 	transition:all .5s!important;
 }
  
-ul.slides > li > img
+ul.homeSlides > li > img
 {
 	float:left;
 	padding-right:10px;
 	width:200px!important;
 }
  
-ul.slides > li > span
+ul.homeSlides > li > span
 {
 	color:#898989;
 	display:block;
@@ -368,7 +374,7 @@ ul.slides > li > span
 	text-transform:uppercase;
 }
  
-ul.slides > li > h3
+ul.homeSlides > li > h3
 {
 	border:0;
 	font:bold 22px/26px Helvetica, Arial, sans-serif;
@@ -376,7 +382,7 @@ ul.slides > li > h3
 	margin:5px 0 10px;
 	padding:0;
 }
- 
+
 footer
 {
 	border-bottom:15px solid #F96F44;
@@ -457,6 +463,16 @@ footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img:hover
 	opacity:.7;
 	transition:all .5s;
 }
+
+footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li
+{
+	display:inline-block;
+}
+ 
+footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img
+{
+	cursor:pointer;
+}
  
 .wrapper > form > div#proprietary
 {
@@ -471,24 +487,37 @@ footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img:hover
 	width:100%;
 }
  
-div#account-actions,div#property
+div#account-actions,div#default-top
 {
 	display:inline-block;
 	margin:20px 0;
 }
  
-div#property
+div#default-top
 {
 	width:80%;
 }
- 
-div#property > div#property-title
-{
-	background:#F96F44;
-	line-height:100px;
+
+.default-top-alt-size {
+    width:70% !important;
 }
  
-div#property > div#property-title > h1
+div#default-top > div#default-top-title
+{
+	line-height:100px;
+}
+
+.default-top-orange {
+    background:#F96F44;
+    border-color:#F96F44 #F96F44 #fafafa;
+}
+
+.default-top-yellow {
+    background:#fbad26;
+    border-color:#fbad26 #fbad26 #fafafa;
+}
+ 
+div#default-top > div#default-top-title > h1
 {
 	color:#fff;
 	font-size:30px;
@@ -496,10 +525,9 @@ div#property > div#property-title > h1
 	margin:0 0 0 20px;
 }
  
-div#property > div#property-triangle
+div#default-top > div#default-top-triangle
 {
 	border:medium solid transparent;
-	border-color:#F96F44 #F96F44 #fafafa;
 	border-width:15px;
 	content:" ";
 	height:0;
@@ -509,25 +537,33 @@ div#property > div#property-triangle
 	top:90px;
 	width:0;
 }
+
+.default-top-triangle-orange {
+    border-color:#F96F44 #F96F44 #fafafa !important;
+}
+
+.default-top-triangle-yellow {
+    border-color:#fbad26 #fbad26 #fafafa !important;
+}
  
-div#property > div#property-form
+div#default-top > div#default-top-form
 {
 	background:#fafafa;
 	padding:20px 0;
 }
  
-div#property-info
+div#default-top-info
 {
 	float:left;
 	width:550px;
 }
  
-div#property-info > div
+div#default-top-info > div
 {
 	margin:10px 0;
 }
  
-div#property-info > div > label
+div#default-top-info > div > label
 {
 	display:inline-block;
 	font-weight:400;
@@ -535,7 +571,7 @@ div#property-info > div > label
 	width:120px;
 }
  
-div#property-info > div > input,div#property-info > div > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input
+div#default-top-info > div > input,div#default-top-info > div > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input
 {
 	background-color:#fff;
 	border:1px solid #909090;
@@ -547,16 +583,15 @@ div#property-info > div > input,div#property-info > div > select,form#buscaAvanc
 	padding:7px 6px;
 }
  
-div#property-info > div > input,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input
+div#default-top-info > div > input,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input
 {
 	padding:8px 6px!important;
 }
  
-div#property-form > form > div > button
+div#default-top-form > form > div > button
 {
-	background:#C8C8C8;
-	border:1px solid #818181;
-	border-bottom-width:4px;
+	background:#198032;
+	border:1px solid #116626;
 	color:#fff;
 	cursor:pointer;
 	font-size:17px;
@@ -565,13 +600,13 @@ div#property-form > form > div > button
 	text-shadow:1px 1px 0 #818181;
 }
  
-div#property-details
+div#default-top-details
 {
 	float:left;
 	width:390px;
 }
  
-div#property-details > div
+div#default-top-details > div
 {
 	background:#f4f4f4;
 	font-size:13px;
@@ -579,13 +614,13 @@ div#property-details > div
 	padding:10px;
 }
  
-div#property-details > div > div
+div#default-top-details > div > div
 {
 	display:inline-block;
-	margin:0 0 5px 7px;
+	margin:0 0 5px 20px;
 }
  
-div#property-details > div > div > input
+div#default-top-details > div > div > input
 {
 	background-color:#fff;
 	border:1px solid #909090;
@@ -598,9 +633,18 @@ div#property-details > div > div > input
 div#account-actions
 {
 	background:#fafafa;
+    border-left: 1px dotted #d5d5d5;
 	float:right;
-	height:200px;
 	width:18%;
+}
+
+.account-actions-alt-size {
+    width:28% !important;
+}
+
+.account-actions-alt-size > ul {
+    list-style: none !important;
+    margin: 10px 0 10px -20px !important;
 }
  
 div#account-actions > div
@@ -634,8 +678,13 @@ div#account-actions > ul > li
 	font-size:13px;
 	margin:10px 0 10px 40px;
 }
+
+div#detailsAlbum {
+    height: 50%;
+    width: 50%;    
+}
  
-#detalhesApartamento
+/*#detalhesApartamento
 {
 	background:none repeat scroll 0 0 #fafafa!important;
 	display:none;
@@ -1479,20 +1528,9 @@ table#comodidadesCondominio td
 	opacity:1;
 }
  
-.clr,.nav-tabs:after,.nav-pills:after
-{
-	clear:both;
-}
+
  
-#pesoAquisicao,footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li
-{
-	display:inline-block;
-}
- 
-footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img,.nav > .dropdown.active > a:hover,.nav > .dropdown.active > a:focus
-{
-	cursor:pointer;
-}
+
  
 #simpleInformation #total span.important,table#comodidadesImovel thead,table#comodidadesCondominio thead
 {
@@ -1522,4 +1560,4 @@ table#comodidadesImovel,table#comodidadesCondominio,.controleComponente .item la
 .carousel-inner > .prev,.carousel-inner > .active.left
 {
 	left:-100%;
-}
+}*/
