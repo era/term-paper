@@ -80,25 +80,31 @@
         </div>
     </div>
 </form>
-<div id="map">
-    <form id="buscaRapida">
+<div id="showSearch" class="hide">
+    <a href="#" id="showPanel" title="Mostrar painel de busca">Mostrar painel</a>
+</div>
+<div id="map">    
+    <form id="buscaRapida">        
         <div class="form-header">
-            <select class="form-header-alt-select" id="tiposAquisicaoRapida" name="tiposAquisicaoRapida">
+            <div id="buscaRapidaOcultar">
+                <a href="#" id="hidePanel" title="Ocultar painel de busca">Ocultar painel</a>
+            </div>
+            <select class="clr form-header-alt-select" id="tiposAquisicaoRapida" name="tiposAquisicaoRapida">
                 <option value="0">Comprar</option>
                 <option value="1">Alugar</option>
                 <option value="2">Temporada</option>
             </select>
-            <input alt="Bairro, estabelecimento ou código do apartamento" id="endereco" name="endereco" placeholder="Bairro, estabelecimento ou código do apartamento" title="Bairro, estabelecimento ou código do apartamento" type="text" />
+            <input alt="Digite o bairro, cidade ou código do imóvel" id="endereco" name="endereco" placeholder="Bairro, estabelecimento ou código do apartamento" title="Bairro, estabelecimento ou código do apartamento" type="text" />
             <button alt="Buscar" id="buscarRapido" title="Buscar" type="submit">Buscar</button><a id="advancedSearch" title="Busca avançada" href="#">[+]</a>
         </div>
         <!--hidden fields-->
         <input type="hidden" name="lat" id="lat" />
         <input type="hidden" name="lng" id="lng" />
-    </form>
+    </form>    
 </div>
 <div class="flexslider">
     <ul class="slides">
-        <li>
+        <li id="slide1">
             <img src="img/slide1.jpg" />
             <span>APARTAMENTO</span>
             <h3>Cambuí</h3>
@@ -106,7 +112,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li>
+        <li id="slide2">
             <img src="img/slide2.jpg" />
             <span>APARTAMENTO</span>
             <h3>Centro</h3>
@@ -114,7 +120,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li>
+        <li id="slide3">
             <img src="img/slide3.jpg" />
             <span>APARTAMENTO</span>
             <h3>Novo Cambuí</h3>
@@ -122,7 +128,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li>
+        <li id="slide4">
             <img src="img/slide4.jpg" />
             <span>CASA</span>
             <h3>Alphavile</h3>
@@ -130,7 +136,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li>
+        <li id='slide5'>
             <img src="img/slide5.jpg" />
             <span>CASA</span>
             <h3>Valinhos</h3>
@@ -138,28 +144,47 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-    </ul>
+        <li id='slide6'>
+            <img src="img/slide6.jpg" />
+            <span>APARTAMENTO</span>
+            <h3>Sumaré</h3>
+            <p>
+                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
+            </p>
+        </li>
+        <li id='slide7'>
+            <img src="img/slide7.jpg" />
+            <span>APARTAMENTO</span>
+            <h3>Valinhos</h3>
+            <p>
+                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
+            </p>
+        </li>       
+    </ul>    
 </div>
 <script charset="utf-8" type="text/javascript">
-    $.consultaMapa(-22.902532, -47.0607349);
+    $.consultaMapa(-22.977281, -47.14822);
     $.searchPlace('endereco');
     $('#advancedSearch').tooltip();
     $('#fastSearch').tooltip();
+    $('#hidePanel').tooltip();
+    $('#showPanel').tooltip();
     $('.peso').tooltip();
     $.criaSlider([$("#pesoAquisicao"), $('#pesoTipoImovel'), $('#pesoPreco'), $('#pesoBairro'), $('#pesoRaio'), $('#pesoDormitorios'), $('#pesoGaragens')]);
     $("#precoDe").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#precoAte").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false }).attr('style', 'display: none !important;');
     $("#raio").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
 
-    // Flexslider
-    $('.flexslider').flexslider({
+     //Flexslider
+    var flexslider = $('.flexslider').flexslider({
         animation: "slide",
         slideshow: false,
         itemWidth: 520,
         keyboard: false,
         mousewheel: false,
         animationLoop: false,
-        controlNav: false
+        controlNav: false,
+        move: 1
     });
 
     /*if(navigator.geolocation){
@@ -176,6 +201,18 @@
     $('#buscar').click(function () {
         var form = $('#buscaRapida').serializeArray();
         return false;
+    });
+
+    $('#hidePanel').click(function () {
+        $('#buscaRapida').hide(0, function() {
+            $('#showSearch').show();
+        });        
+    });
+
+    $('#showPanel').click(function() {
+        $('#showSearch').slideUp('fast', function() {
+            $('#buscaRapida').show();
+        });
     });
 
     $('#advancedSearch').click(function () {

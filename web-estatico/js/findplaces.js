@@ -45,39 +45,44 @@ $.consultaMapa = function (lat, lng, markers) {
             },
         },
         marker: {
-            //customizavel por variavel      
             values: [
                 {
-                    latLng: [-22.912532, -47.0607349],
+                    latLng: [-22.970949, -47.150844],
                     events: {
                         click: function () {
-                            $.showDetailsAboutPlace();
+                            $.showPlaceInFlexslider('slide1');
                         }
                     }
                 }, {
-                    latLng: [-22.902532, -47.0607349],
+                    latLng: [-22.970228, -47.145608],
                     events: {
                         click: function () {
-                            $.showDetailsAboutPlace();
+                            $.showPlaceInFlexslider('slide7');
                         }
                     }
                 }, {
-                    latLng: [-22.904852, -47.0607349],
+                    latLng: [-22.972085, -47.149588],
                     events: {
                         click: function () {
-                            $.showDetailsAboutPlace();
+                            $.showPlaceInFlexslider('slide2');
                         }
                     }
                 }, {
-                    latLng: [-22.903692, -47.0607349],
+                    latLng: [-22.972905, -47.141788],
                     events: {
                         click: function () {
-                            $.showDetailsAboutPlace();
+                            $.showPlaceInFlexslider('slide6');
                         }
                     }
                 }
             ]
-            //end customização
+            ,
+            options: {
+                icon: new google.maps.MarkerImage(
+                    "img/pointer-house.png",
+                    new google.maps.Size(32, 37, "px", "px")
+                )
+            }
             ,
             //events trigged by markers
             events: {
@@ -89,7 +94,10 @@ $.consultaMapa = function (lat, lng, markers) {
                 radius: 100,
                 events: {
                     click: function (cluster) {
-                        $("#map").gmap3("get").setZoom(18);
+                        var map = $("#map").gmap3("get");
+                        map.setZoom(17);
+                        //cluster.main.getPosition();
+                        map.setCenter(cluster.main.getPosition());
                     }
                 },
                 0: {
@@ -108,13 +116,21 @@ $.consultaMapa = function (lat, lng, markers) {
                     height: 65
                 }
             }
-        },
+        }
     });
     $('#map').append(formulario);
 };
 
-$.showDetailsAboutPlace = function (id) {
-    $('#detalhesApartamento').show();
+$.showPlaceInFlexslider = function (id) {
+    console.log(id);
+    $('.slides > li').each(function (i, item) {        
+        $(item).removeClass('flexsliderSelectByMap');
+        if ($(item).attr('id') === id) {
+            console.log(i);
+            $('.flexslider').flexslider(i);
+            $('#' + id).addClass('flexsliderSelectByMap');
+        }
+    });
 };
 
 $.openHashTagContent = function () {
