@@ -98,17 +98,17 @@ $.consultaMapa = function (lat, lng, markers) {
                     }
                 },
                 0: {
-                    content: "<div>CLUSTER_COUNT</div>",
+                    content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
                     width: 53,
                     height: 52
                 },
                 20: {
-                    content: "<div>CLUSTER_COUNT</div>",
+                    content: "<div class='cluster cluster-2'>CLUSTER_COUNT</div>",
                     width: 56,
                     height: 55
                 },
                 50: {
-                    content: "<div>CLUSTER_COUNT</div>",
+                    content: "<div class='cluster cluster-3'>CLUSTER_COUNT</div>",
                     width: 66,
                     height: 65
                 }
