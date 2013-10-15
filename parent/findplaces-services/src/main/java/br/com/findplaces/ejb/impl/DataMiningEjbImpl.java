@@ -1,5 +1,7 @@
 package br.com.findplaces.ejb.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import br.com.findplaces.commons.helpers.MapReduceHelper;
 import br.com.findplaces.ejb.DataMiningEJB;
 import br.com.findplaces.jpa.dao.interfaces.DataMiningDAO;
 import br.com.findplaces.jpa.entity.Likes;
@@ -98,14 +101,56 @@ public class DataMiningEjbImpl implements DataMiningEJB {
 
 	@Override
 	public List<CountPlaceViewedTO> getNeighboordViews(String name) {
-		dao.getUsersFromNeighboord(name);
-		return null;
+		List<CountPlaceViewedTO> response = new ArrayList<CountPlaceViewedTO>();
+		try{
+			List<PlaceViewed> neighboord = dao.getUsersFromNeighboord(name);
+			HashMap<Object, Integer> reduce = new HashMap<Object,Integer>();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+			
+			for(PlaceViewed place : neighboord){
+				String key = dateFormat.format(place.getDate());
+				MapReduceHelper.addOrIncrease(reduce, key);
+			}
+			
+			//FIXME this should't be here		
+			for(Object key :reduce.keySet()){
+				CountPlaceViewedTO viewedTO = new CountPlaceViewedTO();
+				viewedTO.setViewedDate(dateFormat.parse(key.toString()));
+				viewedTO.setViewedObject(reduce.get(key));
+				response.add(viewedTO);
+			}
+		}catch(Exception e){
+			//FIXME
+		}
+		
+		return response;
 	}
 
 	@Override
 	public List<CountPlaceViewedTO> getPlaceViews(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<CountPlaceViewedTO> response = new ArrayList<CountPlaceViewedTO>();
+		try{
+			List<PlaceViewed> neighboord = dao.getUsersFromPlace(id);
+			HashMap<Object, Integer> reduce = new HashMap<Object,Integer>();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+			
+			for(PlaceViewed place : neighboord){
+				String key = dateFormat.format(place.getDate());
+				MapReduceHelper.addOrIncrease(reduce, key);
+			}
+			
+			//FIXME this should't be here		
+			for(Object key :reduce.keySet()){
+				CountPlaceViewedTO viewedTO = new CountPlaceViewedTO();
+				viewedTO.setViewedDate(dateFormat.parse(key.toString()));
+				viewedTO.setViewedObject(reduce.get(key));
+				response.add(viewedTO);
+			}
+		}catch(Exception e){
+			//FIXME
+		}
+		
+		return response;
 	}
 
 }

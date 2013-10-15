@@ -88,18 +88,21 @@ public class DataMiningDAOImpl extends BaseDAOImpl<PlaceViewed, Long> implements
 		this.em = em;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PlaceViewed> getUsersFromPlace(Long placeID) {
+		Query query = em.createNamedQuery(PlaceViewed.findViewsByPlace);
+		query.setParameter("placeID", placeID);
 		
-		
-		
-		return null;
+		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PlaceViewed> getUsersFromNeighboord(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = em.createNamedQuery(PlaceViewed.findViewsByNeighborhood);
+		query.setParameter("hoodname", name);
+		return query.getResultList();
 	}
 
 }
