@@ -680,8 +680,17 @@ div#account-actions > ul > li
 }
 
 div#detailsAlbum {
+    display: inline-block;
     height: 50%;
-    width: 50%;    
+    width: 50%;
+    vertical-align: text-top;
+}
+
+div#detailsProperty {
+    display: inline-block;
+    margin-left: 5px;
+    width: 48%;
+    vertical-align: text-top;
 }
 
 div.cluster
