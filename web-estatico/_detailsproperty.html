@@ -9,7 +9,7 @@
         <div id="default-top-title">
             <h1>
                 <img alt="Anuncie no Findplaces" src="img/sign.png" title="Anuncie no Findplaces">
-                CAMBUI • Campinas / SP
+                CAMBUI • Campinas / SP - Casa
             </h1>
         </div>
         <div id="default-top-triangle" class="default-top-triangle-yellow"></div>
@@ -38,14 +38,65 @@
                         <li><a href="#tabs-3">Perguntas</a></li>
                     </ul>
                     <div id="tabs-1" class="ui-tabs-top-panel">
-                        <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                        <div id="imovel-valor-titulo">Valor total<span>R$ 3.000</span></div>
+                        <div class="imovel-valor-outros">Aluguel<span>R$ 2.500</span></div>
+                        <div class="imovel-valor-outros">IPTU<span>R$ 250</span></div>
+                        <div class="imovel-valor-outros">Condomínio<span>R$ 250</span></div>
+                        <br class="clr" />
                     </div>
                     <div id="tabs-2" class="ui-tabs-top-panel">
-                        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                        <div id="imovel-detalhes">
+                            <span>Detalhes do Imóvel:</span> Imóvel novo, pronto para morar, projeto diferenciado e excelente localização, as ruas do bairro são de circulação local, ótima oportunidade. A casa tem sistema de aquecimento solar com água quente nos banheiros e cozinha além de portão eletrônico.                            
+                        </div>
+                        <span>Comodidades</span>
+                        <table id="lista-comodidades">
+                            <tr>
+                                <th>Do imóvel</th>
+                            </tr>
+                            <tr >
+                                <td class="list-ok">Acesso à internet incluso</td>
+                            </tr>
+                            <tr>
+                                <td class="list-ok">Armários embutido no quarto</td>
+                            </tr>
+                            <tr>
+                                <td class="list-ok">Armários na cozinha</td>
+                            </tr>
+                            <tr>
+                                <td class="list-no-ok">Banheira hidromassagem</td>
+                            </tr>
+                            <tr>
+                                <td class="list-ok">Varanda</td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <th>Do condomínio</th>
+                            </tr>
+                            <tr>
+                                <td class="list-ok">Porteiro</td>
+                            </tr>
+                            <tr>
+                                <td class="list-ok">Churrasqueira</td>
+                            </tr>
+                            <tr>
+                                <td class="list-no-ok">Gás encanado</td>
+                            </tr>
+                            <tr>
+                                <td class="list-ok">Piscina</td>
+                            </tr>
+                            <tr>
+                                <td class="list-ok">Portão automático</td>
+                            </tr>
+                        </table>
                     </div>
                     <div id="tabs-3" class="ui-tabs-top-panel">
-                        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-                        <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                        <p>Assunto: <span>Pergunta sobre imóvel</span></p>
+                        <p>Mensagem: <span><textarea cols="50" maxlength="1000" placeholder="(exemplo) Olá, menu nome é (...) e estou procurando um imóvel na região do seu..." rows="10" /></span></p>
+                        <div>
+                            <button alt="Salvar" onclick="return false;" title="Salvar" type="submit">Enviar</button>
+                        </div>
+                        <br class="clr" />
                     </div>
                 </div>
             </div>
@@ -83,7 +134,7 @@
         controlNav: "thumbnails",
         slideshow: false
     });
-    
+
     $("#tabs").tabs();
     //alert($.getUrlParam('id', location.href));
 </script>
