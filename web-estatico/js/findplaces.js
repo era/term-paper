@@ -157,7 +157,7 @@ $.searchPlace = function (field) {
 $.initLogin = function () {
     FB.Event.subscribe('auth.authResponseChange', function (response) {
         console.log(response);
-        if (response.status === 'connected') {
+        if (response.status == 'connected') {
             findplaces.webservice.user.loginWithFacebook(response.authResponse.accessToken, response.authResponse.userID);
             window.window.location = findplaces.constantes.LOGIN_FB_URL + "?token=" + response.authResponse.accessToken + "&userID=" + response.authResponse.userID;
         }

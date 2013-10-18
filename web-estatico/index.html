@@ -58,7 +58,7 @@
                         <a alt="Anuncie no Findplaces" class="last" href="index.html#submitproperty" onclick="$.openURLContent('#content', 'submitproperty', null);" title="Anuncie no Findplaces">Anuncie no Findplaces</a>
                     </li>
                     <li>
-                        <a alt="Login" class="first" href="#" title="Login">Login</a>
+                        <a alt="Login" class="first" id="loginFB" href="#" title="Login">Login</a>
                     </li>
                     <br class="clr" />
                 </ul>
@@ -145,6 +145,12 @@
             $.openURLContent('#content', 'home', null);
         }
         window.onpopstate = $.openHashTagContent; //fixme, provavelmente nao funciona no IE
+        $('#loginFB').click(function(){
+            FB.login(function(response) {
+                $('#loginFB').hide();
+            }, {scope: 'email,user_likes'});
+        });
+        
     });
 </script>
 </html>
