@@ -17,9 +17,6 @@ $.criaSlider = function (e) { $.each(e, function (t, n) { n.slider({ animate: tr
 $.openURLContent = function (e, t, n) { window.history.pushState(null, null, $.StringFormat("index.html#{0}{1}", t, n === null ? "" : "?" + n)); $(e).load($.StringFormat("_{0}.html", t.split('?')[0])); return false; };
 /* ## MÉTODOS MINIMIFICADOS ## */
 
-
-
-
 //Remover e utilizar google
 $.consultaCidade = function (ufSigla, target) {
     $(target).empty();
@@ -151,8 +148,6 @@ $.searchPlace = function (field) {
         $('#lng').val(place.geometry.location.mb);
     });
 };
-
-
 
 $.initLogin = function () {
     FB.Event.subscribe('auth.authResponseChange', function (response) {
