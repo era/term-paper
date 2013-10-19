@@ -17,6 +17,22 @@
             <form>
                 <div id='default-top-info'>
                     <div>
+                        <label for="adtype">Tipo de anúncio:</label>
+                        <select id="adtype">
+                            <option value="0">Selecione</option>
+                            <option value="1">Venda</option>
+                            <option value="2">Aluguel</option>
+                            <option value="3">Temporada</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="valid_of">Período do anúncio:</label>
+                        <input class="inputSizeSmaller" id="valid_of" name="valid_of" type="text" />
+                        à
+                        <input class="inputSizeSmaller" id="valid_to" name="valid_to" type="text" />
+                        <img alt="Para anúncios de temporada defina o período que pretende alugar para o valor específicado." id="help_valid_of" src="img/help-medium.png" title="Para anúncios de temporada defina o período que pretende alugar para o valor específicado" />
+                    </div>
+                    <div>
                         <label for="placetype">Tipo de imóvel:</label>
                         <select id="placetype">
                             <option value="0">Selecione</option>
@@ -61,35 +77,129 @@
                         <input class="inputSizeMedium" id="phone3" maxlength="16" name="phone3" type="text" />
                     </div>
                 </div>
-                <div id='default-top-details'>
+                <fieldset id="values-details" class='default-top-details'>
+                    <legend>Valores</legend>
+                    <div class="msg_fieldset">Selecione um tipo de anúncio primeiro.</div>
                     <div>
-                        <div>
-                            <label>Área (m²)</label><br />
-                            <input class="inputSizeLittleSmaller" id="m2" maxlength="2" name="m2" type="text" />
-                        </div>
-                        <div>
-                            <label>Dormitório</label><br />
-                            <input class="inputSizeLittleSmaller" id="bedroom" maxlength="2" name="bedroom" type="text" />
-                        </div>
-                        <div>
-                            <label>Suíte</label><br />
-                            <input class="inputSizeLittleSmaller" id="suite" maxlength="2" name="suite" type="text" />
-                        </div>
-                        <div>
-                            <label>Sala</label><br />
-                            <input class="inputSizeLittleSmaller" id="room" maxlength="2" name="room" type="text" />
-                        </div>
-                        <div>
-                            <label>Banheiro</label><br />
-                            <input class="inputSizeLittleSmaller" id="bathroom" maxlength="2" name="bathroom" type="text" />
-                        </div>
-                        <div>
-                            <label>Vagas de garagem</label><br />
-                            <input class="inputSizeLittleSmaller" id="garage" maxlength="2" name="garage" type="text" />
-                        </div>
+                        <label for="value_sale">Valor</label><br />
+                        <input class="inputSizeSmaller" id="value_sale" maxlength="10" name="value_sale" type="text" />
                     </div>
-                </div>
-                <br class="clr" />
+                    <div>
+                        <label for="deposit">Depósito de garantia</label><br />
+                        <input class="inputSizeSmaller" id="deposit" maxlength="10" name="deposit" type="text" />
+                    </div>
+                    <div>
+                        <label for="rent">Aluguel</label><br />
+                        <input class="inputSizeSmaller" id="rent" maxlength="10" name="rent" type="text" />
+                    </div>
+                    <div>
+                        <label for="rent_weekend">Aluguel final de semana</label><br />
+                        <input class="inputSizeSmaller" id="rent_weekend" maxlength="10" name="rent_weekend" type="text" />
+                    </div>
+                    <div>
+                        <label for="contract_time">Contrato (meses)</label><br />
+                        <input class="inputSizeSmaller" id="contract_time" maxlength="2" name="contract_time" type="text" />
+                    </div>
+                    <div>
+                        <label for="pack_time">Pacote (dias)</label><br />
+                        <input class="inputSizeSmaller" id="pack_time" maxlength="2" name="pack_time" type="text" disabled="disabled" />
+                    </div>
+                    <div>
+                        <label for="iptu">IPTU</label><br />
+                        <input class="inputSizeSmaller" id="iptu" maxlength="10" name="iptu" type="text" />
+                    </div>
+                    <div>
+                        <label for="condominium">Condomínio</label><br />
+                        <input class="inputSizeSmaller" id="condominium" maxlength="10" name="condominium" type="text" />
+                    </div>
+                    <div>
+                        <label for="internet">Banda larga</label><br />
+                        <input class="inputSizeSmaller" id="internet" maxlength="10" name="internet" type="text" />
+                    </div>
+                    <div>
+                        <label for="tv">TV por assinatura</label><br />
+                        <input class="inputSizeSmaller" id="tv" maxlength="10" name="tv" type="text" />
+                    </div>
+                    <div>
+                        <label for="total">Total</label><br />
+                        <input class="inputSizeSmaller" id="total" maxlength="10" name="total" type="text" disabled="disabled" />
+                    </div>
+                </fieldset>
+                <fieldset id="details" class='default-top-details'>
+                    <legend>Detalhes</legend>
+                    <div class="msg_fieldset">Selecione um tipo de imóvel primeiro.</div>
+                    <div>
+                        <label for="flat_floor">Apartamento por andar</label><br />
+                        <input class="inputSizeSmaller" id="flat_floor" maxlength="2" name="flat_floor" type="text" />
+                    </div>
+                    <div>
+                        <label for="floor">Andar em que se localiza</label><br />
+                        <input class="inputSizeSmaller" id="floor" maxlength="2" name="floor" type="text" />
+                    </div>
+                    <div>
+                        <label for="m2">Área útil (m²)</label><br />
+                        <input class="inputSizeSmaller" id="m2" maxlength="2" name="m2" type="text" />
+                    </div>
+                    <div>
+                        <label for="bedroom">Dormitório</label><br />
+                        <input class="inputSizeSmaller" id="bedroom" maxlength="2" name="bedroom" type="text" />
+                    </div>
+                    <div>
+                        <label for="suite">Suíte</label><br />
+                        <input class="inputSizeSmaller" id="suite" maxlength="2" name="suite" type="text" />
+                    </div>
+                    <div>
+                        <label for="room">Sala</label><br />
+                        <input class="inputSizeSmaller" id="room" maxlength="2" name="room" type="text" />
+                    </div>
+                    <div>
+                        <label for="bathroom">Banheiro</label><br />
+                        <input class="inputSizeSmaller" id="bathroom" maxlength="2" name="bathroom" type="text" />
+                    </div>
+                    <div>
+                        <label for="garage">Vagas de Garagem</label><br />
+                        <input class="inputSizeSmaller" id="garage" maxlength="2" name="garage" type="text" />
+                    </div>
+                </fieldset>
+                <fieldset id="facilities-property" class='default-top-details'>
+                    <legend>Comodidades</legend>
+                    <table>
+                        <tr>
+                            <th colspan="2">Imóvel</th>
+                            <th colspan="2">Condomínio</th>
+                        </tr>
+                        <tr>
+                            <td>Acesso à internet incluso</td>
+                            <td><input id="chkInternet" name="chkInternet" type="checkbox" /></td>
+                            <td>Porteiro</td>
+                            <td><input id="chkConcierge" name="chkConcierge" type="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td>Armários embutido no quarto</td>
+                            <td><input id="chkClosetsBedroom" name="chkClosetsBedroom" type="checkbox" /></td>
+                            <td>Churrasqueira</td>
+                            <td><input id="chkGrill" name="chkGrill" type="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td>Armários na cozinha</td>
+                            <td><input id="chkClosetsKitchen" name="chkClosetsKitchen" type="checkbox" /></td>
+                            <td>Gás encanado</td>
+                            <td><input id="chkGasChanneled" name="chkGasChanneled" type="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td>Banheira hidromassagem</td>
+                            <td><input id="chkHotTub" name="chkHotTub" type="checkbox" /></td>
+                            <td>Piscina</td>
+                            <td><input id="chkPool" name="chkPool" type="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td>Varanda</td>
+                            <td><input id="chkBalcony" name="chkBalcony" type="checkbox" /></td>
+                            <td>Portão automático</td>
+                            <td><input id="chkAutoGate" name="chkAutoGate" type="checkbox" /></td>
+                        </tr>
+                    </table>       
+                </fieldset>
                 <div class="right-button">
                     <button alt="Salvar" id="submit-default-top" title="Salvar" onclick="return false;" type="submit">Salvar</button>
                 </div>
@@ -118,13 +228,67 @@
     //if($('#userID').val()==""){
     //    $.openURLContent('#content', 'login', null); //FIXME
     //}
-    
+
+    $("#value_sale").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#deposit").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#rent").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#rent_weekend").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#contract_time").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#pack_time").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#period").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#iptu").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#condominium").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#internet").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#tv").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#total").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+
+    $("#flat_floor").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#floor").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#m2").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#bedroom").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#suite").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#room").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#bathroom").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#garage").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+
+    //Esconde todos os campos do grupo Valores e Detalhes que dependem de um valor de seleção antes (Tipo de anúnio e imóvel)
+    $.hideFields('#values-details > div', 'msg_fieldset', null);    
+    $.hideFields([$('#valid_of').parent()], null, null);
+    $.hideFields('#details > div', 'msg_fieldset', null);
+
+    $('#help_valid_of').tooltip();
+
+    //Observa a seleção Tipo de anúncio, esconde todos os campos e exibe com base no tipo de seleção. Em caso de troca de seleção os valores dos campos são limpos.
+    $('#adtype').change(function () {
+        $.hideFields('#values-details > div', null, '#values-details > .msg_fieldset');
+        $.hideFields($('#valid_of').parent(), null, null);
+        switch ($(this).find(":selected").text()) {
+            case 'Venda':
+                $.showFields([$('#value_sale').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
+                break;
+            case 'Aluguel':
+                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#rent_weekend').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#condominium').parent(), $('#internet').parent(), $('#tv').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
+                break;
+            case 'Temporada':
+                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#pack_time').parent(), $('#total').parent(), $('#valid_of').parent()], null, '#values-details > .msg_fieldset');
+                $.showFields($('#valid_of').parent(), null, null);
+                break;
+        }
+    });
+
+    //Observa a seleção Tipo de imóvel, esconde todos os campos e exibe com base no tipo de seleção. Em caso de troca de seleção os valores dos campos são limpos.
+    $('#placetype').change(function () {
+        $.hideFields('#details > div', null, '#details > .msg_fieldset');
+        switch ($(this).find(":selected").text()) {
+            case 'Apartamento':
+                $.showFields(['#details > div'], null, '#details > .msg_fieldset');
+                break;
+            case 'Casa':
+                $.showFields(['#details > div'], null, '#details > .msg_fieldset');
+                $.hideFields([$('#flat_floor').parent(), $('#floor').parent()], 'msg_fieldset', null);
+                break;
+        }
+    });
 
     //{'token':'CAACEdEose0cBAKdyGHLNu3DCJtWbdDygQ1N8xpMn0NAnXFO7gyU8lZBQralkLwwZCMJU9gqjD9BsGR5pFqeqKj9tgk6UacP4ixrrIpNsxXI5VomT6FUKGeJQOMsbGKXzmJydkCpRMA29TGqgK1OqPUS9JBrmKsH7L9PtM7ZCHZBBBGG76oexEpdvtg5icLEHXdxA34UVswZDZD', 'socialid':"100000485880931", 'address': "rua do bosque",  'lat': "-22.913051",  'log': "-47.054745", 'city':{'name':'Monte Santo', 'region':{'alias':'MG'}}, 'street':{'name':'bla bla'}, 'country':{'name':'Brazil'}, 'neighborhood':{'name':'Centro'}, 'placetype':{'id':'1'}}        
 
@@ -134,5 +298,5 @@
     });
 
     // Lista as cidades com base no estado default
-    $.consultaCidade($('#region_name :selected').text(), '#city_name');    
+    $.consultaCidade($('#region_name :selected').text(), '#city_name');
 </script>
