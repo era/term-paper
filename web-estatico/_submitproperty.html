@@ -18,18 +18,18 @@
                 <div id='default-top-info'>
                     <div>
                         <label for="placetype_id">Tipo de imóvel:</label>
-                        <select id="placetype_id">
+                        <select id="placetype_id" name="placetype_id">
                             <option value="0">Selecione</option>
                             <option value="1">Apartamento</option>
                             <option value="2">Casa</option>
                         </select>
                     </div>
                     <div>
-                        <label for="placetype_id">Tipo de oferta:</label>
-                        <select id="placetype_id">
+                        <label for="sellType">Tipo de oferta:</label>
+                        <select id="sellType">
                             <option value="0">Selecione</option>
-                            <option value="1">Apartamento</option>
-                            <option value="2">Casa</option>
+                            <option value="1">Vender</option>
+                            <option value="2">Alugar</option>
                         </select>
                     </div>
                     <div>
@@ -49,8 +49,8 @@
                         <input class="inputSizeBig" id="address" name="address" type="text" />
                     </div>
                     <div>
-                        <label for="city_region_name">Estado:</label>
-                        <select id="city_region_name" name="city_region_name"></select>
+                        <label for="region_alias">Estado:</label>
+                        <select id="region_alias" name="region_alias"></select>
                     </div>
                     <div>
                         <label for="city_name">Cidade:</label>
@@ -127,7 +127,7 @@
     //    $.openURLContent('#content', 'login', null); //FIXME
     //}
     
-    $("#m2").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    
     $("#bedroom").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#suite").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#room").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
@@ -145,8 +145,20 @@
     $.consultaCidade($('#city_region_name :selected').text(), '#city_name');  
 
     $('#submit-default-top').click(function() {
-        var jsonASubmeter = findplaces.webservice.places.criarJsonDoFormularioCadastrar();
-        console.log(jsonASubmeter);
+        findplaces.webservice.user.createSeller();
+        var place = findplaces.webservice.places.criarJsonDoFormularioCadastrar();
+        place.address = place.street.name + ' ' + place.number + ' ' + ' '+ place.address + ' ' + place.neighborhood.name + ', ' + place.city.name;
+        place.sellType = [place.sellType];
+        place.city.region = place.region;
+        $.geocodePlace(place.address,function(geocode){
+            place.address = geocode.address;
+            place.lat = geocode.lat;
+            place.log = geocode.lng;
+            place.token = $('#tokenLoginUser').val();
+            place.socialid = $('#userID').val();
+            console.log(place)
+            findplaces.webservice.places.insert(place,function(r){console.log(r)});
+        });
         return false;
     });
     

@@ -107,6 +107,11 @@ findplaces.webservice.user.seller = function (socialID, token) {
         }
     });
 };
+
+findplaces.webservice.user.createSeller = function(){
+    findplaces.webservice.user.seller($('#userID').val(),$('#tokenLoginUser').val());
+}
+
 findplaces.webservice.places = {};
 findplaces.webservice.places.insert = function(place, callback) {
     $.ajax({
