@@ -145,8 +145,16 @@
     $.consultaCidade($('#city_region_name :selected').text(), '#city_name');  
 
     $('#submit-default-top').click(function() {
-        var jsonASubmeter = findplaces.webservice.places.criarJsonDoFormularioCadastrar();
-        console.log(jsonASubmeter);
+        var place = findplaces.webservice.places.criarJsonDoFormularioCadastrar();
+        place.address = place.street.name + ' ' + place.number + ' ' + ' '+ place.address + ' ' + place.neighborhood.name + ', ' + place.city.name;
+        $.geocodePlace(place.address,function(geocode){
+            place.address = geocode.address;
+            place.lat = geocode.lat;
+            place.log = geocode.lng;
+            place.token = $('#tokenLoginUser').val();
+            place.socialid = $('#userID').val();
+            findplaces.webservice.places.insert(place,function(r){console.log(r)});
+        });
         return false;
     });
     
