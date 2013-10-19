@@ -18,7 +18,7 @@
                 <div id='default-top-info'>
                     <div>
                         <label for="placetype_id">Tipo de imóvel:</label>
-                        <select id="placetype_id">
+                        <select id="placetype_id" name="placetype_id">
                             <option value="0">Selecione</option>
                             <option value="1">Apartamento</option>
                             <option value="2">Casa</option>
@@ -145,6 +145,7 @@
     $.consultaCidade($('#city_region_name :selected').text(), '#city_name');  
 
     $('#submit-default-top').click(function() {
+        findplaces.webservice.user.createSeller();
         var place = findplaces.webservice.places.criarJsonDoFormularioCadastrar();
         place.address = place.street.name + ' ' + place.number + ' ' + ' '+ place.address + ' ' + place.neighborhood.name + ', ' + place.city.name;
         place.sellType = [place.sellType];
