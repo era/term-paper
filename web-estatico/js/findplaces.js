@@ -10,11 +10,15 @@ $.getUrlParam = function (e, t) { var n = (new RegExp("[\\?&]" + e + "=([^&#]*)"
 //Método para simular método StringFormat de algumas linguagens
 $.StringFormat = function () { var e = arguments[0]; for (var t = 0; t < arguments.length - 1; t++) { var n = new RegExp("\\{" + t + "\\}", "gm"); e = e.replace(n, arguments[t + 1]); } return e; };
 //Método para verificar se o campo é nulo ou vazio
-$.fn.IsNullOrEmpty = function (e, t) { if (e == "null" || e == null || e == "" || e == "undefined") return t; return e; };
+$.IsNullOrEmpty = function (e, t) { if (e == "null" || e == null || e == "" || e == "undefined") return t; return e; };
 //Método para criar um slide (utilizado nos pesos da busca avançada)
 $.criaSlider = function (e) { $.each(e, function (t, n) { n.slider({ animate: true, min: 1, max: 10, range: "min" }); }); };
 //Método para abrir uma url, aplicar #nomepágina e enviar paramentros
 $.openURLContent = function (e, t, n) { window.history.pushState(null, null, $.StringFormat("index.html#{0}{1}", t, n === null ? "" : "?" + n)); $(e).load($.StringFormat("_{0}.html", t.split('?')[0])); return false; };
+//Método para esconder um grupo de objetos ou arrays de fields (id ou class) [a variável t é um id ou classe que não deve ser oculto (exceção)] [a variável n é um id ou classe que deve ser exibido]
+$.hideFields = function (e, t, n) { if (e.length > 0) { $(e).each(function (r, i) { if (!$(i).attr("id") === t || !$(i).hasClass(t)) $(i).hide(); $(i).find('input').val(''); }); } if ($.IsNullOrEmpty(n)) { $(n).show(); } };
+//Método para exibir um grupo de objetos ou arrays de fields (id ou class) [a variável t é um id ou classe que não deve ser exibido (exceção)] [a variável n é um id ou classe que deve ser oculto]
+$.showFields = function (e, t, n) { if (e.length > 0) { $(e).each(function (r, i) { if (!$(i).attr("id") === t || !$(i).hasClass(t)) $(i).show(); }); } if ($.IsNullOrEmpty(n)) { $(n).hide(); } };
 /* ## MÉTODOS MINIMIFICADOS ## */
 
 //Remover e utilizar google

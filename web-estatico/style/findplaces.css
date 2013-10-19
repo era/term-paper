@@ -63,16 +63,18 @@ ul
  
 .right-button
 {
-	padding-right:30px;
+	padding-right:3px;
 	text-align:right;
 }
-
-.list-ok {
-    background:url(../img/list-ok.png) no-repeat 97% center;
+ 
+.list-ok
+{
+	background:url(../img/list-ok.png) no-repeat 97% center;
 }
-
-.list-no-ok {
-    background:url(../img/list-no-ok.png) no-repeat 97% center;
+ 
+.list-no-ok
+{
+	background:url(../img/list-no-ok.png) no-repeat 97% center;
 }
  
 header
@@ -477,11 +479,6 @@ footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li
 	display:inline-block;
 }
  
-footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img
-{
-	cursor:pointer;
-}
- 
 .wrapper > form > div#proprietary
 {
 	border:1px solid #909090;
@@ -581,7 +578,7 @@ div#default-top-info > div > label
 	display:inline-block;
 	font-weight:400;
 	text-align:right;
-	width:120px;
+	width:150px;
 }
  
 div#default-top-info > div > input,div#default-top-info > div > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input
@@ -591,7 +588,7 @@ div#default-top-info > div > input,div#default-top-info > div > select,form#busc
 	color:#666;
 	display:inline-block;
 	font-size:15px;
-	margin:0 10px 0 0;
+	margin:0 5px;
 	outline:none;
 	padding:7px 6px;
 }
@@ -613,34 +610,73 @@ div#default-top-form > form > div > button
 	text-shadow:1px 1px 0 #818181;
 }
  
-div#default-top-details
+fieldset.default-top-details
 {
-	float:left;
-	width:390px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-webkit-border-radius:5px;
+	background-color:#f9f9f9;
+	border:1px solid #ccc;
+	border-radius:5px;
+	margin-bottom:10px;
 }
  
-div#default-top-details > div
+fieldset.default-top-details > legend
 {
-	background:#f4f4f4;
 	font-size:13px;
-	margin:0 20px;
-	padding:10px;
 }
  
-div#default-top-details > div > div
+fieldset.default-top-details > .msg_fieldset
+{
+	color:#999;
+	display:block;
+	font-size:12px;
+	font-style:italic;
+	text-align:center;
+	text-shadow:1px 1px 0 #ddd;
+	width:100%;
+}
+ 
+fieldset.default-top-details > div
 {
 	display:inline-block;
-	margin:0 0 5px 20px;
+	font-size:12px;
+	padding:4px;
+	width:82px;
 }
  
-div#default-top-details > div > div > input
+fieldset.default-top-details > div > input
 {
 	background-color:#fff;
 	border:1px solid #909090;
 	color:#666;
-	margin-top:5px;
 	outline:none;
 	padding:2px;
+}
+ 
+fieldset.default-top-details > table
+{
+	display:inline-block;
+	font-size:11px;
+	margin-top:5px;
+	width:100%;
+}
+ 
+fieldset.default-top-details > table > tbody > tr > th
+{
+	background-color:#f4f4f4;
+	border:1px solid #ccc;
+	line-height:25px;
+	padding-left:5px;
+	text-align:left;
+	width:50%;
+}
+ 
+fieldset.default-top-details > table > tbody > tr > td
+{
+	border:1px solid #ccc;
+	line-height:25px;
+	padding-left:5px;
 }
  
 div#account-actions
@@ -730,9 +766,9 @@ div#detailsProperty > #tabs > #tabs-1 > div#imovel-valor-titulo > span
 }
  
 div#detailsProperty > #tabs > #tabs-1 > div.imovel-valor-outros
-{    
+{
 	font-size:15px;
-    line-height:35px;
+	line-height:35px;
 	padding:10px;
 	width:95%;
 }
@@ -744,86 +780,81 @@ div#detailsProperty > #tabs > #tabs-1 > div.imovel-valor-outros > span
 	font-size:16px;
 	font-weight:700;
 }
-
-div#detailsProperty > #tabs > #tabs-2 > div#imovel-detalhes 
-{    
-    font-size: 12px;
+ 
+div#detailsProperty > #tabs > #tabs-2 > div#imovel-detalhes
+{
+	font-size:12px;
 	padding:10px;
+	text-align:justify;
 	width:95%;
-    text-align: justify;
-} 
-
-div#detailsProperty > #tabs > #tabs-2 > div#imovel-detalhes > span 
-{
-    font-weight: 700;    
 }
-
-div#detailsProperty > #tabs > #tabs-2 > span 
+ 
+div#detailsProperty > #tabs > #tabs-2 > span
 {
-    display: block;
-    font-size: 15px;
-    margin: 5px 10px;
-    padding-top: 10px;
+	border-top:1px dotted #999;
+	display:block;
+	font-size:15px;
+	margin:5px 10px;
+	padding-top:10px;
 	width:95%;
-    border-top: 1px dotted #999;
 }
-
-div#detailsProperty > #tabs > #tabs-2 > table 
+ 
+div#detailsProperty > #tabs > #tabs-2 > table
 {
-    font-size: 11px;
-    display: inline-block;
-    width: 47.5%;
-    margin-top:5px;
+	display:inline-block;
+	font-size:11px;
+	margin-top:5px;
+	width:47.5%;
 }
-
-div#detailsProperty > #tabs > #tabs-2 > table#lista-comodidades 
+ 
+div#detailsProperty > #tabs > #tabs-2 > table#lista-comodidades
 {
-    margin-left: 10px;    
+	margin-left:10px;
 }
-
-div#detailsProperty > #tabs > #tabs-2 > table > tbody > tr > th 
+ 
+div#detailsProperty > #tabs > #tabs-2 > table > tbody > tr > th
 {
-    text-align: left;
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    line-height: 25px;
-    padding-left: 5px;
+	background-color:#f4f4f4;
+	border:1px solid #ccc;
+	line-height:25px;
+	padding-left:5px;
+	text-align:left;
 }
-
-div#detailsProperty > #tabs > #tabs-2 > table > tbody > tr > td 
+ 
+div#detailsProperty > #tabs > #tabs-2 > table > tbody > tr > td
 {
-    width: 50%;    
-    border: 1px solid #ccc;
-    line-height: 25px;
-    padding-left: 5px;
+	border:1px solid #ccc;
+	line-height:25px;
+	padding-left:5px;
+	width:50%;
 }
-
-div#detailsProperty > #tabs > #tabs-3 > p 
+ 
+div#detailsProperty > #tabs > #tabs-4 > p
 {
-    font-size: 14px;
-    padding: 5px 10px;
-    margin-top: 0px;    
+	font-size:14px;
+	margin-top:0;
+	padding:5px 10px;
 }
-
-div#detailsProperty > #tabs > #tabs-3 > p > span 
+ 
+div#detailsProperty > #tabs > #tabs-4 > p > span
 {
-    color: #777;    
+	color:#777;
 }
-
-div#detailsProperty > #tabs > #tabs-3 > p > span > textarea 
+ 
+div#detailsProperty > #tabs > #tabs-4 > p > span > textarea
 {
-    border: 2px solid #ccc;
-    resize: none;
+	border:2px solid #ccc;
+	resize:none;
 }
-
-div#detailsProperty > #tabs > #tabs-3 > div 
+ 
+div#detailsProperty > #tabs > #tabs-4 > div
 {
-    float: right;    
+	float:right;
 }
-
-div#detailsProperty > #tabs > #tabs-3 > div > button 
+ 
+div#detailsProperty > #tabs > #tabs-4 > div > button
 {
-    background:#00aeef;
+	background:#00aeef;
 	border:1px solid #297EA9;
 	color:#fff;
 	cursor:pointer;
@@ -832,7 +863,7 @@ div#detailsProperty > #tabs > #tabs-3 > div > button
 	padding:5px 15px;
 	text-shadow:1px 1px 0 #3b3b3b;
 }
-
+ 
 div.cluster
 {
 	color:#FFF;
@@ -864,6 +895,11 @@ div.cluster-3
 	height:65px;
 	line-height:66px;
 	width:66px;
+}
+ 
+footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img,div#default-top-info > div > img
+{
+	cursor:pointer;
 }
  
 /*#detalhesApartamento
