@@ -4,7 +4,7 @@
  */
 var findplaces = findplaces || {};
 findplaces.webservice = {};
-findplaces.webservice.url = "http://localhost/findplaces-web/rest/";  //"http://www.findplaces.com.br:9080";
+findplaces.webservice.url = "http://www.findplaces.com.br/findplaces-web/rest/";  //"http://www.findplaces.com.br:9080";
 findplaces.webservice.user = {};
 findplaces.webservice.user.createUserByEmail = function (user) {
     $.ajax({
@@ -157,3 +157,54 @@ findplaces.webservice.places.searchByLatLong = function (lat, lng, distance, soc
         }
     });
 };
+
+findplaces.webservice.tratarFormulariosComUnderline = function(key,value){
+    var jsonARetornar = {};
+    var antipenultimo =  undefined;
+    var penultimo = "";
+    var profundidade = 0;
+    var ultimo = "";
+    $.each(key, function(k,v){
+        console.log(v);
+        if(antipenultimo){
+            if(jsonARetornar[antipenultimo]){
+                jsonARetornar[antipenultimo][v] = {};    
+                profundidade = 2;
+            } else {
+                jsonARetornar[penultimo][antipenultimo][v] = {};
+                profundidade = 3;
+            }
+            
+        } else {
+            jsonARetornar[v] = {};    
+        }
+        ultimo = penultimo;
+        penultimo = antipenultimo;
+        antipenultimo = v;
+    });
+    if(profundidade==2){
+        jsonARetornar[penultimo][antipenultimo] = value;    
+    } else if(profundidade==3){
+        jsonARetornar[ultimo][penultimo][antipenultimo] = value;    
+    }
+
+    
+
+    return jsonARetornar;
+}
+
+findplaces.webservice.places.criarJsonDoFormularioCadastrar = function(){
+    var formulario = $('#submeterImovel').serializeObject();      
+    var jsonASubmeter = {};
+    $.each(formulario, function(key, value){
+        if(key.indexOf('_')!=-1){
+            var arrayKeys = key.split('_');
+           $.extend(jsonASubmeter,findplaces.webservice.tratarFormulariosComUnderline(arrayKeys,value));
+            console.log(jsonASubmeter)
+        } else {
+            jsonASubmeter[key] = value;
+        }
+    });
+
+    return jsonASubmeter;
+}

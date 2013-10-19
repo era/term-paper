@@ -14,41 +14,49 @@
         </div>
         <div id="default-top-triangle" class="default-top-triangle-orange"></div>
         <div id="default-top-form">
-            <form>
+            <form id="submeterImovel">
                 <div id='default-top-info'>
                     <div>
-                        <label for="placetype">Tipo de imóvel:</label>
-                        <select id="placetype">
+                        <label for="placetype_id">Tipo de imóvel:</label>
+                        <select id="placetype_id">
                             <option value="0">Selecione</option>
                             <option value="1">Apartamento</option>
                             <option value="2">Casa</option>
                         </select>
                     </div>
                     <div>
-                        <label for="address1">Endereço:</label>
-                        <input class="inputSizeBig" id="address1" name="address1" type="text" />
+                        <label for="placetype_id">Tipo de oferta:</label>
+                        <select id="placetype_id">
+                            <option value="0">Selecione</option>
+                            <option value="1">Apartamento</option>
+                            <option value="2">Casa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="street_name">Endereço:</label>
+                        <input class="inputSizeBig" id="street_name" name="street_name" type="text" />
                     </div>
                     <div>
                         <label for="number">Número:</label>
                         <input class="inputSizeSmaller" id="number" maxlength="10" name="number" type="text" />
                     </div>
                     <div>
-                        <label for="neighborhood">Bairro:</label>
-                        <input class="inputSizeMedium" id="neighborhood" name="neighborhood" type="text" />
+                        <label for="neighborhood_name">Bairro:</label>
+                        <input class="inputSizeMedium" id="neighborhood_name" name="neighborhood_name" type="text" />
                     </div>
                     <div>
-                        <label for="address2">Complemento:</label>
-                        <input class="inputSizeBig" id="address2" name="address2" type="text" />
+                        <label for="address">Complemento:</label>
+                        <input class="inputSizeBig" id="address" name="address" type="text" />
                     </div>
                     <div>
-                        <label for="region_name">Estado:</label>
-                        <select id="region_name" name="region_name"></select>
+                        <label for="city_region_name">Estado:</label>
+                        <select id="city_region_name" name="city_region_name"></select>
                     </div>
                     <div>
                         <label for="city_name">Cidade:</label>
                         <select id="city_name" name="city_name"></select>
                     </div>
-                    <div>
+                   <!-- <div>
                         <label for="phone1">Telefone 1:</label>
                         <input class="inputSizeMedium" id="phone1" maxlength="16" name="phone1" type="text" />
                     </div>
@@ -59,7 +67,7 @@
                     <div>
                         <label for="phone3">Telefone 3:</label>
                         <input class="inputSizeMedium" id="phone3" maxlength="16" name="phone3" type="text" />
-                    </div>
+                    </div>-->
                 </div>
                 <div id='default-top-details'>
                     <div>
@@ -130,9 +138,16 @@
 
     // Lista os estados
     $.each(uf_cidade.estados, function (key, val) {
-        $('#region_name').append('<option value="' + val.sigla + '">' + val.sigla + '</option>');
+        $('#city_region_name').append('<option value="' + val.sigla + '">' + val.sigla + '</option>');
     });
 
     // Lista as cidades com base no estado default
-    $.consultaCidade($('#region_name :selected').text(), '#city_name');    
+    $.consultaCidade($('#city_region_name :selected').text(), '#city_name');  
+
+    $('#submit-default-top').click(function() {
+        var jsonASubmeter = findplaces.webservice.places.criarJsonDoFormularioCadastrar();
+        console.log(jsonASubmeter);
+        return false;
+    });
+    
 </script>

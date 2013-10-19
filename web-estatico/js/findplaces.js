@@ -158,3 +158,16 @@ $.initLogin = function () {
         }
     });
 };
+
+
+$.geocodePlace = function (address,callback) {
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address':address},function(response){
+        var place = {};
+        place.address = response[0].formatted_address;
+        place.lat = response[0].geometry.location.lb;
+        place.lng = response[0].geometry.location.mb;
+        callback(place);
+    });
+
+}
