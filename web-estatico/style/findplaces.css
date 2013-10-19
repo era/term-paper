@@ -678,6 +678,11 @@ fieldset.default-top-details > table > tbody > tr > td
 	line-height:25px;
 	padding-left:5px;
 }
+
+fieldset.default-top-details > table > tbody > tr > td > label 
+{
+	cursor: pointer;
+}
  
 div#account-actions
 {
