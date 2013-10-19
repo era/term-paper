@@ -1,0 +1,165 @@
+﻿<div class="content-title">
+    <div class="wrapper">
+        <h1>Home > Anuncie no Findplaces
+        </h1>
+    </div>
+</div>
+<div class="wrapper">
+    <div id="default-top">
+        <div id="default-top-title" class="default-top-orange">
+            <h1>
+                <img alt="Anuncie no Findplaces" src="img/sign.png" title="Anuncie no Findplaces">
+                ANUNCIE NO FINDPLACES
+            </h1>
+        </div>
+        <div id="default-top-triangle" class="default-top-triangle-orange"></div>
+        <div id="default-top-form">
+            <form id="submeterImovel">
+                <div id='default-top-info'>
+                    <div>
+                        <label for="placetype_id">Tipo de imóvel:</label>
+                        <select id="placetype_id" name="placetype_id">
+                            <option value="0">Selecione</option>
+                            <option value="1">Apartamento</option>
+                            <option value="2">Casa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="sellType">Tipo de oferta:</label>
+                        <select id="sellType">
+                            <option value="0">Selecione</option>
+                            <option value="1">Vender</option>
+                            <option value="2">Alugar</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="street_name">Endereço:</label>
+                        <input class="inputSizeBig" id="street_name" name="street_name" type="text" />
+                    </div>
+                    <div>
+                        <label for="number">Número:</label>
+                        <input class="inputSizeSmaller" id="number" maxlength="10" name="number" type="text" />
+                    </div>
+                    <div>
+                        <label for="neighborhood_name">Bairro:</label>
+                        <input class="inputSizeMedium" id="neighborhood_name" name="neighborhood_name" type="text" />
+                    </div>
+                    <div>
+                        <label for="address">Complemento:</label>
+                        <input class="inputSizeBig" id="address" name="address" type="text" />
+                    </div>
+                    <div>
+                        <label for="region_alias">Estado:</label>
+                        <select id="region_alias" name="region_alias"></select>
+                    </div>
+                    <div>
+                        <label for="city_name">Cidade:</label>
+                        <select id="city_name" name="city_name"></select>
+                    </div>
+                   <!-- <div>
+                        <label for="phone1">Telefone 1:</label>
+                        <input class="inputSizeMedium" id="phone1" maxlength="16" name="phone1" type="text" />
+                    </div>
+                    <div>
+                        <label for="phone2">Telefone 2:</label>
+                        <input class="inputSizeMedium" id="phone2" maxlength="16" name="phone2" type="text" />
+                    </div>
+                    <div>
+                        <label for="phone3">Telefone 3:</label>
+                        <input class="inputSizeMedium" id="phone3" maxlength="16" name="phone3" type="text" />
+                    </div>-->
+                </div>
+                <div id='default-top-details'>
+                    <div>
+                        <div>
+                            <label>Área (m²)</label><br />
+                            <input class="inputSizeLittleSmaller" id="m2" maxlength="2" name="m2" type="text" />
+                        </div>
+                        <div>
+                            <label>Dormitório</label><br />
+                            <input class="inputSizeLittleSmaller" id="bedroom" maxlength="2" name="bedroom" type="text" />
+                        </div>
+                        <div>
+                            <label>Suíte</label><br />
+                            <input class="inputSizeLittleSmaller" id="suite" maxlength="2" name="suite" type="text" />
+                        </div>
+                        <div>
+                            <label>Sala</label><br />
+                            <input class="inputSizeLittleSmaller" id="room" maxlength="2" name="room" type="text" />
+                        </div>
+                        <div>
+                            <label>Banheiro</label><br />
+                            <input class="inputSizeLittleSmaller" id="bathroom" maxlength="2" name="bathroom" type="text" />
+                        </div>
+                        <div>
+                            <label>Vagas de garagem</label><br />
+                            <input class="inputSizeLittleSmaller" id="garage" maxlength="2" name="garage" type="text" />
+                        </div>
+                    </div>
+                </div>
+                <br class="clr" />
+                <div class="right-button">
+                    <button alt="Salvar" id="submit-default-top" title="Salvar" onclick="return false;" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="account-actions">
+        <div>
+            MINHA CONTA
+        </div>
+        <ul>
+            <li>
+                <a href="#">Meus anúncios</a>
+            </li>
+            <li>
+                <a href="#">Perfil</a>
+            </li>
+            <li>
+                <a href="#">Perguntas</a>
+            </li>
+        </ul>
+    </div>
+    <br class="clr" />
+</div>
+<script type="text/javascript" charset="utf-8">
+    //if($('#userID').val()==""){
+    //    $.openURLContent('#content', 'login', null); //FIXME
+    //}
+    
+    
+    $("#bedroom").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#suite").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#room").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#bathroom").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#garage").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+
+    //{'token':'CAACEdEose0cBAKdyGHLNu3DCJtWbdDygQ1N8xpMn0NAnXFO7gyU8lZBQralkLwwZCMJU9gqjD9BsGR5pFqeqKj9tgk6UacP4ixrrIpNsxXI5VomT6FUKGeJQOMsbGKXzmJydkCpRMA29TGqgK1OqPUS9JBrmKsH7L9PtM7ZCHZBBBGG76oexEpdvtg5icLEHXdxA34UVswZDZD', 'socialid':"100000485880931", 'address': "rua do bosque",  'lat': "-22.913051",  'log': "-47.054745", 'city':{'name':'Monte Santo', 'region':{'alias':'MG'}}, 'street':{'name':'bla bla'}, 'country':{'name':'Brazil'}, 'neighborhood':{'name':'Centro'}, 'placetype':{'id':'1'}}        
+
+    // Lista os estados
+    $.each(uf_cidade.estados, function (key, val) {
+        $('#city_region_name').append('<option value="' + val.sigla + '">' + val.sigla + '</option>');
+    });
+
+    // Lista as cidades com base no estado default
+    $.consultaCidade($('#city_region_name :selected').text(), '#city_name');  
+
+    $('#submit-default-top').click(function() {
+        findplaces.webservice.user.createSeller();
+        var place = findplaces.webservice.places.criarJsonDoFormularioCadastrar();
+        place.address = place.street.name + ' ' + place.number + ' ' + ' '+ place.address + ' ' + place.neighborhood.name + ', ' + place.city.name;
+        place.sellType = [place.sellType];
+        place.city.region = place.region;
+        $.geocodePlace(place.address,function(geocode){
+            place.address = geocode.address;
+            place.lat = geocode.lat;
+            place.log = geocode.lng;
+            place.token = $('#tokenLoginUser').val();
+            place.socialid = $('#userID').val();
+            console.log(place)
+            findplaces.webservice.places.insert(place,function(r){console.log(r)});
+        });
+        return false;
+    });
+    
+</script>
