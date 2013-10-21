@@ -14,11 +14,13 @@ $.IsNullOrEmpty = function (e, t) { if (e == "null" || e == null || e == "" || e
 //Método para criar um slide (utilizado nos pesos da busca avançada)
 $.criaSlider = function (e) { $.each(e, function (t, n) { n.slider({ animate: true, min: 1, max: 10, range: "min" }); }); };
 //Método para abrir uma url, aplicar #nomepágina e enviar paramentros
-$.openURLContent = function (e, t, n) { window.history.pushState(null, null, $.StringFormat("index.html#{0}{1}", t, n === null ? "" : "?" + n)); $(e).load($.StringFormat("_{0}.html", t.split('?')[0])); return false; };
+$.openURLContent = function (e, t, n) { window.history.pushState(null, null, $.StringFormat("index.html#{0}{1}", t, $.IsNullOrEmpty(n, null) === null ? "" : "?" + n)); $(e).load($.StringFormat("_{0}.html", t.split('?')[0])); return false; };
 //Método para esconder um grupo de objetos ou arrays de fields (id ou class) [a variável t é um id ou classe que não deve ser oculto (exceção)] [a variável n é um id ou classe que deve ser exibido]
-$.hideFields = function (e, t, n) { if (e.length > 0) { $(e).each(function (r, i) { if (!$(i).attr("id") === t || !$(i).hasClass(t)) $(i).hide(); $(i).find('input').val(''); }); } if ($.IsNullOrEmpty(n)) { $(n).show(); } };
+$.hideFields = function (e, t, n) { if (e.length > 0) { $(e).each(function (r, i) { if (!$(i).attr("id") === t || !$(i).hasClass(t)) $(i).hide(); $(i).find('input').val(''); }); } if ($.IsNullOrEmpty(n, null) !== null) { $(n).show(); } };
 //Método para exibir um grupo de objetos ou arrays de fields (id ou class) [a variável t é um id ou classe que não deve ser exibido (exceção)] [a variável n é um id ou classe que deve ser oculto]
-$.showFields = function (e, t, n) { if (e.length > 0) { $(e).each(function (r, i) { if (!$(i).attr("id") === t || !$(i).hasClass(t)) $(i).show(); }); } if ($.IsNullOrEmpty(n)) { $(n).hide(); } };
+$.showFields = function (e, t, n) { if (e.length > 0) { $(e).each(function (r, i) { if (!$(i).attr("id") === t || !$(i).hasClass(t)) $(i).show(); }); } if ($.IsNullOrEmpty(n, null) !== null) { $(n).hide(); } };
+//Método para calcular o valor de um grupo de objetos ou arrays de fields (id ou class) [a variável t é um grupo de arrays de fields que deve ser ignorado na soma]
+$.sumInputGroup = function (e, t) { var n; var r = []; $(e).each(function (i, s) { r.push(s.id); }); $(t).each(function (o, u) { n = r.indexOf(u); r.splice(n, 1); }); var a; var f = 0; $(r).each(function (l, c) { a = $("#" + c).val(); if ($.IsNullOrEmpty(a, null) !== null) { if (a.indexOf("R$ ") >= 0) a = a.replace("R$ ", ""); if (a.indexOf(".") >= 0) a = a.replace(".", ""); f += parseFloat(a); } }); $("#total").val(f).maskMoney("mask"); };
 /* ## MÉTODOS MINIMIFICADOS ## */
 
 //Remover e utilizar google
@@ -33,13 +35,14 @@ $.consultaCidade = function (ufSigla, target) {
     });
 };
 
-$.consultaMapa = function (lat, lng, markers) {
+$.consultaMapa = function (lat, lng, fieldName) {
     var formulario = $('#buscaRapida').clone(); //fixme
-    $('#map').gmap3({
+    $(fieldName).gmap3({
         map: {
             options: {
                 center: [lat, lng],
-                zoom: 15
+                zoom: 15,
+                scrollwheel: false
             },
         },
         marker: {
@@ -116,7 +119,7 @@ $.consultaMapa = function (lat, lng, markers) {
             }
         }
     });
-    $('#map').append(formulario);
+    $(fieldName).append(formulario);
 };
 
 $.showPlaceInFlexslider = function (id) {

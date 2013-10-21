@@ -83,8 +83,8 @@
 <div id="showSearch" class="hide">
     <a href="#" id="showPanel" title="Mostrar painel de busca">Mostrar painel</a>
 </div>
-<div id="map">    
-    <form id="buscaRapida">        
+<div id="map">
+    <form id="buscaRapida">
         <div class="form-header">
             <div id="buscaRapidaOcultar">
                 <a href="#" id="hidePanel" title="Ocultar painel de busca">Ocultar painel</a>
@@ -100,11 +100,11 @@
         <!--hidden fields-->
         <input type="hidden" name="lat" id="lat" />
         <input type="hidden" name="lng" id="lng" />
-    </form>    
+    </form>
 </div>
 <div class="flexslider">
     <ul class="homeSlides">
-        <li id="slide1" onclick="$.openURLContent('#content', 'detailsproperty');">
+        <li id="slide1" onclick="$.openURLContent('#content', 'detailsproperty', 'slide1');">
             <img src="img/photography/1_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Cambuí</h3>
@@ -112,7 +112,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li id="slide2" onclick="$.openURLContent('#content', 'detailsproperty');">
+        <li id="slide2" onclick="$.openURLContent('#content', 'detailsproperty', 'slide2');">
             <img src="img/photography/2_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Centro</h3>
@@ -120,7 +120,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li id="slide3" onclick="$.openURLContent('#content', 'detailsproperty');">
+        <li id="slide3" onclick="$.openURLContent('#content', 'detailsproperty', 'slide3');">
             <img src="img/photography/3_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Novo Cambuí</h3>
@@ -128,7 +128,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li id="slide4" onclick="$.openURLContent('#content', 'detailsproperty');">
+        <li id="slide4" onclick="$.openURLContent('#content', 'detailsproperty', 'slide4');">
             <img src="img/photography/4_0.jpg" />
             <span>CASA</span>
             <h3>Alphavile</h3>
@@ -136,7 +136,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li id='slide5' onclick="$.openURLContent('#content', 'detailsproperty');">
+        <li id='slide5' onclick="$.openURLContent('#content', 'detailsproperty', 'slide5');">
             <img src="img/photography/5_0.jpg" />
             <span>CASA</span>
             <h3>Valinhos</h3>
@@ -144,7 +144,7 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li id='slide6' onclick="$.openURLContent('#content', 'detailsproperty');">
+        <li id='slide6' onclick="$.openURLContent('#content', 'detailsproperty', 'slide6');">
             <img src="img/photography/6_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Sumaré</h3>
@@ -152,18 +152,18 @@
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
         </li>
-        <li id='slide7' onclick="$.openURLContent('#content', 'detailsproperty');">
+        <li id='slide7' onclick="$.openURLContent('#content', 'detailsproperty', 'slide7');">
             <img src="img/photography/7_0.jpg" />
             <span>APARTAMENTO</span>
             <h3>Valinhos</h3>
             <p>
                 Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
             </p>
-        </li>       
-    </ul>    
+        </li>
+    </ul>
 </div>
 <script charset="utf-8" type="text/javascript">
-    $.consultaMapa(-22.977281, -47.14822);
+    $.consultaMapa(-22.977281, -47.14822, '#map');
     $.searchPlace('endereco');
     $('#advancedSearch').tooltip();
     $('#fastSearch').tooltip();
@@ -175,7 +175,7 @@
     $("#precoAte").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false }).attr('style', 'display: none !important;');
     $("#raio").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
 
-     //Flexslider
+    //Flexslider
     var flexslider = $('.flexslider').flexslider({
         selector: ".homeSlides > li",
         animation: "slide",
@@ -205,18 +205,18 @@
     });
 
     $('#hidePanel').click(function () {
-        $('#buscaRapida').hide(0, function() {
+        $('#buscaRapida').hide(0, function () {
             $('#showSearch').show();
-        });        
+        });
     });
 
-    $('#showPanel').click(function() {
-        $('#showSearch').slideUp('fast', function() {
+    $('#showPanel').click(function () {
+        $('#showSearch').slideUp('fast', function () {
             $('#buscaRapida').show();
         });
     });
 
-    $('.slides > li').click(function() {
+    $('.slides > li').click(function () {
         $.openURLContent('#content', 'detailsproperty', $.StringFormat('id={0}', $(this).attr('id')));
     });
 

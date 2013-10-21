@@ -1,23 +1,75 @@
-<div class="content-title">
+﻿<div class="content-title">
     <div class="wrapper">
-        <h1>
-            Home > Administrar
+        <h1>Home > Meus anúncios
         </h1>
     </div>
 </div>
 <div class="wrapper">
-	<div class="controleComponente">
-		<div class="title">Últimos imóveis cadastrados</div>
-		<div class="item">Rua Kokira, 132 - Bloco C - Código APTOIU9023 - Alugar</div>
-	</div>
-	<div class="controleComponente">
-		<div class="title">Meus imóveis mais vistos</div>
-	</div>
-	<div class="controleComponente">
-		<div class="title">Meu perfil</div>
-	</div>
-	<div class="controleComponente">
-		<div class="title">Meu perfil de vendedor</div>
-	</div>
+    <div id="default-top">
+        <div id="default-top-title" class="default-top-blue">
+            <h1>
+                <img alt="Anuncie no Findplaces" src="img/sign.png" title="Anuncie no Findplaces">
+                MEUS ANÚNCIOS
+            </h1>
+        </div>
+        <div id="default-top-triangle" class="default-top-triangle-blue"></div>
+        <div id="default-top-form">
+            <table>
+                <tr>
+                    <th>Data do anúncio</th>
+                    <th>Status</th>
+                    <th>Endereço</th>
+                    <th>Validade</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>01/11/2013</td>
+                    <td>Finalizado</td>
+                    <td>Avenida Benjamin Constant, 35</td>
+                    <td>31/12/2013</td>
+                    <td>
+                        <img src="img/duplicate.png" alt="Duplicar anúncio" title="Duplicar anúncio" />                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>01/11/2013</td>
+                    <td>Ativado</td>
+                    <td>Rua Doutor Moraes Sales, 28</td>
+                    <td>31/12/2013</td>
+                    <td>
+                        <img src="img/edit.png" alt="Editar anúncio" title="Editar anúncio" onclick="$.openURLContent('#content', 'submitproperty', null);" />
+                        <img src="img/duplicate.png" alt="Duplicar anúncio" title="Duplicar anúncio" />                        
+                        <img src="img/lock.png" alt="Bloquear anúncio" title="Bloquear anúncio" />
+                        <img src="img/off.png" alt="Encerrar anúncio" title="Encerrar anúncio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>01/11/2013</td>
+                    <td>Desativado</td>
+                    <td>Rua Francisco Artur de Queiroz, 1900</td>
+                    <td>31/12/2013</td>
+                    <td>
+                        <img src="img/edit.png" alt="Editar anúncio" title="Editar anúncio" onclick="$.openURLContent('#content', 'submitproperty', null);" />
+                        <img src="img/duplicate.png" alt="Duplicar anúncio" title="Duplicar anúncio" />                        
+                        <img src="img/unlock.png" alt="Desbloquear anúncio" title="Desbloquear anúncio" />
+                        <img src="img/off.png" alt="Encerrar anúncio" title="Encerrar anúncio" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="account-actions">
+        <div>
+            MINHA CONTA
+        </div>
+        <ul>
+            <li>
+                <a href="index.html#management">Meus anúncios</a>
+            </li>
+            <li>
+                <a href="index.html#profile">Perfil</a>
+            </li>
+        </ul>
+    </div>
+    <br class="clr" />
 </div>
-<div style="clear:both" />

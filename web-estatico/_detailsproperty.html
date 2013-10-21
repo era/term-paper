@@ -35,17 +35,17 @@
                     <ul>
                         <li><a href="#tabs-1">Valores</a></li>
                         <li><a href="#tabs-2">Informações</a></li>
-                        <li><a href="#tabs-3">Localização</a></li>
+                        <li id="show-map-details"><a href="#tabs-3">Localização</a></li>
                         <li><a href="#tabs-4">Perguntas</a></li>
                     </ul>
-                    <div id="tabs-1" class="ui-tabs-top-panel">
+                    <div id="tabs-1">
                         <div id="imovel-valor-titulo">Valor total<span>R$ 3.000</span></div>
                         <div class="imovel-valor-outros">Aluguel<span>R$ 2.500</span></div>
                         <div class="imovel-valor-outros">IPTU<span>R$ 250</span></div>
                         <div class="imovel-valor-outros">Condomínio<span>R$ 250</span></div>
                         <br class="clr" />
                     </div>
-                    <div id="tabs-2" class="ui-tabs-top-panel">
+                    <div id="tabs-2">
                         <div id="imovel-detalhes">
                             Imóvel novo, pronto para morar, projeto diferenciado e excelente localização, as ruas do bairro são de circulação local, ótima oportunidade. A casa tem sistema de aquecimento solar com água quente nos banheiros e cozinha além de portão eletrônico.                            
                         </div>
@@ -92,7 +92,7 @@
                         </table>
                     </div>
                     <div id="tabs-3">
-                        <p>Mapa</p>
+                        <div id="map-details"></div>
                     </div>
                     <div id="tabs-4">
                         <p>Assunto: <span>Pergunta sobre imóvel</span></p>
@@ -125,6 +125,36 @@
             <li>Banheiros: 2</li>
             <li>Vagas de Garagem: 2</li>
         </ul>
+        <ul class="details-promotion">
+            <li class="details-promotion">
+                <div class="details-promotion-img"><img src="img/photography/1_0.jpg" /></div>
+                <div class="details-promotion-text">
+                    <label>Vende</label>
+                    Apartamento no Cambuí em condomínio fechado com churrasqueira...
+                </div>
+            </li>
+            <li class="details-promotion">
+                <div class="details-promotion-img"><img src="img/photography/2_0.jpg" /></div>
+                <div class="details-promotion-text">
+                    <label>Aluga</label>
+                    Apartamento no Cambuí em condomínio fechado com churrasqueira...
+                </div>
+            </li>
+            <li class="details-promotion">
+                <div class="details-promotion-img"><img src="img/photography/3_0.jpg" /></div>
+                <div class="details-promotion-text">
+                    <label>Temporada</label>
+                    Apartamento no Cambuí em condomínio fechado com churrasqueira...
+                </div>
+            </li>
+            <li class="details-promotion">
+                <div class="details-promotion-img"><img src="img/photography/4_0.jpg" /></div>
+                <div class="details-promotion-text">
+                    <label>Vende</label>
+                    Apartamento no Cambuí em condomínio fechado com churrasqueira...
+                </div>
+            </li>
+        </ul>
     </div>
     <br class="clr" />
 </div>
@@ -137,5 +167,18 @@
     });
 
     $("#tabs").tabs();
+
+    $('#show-map-details').click(function () {
+        $('#map-details').width('390px').height('300px').gmap3({
+            map: {
+                options: {
+                    center: ['-22.892662', '-47.045438'],
+                    zoom: 15,
+                    scrollwheel: false
+                }
+            }
+        });
+    });
+
     //alert($.getUrlParam('id', location.href));
 </script>
