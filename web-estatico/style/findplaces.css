@@ -732,25 +732,25 @@ div#default-top-form > table, #tabs > div > table
     font-size: 14px;    
 }
 
-div#default-top-form > table > tbody > tr > th, div#default-top-form > table > tbody > tr > td, #tabs > div > table > tbody > tr > th, #tabs > div > table > tbody > tr > td
+div#default-top-form > table > tbody > tr > th, div#default-top-form > table > tbody > tr > td, #tabs > div > table#property-questions > tbody > tr > th, #tabs > div > table#property-questions > tbody > tr > td
 {
     line-height: 40px;
     height: 40px;
 }
 
-div#default-top-form > table > tbody > tr > td, #tabs > div > table > tbody > tr > td
+div#default-top-form > table > tbody > tr > td, #tabs > div > table#property-questions > tbody > tr > td
 {
     text-align: center;
     border-bottom: 1px dotted #ccc;
 }
 
-div#default-top-form > table > tbody > tr > td > img, #tabs > div > table > tbody > tr > td > img
+div#default-top-form > table > tbody > tr > td > img, #tabs > div > table#property-questions > tbody > tr > td > img
 {
     cursor: pointer;
     vertical-align: middle;
 }
 
-div#default-top-form > table > tbody > tr > th, #tabs > div > table > tbody > tr > th
+div#default-top-form > table > tbody > tr > th, #tabs > div > table#property-questions > tbody > tr > th
 {
     background: #f4f4f4;
     border-bottom: 2px solid #ccc;
