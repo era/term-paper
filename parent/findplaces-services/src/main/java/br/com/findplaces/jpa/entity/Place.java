@@ -249,6 +249,14 @@ public class Place extends BaseEntity implements Serializable {
 		this.sellType = sellType;
 	}
 
+	public List<Coment> getComents() {
+		return coments;
+	}
+
+	public void setComents(List<Coment> coments) {
+		this.coments = coments;
+	}
+
 	
 
 }

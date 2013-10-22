@@ -39,6 +39,7 @@ import br.com.findplaces.webservices.requests.BaseJSONObject;
 
 @Path("/place")
 @Stateless
+@Produces({ MediaType.APPLICATION_JSON })
 public class PlaceService implements Serializable {
 
 	private static final long serialVersionUID = -1278778592971168795L;
@@ -54,12 +55,27 @@ public class PlaceService implements Serializable {
 	
 	@EJB
 	private DataMiningEJB dataminingEJB;
+	
+	@POST
+	@Path("/coment")
+	public PlaceResponse coment(@QueryParam(value= "token") String token,
+			@QueryParam(value="socialID") String socialID,
+			@QueryParam(value="comentID")Long comentID){
+		return null;
+	}
+	
+	@GET
+	@Path("/sugest")
+	public PlaceResponse sugestPlace(@QueryParam(value="socialID") String socialID,
+			@QueryParam(value="token") String token){
+		return null;
+	}
+
 
 	@GET
 	@Path("/{id}")
-	@Produces({ MediaType.APPLICATION_JSON })
 	public PlaceResponse getPlace(@QueryParam(value = "token") String token,
-			@QueryParam(value = "type") String socialID,
+			@QueryParam(value = "socialID") String socialID,
 			@PathParam(value = "id") Long id) {
 		PlaceResponse response = new PlaceResponse();
 		UserTO user = null;

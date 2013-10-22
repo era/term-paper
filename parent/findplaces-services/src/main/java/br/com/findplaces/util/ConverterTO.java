@@ -1,7 +1,9 @@
 package br.com.findplaces.util;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import br.com.findplaces.jpa.entity.Coment;
 import br.com.findplaces.jpa.entity.Facilities;
 import br.com.findplaces.jpa.entity.Image;
 import br.com.findplaces.jpa.entity.Place;
@@ -22,6 +24,7 @@ import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.RegionTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
 import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
+import br.com.findplaces.model.to.ComentTO;
 import br.com.findplaces.model.to.FacilitiesTO;
 import br.com.findplaces.model.to.PhotoTO;
 import br.com.findplaces.model.to.PlaceTO;
@@ -124,6 +127,11 @@ public class ConverterTO {
 		entity.setStreet(converter(place.getStreet()));
 		entity.setSuite(place.getSuite());
 		entity.setType(converter(place.getType()));
+		List<Coment> coments =new ArrayList<Coment>();
+		for(ComentTO coment : place.getComents()){
+			coments.add(converter(coment));
+		}
+		entity.setComents(coments);
 		//SPATIAL
 		return entity;
 	}
@@ -152,9 +160,32 @@ public class ConverterTO {
 				sellType.add(sell.getId());
 			}
 			to.setSellType(sellType);
+		} //fixme
+		
+		List<ComentTO> coments =new ArrayList<ComentTO>();
+		for(Coment coment : place.getComents()){
+			coments.add(converter(coment));
 		}
+		to.setComents(coments);
 		//SPATIAL		
 		return to;
+	}
+	
+	public static ComentTO converter(Coment coment){
+		ComentTO to = new ComentTO();
+		to.setId(coment.getId());
+		to.setAnswer(converter(coment.getAnswer()));
+		to.setUser(converter(coment.getUser()));
+		to.setText(coment.getText());
+		return to;
+	}
+	
+	public static Coment converter(ComentTO to){
+		Coment coment = new Coment();
+		coment.setAnswer(converter(to.getAnswer()));
+		coment.setId(to.getId());
+		coment.setUser(converter(to.getUser()));
+		return coment;
 	}
 	
 	public static PlaceSpatial converter(PlaceSpatialTO to) {
