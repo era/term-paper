@@ -1,19 +1,20 @@
 package br.com.findplaces.jpa.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_TOWNHOUSE")
-public class Facilities extends BaseEntity {
-private static final long serialVersionUID = 1L;
+public class Facilities extends BaseEntity implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -94,7 +95,7 @@ private static final long serialVersionUID = 1L;
 	@Column
 	private Double price;
 		
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	private Place place;
 
 	public Long getId() {

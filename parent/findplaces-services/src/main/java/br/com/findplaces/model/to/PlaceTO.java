@@ -16,6 +16,8 @@ public class PlaceTO implements Serializable {
 	private static final long serialVersionUID = -4443449674515309396L;
 
 	private Long id;
+	
+	private List<ComentTO> coments;
 
 	private String address;
 
@@ -234,6 +236,14 @@ public class PlaceTO implements Serializable {
 
 	public void setSellType(List<Long> sellType) {
 		this.sellType = sellType;
+	}
+
+	public List<ComentTO> getComents() {
+		return coments;
+	}
+
+	public void setComents(List<ComentTO> coments) {
+		this.coments = coments;
 	}
 
 }

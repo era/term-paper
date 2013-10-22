@@ -32,11 +32,14 @@ public class Place extends BaseEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@OneToMany
+	private List<Coment> coments;
+	
 	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY)
 	@JoinColumn(name = "fid")
 	private PlaceSpatial spatial;
 	
-//	@OneToOne(mappedBy = "placeFacilities", fetch = FetchType.LAZY)
+//	@OneToOne
 	private Facilities facilities;
 	
 	@ManyToOne()
