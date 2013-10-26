@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
+import br.com.findplaces.model.to.ComentTO;
 import br.com.findplaces.model.to.FilterSearchRequest;
 import br.com.findplaces.model.to.PlaceTO;
 
@@ -27,5 +28,8 @@ public interface PlaceConfigurations extends Serializable {
 	
 	List<PlaceTO> findByFilter(FilterSearchRequest filter);
 	
+	PlaceTO coment(ComentTO coment);
+	
+	ComentTO findComentByID(Long id);
 
 }

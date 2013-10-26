@@ -28,6 +28,7 @@ import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
 import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
+import br.com.findplaces.model.to.ComentTO;
 import br.com.findplaces.model.to.FilterSearchRequest;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.util.ConverterTO;
@@ -36,7 +37,6 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.operation.distance.DistanceOp;
 
 @Stateless(name = "PlaceConfigurationsEJB", mappedName = "PlaceConfigurationsImpl")
 public class PlaceConfigurationsImpl implements PlaceConfigurations {
@@ -314,9 +314,21 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 
 		return new Float(dist * meterConversion).floatValue();
 	}
+
+	@Override
+	public PlaceTO coment(ComentTO coment) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ComentTO findComentByID(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	/**
-	 * 
+	 * WTF, why dont you put this on a junit test?
 	 * 
 	 * FOR TEST USE GOOGLE API MAPS
 	 * RIGHT BUTTON WHAT HAS THERE

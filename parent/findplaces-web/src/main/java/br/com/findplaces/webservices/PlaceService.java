@@ -24,6 +24,7 @@ import br.com.findplaces.ejb.UserLogin;
 import br.com.findplaces.exceptions.CouldNotFindUserException;
 import br.com.findplaces.exceptions.TokenInvalidException;
 import br.com.findplaces.jpa.entity.datamining.PlaceViewed;
+import br.com.findplaces.model.to.ComentTO;
 import br.com.findplaces.model.to.FacilitiesTO;
 import br.com.findplaces.model.to.FilterSearchRequest;
 import br.com.findplaces.model.to.PlaceRequest;
@@ -60,7 +61,31 @@ public class PlaceService implements Serializable {
 	@Path("/coment")
 	public PlaceResponse coment(@QueryParam(value= "token") String token,
 			@QueryParam(value="socialID") String socialID,
-			@QueryParam(value="comentID")Long comentID){
+			@QueryParam(value="comentID")Long comentID,
+			@QueryParam(value="placeID") Long placeID,
+			@QueryParam(value="coment") String coment){
+		
+		try {
+			ComentTO newComent = new ComentTO();
+			isValidToken(token, socialID);
+			
+			newComent.setUser(userEJB.findUserBySocialID(socialID));
+			newComent.setPlace(place.findPlaceById(placeID));
+			
+			if(comentID!=null && comentID!=0){
+				ComentTO answerTo = place.findComentByID(comentID);
+				answerTo.setAnswer(newComent);
+				place.coment(answerTo);
+			} else {
+				place.coment(newComent);
+			}
+			
+//			place.comment(placeID, userTO, coment);
+			
+		} catch (NotAuthorizedException e) {
+		} catch (CouldNotFindUserException e) {
+		}
+		
 		return null;
 	}
 	
