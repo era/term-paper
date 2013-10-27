@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.findplaces.jpa.dao.interfaces.PlaceDAO;
+import br.com.findplaces.jpa.entity.Coment;
 import br.com.findplaces.jpa.entity.Place;
 
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -41,6 +42,17 @@ public class PlaceDAOImpl extends BaseDAOImpl<Place, Long> implements PlaceDAO {
 	public List<Place> findAll() {
 		Query query = em.createQuery("SELECT p FROM Place p");
 	    return (List<Place>) query.getResultList();
+	}
+
+	@Override
+	public Place save(Coment coment) {
+		em.merge(coment);
+		return em.find(Place.class, coment.getPlace().getId());
+	}
+
+	@Override
+	public Coment findComentById(Long id) {
+		return em.find(Coment.class, id);
 	}
 
 

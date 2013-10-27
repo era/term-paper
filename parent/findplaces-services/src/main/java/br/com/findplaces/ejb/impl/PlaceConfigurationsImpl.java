@@ -16,6 +16,7 @@ import br.com.findplaces.jpa.dao.interfaces.PlaceDAO;
 import br.com.findplaces.jpa.dao.interfaces.RegionDAO;
 import br.com.findplaces.jpa.dao.interfaces.StreetDAO;
 import br.com.findplaces.jpa.dao.spatial.interfaces.PlaceSpatialDAO;
+import br.com.findplaces.jpa.entity.Coment;
 import br.com.findplaces.jpa.entity.Place;
 import br.com.findplaces.jpa.entity.SellType;
 import br.com.findplaces.jpa.entity.geographic.City;
@@ -317,14 +318,13 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 
 	@Override
 	public PlaceTO coment(ComentTO coment) {
-		// TODO Auto-generated method stub
-		return null;
+		Coment newComent = ConverterTO.converter(coment);
+		return ConverterTO.converter(placeDAO.save(newComent));
 	}
 
 	@Override
 	public ComentTO findComentByID(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ConverterTO.converter(placeDAO.findComentById(id));
 	}
 	
 	/**

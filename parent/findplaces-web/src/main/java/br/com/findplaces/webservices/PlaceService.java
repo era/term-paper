@@ -64,7 +64,8 @@ public class PlaceService implements Serializable {
 			@QueryParam(value="comentID")Long comentID,
 			@QueryParam(value="placeID") Long placeID,
 			@QueryParam(value="coment") String coment){
-		
+		PlaceTO place = null;
+		PlaceResponse response = new PlaceResponse();
 		try {
 			ComentTO newComent = new ComentTO();
 			isValidToken(token, socialID);
@@ -75,15 +76,22 @@ public class PlaceService implements Serializable {
 			if(comentID!=null && comentID!=0){
 				ComentTO answerTo = place.findComentByID(comentID);
 				answerTo.setAnswer(newComent);
-				place.coment(answerTo);
+				place = place.coment(answerTo);
 			} else {
-				place.coment(newComent);
+				place = place.coment(newComent);
 			}
 			
-//			place.comment(placeID, userTO, coment);
+			response.setPlaces(new ArrayList<PlaceTO>());
+			response.getPlaces().add(place);
+			response.setCode(StatusCode.SUCCESS.getCode());
+			response.setMessage(StatusCode.SUCCESS.getMessage());
 			
 		} catch (NotAuthorizedException e) {
+			response.setCode(StatusCode.NOT_ALLOWED.getCode());
+			response.setMessage(StatusCode.NOT_ALLOWED.getMessage());
 		} catch (CouldNotFindUserException e) {
+			response.setCode(StatusCode.NOT_ALLOWED.getCode());
+			response.setMessage(StatusCode.NOT_ALLOWED.getMessage());
 		}
 		
 		return null;
