@@ -76,9 +76,9 @@ public class PlaceService implements Serializable {
 			if(comentID!=null && comentID!=0){
 				ComentTO answerTo = place.findComentByID(comentID);
 				answerTo.setAnswer(newComent);
-				place = place.coment(answerTo);
+				place = this.place.coment(answerTo);
 			} else {
-				place = place.coment(newComent);
+				place = this.place.coment(newComent);
 			}
 			
 			response.setPlaces(new ArrayList<PlaceTO>());
@@ -94,14 +94,30 @@ public class PlaceService implements Serializable {
 			response.setMessage(StatusCode.NOT_ALLOWED.getMessage());
 		}
 		
-		return null;
+		return response;
 	}
 	
 	@GET
 	@Path("/sugest")
 	public PlaceResponse sugestPlace(@QueryParam(value="socialID") String socialID,
 			@QueryParam(value="token") String token){
-		return null;
+		final PlaceResponse response = new PlaceResponse();
+		try {
+			isValidToken(token, socialID);
+			PlaceTO place = dataminingEJB.sugestPlaceByUser(userEJB.findUserBySocialID(socialID));
+			response.setPlaces(new ArrayList<PlaceTO>());
+			response.getPlaces().add(place);
+			response.setCode(StatusCode.SUCCESS.getCode());
+			response.setMessage(StatusCode.SUCCESS.getMessage());
+		} catch (NotAuthorizedException e) {
+			response.setCode(StatusCode.NOT_ALLOWED.getCode());
+			response.setMessage(StatusCode.NOT_ALLOWED.getMessage());
+		} catch (CouldNotFindUserException e) {
+			response.setCode(StatusCode.NOT_ALLOWED.getCode());
+			response.setMessage(StatusCode.NOT_ALLOWED.getMessage());
+		}
+		
+		return response;
 	}
 
 
@@ -183,17 +199,13 @@ public class PlaceService implements Serializable {
 		}
 		
 		
-		getPlaceConfiguration().findByFilter(filter);
-
-//		List<PlaceTO> places = getPlaceConfiguration().findByFilter(Double.parseDouble(latitude),
-//						Double.parseDouble(longitude),
-//						Double.parseDouble(distance));
+		List<PlaceTO> placesFound = getPlaceConfiguration().findByFilter(filter);
+		
 		PlaceResponse response = new PlaceResponse();
-
-		//response.setPlaces(places);
+		response.setPlaces(placesFound);
 		setSuccessResponse(response);
 
-		return null;
+		return response;
 	}
 
 	@POST

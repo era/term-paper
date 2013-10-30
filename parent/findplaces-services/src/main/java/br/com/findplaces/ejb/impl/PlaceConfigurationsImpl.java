@@ -91,8 +91,6 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			String alias = place.getCity().getRegion().getAlias();
 			Region region = regionDAO.findByAlias(alias);
 
-			
-
 			City city = cityDAO.findByName(place.getCity().getName());
 			if (city == null) {
 				place.getCity().setRegion(ConverterTO.converter(region));
