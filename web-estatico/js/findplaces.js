@@ -12,7 +12,7 @@ $.StringFormat = function () { var e = arguments[0]; for (var t = 0; t < argumen
 //Método para verificar se o campo é nulo ou vazio
 $.IsNullOrEmpty = function (e, t) { if (e == "null" || e == null || e == "" || e == "undefined") return t; return e; };
 //Método para criar um slide (utilizado nos pesos da busca avançada)
-$.criaSlider = function (e) { $.each(e, function (t, n) { n.slider({ animate: true, min: 1, max: 10, range: "min" }); }); };
+$.criaSlider = function (e) { $.each(e, function (t, n) { n.slider({ animate: true, min: 1, max: 10, range: "max" }); }); };
 //Método para abrir uma url, aplicar #nomepágina e enviar paramentros
 $.openURLContent = function (e, t, n) { window.history.pushState(null, null, $.StringFormat("index.html#{0}{1}", t, $.IsNullOrEmpty(n, null) === null ? "" : "?" + n)); $(e).load($.StringFormat("_{0}.html", t.split('?')[0])); return false; };
 //Método para esconder um grupo de objetos ou arrays de fields (id ou class) [a variável t é um id ou classe que não deve ser oculto (exceção)] [a variável n é um id ou classe que deve ser exibido]

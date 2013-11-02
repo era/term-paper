@@ -20,10 +20,11 @@
             <div class="form-header-group">
                 <label for="tipoImovel">Tipo de imóvel</label>
                 <select class="form-header-alt-select" id="tipoImovel" name="tipoImovel">
-                    <option value="0">Casa</option>
-                    <option value="1">Apartamento</option>
+                    <option value="0">Apartamento</option>
+                    <option value="1">Casa</option>
                     <option value="2">Flat</option>
-                    <option value="3">Kitnet</option>
+                    <option value="3">Kitchenette</option>
+                    <option value="4">Outros</option>
                 </select>
                 <div>
                     <div class="peso" id="pesoTipoImovel" title="Define a prioridade na busca, por exemplo se o imporante é o tipo do imóvel coloque a barra no máximo"></div>
@@ -103,144 +104,52 @@
     </form>
 </div>
 <div class="flexslider">
-    <ul class="homeSlides">
-        <li id="slide1" onclick="$.openURLContent('#content', 'detailsproperty', 'slide1');">
-            <img src="img/photography/1_0.jpg" />
-            <span>APARTAMENTO</span>
-            <h3>Cambuí</h3>
-            <p>
-                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-            </p>
-        </li>
-        <li id="slide2" onclick="$.openURLContent('#content', 'detailsproperty', 'slide2');">
-            <img src="img/photography/2_0.jpg" />
-            <span>APARTAMENTO</span>
-            <h3>Centro</h3>
-            <p>
-                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-            </p>
-        </li>
-        <li id="slide3" onclick="$.openURLContent('#content', 'detailsproperty', 'slide3');">
-            <img src="img/photography/3_0.jpg" />
-            <span>APARTAMENTO</span>
-            <h3>Novo Cambuí</h3>
-            <p>
-                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-            </p>
-        </li>
-        <li id="slide4" onclick="$.openURLContent('#content', 'detailsproperty', 'slide4');">
-            <img src="img/photography/4_0.jpg" />
-            <span>CASA</span>
-            <h3>Alphavile</h3>
-            <p>
-                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-            </p>
-        </li>
-        <li id='slide5' onclick="$.openURLContent('#content', 'detailsproperty', 'slide5');">
-            <img src="img/photography/5_0.jpg" />
-            <span>CASA</span>
-            <h3>Valinhos</h3>
-            <p>
-                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-            </p>
-        </li>
-        <li id='slide6' onclick="$.openURLContent('#content', 'detailsproperty', 'slide6');">
-            <img src="img/photography/6_0.jpg" />
-            <span>APARTAMENTO</span>
-            <h3>Sumaré</h3>
-            <p>
-                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-            </p>
-        </li>
-        <li id='slide7' onclick="$.openURLContent('#content', 'detailsproperty', 'slide7');">
-            <img src="img/photography/7_0.jpg" />
-            <span>APARTAMENTO</span>
-            <h3>Valinhos</h3>
-            <p>
-                Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...
-            </p>
-        </li>
-    </ul>
+    <ul class="homeSlides"></ul>
 </div>
 <script charset="utf-8" type="text/javascript">
+    //Carga dinâmica dos slides
+    $.homeSlide = function (json) {
+        var li = '', onclick = '';
+        $.each(json.slides, function (i, key) {
+            onclick = $.StringFormat("$.openURLContent('{0}', '{1}', '{2}');", key.target, key.partial, key.id);
+            li += $.StringFormat('<li id="{0}" onclick="{1}"><img src="{2}" /><span>{3}</span><h3>{4}</h3><p>{5}</p></li>', key.id, onclick, key.img, key.placetype, key.neighborhood, key.details);
+        });
+        $('.flexslider ul').append(li);
+        //Flexslider
+        $('.flexslider').flexslider({ selector: ".homeSlides > li", animation: "slide", slideshow: false, itemWidth: 520, keyboard: false, mousewheel: false, animationLoop: false, controlNav: false, move: 1 });
+    };
+
+    $.homeSlide(home_slide);
+
+    //Posição inicila do mapa
     $.consultaMapa(-22.977281, -47.14822, '#map');
+
+    //Autocomplete google places
     $.searchPlace('endereco');
+
+    //Caixa de detalhes
     $('#advancedSearch').tooltip();
     $('#fastSearch').tooltip();
     $('#hidePanel').tooltip();
     $('#showPanel').tooltip();
     $('.peso').tooltip();
+    
+    //Aplica o efeito ui slide
     $.criaSlider([$("#pesoAquisicao"), $('#pesoTipoImovel'), $('#pesoPreco'), $('#pesoBairro'), $('#pesoRaio'), $('#pesoDormitorios'), $('#pesoGaragens')]);
+    
+    //Máscara
     $("#precoDe").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false });
     $("#precoAte").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: false, allowNegative: false }).attr('style', 'display: none !important;');
-    $("#raio").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });
+    $("#raio").maskMoney({ thousands: ".", precision: 0, allowZero: false, allowNegative: false });    
 
-    //Flexslider
-    var flexslider = $('.flexslider').flexslider({
-        selector: ".homeSlides > li",
-        animation: "slide",
-        slideshow: false,
-        itemWidth: 520,
-        keyboard: false,
-        mousewheel: false,
-        animationLoop: false,
-        controlNav: false,
-        move: 1
-    });
+    //Eventos de click
+    $("#hidePanel").click(function() { $("#buscaRapida").hide(0, function() { $("#showSearch").show(); }); });
+    $('#showPanel').click(function () { $('#showSearch').slideUp('fast', function () { $('#buscaRapida').show(); }); });
+    $('.slides > li').click(function () { $.openURLContent('#content', 'detailsproperty', $.StringFormat('id={0}', $(this).attr('id'))); });
+    $('#advancedSearch').click(function () { $('#buscaRapida').hide(0, function () { $('#buscaAvancada').slideDown('slow'); }); $('#map').css('height', '330px'); });
+    $('#fastSearch').click(function () { $('#buscaAvancada').slideUp('slow', function () { $('#buscaRapida').show(); }); $('#map').css('height', '450px'); });
 
-    /*if(navigator.geolocation){
-         navigator.geolocation.getCurrentPosition(function(position){
-            $.consultaMapa(position.coords.latitude, position.coords.longitude);        
-         });
-    }
-    
-    if($('#userID').val()!=''){
-        $(".aboutLogin").hide();   
-    }*/
-
-    /* Ação para busca rápida */
-    $('#buscar').click(function () {
-        var form = $('#buscaRapida').serializeArray();
-        return false;
-    });
-
-    $('#hidePanel').click(function () {
-        $('#buscaRapida').hide(0, function () {
-            $('#showSearch').show();
-        });
-    });
-
-    $('#showPanel').click(function () {
-        $('#showSearch').slideUp('fast', function () {
-            $('#buscaRapida').show();
-        });
-    });
-
-    $('.slides > li').click(function () {
-        $.openURLContent('#content', 'detailsproperty', $.StringFormat('id={0}', $(this).attr('id')));
-    });
-
-    $('#advancedSearch').click(function () {
-        $('#buscaRapida').hide(0, function () {
-            $('#buscaAvancada').slideDown('slow');
-        });
-        $('#map').css('height', '330px');
-    });
-
-    $('#fastSearch').click(function () {
-        $('#buscaAvancada').slideUp('slow', function () {
-            $('#buscaRapida').show();
-        });
-        $('#map').css('height', '450px');
-    });
-
-    $('#precoDe').focus(function () {
-        $('#precoAte').removeAttr('style');
-    });
-
-    $('#bairro').focus(function () {
-        $(this).removeClass('inputSizeMediumSmaller').addClass('inputSizeMedium');
-    }).blur(function () {
-        $(this).removeClass('inputSizeMedium').addClass('inputSizeMediumSmaller');
-    });
+    //Eventos de foco
+    $('#precoDe').focus(function () { $('#precoAte').removeAttr('style'); }); 
+    $('#bairro').focus(function () { $(this).removeClass('inputSizeMediumSmaller').addClass('inputSizeMedium'); }).blur(function () { $(this).removeClass('inputSizeMedium').addClass('inputSizeMediumSmaller'); });
 </script>
