@@ -25,7 +25,6 @@ public class Likes extends BaseEntity implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	@Id
 	@OneToOne
 	private User user;
 

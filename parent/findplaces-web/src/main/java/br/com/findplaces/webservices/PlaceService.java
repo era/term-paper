@@ -71,10 +71,10 @@ public class PlaceService implements Serializable {
 			isValidToken(token, socialID);
 			
 			newComent.setUser(userEJB.findUserBySocialID(socialID));
-			newComent.setPlace(place.findPlaceById(placeID));
+			newComent.setPlace(this.place.findPlaceById(placeID));
 			
 			if(comentID!=null && comentID!=0){
-				ComentTO answerTo = place.findComentByID(comentID);
+				ComentTO answerTo = this.place.findComentByID(comentID);
 				answerTo.setAnswer(newComent);
 				place = this.place.coment(answerTo);
 			} else {
@@ -172,7 +172,6 @@ public class PlaceService implements Serializable {
 		return response;
 	}
 
-	@Produces({ MediaType.APPLICATION_JSON })
 	public PlaceResponse searchByLatLong(String latitude, String longitude,
 			String distance) throws NotAuthorizedException {
 
