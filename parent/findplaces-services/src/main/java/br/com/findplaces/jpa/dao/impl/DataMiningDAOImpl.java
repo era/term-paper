@@ -105,4 +105,16 @@ public class DataMiningDAOImpl extends BaseDAOImpl<PlaceViewed, Long> implements
 		return query.getResultList();
 	}
 
+	@Override
+	public List<PlaceViewed> findPlacesWithSameUserAge(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PlaceViewed> findPlacesWithSameLikes(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

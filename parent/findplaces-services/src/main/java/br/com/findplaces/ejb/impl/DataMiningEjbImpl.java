@@ -153,17 +153,34 @@ public class DataMiningEjbImpl implements DataMiningEJB {
 	public PlaceTO sugestPlaceByAge(UserTO user) {
 		PlaceTO place = null;
 		try{
-//			dao.
+			List<PlaceViewed> placesViewed = dao.findPlacesWithSameUserAge(ConverterTO.converter(user));
+			if(placesViewed!=null && !placesViewed.isEmpty()){
+				place = placesViewed.get(0).getPlace()!=null 
+						? ConverterTO.converter(placesViewed.get(0).getPlace())
+								:null;
+				
+			}
 		} catch(Exception e){
-			
+			//FIXME
 		}
-		return null;
+		return place;
 	}
 
 	@Override
 	public PlaceTO sugestPlaceByLikesFromUser(UserTO user) {
-		// TODO Auto-generated method stub
-		return null;
+		PlaceTO place = null;
+		try{
+			List<PlaceViewed> placesViewed = dao.findPlacesWithSameLikes(ConverterTO.converter(user));
+			if(placesViewed!=null && !placesViewed.isEmpty()){
+				place = placesViewed.get(0).getPlace()!=null 
+						? ConverterTO.converter(placesViewed.get(0).getPlace())
+								:null;
+				
+			}
+		} catch(Exception e){
+			//FIXME
+		}
+		return place;
 	}
 	
 	@Override
