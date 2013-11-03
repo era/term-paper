@@ -14,11 +14,13 @@ import br.com.findplaces.commons.helpers.MapReduceHelper;
 import br.com.findplaces.ejb.DataMiningEJB;
 import br.com.findplaces.jpa.dao.interfaces.DataMiningDAO;
 import br.com.findplaces.jpa.entity.Likes;
+import br.com.findplaces.jpa.entity.Place;
 import br.com.findplaces.jpa.entity.datamining.PlaceViewed;
 import br.com.findplaces.jpa.exception.DAOException;
 import br.com.findplaces.model.to.CountPlaceViewedTO;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.UserTO;
+import br.com.findplaces.util.ConverterTO;
 
 @Stateless(name = "DataMiningEJB", mappedName = "DataMining")
 @Remote(DataMiningEJB.class)
@@ -29,12 +31,6 @@ public class DataMiningEjbImpl implements DataMiningEJB {
 	@EJB
 	private DataMiningDAO dao;
 	
-
-	@Override
-	public PlaceTO sugestPlaceByUser(UserTO user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void saveResultFromTest(String algorithm, Integer liked, UserTO user) {
@@ -151,6 +147,40 @@ public class DataMiningEjbImpl implements DataMiningEJB {
 		}
 		
 		return response;
+	}
+
+	@Override
+	public PlaceTO sugestPlaceByAge(UserTO user) {
+		PlaceTO place = null;
+		try{
+//			dao.
+		} catch(Exception e){
+			
+		}
+		return null;
+	}
+
+	@Override
+	public PlaceTO sugestPlaceByLikesFromUser(UserTO user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public PlaceTO sugestPlaceByUser(UserTO user,Long placeID) {
+		PlaceTO place = null;
+		try{
+			List<PlaceViewed> placesViewed = dao.whoSawThisAlsoSaw(placeID, user.getId());
+			if(placesViewed!=null && !placesViewed.isEmpty()){
+				place = placesViewed.get(0).getPlace()!=null 
+						? ConverterTO.converter(placesViewed.get(0).getPlace())
+								:null;
+				
+			}
+		} catch(Exception e){
+			//FIXME
+		}
+		return place;
 	}
 
 }

@@ -100,13 +100,17 @@ public class PlaceService implements Serializable {
 	@GET
 	@Path("/sugest")
 	public PlaceResponse sugestPlace(@QueryParam(value="socialID") String socialID,
-			@QueryParam(value="token") String token){
+			@QueryParam(value="token") String token,
+			@QueryParam(value="placeID") Long placeID){
 		final PlaceResponse response = new PlaceResponse();
+		response.setPlaces(new ArrayList<PlaceTO>());
 		try {
 			isValidToken(token, socialID);
-			PlaceTO place = dataminingEJB.sugestPlaceByUser(userEJB.findUserBySocialID(socialID));
-			response.setPlaces(new ArrayList<PlaceTO>());
-			response.getPlaces().add(place);
+			UserTO user = userEJB.findUserBySocialID(socialID);
+
+			response.getPlaces().add(dataminingEJB.sugestPlaceByUser(user,placeID));
+			response.getPlaces().add(dataminingEJB.sugestPlaceByAge(user));
+			response.getPlaces().add(dataminingEJB.sugestPlaceByLikesFromUser(user));
 			response.setCode(StatusCode.SUCCESS.getCode());
 			response.setMessage(StatusCode.SUCCESS.getMessage());
 		} catch (NotAuthorizedException e) {

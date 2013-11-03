@@ -12,7 +12,11 @@ import br.com.findplaces.model.to.Viewed;
 
 public interface DataMiningEJB extends Serializable {
 	
-	PlaceTO sugestPlaceByUser(UserTO user);
+	PlaceTO sugestPlaceByUser(UserTO user, Long placeID);
+	
+	PlaceTO sugestPlaceByAge(UserTO user);
+	
+	PlaceTO sugestPlaceByLikesFromUser(UserTO user);
 	
 	void saveResultFromTest(String algorithm, Integer liked, UserTO user);
 	
