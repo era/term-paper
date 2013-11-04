@@ -1,6 +1,7 @@
 package br.com.findplaces.jpa.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import br.com.findplaces.jpa.entity.geographic.Street;
 import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 
 @Entity
-@Table(name = "TB_PLACE")
+@Table(name = "TB_PLACE") //TODO Refact this, we have more than one entity here.
 public class Place extends BaseEntity implements Serializable {
 	
 	/** Default value included to remove warning. Remove or modify at will. **/
@@ -39,7 +40,7 @@ public class Place extends BaseEntity implements Serializable {
 	@JoinColumn(name = "fid")
 	private PlaceSpatial spatial;
 	
-//	@OneToOne
+	@OneToOne
 	private Facilities facilities;
 	
 	@ManyToOne()
@@ -65,10 +66,46 @@ public class Place extends BaseEntity implements Serializable {
 	private String code;
 	
 	@Column
+	private Integer packTime;
+	
+	@Column
+	private Date startOffer;
+	
+	@Column
+	private Date endOffer;
+	
+	@Column
 	private String description;
 	
 	@Column
 	private Double price;
+	
+	@Column
+	private Double deposit;
+	
+	@Column
+	private Integer rentMonths;
+	
+	@Column
+	private Integer placeFloor;
+	
+	@Column
+	private Integer qtdPlaceFloor;
+	
+	@Column
+	private Double iptu;
+	
+	@Column
+	private Double condominiumPrice;
+	
+	@Column
+	private Double internet;
+	
+	@Column
+	private Double tv;
+	
+	@Column
+	private Double totalPrice;
 	
 	@Column
 	private Integer room;
@@ -93,6 +130,16 @@ public class Place extends BaseEntity implements Serializable {
 	
 	@ManyToMany
 	private List<SellType> sellType;
+	
+	//TODO PLEASE WE SHOULD REALLY REFACT THIS WHEN WE HAVE TIME
+	@Column
+	private String cellphone;
+	
+	@Column
+	private String cellphone2;
+	
+	@Column
+	private String cellphone3;
 	
 
 	public Long getId() {
@@ -125,6 +172,30 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setNeighborhood(Neighborhood neighborhood) {
 		this.neighborhood = neighborhood;
+	}
+
+	public Date getStartOffer() {
+		return startOffer;
+	}
+
+	public void setStartOffer(Date startOffer) {
+		this.startOffer = startOffer;
+	}
+
+	public Integer getPlaceFloor() {
+		return placeFloor;
+	}
+
+	public void setPlaceFloor(Integer placeFloor) {
+		this.placeFloor = placeFloor;
+	}
+
+	public Integer getQtdPlaceFloor() {
+		return qtdPlaceFloor;
+	}
+
+	public void setQtdPlaceFloor(Integer qtdPlaceFloor) {
+		this.qtdPlaceFloor = qtdPlaceFloor;
 	}
 
 	public Street getStreet() {
@@ -255,6 +326,110 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setComents(List<Coment> coments) {
 		this.coments = coments;
+	}
+
+	public Facilities getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(Facilities facilities) {
+		this.facilities = facilities;
+	}
+
+	public Double getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(Double deposit) {
+		this.deposit = deposit;
+	}
+
+	public Integer getRentMonths() {
+		return rentMonths;
+	}
+
+	public void setRentMonths(Integer rentMonths) {
+		this.rentMonths = rentMonths;
+	}
+
+	public Double getIptu() {
+		return iptu;
+	}
+
+	public void setIptu(Double iptu) {
+		this.iptu = iptu;
+	}
+
+	public Double getCondominiumPrice() {
+		return condominiumPrice;
+	}
+
+	public void setCondominiumPrice(Double condominiumPrice) {
+		this.condominiumPrice = condominiumPrice;
+	}
+
+	public Double getInternet() {
+		return internet;
+	}
+
+	public void setInternet(Double internet) {
+		this.internet = internet;
+	}
+
+	public Double getTv() {
+		return tv;
+	}
+
+	public void setTv(Double tv) {
+		this.tv = tv;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public String getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(String cellphone) {
+		this.cellphone = cellphone;
+	}
+
+	public String getCellphone2() {
+		return cellphone2;
+	}
+
+	public void setCellphone2(String cellphone2) {
+		this.cellphone2 = cellphone2;
+	}
+
+	public String getCellphone3() {
+		return cellphone3;
+	}
+
+	public void setCellphone3(String cellphone3) {
+		this.cellphone3 = cellphone3;
+	}
+
+	public Integer getPackTime() {
+		return packTime;
+	}
+
+	public void setPackTime(Integer packTime) {
+		this.packTime = packTime;
+	}
+
+	public Date getEndOffer() {
+		return endOffer;
+	}
+
+	public void setEndOffer(Date endOffer) {
+		this.endOffer = endOffer;
 	}
 
 	

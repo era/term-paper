@@ -29,7 +29,6 @@ public class User extends BaseEntity {
 	
 	public static final String loginUserWithPassword = "LoginUserWithPassword";
 	
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

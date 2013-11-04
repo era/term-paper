@@ -68,6 +68,31 @@ public class PlaceRequest implements Serializable {
 	private String token;
 	
 	private List<Long> sellType;
+	
+	private Double deposit;
+	
+	private Integer rentMonths;
+	
+	private Integer placeFloor;
+	
+	private Integer qtdPlaceFloor;
+	
+	private Double iptu;
+	
+	private Double condominiumPrice;
+	
+	private Double internet;
+	
+	private Double tv;
+	
+	private Double totalPrice;
+	
+	private String cellphone;
+	
+	private String cellphone2;
+	
+	private String cellphone3;
+	
 
 	public String getToken() {
 		return token;
@@ -123,6 +148,102 @@ public class PlaceRequest implements Serializable {
 
 	public Double getPrice() {
 		return price;
+	}
+
+	public Double getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(Double deposit) {
+		this.deposit = deposit;
+	}
+
+	public Integer getRentMonths() {
+		return rentMonths;
+	}
+
+	public void setRentMonths(Integer rentMonths) {
+		this.rentMonths = rentMonths;
+	}
+
+	public Integer getPlaceFloor() {
+		return placeFloor;
+	}
+
+	public void setPlaceFloor(Integer placeFloor) {
+		this.placeFloor = placeFloor;
+	}
+
+	public Integer getQtdPlaceFloor() {
+		return qtdPlaceFloor;
+	}
+
+	public void setQtdPlaceFloor(Integer qtdPlaceFloor) {
+		this.qtdPlaceFloor = qtdPlaceFloor;
+	}
+
+	public Double getIptu() {
+		return iptu;
+	}
+
+	public void setIptu(Double iptu) {
+		this.iptu = iptu;
+	}
+
+	public Double getCondominiumPrice() {
+		return condominiumPrice;
+	}
+
+	public void setCondominiumPrice(Double condominiumPrice) {
+		this.condominiumPrice = condominiumPrice;
+	}
+
+	public Double getInternet() {
+		return internet;
+	}
+
+	public void setInternet(Double internet) {
+		this.internet = internet;
+	}
+
+	public Double getTv() {
+		return tv;
+	}
+
+	public void setTv(Double tv) {
+		this.tv = tv;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public String getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(String cellphone) {
+		this.cellphone = cellphone;
+	}
+
+	public String getCellphone2() {
+		return cellphone2;
+	}
+
+	public void setCellphone2(String cellphone2) {
+		this.cellphone2 = cellphone2;
+	}
+
+	public String getCellphone3() {
+		return cellphone3;
+	}
+
+	public void setCellphone3(String cellphone3) {
+		this.cellphone3 = cellphone3;
 	}
 
 	public Double getComplexPrice() {
