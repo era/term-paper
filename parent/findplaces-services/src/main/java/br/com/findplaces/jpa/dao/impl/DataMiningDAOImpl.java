@@ -105,16 +105,21 @@ public class DataMiningDAOImpl extends BaseDAOImpl<PlaceViewed, Long> implements
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PlaceViewed> findPlacesWithSameUserAge(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = em.createNamedQuery(PlaceViewed.findPlacesWithSameUserAge);
+		query.setParameter("userID", user.getId());
+		query.setParameter("age", user.getAge());
+		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PlaceViewed> findPlacesWithSameLikes(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = em.createNamedQuery(PlaceViewed.findPlacesWithSameUserAge);
+		query.setParameter("userID", user.getId());
+		return query.getResultList();
 	}
 
 }
