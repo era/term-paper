@@ -268,6 +268,17 @@ public class PlaceService implements Serializable {
 		to.setM2(re.getM2());
 		to.setPrice(re.getPrice());
 		to.setRoom(re.getRoom());
+		to.setDeposit(re.getDeposit());
+		to.setCellphone(re.getCellphone());
+		to.setCellphone2(re.getCellphone2());
+		to.setCellphone3(re.getCellphone3());
+		to.setInternet(re.getInternet());
+		to.setCondominiumPrice(re.getCondominiumPrice());
+		to.setComplexPrice(re.getComplexPrice());
+		to.setQtdPlaceFloor(re.getQtdPlaceFloor());
+		to.setRentMonths(re.getRentMonths());
+		to.setTv(re.getTv());
+		to.setTotalPrice(re.getTotalPrice());
 		
 		ArrayList<Long> sellTypes = new ArrayList<Long>();
 		
