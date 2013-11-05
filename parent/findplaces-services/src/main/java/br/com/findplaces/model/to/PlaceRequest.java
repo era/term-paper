@@ -23,6 +23,8 @@ public class PlaceRequest implements Serializable {
 		return gson.fromJson(json, PlaceRequest.class);
 	}
 	
+	private FacilitiesTO facilities;
+	
 	private String address;
 
 	private Integer bathroom;
@@ -372,6 +374,14 @@ public class PlaceRequest implements Serializable {
 
 	public void setSellType(List<Long> sellType) {
 		this.sellType = sellType;
+	}
+
+	public FacilitiesTO getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(FacilitiesTO facilities) {
+		this.facilities = facilities;
 	}
 	
 }

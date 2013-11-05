@@ -4,12 +4,69 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 @XmlRootElement(name = "facilities")
 public class FacilitiesTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	private String name;
+		
+	private boolean gatekeeper;
+	
+	private boolean gym;
+	
+	private boolean townBarbecue;
+	
+	private boolean gasTubing;
+	
+	private boolean laudry;
+	
+	private boolean townPool;
+	
+	private boolean playground;
+	
+	private boolean automaticDoor;
+	
+	private boolean sportArea;
+	
+	private boolean partyRoom;
+	
+	private boolean sauna;
+	
+	private boolean internet;
+	
+	private boolean air;
+	
+	private boolean kitchenCabinet;
+	
+	private boolean bedroomCloset;
+	
+	private boolean bathroomCloset;
+	
+	private boolean hidromassage;
+	
+	private boolean bathBoxGlass;
+	
+	private boolean barbecue;
+	
+	private boolean gasShower;
+	
+	private boolean roofing;
+	
+	private boolean pool;
+	
+	private boolean terrace;
+	
+	
+	public static FacilitiesTO fromString(String json) {
+		Gson gson = new GsonBuilder().create();
+		return gson.fromJson(json, FacilitiesTO.class);
+	}
 	
 	public Long getId() {
 		return id;
@@ -210,53 +267,5 @@ public class FacilitiesTO implements Serializable {
 	public void setTerrace(boolean terrace) {
 		this.terrace = terrace;
 	}
-
-	private String name;
-		
-	private boolean gatekeeper;
-	
-	private boolean gym;
-	
-	private boolean townBarbecue;
-	
-	private boolean gasTubing;
-	
-	private boolean laudry;
-	
-	private boolean townPool;
-	
-	private boolean playground;
-	
-	private boolean automaticDoor;
-	
-	private boolean sportArea;
-	
-	private boolean partyRoom;
-	
-	private boolean sauna;
-	
-	private boolean internet;
-	
-	private boolean air;
-	
-	private boolean kitchenCabinet;
-	
-	private boolean bedroomCloset;
-	
-	private boolean bathroomCloset;
-	
-	private boolean hidromassage;
-	
-	private boolean bathBoxGlass;
-	
-	private boolean barbecue;
-	
-	private boolean gasShower;
-	
-	private boolean roofing;
-	
-	private boolean pool;
-	
-	private boolean terrace;
 
 }

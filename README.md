@@ -173,4 +173,12 @@ Response:
 	}
 
 
-##
+##Places
+
+###Insert user
+
+	URL: http://www.findplaces.com.br/findplaces-web/rest/user/{id}
+	Method: GET
+	URL PARAMS:
+		token: String with facebook token(must be a valid one).
+		type: Type of the user, right now must be FB
