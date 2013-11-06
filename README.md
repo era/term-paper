@@ -174,6 +174,28 @@ Response:
 
 ##Photos
 
+###Get photo
+
+	URL: http://www.findplaces.com.br/findplaces-web/rest/images/{id}
+	METHOD: GET
+	
+Response: The Image file
+
+###Insert Photo
+	URL: http://www.findplaces.com.br/findplaces-web/rest/images/{id}
+	METHOD: POST
+	
+Response: 
+	
+	{
+		imageID: 3
+	}
+		
+##Charts
+
+
+
+
 
 ##Places
 
