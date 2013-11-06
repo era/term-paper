@@ -289,7 +289,8 @@ public class PlaceService implements Serializable {
 		to.setSellType(sellTypes);
 		
 		to.setSuite(re.getSuite());
-		to.setFacilities(new FacilitiesTO()); //TODO Refact to make this work
+		to.setFacilities(re.getFacilities());
+		
 		return to;
 	}
 

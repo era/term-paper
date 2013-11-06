@@ -192,7 +192,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		Street street = streetDAO.findByName(name);
 
 		if (street == null) {
-			// logger.info("Não foi encontrado o usuário "+ id.toString());
+//			 logger.info("Não foi encontrado o usuário "+ id.toString());
 		}
 
 		return ConverterTO.converter(street);
@@ -210,7 +210,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	}
 
 	/**
-	 * This method is very slow, but when it comes so slow that we can use any more
+	 * This method is very slow, but when it comes so slow that we can`t use any more
 	 * we will have to change to MapReduce design pattern.
 	 */
 	@Override
@@ -252,12 +252,9 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			
 			if(filter.getDistance()!=null){
 				numberOfFilters++;
-				//Entidade espacial
 				PlaceSpatial spatial = place.getSpatial();
-				//Geometria da entidade (Point)
 				Geometry geom = spatial.getGeom();
 				
-				//Esquema para criar uma geometria ou coordenadas
 				Coordinate coord = new Coordinate();
 				GeometryFactory geoFactory = new GeometryFactory();
 				coord.x = filter.getLat();
@@ -267,9 +264,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 				
 				
 				Float distance = distFrom(coord.x, coord.y, geom.getCoordinate().x, geom.getCoordinate().y);
-				//Aqui tem que tomar cuidado pq eh exato, entao o correto seria utilizar uma taxa de variação de 20 metros ou mais,
-				// o google arrendodonda todo mundo +-
-				if(filter.getDistance().equals(distance)){
+				if(filter.getDistance() <= distance){
 				points += filter.getWeightDistance();
 				//How we get the distance from here? :(
 				}

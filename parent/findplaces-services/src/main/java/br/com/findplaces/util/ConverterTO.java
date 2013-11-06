@@ -126,13 +126,23 @@ public class ConverterTO {
 		entity.setSeller(converter(place.getSeller()));
 		entity.setStreet(converter(place.getStreet()));
 		entity.setSuite(place.getSuite());
+		entity.setDeposit(place.getDeposit());
+		entity.setCellphone(place.getCellphone());
+		entity.setCellphone2(place.getCellphone2());
+		entity.setCellphone3(place.getCellphone3());
+		entity.setInternet(place.getInternet());
+		entity.setCondominiumPrice(place.getCondominiumPrice());
+		entity.setQtdPlaceFloor(place.getQtdPlaceFloor());
+		entity.setRentMonths(place.getRentMonths());
+		entity.setTv(place.getTv());
+		entity.setTotalPrice(place.getTotalPrice());
+		entity.setSpatial(converter(place.getSpatialTO()));
 		entity.setType(converter(place.getType()));
 		List<Coment> coments =new ArrayList<Coment>();
 		for(ComentTO coment : place.getComents()){
 			coments.add(converter(coment));
 		}
 		entity.setComents(coments);
-		//SPATIAL
 		return entity;
 	}
 	
@@ -153,6 +163,16 @@ public class ConverterTO {
 		to.setSeller(converter(place.getSeller()));
 		to.setStreet(converter(place.getStreet()));
 		to.setSuite(place.getSuite());
+		to.setDeposit(place.getDeposit());
+		to.setCellphone(place.getCellphone());
+		to.setCellphone2(place.getCellphone2());
+		to.setCellphone3(place.getCellphone3());
+		to.setInternet(place.getInternet());
+		to.setCondominiumPrice(place.getCondominiumPrice());
+		to.setQtdPlaceFloor(place.getQtdPlaceFloor());
+		to.setRentMonths(place.getRentMonths());
+		to.setTv(place.getTv());
+		to.setTotalPrice(place.getTotalPrice());
 		to.setType(converter(place.getType()));
 		ArrayList<Long> sellType = new ArrayList<Long>();
 		if(place.getSellType() != null){
@@ -196,7 +216,6 @@ public class ConverterTO {
 		return entity;
 	}
 
-	
 	
 	public static PlaceType converter(PlaceTypeTO type) {
 		PlaceType entity = new PlaceType();
