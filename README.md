@@ -182,8 +182,16 @@ Response:
 Response: The Image file
 
 ###Insert Photo
-	URL: http://www.findplaces.com.br/findplaces-web/rest/images/{id}
+	URL: http://www.findplaces.com.br/findplaces-web/rest/images/
 	METHOD: POST
+	FORM PARAM:
+	image = {
+		userID: the socialUserID
+		token: the Facebook Token
+		base64IMG: String with base64 image bytes
+		format: The format of the image(jpeg, png)
+	}
+	
 	
 Response: 
 	

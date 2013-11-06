@@ -128,6 +128,7 @@ public class UserService implements Serializable {
 		UserTO user;
 		Validator.isValidToken(request.getToken(), request.getUserFacebookID());
 		user = FacebookUtils.getUser(request.getToken());
+		user.setLikes(FacebookUtils.getLikesFromUser(request.getToken(), user));
 		UserTypeTO type = new UserTypeTO();
 		type.setId(UserTypeTO.USER_FB_ID);
 		user.setType(type);
