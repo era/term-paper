@@ -201,6 +201,21 @@ Response:
 		
 ##Charts
 
+### Get Views from place
+	
+	URL: http://www.findplaces.com.br/findplaces-web/rest/chart/place/{id}
+	METHOD: GET
+	URL PARAMS:
+		userID = user owner of the place
+		token = token from facebook.
+		
+Response:
+	
+	{
+		views: [{viewedDate: 2012/10/09, count:300},
+		{viewedDate: 2012/10/10, count:500}]
+	}
+
 
 
 
