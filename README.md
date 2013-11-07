@@ -9,8 +9,6 @@ My group term paper for BS CS course.
 * Mateus Coradini - @[mateuscoradini](https://github.com/mateuscoradini)
 * Paulo Dianin - @[maxjuniorbr](https://github.com/maxjuniorbr) -  http://dianin.net.br/
 
-
-
 #Frameworks:
 
 Web: JAX-RS, Hibernate, EJB 3.0

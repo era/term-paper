@@ -35,69 +35,28 @@ $.consultaCidade = function (ufSigla, target) {
     });
 };
 
-$.consultaMapa = function (lat, lng, fieldName) {
-    var formulario = $('#buscaRapida').clone(); //fixme
-    $(fieldName).gmap3({
+$.consultaMapa = function (latStart, lngStart, target, marker) {
+    var formulario = $('#buscaRapida').clone();
+
+    $(target).gmap3({
         map: {
             options: {
-                center: [lat, lng],
+                center: [latStart, lngStart],
                 zoom: 15,
-                scrollwheel: false
+                scrollwheel: true
             },
         },
         marker: {
-            values: [
-                {
-                    latLng: [-22.970949, -47.150844],
-                    events: {
-                        click: function () {
-                            $.showPlaceInFlexslider('slide1');
-                        }
-                    }
-                }, {
-                    latLng: [-22.970228, -47.145608],
-                    events: {
-                        click: function () {
-                            $.showPlaceInFlexslider('slide7');
-                        }
-                    }
-                }, {
-                    latLng: [-22.972085, -47.149588],
-                    events: {
-                        click: function () {
-                            $.showPlaceInFlexslider('slide2');
-                        }
-                    }
-                }, {
-                    latLng: [-22.972905, -47.141788],
-                    events: {
-                        click: function () {
-                            $.showPlaceInFlexslider('slide6');
-                        }
-                    }
-                }
-            ]
-            ,
+            values: eval(marker),
             options: {
-                icon: new google.maps.MarkerImage(
-                    "img/pointer-house.png",
-                    new google.maps.Size(32, 37, "px", "px")
-                )
-            }
-            ,
-            //events trigged by markers
-            events: {
-                click: function () {
-                    alert("Here is the default click event");
-                }
+                icon: new google.maps.MarkerImage("img/pointer-house.png", new google.maps.Size(32, 37, "px", "px"))
             },
             cluster: {
                 radius: 100,
                 events: {
                     click: function (cluster) {
-                        var map = $("#map").gmap3("get");
-                        map.setZoom(17);
-                        //cluster.main.getPosition();
+                        var map = $(target).gmap3("get");
+                        map.setZoom(16);
                         map.setCenter(cluster.main.getPosition());
                     }
                 },
@@ -119,11 +78,12 @@ $.consultaMapa = function (lat, lng, fieldName) {
             }
         }
     });
-    $(fieldName).append(formulario);
+    
+    $(target).append(formulario);
 };
 
 $.showPlaceInFlexslider = function (id) {
-    $('.homeSlides > li').each(function (i, item) {        
+    $('.homeSlides > li').each(function (i, item) {
         $(item).removeClass('flexsliderSelectByMap');
         if ($(item).attr('id') === id) {
             $('.flexslider').flexslider(i);
@@ -167,9 +127,9 @@ $.initLogin = function () {
 };
 
 
-$.geocodePlace = function (address,callback) {
+$.geocodePlace = function (address, callback) {
     var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({'address':address},function(response){
+    geocoder.geocode({ 'address': address }, function (response) {
         var place = {};
         place.address = response[0].formatted_address;
         place.lat = response[0].geometry.location.lb;
