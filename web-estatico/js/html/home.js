@@ -25,8 +25,18 @@ $.homeSlide = function (json) {
         controlNav: false,
         move: 1
     });
+
+    var lat = -22.977281,
+        lng = -47.14822;
     
-    $.consultaMapa(-22.977281, -47.14822, "#map", marker);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            lat = position.coords.latitude;
+            lng = position.coords.longitude;
+        });
+    }
+    
+    $.consultaMapa(lat, lng, "#map", marker);
 };
 
 $.homeSlide(home_slide);
