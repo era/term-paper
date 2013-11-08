@@ -35,6 +35,9 @@ $.homeSlide = function (json) {
             lng = position.coords.longitude;
         });
     }
+
+    console.log(lat);
+    console.log(lng);
     
     $.consultaMapa(lat, lng, "#map", marker);
 };
