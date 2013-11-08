@@ -6,7 +6,7 @@ $.homeSlide = function (json) {
     $.each(json.slides, function (i, key) {
         onclick = $.StringFormat("$.openURLContent('{0}', '{1}', '{2}');", key.target, key.partial, key.id);
         li += $.StringFormat('<li id="{0}" onclick="{1}"><img src="{2}" /><span>{3}</span><h3>{4}</h3><p>{5}</p></li>', key.id, onclick, key.img, key.placetype, key.neighborhood, key.details);
-        marker += $.StringFormat('{0}{ latLng: [{1}, {2}], events: { click: function () { $.showPlaceInFlexslider("{3}"); }  } }', i !== 0 ? ',' : '', key.lat, key.lng, key.id);        
+        marker += $.StringFormat('{0}{ latLng: [{1}, {2}], events: { click: function () { $.showPlaceInFlexslider("{3}"); }  } }', i !== 0 ? ',' : '', key.lat, key.lng, key.id);
     });
 
     marker += ']';
@@ -28,7 +28,7 @@ $.homeSlide = function (json) {
 
     var lat = -22.977281,
         lng = -47.14822;
-    
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             lat = position.coords.latitude;
@@ -38,7 +38,7 @@ $.homeSlide = function (json) {
 
     console.log(lat);
     console.log(lng);
-    
+
     $.consultaMapa(lat, lng, "#map", marker);
 };
 
@@ -104,6 +104,30 @@ $('#fastSearch').click(function () {
         $('#buscaRapida').show();
     });
     $('#map').css('height', '450px');
+});
+$('#buscarRapido').click(function () {    
+    $('#map').gmap3({
+        getlatlng:{
+            address:  $('#endereco').val(),
+            callback: function(results){
+                if ( !results ) return;                
+                $('#map').gmap3({
+                    map: {
+                        options: {
+                            center: results[0].geometry.location,
+                            zoom: 15,
+                            scrollwheel: true
+                        }
+                    }                
+                });
+                
+                //Autocomplete google places
+                //$.searchPlace('endereco');
+            }
+        }
+    });
+
+    return false;
 });
 
 //Eventos de foco

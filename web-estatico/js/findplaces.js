@@ -44,7 +44,7 @@ $.consultaMapa = function (latStart, lngStart, target, marker) {
                 center: [latStart, lngStart],
                 zoom: 15,
                 scrollwheel: true
-            },
+            }
         },
         marker: {
             values: eval(marker),

@@ -147,13 +147,13 @@
             $.openURLContent('#content', 'home', null);
         }
 
-        window.onpopstate = $.openHashTagContent; //fixme, provavelmente nao funciona no IE
+        // window.onpopstate = $.openHashTagContent; //fixme, provavelmente nao funciona no IE
 
-        $('#loginFB').click(function () {
-            FB.login(function (response) {
-                $('#loginFB').hide();
-            }, { scope: 'email,user_likes' });
-        });
+        // $('#loginFB').click(function () {
+        //     FB.login(function (response) {
+        //         $('#loginFB').hide();
+        //     }, { scope: 'email,user_likes' });
+        // });
     });
 </script>
 </html>
