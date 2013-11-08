@@ -121,8 +121,7 @@ $('#buscarRapido').click(function () {
                     }                
                 });
                 
-                //Autocomplete google places
-                //$.searchPlace('endereco');
+                $('#hidePanel').click();
             }
         }
     });
