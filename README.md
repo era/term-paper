@@ -199,7 +199,7 @@ Response:
 		
 ##Charts
 
-### Get Views from place
+###Get Views from place
 	
 	URL: http://www.findplaces.com.br/findplaces-web/rest/chart/place/{id}
 	METHOD: GET
@@ -214,6 +214,54 @@ Response:
 		{viewedDate: 2012/10/10, count:500}]
 	}
 
+###Get Views From neighborhood
+	
+	URL: http://www.findplaces.com.br/findplaces-web/rest/chart/place/
+	METHOD: GET
+	URL PARAMS:
+		userID = user owner of the place
+		token = token from facebook.
+		name = Neighborhood name(must exist on database or nothing will be returned)
+
+Response:
+
+	{
+		views: [{viewedDate: 2012/10/09, count:300},
+		{viewedDate: 2012/10/10, count:500}]
+	}
+	
+###Get Users age that saw a place
+
+	URL: http://www.findplaces.com.br/findplaces-web/rest/chart/user/age/
+	METHOD: GET
+	URL PARAMS:
+		userID = user owner of the place
+		token = token from facebook.
+		placeID = Place id
+		
+Response:
+
+	{
+		views: [{viewedDate: 2012/10/09, count:300},
+		{viewedDate: 2012/10/10, count:500}]
+	}
+		
+###Get Likes on facebook of users that saw a place
+
+
+	URL: http://www.findplaces.com.br/findplaces-web/rest/chart/user/likes
+	METHOD: GET
+	URL PARAMS:
+		userID = user owner of the place
+		token = token from facebook.
+		placeID = Place id
+		
+Response:
+
+	{
+		views: [{viewedDate: 2012/10/09, count:300},
+		{viewedDate: 2012/10/10, count:500}]
+	}
 
 
 

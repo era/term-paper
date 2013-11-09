@@ -36,3 +36,4 @@ public class CountPlaceViewedTO implements Serializable, Viewed {
 	}
 
 }
+
