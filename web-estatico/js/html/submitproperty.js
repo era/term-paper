@@ -39,6 +39,11 @@ $.ageOfUsersChart = function () {
     new Chart(ageOfUsersCtx).Pie(ageOfUsersChart);
 };
 
+// Fotos
+$.addPhoto = function () {
+    $('#photo').click();
+};
+
 // Perguntas
 $.placeQuestions = function() {
     var placeQuestions = { questions: [{ id: 1, date: '10/10/2013', user: 'Roberto', question_text: 'O portão é automático? Se não for ao ser seu inquilino você aceita que seja colocado e descontado do aluguel?', reply_text: '' }, { id: 2, date: '09/11/2013', user: 'Ana', question_text: 'Como é o movimento no condomínio? Você morou no local?', reply_text: 'O movimento no condomínio é bem tranquilo. Eu morei por 3 anos no local e mudamos em função do trabalho. Excelente lugar para crianças e toda a família, o condominio é amplo e com diversar opções de lazer.' }] };
@@ -147,7 +152,31 @@ $(document).ready(function () {
     });
 
     // Lista as cidades com base no estado default
-    $.consultaCidade($('#region_name :selected').text(), '#city_name');
+    $.consultaCidade($('#region_name :selected').text(), '#city_name');   
+
+    // Thumb de fotos
+    $('#photo').change(function (e) {
+        if ($('.img_upload').length < 5) {
+            var selectedFile = e.target.files[0];
+            var reader = new FileReader();
+            var imageName = $(this).val().split('.')[0];
+            var imageSize = this.files[0].size;
+
+            if ($('#img_' + imageName).length === 0 && imageSize < 1000000) {
+                $('#div_link_photo').before($.StringFormat('<img alt="Clique para remover" class="img_upload" id="img_{0}" onclick="{1}" title="Clique para remover">', imageName, '$(this).remove();'));
+
+                reader.onload = function (e) {
+                    $('#img_' + imageName).attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(selectedFile);
+            } else {
+                alert("Verifique se a imagem não é maior que 1Mb ou se já não foi adicionada.");
+            }
+        } else {
+            alert("O número máximo de imagens já foi adicionada.");
+        }
+    });
 });
 
 $.responseQuestion = function (fieldName) {
