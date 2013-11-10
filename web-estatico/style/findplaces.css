@@ -176,7 +176,7 @@ div#content > .content-title > .wrapper > h1,form#buscaAvancada > .content-title
  
 div#map
 {
-	height:450px;
+	height:600px;
 	min-width:1180px;
 }
  
@@ -184,7 +184,7 @@ div#map > form
 {
 	position:absolute;
 	text-align:center;
-	top:170px;
+	top:230px;
 	width:100%;
 	z-index:1000;
 }
@@ -244,6 +244,7 @@ div#showSearch > a
  
 form#buscaAvancada
 {
+    border-bottom: 5px solid #ddd;
 	height:160px;
 }
  
@@ -258,22 +259,44 @@ form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group
 form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > label,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input
 {
 	display:block!important;
+    font-size: 12px;
 }
  
 form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input#precoDe,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input#precoAte
 {
 	display:inline-block!important;
+    margin-top: -2px;
+}
+
+form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input {
+    background-color:#fff;
+	border:1px solid #909090;
+	color:#666;
+	display:inline-block;
+    margin-top: 2px;
+	outline:none;
+	padding:5px 4px;    
+}
+
+form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input {
+    padding:6px 5px!important;
 }
  
 form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > div
 {
-	padding:10px;
+	padding:10px 18px 0 0;
+}
+
+form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > div > img {
+    cursor: help;
+    float: left;
+    margin: -5px 0 0 -35px;
 }
  
 form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > div > div.peso
 {
 	display:block!important;
-	width:100px;
+	width:80px;
 }
  
 form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > button
@@ -282,7 +305,7 @@ form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > but
 	border:1px solid #AC573D;
 	color:#fff;
 	cursor:pointer;
-	font-size:17px;
+	font-size:14px;
 	margin-top:30px;
 	padding:5px 15px;
 	text-shadow:1px 1px 0 #3b3b3b;
@@ -664,19 +687,18 @@ div#default-top-info > div > label
 	width:150px;
 }
  
-div#default-top-info > div > input,div#default-top-info > div > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > select,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input
+div#default-top-info > div > input,div#default-top-info > div > select
 {
 	background-color:#fff;
 	border:1px solid #909090;
 	color:#666;
 	display:inline-block;
 	font-size:15px;
-	margin:0 5px;
 	outline:none;
 	padding:7px 6px;
 }
- 
-div#default-top-info > div > input,form#buscaAvancada > div.wrapper > div.form-header > div.form-header-group > input
+
+div#default-top-info > div > input
 {
 	padding:8px 6px!important;
 }

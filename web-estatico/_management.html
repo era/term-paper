@@ -37,7 +37,7 @@
                     <td>Rua Doutor Moraes Sales, 28</td>
                     <td>31/12/2013</td>
                     <td>
-                        <img src="img/edit.png" alt="Editar anúncio" title="Editar anúncio" onclick="$.openURLContent('#content', 'submitproperty', null);" />
+                        <img src="img/edit.png" alt="Editar anúncio" title="Editar anúncio" onclick="$.openURLContent('#content', 'submitproperty', 'id=1');" />
                         <img src="img/duplicate.png" alt="Duplicar anúncio" title="Duplicar anúncio" />                        
                         <img src="img/lock.png" alt="Bloquear anúncio" title="Bloquear anúncio" />
                         <img src="img/off.png" alt="Encerrar anúncio" title="Encerrar anúncio" />
@@ -63,10 +63,10 @@
             MINHA CONTA
         </div>
         <ul>
-            <li>
+            <li onclick="$.openURLContent('#content', 'management', null);">
                 <a href="index.html#management">Meus anúncios</a>
             </li>
-            <li>
+            <li onclick="$.openURLContent('#content', 'profile', null);">
                 <a href="index.html#profile">Perfil</a>
             </li>
         </ul>

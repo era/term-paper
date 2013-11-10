@@ -1,4 +1,5 @@
-﻿<div class="content-title">
+﻿<script charset="utf-8" src="js/html/submitproperty.js" type="text/javascript"></script>
+<div class="content-title">
     <div class="wrapper">
         <h1>Home > Anuncie no Findplaces
         </h1>
@@ -16,9 +17,9 @@
         <div id="default-top-form">
             <div id="tabs">
                 <ul>
-                    <li><a href="#tabs-1">Anúncio</a></li>
-                    <li><a href="#tabs-2">Estatísticas</a></li>
-                    <li><a href="#tabs-3">Perguntas</a></li>
+                    <li id="tabs-1-title"><a href="#tabs-1">Anúncio</a></li>
+                    <li id="tabs-2-title" class="hide"><a href="#tabs-2">Estatísticas</a></li>
+                    <li id="tabs-3-title" class="hide"><a href="#tabs-3">Perguntas</a></li>
                 </ul>
                 <div id="tabs-1">
                     <form>
@@ -36,7 +37,8 @@
                                 <label for="valid_of">Período do anúncio:</label>
                                 <input class="inputSizeSmaller" id="valid_of" name="valid_of" type="text" />
                                 à
-                        <input class="inputSizeSmaller" id="valid_to" name="valid_to" type="text" />
+                       
+                                <input class="inputSizeSmaller" id="valid_to" name="valid_to" type="text" />
                                 <img alt="Para anúncios de temporada defina o período que pretende alugar para o valor específicado." id="help_valid_of" src="img/help-medium.png" title="Para anúncios de temporada defina o período que pretende alugar para o valor específicado" />
                             </div>
                             <div>
@@ -239,11 +241,11 @@
                 <div id="tabs-2">
                     <fieldset>
                         <legend>Visualizações do Imóvel</legend>
-                        <canvas id="placeViewsChart" width="900px" height="200px" />
+                        <canvas id="placeChart" width="900px" height="200px" />
                     </fieldset>
                     <fieldset>
                         <legend>Buscas no bairro</legend>
-                        <canvas id="bairroViewsChart" width="900px" height="200px" />
+                        <canvas id="neighborhoodChart" width="900px" height="200px" />
                     </fieldset>
                     <fieldset>
                         <legend>Idade dos usuários</legend>
@@ -259,35 +261,7 @@
                     </fieldset>
                 </div>
                 <div id="tabs-3">
-                    <table id="property-questions">
-                        <tr>
-                            <th>Data da pergunta</th>
-                            <th>Status</th>
-                            <th>Usuário</th>
-                            <th>Pergunta</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>11/11/2013</td>
-                            <td>Não respondida</td>
-                            <td>Roberto</td>
-                            <td>O portão é automático? Se não for ao ser seu inquilino você aceita que seja colocado e descontado do aluguel?</td>
-                            <td>
-                                <img id="response_1" src="img/response.png" alt="Responder pergunta" title="Responder pergunta" onclick="$.responseQuestion('#response_1');" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>12/11/2013</td>
-                            <td>Respondida</td>
-                            <td>Ana</td>
-                            <td>Como é o movimento no condomínio? Você morou no local?</td>
-                            <td></td>
-                        </tr>
-                        <tr style="background-color: #D7FCDD;">
-                            <td colspan="5" style="font-style: italic;">O movimento no condomínio é bem tranquilo. Eu morei por 3 anos no local e mudamos em função do trabalho. Excelente lugar para crianças e toda a família, o condominio é amplo e com diversar opções de lazer.
-                            </td>
-                        </tr>
-                    </table>
+                    <table id="property-questions"></table>
                 </div>
             </div>
         </div>
@@ -295,158 +269,16 @@
     <div id="account-actions">
         <div>
             MINHA CONTA
+       
         </div>
         <ul>
-            <li>
+            <li onclick="$.openURLContent('#content', 'management', null);">
                 <a href="index.html#management">Meus anúncios</a>
             </li>
-            <li>
+            <li onclick="$.openURLContent('#content', 'profile', null);">
                 <a href="index.html#profile">Perfil</a>
             </li>
         </ul>
     </div>
     <br class="clr" />
 </div>
-<script type="text/javascript" charset="utf-8">
-    //if($('#userID').val()==""){
-    //    $.openURLContent('#content', 'login', null); //FIXME
-    //}
-
-    $.responseQuestion = function (fieldName) {
-        var _input = $.StringFormat('<textarea id={0} cols="109" rows="2" maxlength="1000" style="vertical-align: middle;" />', 'response_text_' + fieldName.split('_')[1]);
-        var _responseButton = $.StringFormat('<a id={0} href="#" style="vertical-align: bottom;margin-left: 5px;">Responder</a>', 'response_button_' + fieldName.split('_')[1]);
-        var _cancelResponseButton = $.StringFormat('<a href="#" onclick="$(this).parent().parent().remove();" style="vertical-align: bottom;margin-left: 5px;">Cancelar</a>');
-        $(fieldName).parent().parent().after($.StringFormat('<tr style="background-color: #D7FCDD;"><td colspan="5" style="text-align: left;">{0}{1}{2}</td></tr>', _input, _responseButton, _cancelResponseButton));
-    };
-
-    $("#value_sale").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#deposit").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#rent").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#contract_time").maskMoney({ thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#pack_time").maskMoney({ thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#period").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#iptu").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#condominium").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#internet").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#tv").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-    $("#total").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowZero: true, allowNegative: false });
-
-    $("#flat_floor").maskMoney({ precision: 0, allowZero: true, allowNegative: false });
-    $("#floor").maskMoney({ precision: 0, allowZero: true, allowNegative: false });
-    $("#m2").maskMoney({ precision: 0, allowZero: true, allowNegative: false });
-    $("#bedroom").maskMoney({ precision: 0, allowZero: true, allowNegative: false });
-    $("#suite").maskMoney({ precision: 0, allowZero: true, allowNegative: false });
-    $("#room").maskMoney({ precision: 0, allowZero: true, allowNegative: false });
-    $("#bathroom").maskMoney({ precision: 0, allowZero: true, allowNegative: false });
-    $("#garage").maskMoney({ precision: 0, allowZero: true, allowNegative: false });
-
-    //Esconde todos os campos do grupo Valores e Detalhes que dependem de um valor de seleção antes (Tipo de anúnio e imóvel)
-    $.hideFields('#values-details > div', 'msg_fieldset', null);
-    $.hideFields([$('#valid_of').parent()], null, null);
-    $.hideFields('#details > div', 'msg_fieldset', null);
-
-    $('#help_valid_of').tooltip();
-
-    $("#tabs").tabs();
-
-    //Observa a seleção Tipo de anúncio, esconde todos os campos e exibe com base no tipo de seleção. Em caso de troca de seleção os valores dos campos são limpos.
-    $('#adtype').change(function () {
-        $.hideFields('#values-details > div', null, '#values-details > .msg_fieldset');
-        $.hideFields($('#valid_of').parent(), null, null);
-        switch ($(this).find(":selected").text()) {
-            case 'Venda':
-                $.showFields([$('#value_sale').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
-                break;
-            case 'Aluguel':
-                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#condominium').parent(), $('#internet').parent(), $('#tv').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
-                break;
-            case 'Temporada':
-                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#pack_time').parent(), $('#total').parent(), $('#valid_of').parent()], null, '#values-details > .msg_fieldset');
-                $.showFields($('#valid_of').parent(), null, null);
-                break;
-        }
-    });
-
-    //Observa a seleção Tipo de imóvel, esconde todos os campos e exibe com base no tipo de seleção. Em caso de troca de seleção os valores dos campos são limpos.
-    $('#placetype').change(function () {
-        $.hideFields('#details > div', null, '#details > .msg_fieldset');
-        switch ($(this).find(":selected").text()) {
-            case 'Apartamento':
-                $.showFields(['#details > div'], null, '#details > .msg_fieldset');
-                break;
-            case 'Casa':
-                $.showFields(['#details > div'], null, '#details > .msg_fieldset');
-                $.hideFields([$('#flat_floor').parent(), $('#floor').parent()], 'msg_fieldset', null);
-                break;
-        }
-    });
-
-    //Observa a saída do campo informado e executa a soma de seus valores
-    $('#values-details > div > input').blur(function () {
-        $.sumInputGroup('#values-details > div > input', ['deposit', 'contract_time', 'total']);
-    });
-
-
-
-    //Gráficos
-    var ctxPlaceViews = document.getElementById("placeViewsChart").getContext("2d");
-    var dataPlaceViews = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-                {
-                    fillColor: "rgba(151,187,205,0.5)",
-                    strokeColor: "rgba(151,187,205,1)",
-                    pointColor: "rgba(151,187,205,1)",
-                    pointStrokeColor: "#fff",
-                    data: [28, 48, 40, 19, 96, 27, 100]
-                }
-        ]
-    };
-    new Chart(ctxPlaceViews).Line(dataPlaceViews);
-
-    var ctxBairro = document.getElementById("bairroViewsChart").getContext("2d");
-    var dataBairro = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(220,220,220,1)",
-                data: [65, 59, 90, 81, 56, 55, 40]
-            },
-            {
-                fillColor: "rgba(151,187,205,0.5)",
-                strokeColor: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 96, 27, 100]
-            }
-        ]
-    };
-    new Chart(ctxBairro).Bar(dataBairro);
-
-
-    var ctxAge = document.getElementById("ageOfUsersChart").getContext("2d");
-    var dataAge = [
-        {
-            value: 30,
-            color: "#F38630"
-        },
-        {
-            value: 50,
-            color: "#E0E4CC"
-        },
-        {
-            value: 100,
-            color: "#69D2E7"
-        }
-    ];
-    new Chart(ctxAge).Pie(dataAge);
-
-    //{'token':'CAACEdEose0cBAKdyGHLNu3DCJtWbdDygQ1N8xpMn0NAnXFO7gyU8lZBQralkLwwZCMJU9gqjD9BsGR5pFqeqKj9tgk6UacP4ixrrIpNsxXI5VomT6FUKGeJQOMsbGKXzmJydkCpRMA29TGqgK1OqPUS9JBrmKsH7L9PtM7ZCHZBBBGG76oexEpdvtg5icLEHXdxA34UVswZDZD', 'socialid':"100000485880931", 'address': "rua do bosque",  'lat': "-22.913051",  'log': "-47.054745", 'city':{'name':'Monte Santo', 'region':{'alias':'MG'}}, 'street':{'name':'bla bla'}, 'country':{'name':'Brazil'}, 'neighborhood':{'name':'Centro'}, 'placetype':{'id':'1'}}        
-
-    // Lista os estados
-    $.each(uf_cidade.estados, function (key, val) {
-        $('#region_name').append('<option value="' + val.sigla + '">' + val.sigla + '</option>');
-    });
-
-    // Lista as cidades com base no estado default
-    $.consultaCidade($('#region_name :selected').text(), '#city_name');
-</script>
