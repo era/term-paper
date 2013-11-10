@@ -141,4 +141,4 @@ $(document).ready(function () {
     }).blur(function () {
         $(this).removeClass('inputSizeMedium').addClass('inputSizeMediumSmaller');
     });
-});
+}); 
