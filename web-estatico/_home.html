@@ -8,6 +8,9 @@
     <div class="wrapper">
         <div class="form-header">
             <div class="form-header-group">
+                
+            </div>
+            <div class="form-header-group">
                 <label for="tiposAquisicaoAvancada">Tipo de aquisição</label>
                 <select class="form-header-alt-select" id="tiposAquisicaoAvancada" name="tiposAquisicaoAvancada">
                     <option value="0">Comprar</option>
@@ -15,7 +18,9 @@
                     <option value="2">Temporada</option>
                 </select>
                 <div>
-                    <div class="peso" id="pesoAquisicao" title="Define a prioridade na busca, por exemplo se o imporante é o tipo de aquisição coloque a barra no máximo"></div>
+                    <img id="sliderHelp" src="img/help-smaller.png" title="Define a prioridade dos filtros em sua busca" />
+                    <div class="peso" id="pesoAquisicao"></div>
+                    <br class="clr" /> 
                 </div>
             </div>
             <div class="form-header-group">
@@ -28,7 +33,7 @@
                     <option value="4">Outros</option>
                 </select>
                 <div>
-                    <div class="peso" id="pesoTipoImovel" title="Define a prioridade na busca, por exemplo se o imporante é o tipo do imóvel coloque a barra no máximo"></div>
+                    <div class="peso" id="pesoTipoImovel"></div>
                 </div>
             </div>
             <div class="form-header-group">
@@ -36,21 +41,18 @@
                 <input class="inputSizeMediumSmaller" id="precoDe" name="precoDe" placeholder="De" type="text" />
                 <input class="inputSizeMediumSmaller" id="precoAte" name="precoAte" placeholder="Até" type="text" />
                 <div>
-                    <div class="peso" id="pesoPreco" title="Define a prioridade na busca, por exemplo se o imporante é o preço coloque a barra no máximo"></div>
+                    <div class="peso" id="pesoPreco"></div>
                 </div>
             </div>
             <div class="form-header-group">
-                <label for="bairro">Bairro</label>
-                <input class="inputSizeMediumSmaller" id="bairro" name="bairro" type="text" />
-                <div>
-                    <div class="peso" id="pesoBairro" title="Define a prioridade na busca, por exemplo se o imporante é o bairro coloque a barra no máximo"></div>
-                </div>
+                <label for="bairro">Local</label>
+                <input class="inputSizeBig" id="enderecoAvancado" name="enderecoAvancado" placeholder="Bairro, estabelecimento ou código do apartamento" type="text" />
             </div>
             <div class="form-header-group">
                 <label for="raio">Raio (mts)</label>
                 <input class="inputSizeMediumSmaller" id="raio" name="raio" placeholder="Ex. 1.000" type="text" />
                 <div>
-                    <div class="peso" id="pesoRaio" title="Define a prioridade na busca, por exemplo se o imporante é o raio coloque a barra no máximo"></div>
+                    <div class="peso" id="pesoRaio"></div>
                 </div>
             </div>
             <div class="form-header-group">
@@ -62,7 +64,7 @@
                     <option value="4">4+</option>
                 </select>
                 <div>
-                    <div class="peso" id="pesoDormitorios" title="Define a prioridade na busca, por exemplo se o imporante é a quantidade de dormitórios coloque a barra no máximo"></div>
+                    <div class="peso" id="pesoDormitorios"></div>
                 </div>
             </div>
             <div class="form-header-group">
@@ -73,7 +75,7 @@
                     <option value="3">3+</option>
                 </select>
                 <div>
-                    <div class="peso" id="pesoGaragens" title="Define a prioridade na busca, por exemplo se o imporante é a quantidade de vagar na garagem coloque a barra no máximo"></div>
+                    <div class="peso" id="pesoGaragens"></div>
                 </div>
             </div>
             <div class="form-header-group">

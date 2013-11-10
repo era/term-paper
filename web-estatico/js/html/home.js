@@ -29,15 +29,15 @@ $.homeSlide = function (json) {
     var lat = -22.977281,
         lng = -47.14822;
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            lat = position.coords.latitude;
-            lng = position.coords.longitude;
-        });
-    }
+    //if (navigator.geolocation) {
+    //    navigator.geolocation.getCurrentPosition(function (position) {
+    //        lat = position.coords.latitude;
+    //        lng = position.coords.longitude;
+    //    });
+    //}
 
-    console.log(lat);
-    console.log(lng);
+    //console.log(lat);
+    //console.log(lng);
 
     $.consultaMapa(lat, lng, "#map", marker);
 };
@@ -46,16 +46,17 @@ $.homeSlide(home_slide);
 
 //Autocomplete google places
 $.searchPlace('endereco');
+$.searchPlace('enderecoAvancado');
 
 //Caixa de detalhes
 $('#advancedSearch').tooltip();
 $('#fastSearch').tooltip();
 $('#hidePanel').tooltip();
 $('#showPanel').tooltip();
-$('.peso').tooltip();
+$('#sliderHelp').tooltip();
 
 //Aplica o efeito ui slide
-$.criaSlider([$("#pesoAquisicao"), $('#pesoTipoImovel'), $('#pesoPreco'), $('#pesoBairro'), $('#pesoRaio'), $('#pesoDormitorios'), $('#pesoGaragens')]);
+$.criaSlider([$("#pesoAquisicao"), $('#pesoTipoImovel'), $('#pesoPreco'), $('#pesoRaio'), $('#pesoDormitorios'), $('#pesoGaragens')]);
 
 //Máscara
 $("#precoDe").maskMoney({
@@ -96,14 +97,14 @@ $('.slides > li').click(function () {
 $('#advancedSearch').click(function () {
     $('#buscaRapida').hide(0, function () {
         $('#buscaAvancada').slideDown('slow');
-    });
-    $('#map').css('height', '330px');
+        $('#map').css('height', '480px');
+    });    
 });
 $('#fastSearch').click(function () {
     $('#buscaAvancada').slideUp('slow', function () {
         $('#buscaRapida').show();
-    });
-    $('#map').css('height', '450px');
+        $('#map').css('height', '600px');
+    });    
 });
 $('#buscarRapido').click(function () {    
     $('#map').gmap3({
