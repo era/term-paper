@@ -39,37 +39,6 @@ $.ageOfUsersChart = function () {
     new Chart(ageOfUsersCtx).Pie(ageOfUsersChart);
 };
 
-/*
-<tr>
-    <th>Data da pergunta</th>
-    <th>Status</th>
-    <th>Usuário</th>
-    <th>Pergunta</th>
-    <th></th>
-</tr>
-<tr>
-    <td>11/11/2013</td>
-    <td>Não respondida</td>
-    <td>Roberto</td>
-    <td>O portão é automático? Se não for ao ser seu inquilino você aceita que seja colocado e descontado do aluguel?</td>
-    <td>
-        <img id="response_1" src="img/response.png" alt="Responder pergunta" title="Responder pergunta" onclick="$.responseQuestion('#response_1');" />
-    </td>
-</tr>
-<tr>
-    <td>12/11/2013</td>
-    <td>Respondida</td>
-    <td>Ana</td>
-    <td>Como é o movimento no condomínio? Você morou no local?</td>
-    <td></td>
-</tr>
-<tr style="background-color: #D7FCDD;">
-    <td colspan="5" style="font-style: italic;">O movimento no condomínio é bem tranquilo. Eu morei por 3 anos no local e mudamos em função do trabalho. Excelente lugar para crianças e toda a família, o condominio é amplo e com diversar opções de lazer.
-    </td>
-</tr>
-*/
-
-
 // Perguntas
 $.placeQuestions = function() {
     var placeQuestions = { questions: [{ id: 1, date: '10/10/2013', user: 'Roberto', question_text: 'O portão é automático? Se não for ao ser seu inquilino você aceita que seja colocado e descontado do aluguel?', reply_text: '' }, { id: 2, date: '09/11/2013', user: 'Ana', question_text: 'Como é o movimento no condomínio? Você morou no local?', reply_text: 'O movimento no condomínio é bem tranquilo. Eu morei por 3 anos no local e mudamos em função do trabalho. Excelente lugar para crianças e toda a família, o condominio é amplo e com diversar opções de lazer.' }] };
