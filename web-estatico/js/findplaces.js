@@ -6,7 +6,7 @@
 //Método para serializar um form ou grupo fields values
 $.fn.serializeObject = function () { var e = {}; var t = this.serializeArray(); $.each(t, function () { if (e[this.name] !== undefined) { if (!e[this.name].push) e[this.name] = [e[this.name]]; e[this.name].push(this.value || ""); } else e[this.name] = this.value || ""; }); return e; };
 //Método para recuperar parametros de url
-$.getUrlParam = function (e, t) { var n = (new RegExp("[\\?&]" + e + "=([^&#]*)")).exec(t); return n[1] || 0; };
+$.getUrlParam = function (e, t) { var n = (new RegExp("[\\?&]" + e + "=([^&#]*)")).exec(t); if (n !== null) { return n[1]; } else { return 0; } };
 //Método para simular método StringFormat de algumas linguagens
 $.StringFormat = function () { var e = arguments[0]; for (var t = 0; t < arguments.length - 1; t++) { var n = new RegExp("\\{" + t + "\\}", "gm"); e = e.replace(n, arguments[t + 1]); } return e; };
 //Método para verificar se o campo é nulo ou vazio
