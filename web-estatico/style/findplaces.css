@@ -81,6 +81,21 @@ textarea
 {
 	background:url(../img/list-no-ok.png) no-repeat 97% center;
 }
+
+.div_link 
+{
+    cursor: pointer;
+    text-decoration: underline;        
+}
+
+.img_upload 
+{
+    border: 1px solid #aaa;
+    margin: 5px;
+    padding: 2px;
+    width: 28%;
+    cursor: pointer;
+}
  
 header
 {
@@ -397,7 +412,7 @@ ul.homeSlides > li > img
 {
 	float:left;
 	padding-right:10px;
-	width:200px!important;
+	height: 150px!important;
 }
  
 ul.homeSlides > li > span
