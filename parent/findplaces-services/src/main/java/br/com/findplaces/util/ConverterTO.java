@@ -159,6 +159,8 @@ public class ConverterTO {
 		to.setM2(place.getM2());
 		to.setNeighborhood(converter(place.getNeighborhood()));
 		to.setPrice(place.getPrice());
+		to.setLat(place.getSpatial().getGeom().getCoordinate().x);
+		to.setLat(place.getSpatial().getGeom().getCoordinate().y);
 		to.setRoom(place.getRoom());
 		to.setSeller(converter(place.getSeller()));
 		to.setStreet(converter(place.getStreet()));
