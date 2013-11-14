@@ -199,6 +199,7 @@ public class ConverterTO {
 		to.setAnswer(converter(coment.getAnswer()));
 		to.setUser(converter(coment.getUser()));
 		to.setText(coment.getText());
+		to.setStatus(coment.getStatus());
 		return to;
 	}
 	
@@ -207,6 +208,7 @@ public class ConverterTO {
 		coment.setAnswer(converter(to.getAnswer()));
 		coment.setId(to.getId());
 		coment.setUser(converter(to.getUser()));
+		coment.setStatus(to.getStatus());
 		return coment;
 	}
 	

@@ -76,8 +76,10 @@ public class PlaceService implements Serializable {
 			if(comentID!=null && comentID!=0){
 				ComentTO answerTo = this.place.findComentByID(comentID);
 				answerTo.setAnswer(newComent);
+				answerTo.setStatus(true);
 				place = this.place.coment(answerTo);
 			} else {
+				newComent.setStatus(true);
 				place = this.place.coment(newComent);
 			}
 			
@@ -93,6 +95,33 @@ public class PlaceService implements Serializable {
 			response.setCode(StatusCode.NOT_ALLOWED.getCode());
 			response.setMessage(StatusCode.NOT_ALLOWED.getMessage());
 		}
+		
+		return response;
+	}
+	
+	@POST
+	@Path("/coment/{comentID}")
+	public PlaceResponse approve(@QueryParam(value= "token") String token,
+			@QueryParam(value="socialID") String socialID,
+			@PathParam(value="comentID")Long comentID){
+		PlaceResponse response = new PlaceResponse();
+		try {
+			isValidToken(token, socialID);
+			
+			ComentTO coment = this.place.findComentByID(comentID);
+			coment.setStatus(true);
+			this.place.coment(coment);
+			PlaceTO placeTO = this.place.findPlaceById(coment.getPlace().getId());
+			
+			response.setPlaces(new ArrayList<PlaceTO>());
+			response.getPlaces().add(placeTO);
+			response.setCode(StatusCode.SUCCESS.getCode());
+			response.setMessage(StatusCode.SUCCESS.getMessage());
+			
+		} catch (NotAuthorizedException e) {
+			response.setCode(StatusCode.NOT_ALLOWED.getCode());
+			response.setMessage(StatusCode.NOT_ALLOWED.getMessage());
+		} 
 		
 		return response;
 	}

@@ -33,6 +33,9 @@ public class Coment extends BaseEntity implements Serializable {
 	private Place place;
 	
 	@Column
+	private Boolean status;
+	
+	@Column
 	private String text;
 
 	public Long getId() {
@@ -73,6 +76,14 @@ public class Coment extends BaseEntity implements Serializable {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 
 }

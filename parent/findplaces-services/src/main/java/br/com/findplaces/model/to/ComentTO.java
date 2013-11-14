@@ -7,9 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="coment")
 public class ComentTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5554886352727362780L;
 
 	private Long id;
@@ -21,6 +18,8 @@ public class ComentTO implements Serializable {
 	private PlaceTO place;
 	
 	private String text;
+	
+	private Boolean status;
 
 	public UserTO getUser() {
 		return user;
@@ -60,6 +59,14 @@ public class ComentTO implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 	
 }
