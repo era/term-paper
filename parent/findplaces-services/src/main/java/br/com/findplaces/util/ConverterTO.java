@@ -33,6 +33,8 @@ import br.com.findplaces.model.to.SellerTO;
 import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.model.to.UserTypeTO;
 
+import com.restfb.types.Photo;
+
 public class ConverterTO {
 
 	private ConverterTO() {
@@ -143,6 +145,12 @@ public class ConverterTO {
 			coments.add(converter(coment));
 		}
 		entity.setComents(coments);
+		List<Image> photos = new ArrayList<Image>();
+		for(Long photoID : place.getIdImages()){
+			Image photo = new Image();
+			photo.setId(photoID);
+		}
+		entity.setPhotos(photos);;
 		return entity;
 	}
 	

@@ -17,6 +17,8 @@ public class PlaceTO implements Serializable {
 
 	private Long id;
 	
+	private List<Long> idImages;
+	
 	private List<ComentTO> coments;
 
 	private String address;
@@ -364,6 +366,14 @@ public class PlaceTO implements Serializable {
 
 	public void setComents(List<ComentTO> coments) {
 		this.coments = coments;
+	}
+
+	public List<Long> getIdImages() {
+		return idImages;
+	}
+
+	public void setIdImages(List<Long> idImages) {
+		this.idImages = idImages;
 	}
 
 }
