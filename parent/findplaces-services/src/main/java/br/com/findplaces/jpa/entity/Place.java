@@ -125,6 +125,7 @@ public class Place extends BaseEntity implements Serializable {
 	@Column
 	private Integer garage;
 	
+	@JoinColumn(name="image_id", insertable = false, updatable = false)
 	@OneToMany
 	private List<Image> photos;
 	
