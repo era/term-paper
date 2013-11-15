@@ -285,3 +285,11 @@ INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('130297048172',99,'To
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (4,130297048172,99);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('8245623462',100,'NBA',4);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (4,8245623462,100);
+
+
+
+
+--seller configurations
+INSERT INTO tb_seller(id,user_id) VALUES(1,1);
+INSERT INTO tb_seller(id,user_id) VALUES(2,2);
+INSERT INTO tb_seller(id,user_id) VALUES(3,3);
