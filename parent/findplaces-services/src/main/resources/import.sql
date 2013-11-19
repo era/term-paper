@@ -439,6 +439,12 @@ INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('470580662953557',175
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,470580662953557,175);
 
 
+--fakes sem likes
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(8,'41','joeytribianni@gmail.com','Joey Tribianne',null,'Married','11101485880931','UNIP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(9,'38','rachelgreen@gmail.com','Rachel Green',null,'Married','12101485880931','UNIP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(10,'21','monica@gmail.com','Monica Green',null,'Married','12101485880921','UNIP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(11,'22','ross@gmail.com','Ross Green',null,'Married','111051485880921','UNIP',1);
+
 --seller configurations
 INSERT INTO tb_seller(id,user_id) VALUES(1,1);
 INSERT INTO tb_seller(id,user_id) VALUES(2,2);
