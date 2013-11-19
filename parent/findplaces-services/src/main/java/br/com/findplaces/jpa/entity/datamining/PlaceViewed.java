@@ -24,8 +24,7 @@ import br.com.findplaces.jpa.entity.User;
 	@NamedQuery(name="FindPlacesWithSameUserAge", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.age = :age"),
 	@NamedQuery(name="FindPlacesWithSameRelationship", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.relationship = :relantionship"),
 	@NamedQuery(name="FindPlacesWithSameStudyAt", query="SELECT pv FROM PlaceViewed pv where pv.user.id != :userID and pv.user.studyAt = :studyAt"),
-	@NamedQuery(name=PlaceViewed.findViewsByPlace, query="SELECT pv FROM PlaceViewed pv where pv.place.id = :placeID"),
-	@NamedQuery(name=PlaceViewed.findViewsByNeighborhood, query="SELECT pv FROM PlaceViewed pv where pv.place.neighborhood.hoodName = :hoodname"),
+	@NamedQuery(name=PlaceViewed.findViewsByPlace, query="SELECT pv FROM PlaceViewed pv where pv.place.id = :placeID"),	
 	@NamedQuery(name=PlaceViewed.findPlacesByLike, query="SELECT pv FROM PlaceViewed pv where pv.user.likes IN (SELECT pv2.user.likes FROM PlaceViewed pv2 WHERE " +
 			"pv2.user.id = :userID )")
 })

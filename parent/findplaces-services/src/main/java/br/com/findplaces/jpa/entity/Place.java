@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,10 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import br.com.findplaces.jpa.entity.geographic.City;
@@ -33,11 +36,14 @@ public class Place extends BaseEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name="TB_PLACE_COMMENTS", joinColumns={@JoinColumn(name="PLACE_ID", referencedColumnName="id")}, inverseJoinColumns={@JoinColumn(name="COMMENT_ID", referencedColumnName="id")})
 	private List<Coment> coments;
 	
-	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY)
-	@JoinColumn(name = "fid")
+//	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+//	@JoinColumn(name = "fid")
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+    @PrimaryKeyJoinColumn
 	private PlaceSpatial spatial;
 	
 	@OneToOne
@@ -50,14 +56,14 @@ public class Place extends BaseEntity implements Serializable {
 	@Column
 	private String address;
 	
-	@ManyToOne
-	private City city;
-
-	@ManyToOne
-	private Neighborhood neighborhood;
-
-	@ManyToOne
-	private Street street;
+//	@ManyToOne
+//	private City city;
+//
+//	@ManyToOne
+//	private Neighborhood neighborhood;
+//
+//	@ManyToOne
+//	private Street street;
 
 	@ManyToOne
 	private PlaceType type;		
@@ -98,12 +104,12 @@ public class Place extends BaseEntity implements Serializable {
 	@Column
 	private Double condominiumPrice;
 	
-	@Column
-	private Double internet;
-	
-	@Column
-	private Double tv;
-	
+//	@Column
+//	private Double internet;
+//	
+//	@Column
+//	private Double tv;
+//	
 	@Column
 	private Double totalPrice;
 	
@@ -139,8 +145,8 @@ public class Place extends BaseEntity implements Serializable {
 	@Column
 	private String cellphone2;
 	
-	@Column
-	private String cellphone3;
+//	@Column
+//	private String cellphone3;
 	
 
 	public Long getId() {
@@ -159,21 +165,21 @@ public class Place extends BaseEntity implements Serializable {
 		this.address = address;
 	}
 
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
-	}
-
-	public Neighborhood getNeighborhood() {
-		return neighborhood;
-	}
-
-	public void setNeighborhood(Neighborhood neighborhood) {
-		this.neighborhood = neighborhood;
-	}
+//	public City getCity() {
+//		return city;
+//	}
+//
+//	public void setCity(City city) {
+//		this.city = city;
+//	}
+//
+//	public Neighborhood getNeighborhood() {
+//		return neighborhood;
+//	}
+//
+//	public void setNeighborhood(Neighborhood neighborhood) {
+//		this.neighborhood = neighborhood;
+//	}
 
 	public Date getStartOffer() {
 		return startOffer;
@@ -199,13 +205,13 @@ public class Place extends BaseEntity implements Serializable {
 		this.qtdPlaceFloor = qtdPlaceFloor;
 	}
 
-	public Street getStreet() {
-		return street;
-	}
-
-	public void setStreet(Street street) {
-		this.street = street;
-	}
+//	public Street getStreet() {
+//		return street;
+//	}
+//
+//	public void setStreet(Street street) {
+//		this.street = street;
+//	}
 
 	public PlaceType getType() {
 		return type;
@@ -369,21 +375,21 @@ public class Place extends BaseEntity implements Serializable {
 		this.condominiumPrice = condominiumPrice;
 	}
 
-	public Double getInternet() {
-		return internet;
-	}
-
-	public void setInternet(Double internet) {
-		this.internet = internet;
-	}
-
-	public Double getTv() {
-		return tv;
-	}
-
-	public void setTv(Double tv) {
-		this.tv = tv;
-	}
+//	public Double getInternet() {
+//		return internet;
+//	}
+//
+//	public void setInternet(Double internet) {
+//		this.internet = internet;
+//	}
+//
+//	public Double getTv() {
+//		return tv;
+//	}
+//
+//	public void setTv(Double tv) {
+//		this.tv = tv;
+//	}
 
 	public Double getTotalPrice() {
 		return totalPrice;
@@ -409,13 +415,13 @@ public class Place extends BaseEntity implements Serializable {
 		this.cellphone2 = cellphone2;
 	}
 
-	public String getCellphone3() {
-		return cellphone3;
-	}
-
-	public void setCellphone3(String cellphone3) {
-		this.cellphone3 = cellphone3;
-	}
+//	public String getCellphone3() {
+//		return cellphone3;
+//	}
+//
+//	public void setCellphone3(String cellphone3) {
+//		this.cellphone3 = cellphone3;
+//	}
 
 	public Integer getPackTime() {
 		return packTime;

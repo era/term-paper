@@ -33,6 +33,7 @@ public abstract class BaseSpatialDAOImpl<SpatialEntity extends BaseEntity,ID> im
 	@SuppressWarnings("unchecked")
 	public ID create(SpatialEntity spatialEntity) throws DAOException {
         try {
+        	this.getEntitySpatialManager().flush();
             this.getEntitySpatialManager().persist(spatialEntity);
             return (ID) ((BaseEntity) spatialEntity).getPrimaryKey();
         } catch (Exception e) {

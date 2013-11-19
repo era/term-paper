@@ -95,9 +95,7 @@ public class Facilities extends BaseEntity implements Serializable {
 	@Column
 	private Double price;
 		
-	@OneToOne
-	private Place place;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -305,15 +303,5 @@ public class Facilities extends BaseEntity implements Serializable {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-
-	public Place getPlace() {
-		return place;
-	}
-
-	public void setPlace(Place place) {
-		this.place = place;
-	}
-	
-	
 
 }

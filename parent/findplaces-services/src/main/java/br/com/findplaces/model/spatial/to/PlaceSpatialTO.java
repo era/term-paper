@@ -16,10 +16,7 @@ public class PlaceSpatialTO implements Serializable{
 
 	@XmlTransient
 	private Long id;
-	
-	@XmlTransient
-	private PlaceTO place;
-	
+			
 	@XmlTransient
 	private Double lat;
 	
@@ -32,11 +29,7 @@ public class PlaceSpatialTO implements Serializable{
 	public Long getId() {
 		return id;
 	}
-
-	public PlaceTO getPlace() {
-		return place;
-	}
-
+	
 	public Double getLat() {
 		return lat;
 	}
@@ -52,10 +45,7 @@ public class PlaceSpatialTO implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public void setPlace(PlaceTO place) {
-		this.place = place;
-	}
+	
 
 	public void setLat(Double lat) {
 		this.lat = lat;

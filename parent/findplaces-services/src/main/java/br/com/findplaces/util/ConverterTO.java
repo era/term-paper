@@ -27,6 +27,7 @@ import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
 import br.com.findplaces.model.to.ComentTO;
 import br.com.findplaces.model.to.FacilitiesTO;
 import br.com.findplaces.model.to.PhotoTO;
+import br.com.findplaces.model.to.PlaceRequest;
 import br.com.findplaces.model.to.PlaceTO;
 import br.com.findplaces.model.to.PlaceTypeTO;
 import br.com.findplaces.model.to.SellerTO;
@@ -84,15 +85,43 @@ public class ConverterTO {
 
 	public static Seller converter(SellerTO sellerTO) {
 		Seller seller = new Seller();
-		seller.setCity(sellerTO.getCity());
-		seller.setCountry(sellerTO.getCountry());
 		seller.setId(sellerTO.getId());
-		seller.setLatitude(sellerTO.getLatitude());
-		seller.setLongitude(sellerTO.getLongitude());
-		seller.setName(sellerTO.getName());
-		seller.setState(sellerTO.getWebsite());
-		seller.setUser(ConverterTO.converter(sellerTO.getUserTO()));
-		seller.setWebsite(sellerTO.getWebsite());
+
+		if (sellerTO.getCity() != null) {
+			seller.setCity(sellerTO.getCity());
+		}
+
+		if (sellerTO.getCountry() != null) {
+			seller.setCountry(sellerTO.getCountry());
+		}
+
+		if (sellerTO.getLatitude() != null) {
+			seller.setLatitude(sellerTO.getLatitude());
+		}
+
+		if (sellerTO.getLatitude() != null) {
+			seller.setLatitude(sellerTO.getLatitude());
+		}
+
+		if (sellerTO.getLongitude() != null) {
+			seller.setLongitude(sellerTO.getLongitude());
+		}
+
+		if (sellerTO.getName() != null) {
+			seller.setName(sellerTO.getName());
+		}
+
+		if (sellerTO.getWebsite() != null) {
+			seller.setState(sellerTO.getWebsite());
+		}
+
+		if (sellerTO.getUserTO() != null) {
+			seller.setUser(ConverterTO.converter(sellerTO.getUserTO()));
+		}
+
+		if (sellerTO.getWebsite() != null) {
+			seller.setWebsite(sellerTO.getWebsite());
+		}
 
 		return seller;
 	}
@@ -106,7 +135,9 @@ public class ConverterTO {
 		sellerTO.setLongitude(seller.getLongitude());
 		sellerTO.setName(seller.getName());
 		sellerTO.setState(seller.getWebsite());
-		sellerTO.setUserTO(ConverterTO.converter(seller.getUser()));
+		if (seller.getUser() != null) {
+			sellerTO.setUserTO(ConverterTO.converter(seller.getUser()));
+		}
 		sellerTO.setWebsite(seller.getWebsite());
 		return sellerTO;
 	}
@@ -117,91 +148,113 @@ public class ConverterTO {
 		entity.setAddress(place.getAddress());
 		entity.setBathroom(place.getBathroom());
 		entity.setBedroom(place.getBedroom());
-		entity.setCity(converter(place.getCity()));
+		// entity.setCity(converter(place.getCity()));
 		entity.setCode(place.getCode());
 		entity.setDescription(place.getDescription());
 		entity.setGarage(place.getGarage());
 		entity.setM2(place.getM2());
-		entity.setNeighborhood(converter(place.getNeighborhood()));
+		// entity.setNeighborhood(converter(place.getNeighborhood()));
 		entity.setPrice(place.getPrice());
 		entity.setRoom(place.getRoom());
 		entity.setSeller(converter(place.getSeller()));
-		entity.setStreet(converter(place.getStreet()));
+		// entity.setStreet(converter(place.getStreet()));
 		entity.setSuite(place.getSuite());
 		entity.setDeposit(place.getDeposit());
 		entity.setCellphone(place.getCellphone());
 		entity.setCellphone2(place.getCellphone2());
-		entity.setCellphone3(place.getCellphone3());
-		entity.setInternet(place.getInternet());
+		// entity.setCellphone3(place.getCellphone3());
+		// entity.setInternet(place.getInternet());
 		entity.setCondominiumPrice(place.getCondominiumPrice());
 		entity.setQtdPlaceFloor(place.getQtdPlaceFloor());
 		entity.setRentMonths(place.getRentMonths());
-		entity.setTv(place.getTv());
+		// entity.setTv(place.getTv());
 		entity.setTotalPrice(place.getTotalPrice());
-		entity.setSpatial(converter(place.getSpatialTO()));
+		if (place.getSpatialTO() != null) {
+			entity.setSpatial(converter(place.getSpatialTO()));
+		}
 		entity.setType(converter(place.getType()));
-		List<Coment> coments =new ArrayList<Coment>();
-		for(ComentTO coment : place.getComents()){
-			coments.add(converter(coment));
+		List<Coment> coments = new ArrayList<Coment>();
+		if (place.getComents() != null) {
+			for (ComentTO coment : place.getComents()) {
+				coments.add(converter(coment));
+			}
+			entity.setComents(coments);
 		}
-		entity.setComents(coments);
 		List<Image> photos = new ArrayList<Image>();
-		for(Long photoID : place.getIdImages()){
-			Image photo = new Image();
-			photo.setId(photoID);
+		if (place.getIdImages() != null) {
+			for (Long photoID : place.getIdImages()) {
+				Image photo = new Image();
+				photo.setId(photoID);
+			}
+			entity.setPhotos(photos);
 		}
-		entity.setPhotos(photos);;
+
 		return entity;
 	}
-	
+
 	public static PlaceTO converter(Place place) {
 		PlaceTO to = new PlaceTO();
 		to.setId(place.getId());
 		to.setAddress(place.getAddress());
 		to.setBathroom(place.getBathroom());
 		to.setBedroom(place.getBedroom());
-		to.setCity(converter(place.getCity()));
+		// to.setCity(converter(place.getCity()));
 		to.setCode(place.getCode());
 		to.setDescription(place.getDescription());
 		to.setGarage(place.getGarage());
 		to.setM2(place.getM2());
-		to.setNeighborhood(converter(place.getNeighborhood()));
+		// to.setNeighborhood(converter(place.getNeighborhood()));
 		to.setPrice(place.getPrice());
-		to.setLat(place.getSpatial().getGeom().getCoordinate().x);
-		to.setLat(place.getSpatial().getGeom().getCoordinate().y);
+		if (place.getSpatial() != null) {
+			to.setLat(place.getSpatial().getGeom().getCoordinate().x);
+			to.setLog(place.getSpatial().getGeom().getCoordinate().y);
+		}
 		to.setRoom(place.getRoom());
 		to.setSeller(converter(place.getSeller()));
-		to.setStreet(converter(place.getStreet()));
+		// to.setStreet(converter(place.getStreet()));
 		to.setSuite(place.getSuite());
 		to.setDeposit(place.getDeposit());
 		to.setCellphone(place.getCellphone());
 		to.setCellphone2(place.getCellphone2());
-		to.setCellphone3(place.getCellphone3());
-		to.setInternet(place.getInternet());
+		// to.setCellphone3(place.getCellphone3());
+		// to.setInternet(place.getInternet());
 		to.setCondominiumPrice(place.getCondominiumPrice());
 		to.setQtdPlaceFloor(place.getQtdPlaceFloor());
 		to.setRentMonths(place.getRentMonths());
-		to.setTv(place.getTv());
+		// to.setTv(place.getTv());
 		to.setTotalPrice(place.getTotalPrice());
 		to.setType(converter(place.getType()));
 		ArrayList<Long> sellType = new ArrayList<Long>();
-		if(place.getSellType() != null){
-			for(SellType sell : place.getSellType()){
-				sellType.add(sell.getId());
+//		if (place.getSellType() != null) {
+//			for (SellType sell : place.getSellType()) {
+//				sellType.add(sell.getId());
+//			}
+//			to.setSellType(sellType);
+//		} // fixme
+
+		List<ComentTO> coments = new ArrayList<ComentTO>();
+		if (place.getComents() != null) {
+			for (Coment coment : place.getComents()) {
+				coments.add(converter(coment));
 			}
-			to.setSellType(sellType);
-		} //fixme
-		
-		List<ComentTO> coments =new ArrayList<ComentTO>();
-		for(Coment coment : place.getComents()){
-			coments.add(converter(coment));
+			to.setComents(coments);
 		}
-		to.setComents(coments);
-		//SPATIAL		
+
+		if (place.getSpatial() != null) {
+			to.setSpatialTO(converter(place.getSpatial()));
+		}
+		// SPATIAL
 		return to;
 	}
-	
-	public static ComentTO converter(Coment coment){
+
+	private static PlaceSpatialTO converter(PlaceSpatial spatial) {
+		PlaceSpatialTO to = new PlaceSpatialTO();
+		to.setId(spatial.getId());
+		to.setGeom(spatial.getGeom());
+		return to;
+	}
+
+	public static ComentTO converter(Coment coment) {
 		ComentTO to = new ComentTO();
 		to.setId(coment.getId());
 		to.setAnswer(converter(coment.getAnswer()));
@@ -210,8 +263,8 @@ public class ConverterTO {
 		to.setStatus(coment.getStatus());
 		return to;
 	}
-	
-	public static Coment converter(ComentTO to){
+
+	public static Coment converter(ComentTO to) {
 		Coment coment = new Coment();
 		coment.setAnswer(converter(to.getAnswer()));
 		coment.setId(to.getId());
@@ -219,16 +272,15 @@ public class ConverterTO {
 		coment.setStatus(to.getStatus());
 		return coment;
 	}
-	
+
 	public static PlaceSpatial converter(PlaceSpatialTO to) {
 		PlaceSpatial entity = new PlaceSpatial();
 		entity.setId(to.getId());
-		entity.setPlace(converter(to.getPlace()));
-		entity.setGeom(to.getGeom());		
+		// entity.setPlace(converter(to.getPlace()));
+		entity.setGeom(to.getGeom());
 		return entity;
 	}
 
-	
 	public static PlaceType converter(PlaceTypeTO type) {
 		PlaceType entity = new PlaceType();
 		entity.setId(type.getId());
@@ -242,7 +294,7 @@ public class ConverterTO {
 		entity.setName(country.getName());
 		return entity;
 	}
-	
+
 	public static Region converter(RegionTO region) {
 		Region entity = new Region();
 		entity.setId(region.getId());
@@ -259,7 +311,7 @@ public class ConverterTO {
 		entity.setRegion(converter(city.getRegion()));
 		return entity;
 	}
-	
+
 	public static Neighborhood converter(NeighborhoodTO neighborhood) {
 		Neighborhood entity = new Neighborhood();
 		entity.setId(neighborhood.getId());
@@ -267,8 +319,7 @@ public class ConverterTO {
 		entity.setCity(converter(neighborhood.getCity()));
 		return entity;
 	}
-	
-	
+
 	public static Street converter(StreetTO street) {
 		Street entity = new Street();
 		entity.setId(street.getId());
@@ -276,10 +327,6 @@ public class ConverterTO {
 		entity.setHood(converter(street.getHood()));
 		return entity;
 	}
-
-	
-
-	
 
 	private static PlaceTypeTO converter(PlaceType type) {
 		PlaceTypeTO to = new PlaceTypeTO();
@@ -329,23 +376,23 @@ public class ConverterTO {
 	}
 
 	public static PhotoTO converter(Image image) {
-		
+
 		PhotoTO photoTO = new PhotoTO();
-		
+
 		photoTO.setId(image.getId());
 		photoTO.setUrl(image.getPath());
-		
+
 		return photoTO;
-		
+
 	}
 
 	public static Image converter(PhotoTO photoTO) {
-		
+
 		Image image = new Image();
-		
+
 		image.setId(photoTO.getId());
 		image.setPath(photoTO.getUrl());
-		
+
 		return image;
 	}
 
@@ -357,6 +404,64 @@ public class ConverterTO {
 		entity.setBathBoxGlass(to.isBathBoxGlass());
 		entity.setBathroomCloset(to.isBathroomCloset());
 		return null;
+	}
+
+	public static PlaceTO converter(PlaceRequest re) {
+		PlaceTO to = new PlaceTO();
+
+		if (re.getCity() != null) {
+			to.setCity(re.getCity());
+		}
+
+		if (re.getNeighborhood() != null) {
+			to.setNeighborhood(re.getNeighborhood());
+		}
+
+		if (re.getStreet() != null) {
+			to.setStreet(re.getStreet());
+		}
+
+		to.setSeller(re.getSeller());
+
+		to.setType(re.getPlacetype());
+
+		to.setLat(re.getLat());
+		to.setLog(re.getLog());
+		to.setAddress(re.getAddress());
+		to.setBathroom(re.getBathroom());
+		to.setBedroom(re.getBedroom());
+		to.setCode(re.getCode());
+		to.setComplexPrice(re.getComplexPrice());
+		to.setDescription(re.getDescription());
+		to.setGarage(re.getGarage());
+		to.setM2(re.getM2());
+		to.setPrice(re.getPrice());
+		to.setRoom(re.getRoom());
+		to.setDeposit(re.getDeposit());
+		to.setCellphone(re.getCellphone());
+		to.setCellphone2(re.getCellphone2());
+		to.setCellphone3(re.getCellphone3());
+		to.setSpatialTO(re.getSpatial());
+		// to.setInternet(re.getInternet());
+		to.setComplexPrice(re.getComplexPrice());
+		to.setQtdPlaceFloor(re.getQtdPlaceFloor());
+		to.setRentMonths(re.getRentMonths());
+		// to.setTv(re.getTv());
+		to.setTotalPrice(re.getTotalPrice());
+		to.setSuite(re.getSuite());
+		to.setFacilities(re.getFacilities());
+
+		ArrayList<Long> sellTypes = new ArrayList<Long>();
+
+		if (re.getSellType() != null) {
+			for (Long sellType : re.getSellType()) {
+				sellTypes.add(sellType);
+			}
+
+			to.setSellType(sellTypes);
+		}
+
+		return to;
 	}
 
 }

@@ -2,6 +2,7 @@ package br.com.findplaces.jpa.entity.spatial;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class PlaceSpatial extends BaseEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="feature_seq")
 	private Long id;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "place_id")
 	private Place place;
 	

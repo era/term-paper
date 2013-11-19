@@ -70,7 +70,8 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	@EJB
 	private RegionDAO regionDAO;
 
-	public PlaceTO createPlace(PlaceTO place) { //FIXME Should not convert and create in the same method!
+	public PlaceTO createPlace(PlaceTO place) { // FIXME Should not convert and
+												// create in the same method!
 		try {
 
 			Double lat = place.getLat();
@@ -85,49 +86,55 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			place.setSpatialTO(new PlaceSpatialTO());
 			place.getSpatialTO().setGeom(point);
 			place.getSpatialTO().setLat(lat);
-			place.getSpatialTO().setLon(log);
-			place.getSpatialTO().setPlace(place);
+			place.getSpatialTO().setLon(log);			
 
-			String alias = place.getCity().getRegion().getAlias();
-			Region region = regionDAO.findByAlias(alias);
+			// String alias = place.getCity().getRegion().getAlias();
+			// Region region = regionDAO.findByAlias(alias);
 
-			City city = cityDAO.findByName(place.getCity().getName());
-			if (city == null) {
-				place.getCity().setRegion(ConverterTO.converter(region));
-				Long cityID = cityDAO.create(ConverterTO.converter(place.getCity()));
-				city = cityDAO.findById(cityID);
-			}
+			// City city = cityDAO.findByName(place.getCity().getName());
+			// if (city == null) {
+			// place.getCity().setRegion(ConverterTO.converter(region));
+			// Long cityID =
+			// cityDAO.create(ConverterTO.converter(place.getCity()));
+			// city = cityDAO.findById(cityID);
+			// }
+			//
+			// Neighborhood neigh =
+			// neighDAO.findByName(place.getNeighborhood().getName());
+			// if(neigh == null){
+			// place.getNeighborhood().setCity(ConverterTO.converter(city));
+			// Long neighID =
+			// neighDAO.create(ConverterTO.converter(place.getNeighborhood()));
+			// neigh = neighDAO.findById(neighID);
+			// }
+			//
+			// Street street =
+			// streetDAO.findByName(place.getStreet().getStreetName());
+			// if(street == null){
+			// place.getStreet().setHood(ConverterTO.converter(neigh));
+			// Long streetID =
+			// streetDAO.create(ConverterTO.converter(place.getStreet()));
+			// street = streetDAO.findById(streetID);
+			// }
+			//
+			place.setCity(null);
+			place.setNeighborhood(null);
+			place.setStreet(null);
 
-			Neighborhood neigh = neighDAO.findByName(place.getNeighborhood().getName());
-			if(neigh == null){				
-				place.getNeighborhood().setCity(ConverterTO.converter(city));
-				Long neighID = neighDAO.create(ConverterTO.converter(place.getNeighborhood()));
-				neigh = neighDAO.findById(neighID);				
-			}
-
-			Street street = streetDAO.findByName(place.getStreet().getStreetName());
-			if(street == null){
-				place.getStreet().setHood(ConverterTO.converter(neigh));
-				Long streetID = streetDAO.create(ConverterTO.converter(place.getStreet()));
-				street = streetDAO.findById(streetID);
-			}
-			
-			place.setCity(ConverterTO.converter(city));
-			place.setNeighborhood(ConverterTO.converter(neigh));
-			place.setStreet(ConverterTO.converter(street));
-			
 			ArrayList<SellType> sellTypes = new ArrayList<SellType>();
-			for(Long sellType : place.getSellType()){
-				SellType type = new SellType();
-				type.setId(sellType);
-				
-				sellTypes.add(type);
+			if (place.getSellType() != null) {
+				for (Long sellType : place.getSellType()) {
+					SellType type = new SellType();
+					type.setId(sellType);
+
+					sellTypes.add(type);
+				}
 			}
 
 			Long id = placeDAO.create(ConverterTO.converter(place));
-			PlaceSpatialTO spatialTO = place.getSpatialTO();
-			spatialTO.setPlace(findPlaceById(id));
-			Long fid = spatialDAO.create(ConverterTO.converter(spatialTO));
+			//PlaceSpatialTO spatialTO = place.getSpatialTO();
+			//spatialTO.setPlace(findPlaceById(id));
+			//Long fid = spatialDAO.create(ConverterTO.converter(spatialTO));
 
 			return this.findPlaceById(id);
 		} catch (DAOException e) {
@@ -192,7 +199,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		Street street = streetDAO.findByName(name);
 
 		if (street == null) {
-//			 logger.info("Não foi encontrado o usuário "+ id.toString());
+			// logger.info("Não foi encontrado o usuário "+ id.toString());
 		}
 
 		return ConverterTO.converter(street);
@@ -210,97 +217,96 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	}
 
 	/**
-	 * This method is very slow, but when it comes so slow that we can`t use any more
-	 * we will have to change to MapReduce design pattern.
+	 * This method is very slow, but when it comes so slow that we can`t use any
+	 * more we will have to change to MapReduce design pattern.
 	 */
 	@Override
 	public List<PlaceTO> findByFilter(FilterSearchRequest filter) {
-		
+
 		List<Place> allPlaces = placeDAO.findAll();
-		
+
 		List<PlaceTO> placesMatchedWithUser = new ArrayList<PlaceTO>();
-		//FIXME OMG, how many ifs inside ifs are there? D:
-		for(Place place : allPlaces){
+		// FIXME OMG, how many ifs inside ifs are there? D:
+		for (Place place : allPlaces) {
 			Double points = 0d;
 			Integer numberOfFilters = 0;
-			if(filter.getSellType() != null){
+			if (filter.getSellType() != null) {
 				numberOfFilters++;
-				if(place.getSellType().indexOf(filter.getSellType()) != -1){
+				if (place.getSellType().indexOf(filter.getSellType()) != -1) {
 					points += filter.getWeightSellType();
 				}
 			}
-			if(filter.getPlaceType()!=null){
+			if (filter.getPlaceType() != null) {
 				numberOfFilters++;
-				if(filter.getPlaceType().equals(place.getType().getId())){
+				if (filter.getPlaceType().equals(place.getType().getId())) {
 					points += filter.getWeightPlaceType();
 				}
 			}
-			
-			if(filter.getPriceMax()!=null && filter.getPriceMin() != null){
+
+			if (filter.getPriceMax() != null && filter.getPriceMin() != null) {
 				numberOfFilters++;
-				if(filter.getPriceMax() >= place.getPrice() && filter.getPriceMin() <= place.getPrice()){
-					points+= filter.getWeightPrice();
+				if (filter.getPriceMax() >= place.getPrice()
+						&& filter.getPriceMin() <= place.getPrice()) {
+					points += filter.getWeightPrice();
 				}
 			}
-			
-			if(filter.getNeibohoord()!=null){
-				numberOfFilters++;
-				if(filter.getNeibohoord().equals(place.getNeighborhood().getHoodName())){
-					points+=filter.getWeightNeiborhood();
-				}
-			}
-			
-			if(filter.getDistance()!=null){
+
+			// if(filter.getNeibohoord()!=null){
+			// numberOfFilters++;
+			// if(filter.getNeibohoord().equals(place.getNeighborhood().getHoodName())){
+			// points+=filter.getWeightNeiborhood();
+			// }
+			// }
+
+			if (filter.getDistance() != null) {
 				numberOfFilters++;
 				PlaceSpatial spatial = place.getSpatial();
 				Geometry geom = spatial.getGeom();
-				
+
 				Coordinate coord = new Coordinate();
 				GeometryFactory geoFactory = new GeometryFactory();
 				coord.x = filter.getLat();
 				coord.y = filter.getLog();
-				//Point = Geometry (extends)
+				// Point = Geometry (extends)
 				Point point = geoFactory.createPoint(coord);
-				
-				
-				Float distance = distFrom(coord.x, coord.y, geom.getCoordinate().x, geom.getCoordinate().y);
-				if(filter.getDistance() <= distance){
-				points += filter.getWeightDistance();
-				//How we get the distance from here? :(
+
+				Float distance = distFrom(coord.x, coord.y,
+						geom.getCoordinate().x, geom.getCoordinate().y);
+				if (filter.getDistance() <= distance) {
+					points += filter.getWeightDistance();
+					// How we get the distance from here? :(
 				}
 			}
-			
-			if(filter.getBedroom()!=null){
+
+			if (filter.getBedroom() != null) {
 				numberOfFilters++;
-				if(filter.getBedroom().equals(place.getBedroom())){
+				if (filter.getBedroom().equals(place.getBedroom())) {
 					points += filter.getWeightBedroom();
 				}
 			}
-			
-			if(filter.getGarage()!=null){
-				 numberOfFilters++;
-				 if(filter.getGarage().equals(place.getGarage())){
-					 points += filter.getWeightGarage();
-				 }
+
+			if (filter.getGarage() != null) {
+				numberOfFilters++;
+				if (filter.getGarage().equals(place.getGarage())) {
+					points += filter.getWeightGarage();
+				}
 			}
-			
-			if( (points / numberOfFilters) > 0.3 ){
+
+			if ((points / numberOfFilters) > 0.3) {
 				placesMatchedWithUser.add(ConverterTO.converter(place));
 			}
 		}
-		
-		
+
 		return placesMatchedWithUser;
 	}
-	
+
 	public float distFrom(double x, double y, double x2, double y2) {
 		double earthRadius = 3958.75;
 		double dLat = Math.toRadians(x2 - x);
 		double dLng = Math.toRadians(y2 - y);
 		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-				+ Math.cos(Math.toRadians(x))
-				* Math.cos(Math.toRadians(x2)) * Math.sin(dLng / 2)
-				* Math.sin(dLng / 2);
+				+ Math.cos(Math.toRadians(x)) * Math.cos(Math.toRadians(x2))
+				* Math.sin(dLng / 2) * Math.sin(dLng / 2);
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		double dist = earthRadius * c;
 
@@ -319,54 +325,44 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	public ComentTO findComentByID(Long id) {
 		return ConverterTO.converter(placeDAO.findComentById(id));
 	}
-	
+
 	/**
 	 * WTF, why dont you put this on a junit test?
 	 * 
-	 * FOR TEST USE GOOGLE API MAPS
-	 * RIGHT BUTTON WHAT HAS THERE
-	 * CATCH COORDINATE AND TEST
+	 * FOR TEST USE GOOGLE API MAPS RIGHT BUTTON WHAT HAS THERE CATCH COORDINATE
+	 * AND TEST
 	 * 
 	 * 
 	 * 
 	 * 
 	 * public static void main(String[] args) {
-
-		GeometryFactory geoFactory = new GeometryFactory();
-		// -22.909508,-47.057293
-		Coordinate coord = new Coordinate();
-		coord.x = -22.909508;
-		coord.y = -47.057293;
-		Point point = geoFactory.createPoint(coord);
-
-		// -22.912132,-47.055136
-		Coordinate coord2 = new Coordinate();
-		coord2.x = -22.910793;
-		coord2.y = -47.056638;
-		Point point2 = geoFactory.createPoint(coord);
-
-		DistanceOp distance = new DistanceOp(point, point2);
-
-		System.out.println(distFrom(coord.x, coord.y, coord2.x, coord2.y));
-		System.out.println(distance.closestLocations());
-	}
-	
-	public static float distFrom(double x, double y, double x2, double y2) {
-		double earthRadius = 3958.75;
-		double dLat = Math.toRadians(x2 - x);
-		double dLng = Math.toRadians(y2 - y);
-		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-				+ Math.cos(Math.toRadians(x))
-				* Math.cos(Math.toRadians(x2)) * Math.sin(dLng / 2)
-				* Math.sin(dLng / 2);
-		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-		double dist = earthRadius * c;
-
-		int meterConversion = 1609;
-
-		return new Float(dist * meterConversion).floatValue();
-	}
-
+	 * 
+	 * GeometryFactory geoFactory = new GeometryFactory(); //
+	 * -22.909508,-47.057293 Coordinate coord = new Coordinate(); coord.x =
+	 * -22.909508; coord.y = -47.057293; Point point =
+	 * geoFactory.createPoint(coord);
+	 * 
+	 * // -22.912132,-47.055136 Coordinate coord2 = new Coordinate(); coord2.x =
+	 * -22.910793; coord2.y = -47.056638; Point point2 =
+	 * geoFactory.createPoint(coord);
+	 * 
+	 * DistanceOp distance = new DistanceOp(point, point2);
+	 * 
+	 * System.out.println(distFrom(coord.x, coord.y, coord2.x, coord2.y));
+	 * System.out.println(distance.closestLocations()); }
+	 * 
+	 * public static float distFrom(double x, double y, double x2, double y2) {
+	 * double earthRadius = 3958.75; double dLat = Math.toRadians(x2 - x);
+	 * double dLng = Math.toRadians(y2 - y); double a = Math.sin(dLat / 2) *
+	 * Math.sin(dLat / 2) + Math.cos(Math.toRadians(x))
+	 * Math.cos(Math.toRadians(x2)) * Math.sin(dLng / 2) Math.sin(dLng / 2);
+	 * double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); double dist =
+	 * earthRadius * c;
+	 * 
+	 * int meterConversion = 1609;
+	 * 
+	 * return new Float(dist * meterConversion).floatValue(); }
+	 * 
 	 * 
 	 * 
 	 * 

@@ -81,12 +81,6 @@ public class PlaceRequest implements Serializable {
 	
 	private Double iptu;
 	
-	private Double condominiumPrice;
-	
-	private Double internet;
-	
-	private Double tv;
-	
 	private Double totalPrice;
 	
 	private String cellphone;
@@ -191,30 +185,23 @@ public class PlaceRequest implements Serializable {
 	public void setIptu(Double iptu) {
 		this.iptu = iptu;
 	}
+	
 
-	public Double getCondominiumPrice() {
-		return condominiumPrice;
-	}
+//	public Double getInternet() {
+//		return internet;
+//	}
+//
+//	public void setInternet(Double internet) {
+//		this.internet = internet;
+//	}
 
-	public void setCondominiumPrice(Double condominiumPrice) {
-		this.condominiumPrice = condominiumPrice;
-	}
-
-	public Double getInternet() {
-		return internet;
-	}
-
-	public void setInternet(Double internet) {
-		this.internet = internet;
-	}
-
-	public Double getTv() {
-		return tv;
-	}
-
-	public void setTv(Double tv) {
-		this.tv = tv;
-	}
+//	public Double getTv() {
+//		return tv;
+//	}
+//
+//	public void setTv(Double tv) {
+//		this.tv = tv;
+//	}
 
 	public Double getTotalPrice() {
 		return totalPrice;
