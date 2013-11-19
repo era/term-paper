@@ -336,7 +336,6 @@ INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (
 
 --fake 2
 INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(6,'21','js@gmail.com','José da Silva',null,'Single','110100485880931','USP',1);
-INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,152305031470133,126);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('199483006752626',127,'El Cabriton',6);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,199483006752626,127);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('5718758966',128,'Gizmodo',6);
