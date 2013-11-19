@@ -248,12 +248,16 @@ public class PlaceService implements Serializable {
 		
 		//FIXME This method is responsible for more than one thing.
 
-		SellerTO sellerTO = request.getSocialid()!=null && !request.getSocialid().isEmpty() ? getSellerFromFacebook(request)
-					: getSellerFromEmail(request);
+		SellerTO sellerTO = request.getSocialid()!=null && !request.getSocialid().isEmpty() ? getSellerFromFacebook(request)	: getSellerFromEmail(request);
 
 		request.getPlacetype().setId(request.getPlacetype().getId());
 
-		PlaceTO place = convertToPlaceTO(request, sellerTO);
+		//SellerTO sellerTO = new SellerTO();
+		//sellerTO.setId(1L);
+		request.setSeller(sellerTO);
+		
+		
+		PlaceTO place = ConverterTO.converter(request);
 
 		place = getPlaceConfiguration().createPlace(place);
 
@@ -272,55 +276,6 @@ public class PlaceService implements Serializable {
 		
 		
 		return userEJB.findSeller(request.getUserID());
-	}
-
-	//FIXME This Shouldnt be in this class
-	private PlaceTO convertToPlaceTO(PlaceRequest re, SellerTO sellerTO) {
-		PlaceTO to = new PlaceTO();
-		
-		to.setSeller(sellerTO);
-		to.setCity(re.getCity());
-		to.setNeighborhood(re.getNeighborhood());
-		to.setStreet(re.getStreet());
-		to.setType(re.getPlacetype());
-		
-		
-		to.setLat(re.getLat());
-		to.setLog(re.getLog());		
-		to.setAddress(re.getAddress());
-		to.setBathroom(re.getBathroom());
-		to.setBedroom(re.getBedroom());		
-		to.setCode(re.getCode());
-		to.setComplexPrice(re.getComplexPrice());
-		to.setDescription(re.getDescription());
-		to.setGarage(re.getGarage());
-		to.setM2(re.getM2());
-		to.setPrice(re.getPrice());
-		to.setRoom(re.getRoom());
-		to.setDeposit(re.getDeposit());
-		to.setCellphone(re.getCellphone());
-		to.setCellphone2(re.getCellphone2());
-		to.setCellphone3(re.getCellphone3());
-		to.setInternet(re.getInternet());
-		to.setCondominiumPrice(re.getCondominiumPrice());
-		to.setComplexPrice(re.getComplexPrice());
-		to.setQtdPlaceFloor(re.getQtdPlaceFloor());
-		to.setRentMonths(re.getRentMonths());
-		to.setTv(re.getTv());
-		to.setTotalPrice(re.getTotalPrice());
-		
-		ArrayList<Long> sellTypes = new ArrayList<Long>();
-		
-		for(Long sellType : re.getSellType()){
-			sellTypes.add(sellType);
-		}
-		
-		to.setSellType(sellTypes);
-		
-		to.setSuite(re.getSuite());
-		to.setFacilities(re.getFacilities());
-		
-		return to;
 	}
 
 	private SellerTO getSellerFromFacebook(PlaceRequest re) throws NotAuthorizedException {
