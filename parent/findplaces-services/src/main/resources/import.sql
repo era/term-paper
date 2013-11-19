@@ -287,9 +287,62 @@ INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('8245623462',100,'NBA
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (4,8245623462,100);
 
 
+--Fake 1
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(5,'21','ricardo@gmail.com','Ricardo da Silva',null,'Single','110000485880931','USP',1);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('1394081697499186',101,'Feel more',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,1394081697499186,101);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('720745557938669',102,'Citei Frases',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,720745557938669,102);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('449967965107029',103,'Mais um dia',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,449967965107029,103);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('230151130485754',104,'Garota Ciúmes',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,230151130485754,104);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('550019531749655',105,'Pra Toda Mulher',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,550019531749655,105);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('421067194667864',106,'Que Isso Novinha?',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,421067194667864,106);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('83763988990',107,'Wicca',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,83763988990,107);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('391930330905253',108,'Wicca: Magia Natural',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,391930330905253,108);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('442266112475813',109,'Bem+Leve',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,442266112475813,109);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('385991014797696',110,'Leis de Murphy',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,385991014797696,110);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('530833057007725',111,'Gab Z Tattoo',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,530833057007725,111);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('267510033269587',112,'Biblioteca Empoeirada',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,267510033269587,112);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('181059575250734',113,'BABILORENTZ.COM',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,181059575250734,113);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('123928584430020',114,'Every Little Book',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,123928584430020,114);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('389814171106259',115,'Sou Bibliomaníaca',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,389814171106259,115);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('226040377417115',116,'Livros & Fuxicos',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,226040377417115,116);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('114865945264475',117,'Lendo & Comentando',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,114865945264475,117);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('129677350453139',118,'SanguecomAmor"O Recomeço da Eternidade"',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,129677350453139,118);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('410139565669978',119,'Segredos Entre Amigas',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,410139565669978,119);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('209266695796856',120,'Pronome Interrogativo',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,209266695796856,120);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('106411899489478',121,'Moonlight Books',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,106411899489478,121);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('369115576446681',122,'Todas as coisas do meu mundo',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,369115576446681,122);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('531510056888531',123,'The Snow Twins',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,531510056888531,123);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('193522807501735',124,'Blog Mais que Livros',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,193522807501735,124);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('184813508285183',125,'Mundo Otaku',5);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,184813508285183,125);
 
 
 --seller configurations
 INSERT INTO tb_seller(id,user_id) VALUES(1,1);
 INSERT INTO tb_seller(id,user_id) VALUES(2,2);
 INSERT INTO tb_seller(id,user_id) VALUES(3,3);
+INSERT INTO tb_seller(id,user_id) VALUES(4,4);
