@@ -60,13 +60,6 @@ INSERT INTO TB_SELL_TYPE(id,name) VALUES(1,'BOUGHT');
 INSERT INTO TB_SELL_TYPE(id,name) VALUES(2,'RENT');
 INSERT INTO TB_SELL_TYPE(id,name) VALUES(3,'RENT TEMPORARY');
 
-
-
-
-
-
-
-
 -- Elias user
 INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(1,'21','eliasojrs@gmail.com','Elias Granja',null,'In a Relationship','1750315906','UNIP',1);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('218624958315883',1,'Node JS São Paulo',1);
@@ -339,6 +332,112 @@ INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('193522807501735',124
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,193522807501735,124);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('184813508285183',125,'Mundo Otaku',5);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,184813508285183,125);
+
+
+--fake 2
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(6,'21','js@gmail.com','José da Silva',null,'Single','110100485880931','USP',1);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,152305031470133,126);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('199483006752626',127,'El Cabriton',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,199483006752626,127);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('5718758966',128,'Gizmodo',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,5718758966,128);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('124493634232128',129,'UOL Notícias',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,124493634232128,129);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('168803467003',130,'Bad Religion',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,168803467003,130);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('345454685555554',131,'Procurei em Sonhos',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,345454685555554,131);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('170901143077174',132,'Best Vines',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,170901143077174,132);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('501741936570355',133,'VYNE',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,501741936570355,133);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('233180966721555',134,'Animal Crossing: New Leaf',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,233180966721555,134);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('144765615556287',135,'Uma familia da pesada',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,144765615556287,135);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('7807422276',136,'How I Met Your Mother',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,7807422276,136);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('101401456710000',137,'Raspberry Pi',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,101401456710000,137);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('208858059145942',138,'Pragmatismo Político',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,208858059145942,138);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('119702488081975',139,'Skrillex',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,119702488081975,139);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('355748217780706',140,'Domínio Público - Movimento Estudantil',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,355748217780706,140);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('203702669733223',141,'Flisolcampinas',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,203702669733223,141);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('138562632977557',142,'Joan Cornellà',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,138562632977557,142);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('192940197458210',143,'Cachorro Grande',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,192940197458210,143);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('416489695095902',144,'Dev Camp',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,416489695095902,144);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('274236662698155',145,'Woods',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,274236662698155,145);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('19292868552',146,'Facebook Developers',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,19292868552,146);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('470397299693185',147,'Denise Carreiro Semi Jóias',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,470397299693185,147);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('204520732988',148,'Não Salvo',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,204520732988,148);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('112401055439442',149,'GitHub',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,112401055439442,149);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('112170668795185',150,'Raimundos',6);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,112170668795185,150)
+
+--fake 3
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(7,'41','breakingbad@gmail.com','Walter White',null,'Married','10100485880931','Unicamp',1);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('286857427988',151,'Henri Cartier-Bresson',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,286857427988,151);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('180176758708116',152,'Grass: The History of Marijuana',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,180176758708116,152);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('335237883171442',153,'Leonardo Sakamoto',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,335237883171442,153);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('6002137995',154,'Gorillaz',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,6002137995,154);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('250276871743419',155,'Caetano Veloso',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,250276871743419,155);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('365967726042',156,'Fernanda Takai',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,365967726042,156);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('225782532925',157,'Mallu Magalhães',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,225782532925,157);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('11955325695',158,'Bob Dylan',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,11955325695,158);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('115786371936',159,'revista piauí',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,115786371936,159);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('38858586087',160,'Jimi Hendrix',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,38858586087,160);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('333587596787257',161,'Andorinhas Jornalismo Independente',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,333587596787257,161);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('232843116758475',162,'Delta Blues Bar',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,232843116758475,162);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('541465049252652',163,'ALÉM',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,541465049252652,163);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('6798562721',164,'Breaking Bad',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,6798562721,164);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('111900243908',165,'Pina Bausch',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,111900243908,165);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('104152332963030',166,'Gilberto Gil',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,104152332963030,166);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('210278425667315',167,'Dixie Arte e Estilo',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,210278425667315,167);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('89511870952',168,'Lou Reed',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,89511870952,168);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('164188247072662',169,'NINJA',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,164188247072662,169);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('414328301991113',170,'José Celso Martinez Corrêa',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,414328301991113,170);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('180554365374752',171,'Teat(r)o Oficina Uzyna Uzona',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,180554365374752,171);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('148714591835821',172,'Downton Abbey',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,148714591835821,172);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('125213514291',173,'Charlotte Gainsbourg',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,125213514291,173);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('155347691187734',174,'Frases do Calvin',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,155347691187734,174);
+INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('470580662953557',175,'Gado da Pira',7);
+INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,470580662953557,175);
 
 
 --seller configurations
