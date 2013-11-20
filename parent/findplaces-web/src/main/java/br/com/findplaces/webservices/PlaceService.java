@@ -83,7 +83,10 @@ public class PlaceService implements Serializable {
 				place = this.place.coment(newComent);
 			}
 			
-			response.setPlaces(new ArrayList<PlaceTO>());
+			ArrayList<PlaceTO> places = new ArrayList<PlaceTO>();
+			places.add(place);
+			
+			response.setPlaces(places);
 			response.getPlaces().add(place);
 			response.setCode(StatusCode.SUCCESS.getCode());
 			response.setMessage(StatusCode.SUCCESS.getMessage());

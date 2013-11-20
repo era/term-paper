@@ -239,9 +239,10 @@ public class ConverterTO {
 			}
 			to.setComents(coments);
 		}
-
+		//Geometry cant be convert to json, and anottations are not working
+		//for know, let`s keep this out from the PlaceTO
 		if (place.getSpatial() != null) {
-			to.setSpatialTO(converter(place.getSpatial()));
+//			to.setSpatialTO(converter(place.getSpatial()));
 		}
 		// SPATIAL
 		return to;

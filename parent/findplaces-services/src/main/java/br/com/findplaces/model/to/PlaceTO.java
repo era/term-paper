@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.restfb.JsonMapper.JsonMappingCompleted;
 
 import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
@@ -39,6 +42,7 @@ public class PlaceTO implements Serializable {
 
 	private Double log;
 
+	@XmlTransient
 	private PlaceSpatialTO spatialTO;
 	
 	private String code;		
