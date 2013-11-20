@@ -31,7 +31,7 @@ public class Coment extends BaseEntity implements Serializable {
 	private Coment answer;
 	
 	@ManyToOne
-	@JoinColumn(name="place",insertable=false, updatable=false)
+	@JoinColumn(name="PLACE_ID",insertable=false, updatable=false)
 	private Place place;
 	
 	@Column

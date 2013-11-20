@@ -42,8 +42,8 @@ public class Place extends BaseEntity implements Serializable {
 	
 //	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 //	@JoinColumn(name = "fid")
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-    @PrimaryKeyJoinColumn
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)//optional = false,
+//    @PrimaryKeyJoinColumn
 	private PlaceSpatial spatial;
 	
 	@OneToOne
@@ -131,7 +131,6 @@ public class Place extends BaseEntity implements Serializable {
 	@Column
 	private Integer garage;
 	
-	@JoinColumn(name="image_id", insertable = false, updatable = false)
 	@OneToMany
 	private List<Image> photos;
 	
