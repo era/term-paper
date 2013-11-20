@@ -137,7 +137,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			//Long fid = spatialDAO.create(ConverterTO.converter(spatialTO));
 
 			return this.findPlaceById(id);
-		} catch (DAOException e) {
+		} catch (Exception e) {
 
 		}
 		return place;

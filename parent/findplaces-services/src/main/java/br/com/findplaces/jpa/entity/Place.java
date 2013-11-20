@@ -42,8 +42,8 @@ public class Place extends BaseEntity implements Serializable {
 	
 //	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 //	@JoinColumn(name = "fid")
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)//optional = false,
-//    @PrimaryKeyJoinColumn
+	@OneToOne(cascade = CascadeType.ALL,optional = false, fetch = FetchType.EAGER, orphanRemoval = true)//
+    @PrimaryKeyJoinColumn
 	private PlaceSpatial spatial;
 	
 	@OneToOne
