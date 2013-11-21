@@ -78,7 +78,7 @@ $.consultaMapa = function (latStart, lngStart, target, marker) {
             }
         }
     });
-    
+
     $(target).append(formulario);
 };
 
@@ -97,8 +97,6 @@ $.openHashTagContent = function () {
     $.openURLContent('#content', hash, null);
 };
 
-
-
 $.searchPlace = function (field) {
     var input = document.getElementById(field);
     var options = {
@@ -109,11 +107,13 @@ $.searchPlace = function (field) {
 
     var autocomplete = new google.maps.places.Autocomplete(input);
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        var place = autocomplete.getPlace();
-        $('#lat').val(place.geometry.location.lb);
-        $('#lng').val(place.geometry.location.mb);
-    });
+    if ($('#lat').length > 0 && $('#lng').length > 0) {
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            $('#lat').val(place.geometry.location.lat());
+            $('#lng').val(place.geometry.location.lng());
+        });
+    }
 };
 
 $.initLogin = function () {
@@ -126,7 +126,6 @@ $.initLogin = function () {
     });
 };
 
-
 $.geocodePlace = function (address, callback) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': address }, function (response) {
@@ -137,4 +136,4 @@ $.geocodePlace = function (address, callback) {
         callback(place);
     });
 
-}
+};
