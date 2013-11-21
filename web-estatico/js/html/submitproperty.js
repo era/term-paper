@@ -39,7 +39,7 @@ $.ageOfUsersChart = function () {
     new Chart(ageOfUsersCtx).Pie(ageOfUsersChart);
 };
 
-// Fotos
+// Simula o click no input file
 $.addPhoto = function () {
     $('#photo').click();
 };
@@ -74,7 +74,6 @@ $.responseQuestion = function (fieldName) {
 $(document).ready(function () {
     // Autocomplete google places
     $.searchPlace('address1');
-
 
     // Verifica se é uma edição, adicionar aqui validação imóvel x id_usuario
     var id = $.getUrlParam('id', location.href);
@@ -176,10 +175,8 @@ $(document).ready(function () {
             var imageSize = this.files[0].size;
 
             if ($('#img_' + imageName).length === 0 && imageSize < 1000000) {
-                $('#div_link_photo').before($.StringFormat('<img alt="Clique para remover" class="img_upload" id="img_{0}" onclick="{1}" title="Clique para remover">', imageName, '$(this).remove();'));
-
                 reader.onload = function (e) {
-                    $('#img_' + imageName).attr('src', e.target.result);
+                    $('#div_link_photo').before($.StringFormat('<img alt="Clique para remover" src="{0}" class="img_upload" id="img_{1}" onclick="{2}" title="Clique para remover">', e.target.result, imageName, '$(this).remove();'));
                 };
 
                 reader.readAsDataURL(selectedFile);
@@ -226,7 +223,7 @@ $(document).ready(function () {
                 jsonPost.place.rent = jsonForm.rent;
                 jsonPost.place.contract_time = parseInt(jsonForm.contract_time);
                 jsonPost.place.iptu = jsonForm.iptu;
-                jsonPost.place.condominium = jsonForm.condominium;
+                jsonPost.place.condominiumPrice = jsonForm.condominium;
                 jsonPost.place.internet = jsonForm.internet;
                 jsonPost.place.tv = jsonForm.tv;
                 jsonPost.place.room = parseInt(jsonForm.room);
