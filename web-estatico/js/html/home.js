@@ -1,4 +1,4 @@
-﻿//Carga dinâmica dos slides
+﻿// Carga dinâmica dos slides
 $.homeSlide = function (json) {
     var li = '',
         onclick = '',
@@ -13,7 +13,7 @@ $.homeSlide = function (json) {
 
     $('.flexslider ul').empty().append(li);
 
-    //Flexslider
+    // Flexslider
     $('.flexslider').flexslider({
         selector: ".homeSlides > li",
         animation: "slide",
@@ -60,7 +60,7 @@ $(document).ready(function () {
     // Aplica o efeito ui slide
     $.criaSlider([$("#pesoAquisicao"), $('#pesoTipoImovel'), $('#pesoPreco'), $('#pesoRaio'), $('#pesoDormitorios'), $('#pesoGaragens')]);
 
-    //Máscara
+    // Máscara
     $("#precoDe").maskMoney({
         symbol: "R$ ",
         thousands: ".",
@@ -82,7 +82,7 @@ $(document).ready(function () {
         allowNegative: false
     });
 
-    //Eventos de click
+    // Eventos de click
     $("#hidePanel").click(function () {
         $("#buscaRapida").hide(0, function () {
             $("#showSearch").show();
@@ -132,7 +132,7 @@ $(document).ready(function () {
         return false;
     });
 
-    //Eventos de foco
+    // Eventos de foco
     $('#precoDe').focus(function () {
         $('#precoAte').removeAttr('style');
     });
