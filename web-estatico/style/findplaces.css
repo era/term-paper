@@ -33,6 +33,11 @@ textarea
 {
 	display:none;
 }
+
+.error {
+    color: red;
+    border-color: red !important;
+}
  
 .wrapper
 {
@@ -687,6 +692,7 @@ div#default-top-info
 {
 	float:left;
 	width:550px;
+    height: 500px;
 }
  
 div#default-top-info > div
@@ -699,7 +705,7 @@ div#default-top-info > div > label
 	display:inline-block;
 	font-weight:400;
 	text-align:right;
-	width:150px;
+	width:175px;
 }
  
 div#default-top-info > div > input,div#default-top-info > div > select
@@ -1128,5 +1134,5 @@ div.cluster-3
  
 footer > div.footer-2 > div.wrapper > div.footer-2-right > ul > li > img,div#default-top-info > div > img
 {
-	cursor:pointer;
+	cursor:help;
 }

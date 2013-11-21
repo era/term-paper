@@ -22,12 +22,12 @@
                     <li id="tabs-3-title" class="hide"><a href="#tabs-3">Perguntas</a></li>
                 </ul>
                 <div id="tabs-1">
-                    <form>
+                    <form id="form_property">
                         <div id='default-top-info'>
                             <div>
                                 <label for="adtype">Tipo de anúncio:</label>
-                                <select id="adtype">
-                                    <option value="0">Selecione</option>
+                                <select id="adtype" name="adtype">
+                                    <option value="">Selecione</option>
                                     <option value="1">Venda</option>
                                     <option value="2">Aluguel</option>
                                     <option value="3">Temporada</option>
@@ -42,39 +42,39 @@
                             </div>
                             <div>
                                 <label for="placetype">Tipo de imóvel:</label>
-                                <select id="placetype">
-                                    <option value="0">Selecione</option>
+                                <select id="placetype" name="placetype">
+                                    <option value="">Selecione</option>
                                     <option value="1">Apartamento</option>
                                     <option value="2">Casa</option>
                                 </select>
                             </div>
                             <div>
                                 <label for="address1">Endereço:</label>
-                                <input class="inputSizeBig" id="address1" name="address1" type="text" />
+                                <input class="inputSizeBig" id="address1" name="address1" placeholder="Ex. Rua Aguapé, 392, Campinas, SP" type="text" />
                             </div>
-                            <div>
-                                <label for="number">Número:</label>
-                                <input class="inputSizeSmaller" id="number" maxlength="10" name="number" type="text" />
-                            </div>
-                            <div>
-                                <label for="neighborhood">Bairro:</label>
-                                <input class="inputSizeMedium" id="neighborhood" name="neighborhood" type="text" />
-                            </div>
-                            <div>
-                                <label for="address2">Complemento:</label>
-                                <input class="inputSizeBig" id="address2" name="address2" type="text" />
-                            </div>
-                            <div>
-                                <label for="region_name">Estado:</label>
-                                <select id="region_name" name="region_name"></select>
-                            </div>
-                            <div>
-                                <label for="city_name">Cidade:</label>
-                                <select id="city_name" name="city_name"></select>
-                            </div>
+                            <!--<div>
+                                    <label for="number">Número:</label>
+                                    <input class="inputSizeSmaller" id="number" maxlength="10" name="number" type="text" />
+                                </div>
+                                <div>
+                                    <label for="neighborhood">Bairro:</label>
+                                    <input class="inputSizeMedium" id="neighborhood" name="neighborhood" type="text" />
+                                </div>
+                                <div>
+                                    <label for="address2">Complemento:</label>
+                                    <input class="inputSizeBig" id="address2" name="address2" type="text" />
+                                </div>
+                                <div>
+                                    <label for="region_name">Estado:</label>
+                                    <select id="region_name" name="region_name"></select>
+                                </div>
+                                <div>
+                                    <label for="city_name">Cidade:</label>
+                                    <select id="city_name" name="city_name"></select>
+                                </div>-->
                             <div>
                                 <label for="phone1">Telefone 1:</label>
-                                <input class="inputSizeMedium" id="phone1" maxlength="16" name="phone1" type="text" />
+                                <input class="inputSizeMedium" id="phone1" maxlength="16" name="phone1" placeholder="Ex. (19) 98872-6604" type="text" />
                             </div>
                             <div>
                                 <label for="phone2">Telefone 2:</label>
@@ -147,7 +147,7 @@
                             </div>
                             <div>
                                 <label for="m2">Área útil (m²)</label><br />
-                                <input class="inputSizeSmaller" id="m2" maxlength="2" name="m2" type="text" />
+                                <input class="inputSizeSmaller" id="m2" maxlength="3" name="m2" type="text" />
                             </div>
                             <div>
                                 <label for="bedroom">Dormitório</label><br />
@@ -174,7 +174,7 @@
                             <legend>Informações</legend>
                             <div>
                                 <label for="value_sale">Sobre</label>
-                                <textarea rows="8" cols="53" placeholder="Ex. Imóvel novo, pronto para morar, projeto diferenciado e excelente localização, as ruas do bairro..."></textarea>
+                                <textarea cols="53" id="description" name="description" placeholder="Ex. Imóvel novo, pronto para morar, projeto diferenciado e excelente localização, as ruas do bairro..." rows="8"></textarea>
                             </div>
                             <br />
                             <div>
@@ -238,8 +238,11 @@
                             </table>
                         </fieldset>
                         <div class="right-button">
-                            <button alt="Salvar" id="submit-default-top" title="Salvar" onclick="return false;" type="submit">Salvar</button>
+                            <button alt="Salvar" id="save_property" title="Salvar" onclick="" type="submit">Salvar</button>
                         </div>
+                        <!--hidden fields-->
+                        <input type="hidden" name="lat" id="lat" />
+                        <input type="hidden" name="lng" id="lng" />
                     </form>
                 </div>
                 <div id="tabs-2">
