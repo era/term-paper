@@ -169,8 +169,19 @@ public class ConverterTO {
 		entity.setRentMonths(place.getRentMonths());
 		// entity.setTv(place.getTv());
 		entity.setTotalPrice(place.getTotalPrice());
+		
+		entity.setRent(place.getRent());
+		entity.setContract_time(place.getContract_time());
+		entity.setTv(place.getTv());
+		entity.setInternet(place.getInternet());
+		entity.setCondominiumPrice(place.getCondominiumPrice());
+		
 		if (place.getSpatialTO() != null) {
 			entity.setSpatial(converter(place.getSpatialTO()));
+		}
+		
+		if(place.getFacilities() != null){
+			entity.setFacilities(converter(place.getFacilities()));
 		}
 		entity.setType(converter(place.getType()));
 		List<Coment> coments = new ArrayList<Coment>();
@@ -207,7 +218,7 @@ public class ConverterTO {
 		to.setPrice(place.getPrice());
 		if (place.getSpatial() != null) {
 			to.setLat(place.getSpatial().getGeom().getCoordinate().x);
-			to.setLog(place.getSpatial().getGeom().getCoordinate().y);
+			to.setLng(place.getSpatial().getGeom().getCoordinate().y);
 		}
 		to.setRoom(place.getRoom());
 		to.setSeller(converter(place.getSeller()));
@@ -404,7 +415,27 @@ public class ConverterTO {
 		entity.setBarbecue(to.isBarbecue());
 		entity.setBathBoxGlass(to.isBathBoxGlass());
 		entity.setBathroomCloset(to.isBathroomCloset());
-		return null;
+		entity.setBedroomCloset(to.isBedroomCloset());
+		entity.setGasShower(to.isGasShower());	
+		entity.setGasTubing(to.isGasTubing());
+		entity.setGatekeeper(to.isGatekeeper());
+		entity.setGym(to.isGym());
+		entity.setHidromassage(to.isHidromassage());
+		entity.setInternet(to.isInternet());
+		entity.setKitchenCabinet(to.isKitchenCabinet());
+		entity.setLaundry(to.isLaundry());
+		entity.setName(to.getName());
+		entity.setPartyRoom(to.isPartyRoom());
+		entity.setPlayground(to.isPlayground());
+		entity.setPool(to.isPool());
+		entity.setPrice(to.getPrice());
+		entity.setRoofing(to.isRoofing());
+		entity.setSauna(to.isSauna());
+		entity.setSportArea(to.isSportArea());
+		entity.setTerrace(to.isTerrace());
+		entity.setTownBarbecue(to.isTownBarbecue());		
+		entity.setTownPool(to.isTownPool());
+		return entity;
 	}
 
 	public static PlaceTO converter(PlaceRequest re) {
@@ -423,11 +454,9 @@ public class ConverterTO {
 		}
 
 		to.setSeller(re.getSeller());
-
 		to.setType(re.getPlacetype());
-
 		to.setLat(re.getLat());
-		to.setLog(re.getLog());
+		to.setLng(re.getLog());
 		to.setAddress(re.getAddress());
 		to.setBathroom(re.getBathroom());
 		to.setBedroom(re.getBedroom());
@@ -441,16 +470,19 @@ public class ConverterTO {
 		to.setDeposit(re.getDeposit());
 		to.setCellphone(re.getCellphone());
 		to.setCellphone2(re.getCellphone2());
-		to.setCellphone3(re.getCellphone3());
 		to.setSpatialTO(re.getSpatial());
-		// to.setInternet(re.getInternet());
 		to.setComplexPrice(re.getComplexPrice());
 		to.setQtdPlaceFloor(re.getQtdPlaceFloor());
-		to.setRentMonths(re.getRentMonths());
-		// to.setTv(re.getTv());
+		to.setRentMonths(re.getRentMonths());	
 		to.setTotalPrice(re.getTotalPrice());
 		to.setSuite(re.getSuite());
 		to.setFacilities(re.getFacilities());
+		
+		to.setRent(re.getRent());
+		to.setContract_time(re.getContract_time());
+		to.setInternet(re.getInternet());
+		to.setTv(re.getTv());
+		to.setCondominiumPrice(re.getCondominiumPrice());
 
 		ArrayList<Long> sellTypes = new ArrayList<Long>();
 

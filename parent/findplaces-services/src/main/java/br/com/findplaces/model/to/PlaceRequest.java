@@ -3,6 +3,7 @@ package br.com.findplaces.model.to;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.findplaces.model.geographic.to.CityTO;
@@ -43,7 +44,7 @@ public class PlaceRequest implements Serializable {
 
 	private Double lat;
 
-	private Double log;
+	private Double lng;
 
 	private Double m2;
 
@@ -87,8 +88,15 @@ public class PlaceRequest implements Serializable {
 	
 	private String cellphone2;
 	
-	private String cellphone3;
+	private Double rent;
 	
+	private Integer contract_time;
+	
+	private Double internet;
+	
+	private Double tv;
+	
+	private Double condominiumPrice;
 
 	public String getToken() {
 		return token;
@@ -103,7 +111,7 @@ public class PlaceRequest implements Serializable {
 	}
 
 	public Double getLog() {
-		return log;
+		return lng;
 	}
 
 	public String getAddress() {
@@ -225,15 +233,7 @@ public class PlaceRequest implements Serializable {
 
 	public void setCellphone2(String cellphone2) {
 		this.cellphone2 = cellphone2;
-	}
-
-	public String getCellphone3() {
-		return cellphone3;
-	}
-
-	public void setCellphone3(String cellphone3) {
-		this.cellphone3 = cellphone3;
-	}
+	}	
 
 	public Double getComplexPrice() {
 		return complexPrice;
@@ -275,8 +275,8 @@ public class PlaceRequest implements Serializable {
 		this.lat = lat;
 	}
 
-	public void setLog(Double log) {
-		this.log = log;
+	public void setLog(Double lng) {
+		this.lng = lng;
 	}
 
 	public void setAddress(String address) {
@@ -331,6 +331,30 @@ public class PlaceRequest implements Serializable {
 		this.bathroom = bathroom;
 	}
 
+	public Double getRent() {
+		return rent;
+	}
+
+	public void setRent(Double rent) {
+		this.rent = rent;
+	}
+
+	public Integer getContract_time() {
+		return contract_time;
+	}
+
+	public Double getCondominiumPrice() {
+		return condominiumPrice;
+	}
+
+	public void setCondominiumPrice(Double condominiumPrice) {
+		this.condominiumPrice = condominiumPrice;
+	}
+
+	public void setContract_time(Integer contract_time) {
+		this.contract_time = contract_time;
+	}
+
 	public void setBedroom(Integer bedroom) {
 		this.bedroom = bedroom;
 	}
@@ -369,6 +393,22 @@ public class PlaceRequest implements Serializable {
 
 	public void setFacilities(FacilitiesTO facilities) {
 		this.facilities = facilities;
+	}
+
+	public Double getInternet() {
+		return internet;
+	}
+
+	public void setInternet(Double internet) {
+		this.internet = internet;
+	}
+
+	public Double getTv() {
+		return tv;
+	}
+
+	public void setTv(Double tv) {
+		this.tv = tv;
 	}
 	
 }

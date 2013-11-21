@@ -40,13 +40,10 @@ public class Place extends BaseEntity implements Serializable {
     @JoinTable(name="TB_PLACE_COMMENTS", joinColumns={@JoinColumn(name="PLACE_ID", referencedColumnName="id")}, inverseJoinColumns={@JoinColumn(name="COMMENT_ID", referencedColumnName="id")})
 	private List<Coment> coments;
 	
-//	@OneToOne(mappedBy = "place", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-//	@JoinColumn(name = "fid")
-	@OneToOne(cascade = CascadeType.ALL,optional = false, fetch = FetchType.EAGER, orphanRemoval = true)//
-    @PrimaryKeyJoinColumn
-	private PlaceSpatial spatial;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)//
+    private PlaceSpatial spatial;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private Facilities facilities;
 	
 	@ManyToOne()
@@ -147,7 +144,20 @@ public class Place extends BaseEntity implements Serializable {
 //	@Column
 //	private String cellphone3;
 	
-
+	//Campos do Paulo
+	
+	@Column
+	private Double rent;
+	
+	@Column
+	private Integer contract_time;
+	
+	@Column
+	private Double internet;
+	
+	@Column
+	private Double tv;
+	
 	public Long getId() {
 		return id;
 	}
@@ -288,6 +298,22 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setGarage(Integer garage) {
 		this.garage = garage;
+	}
+
+	public Double getInternet() {
+		return internet;
+	}
+
+	public void setInternet(Double internet) {
+		this.internet = internet;
+	}
+
+	public Double getTv() {
+		return tv;
+	}
+
+	public void setTv(Double tv) {
+		this.tv = tv;
 	}
 
 	public void setM2(Double m2) {
@@ -436,6 +462,22 @@ public class Place extends BaseEntity implements Serializable {
 
 	public void setEndOffer(Date endOffer) {
 		this.endOffer = endOffer;
+	}
+
+	public Double getRent() {
+		return rent;
+	}
+
+	public void setRent(Double rent) {
+		this.rent = rent;
+	}
+
+	public Integer getContract_time() {
+		return contract_time;
+	}
+
+	public void setContract_time(Integer contract_time) {
+		this.contract_time = contract_time;
 	}
 
 	

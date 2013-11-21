@@ -56,10 +56,10 @@ public class PlaceSpatialDAOImpl extends BaseSpatialDAOImpl<PlaceSpatial, Long>
 		if (resultList.isEmpty()) {
 			return null;
 		} else {
-			for(PlaceSpatial spt : resultList){
-				places.add(spt.getPlace());
-			}
-			
+//			for(PlaceSpatial spt : resultList){
+//				places.add(spt.getPlace());
+//			}
+//			
 			return places;
 		}
 	}
@@ -77,9 +77,9 @@ public class PlaceSpatialDAOImpl extends BaseSpatialDAOImpl<PlaceSpatial, Long>
 		if (resultList.isEmpty()) {
 			return null;
 		} else {
-			for(PlaceSpatial spt : resultList){
-				places.add(spt.getPlace());
-			}
+//			for(PlaceSpatial spt : resultList){
+//				places.add(spt.getPlace());
+//			}
 			
 			return places;
 		}

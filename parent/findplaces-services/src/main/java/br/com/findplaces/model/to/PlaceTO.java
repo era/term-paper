@@ -40,7 +40,7 @@ public class PlaceTO implements Serializable {
 
 	private Double lat;
 
-	private Double log;
+	private Double lng;
 
 	@XmlTransient
 	private PlaceSpatialTO spatialTO;
@@ -89,7 +89,9 @@ public class PlaceTO implements Serializable {
 	
 	private String cellphone2;
 	
-	private String cellphone3;
+	private Double rent;
+	
+	private Integer contract_time;
 
 
 	public Long getId() {
@@ -152,9 +154,7 @@ public class PlaceTO implements Serializable {
 		return lat;
 	}
 
-	public Double getLog() {
-		return log;
-	}
+	
 
 	public SellerTO getSeller() {
 		return seller;
@@ -166,10 +166,6 @@ public class PlaceTO implements Serializable {
 
 	public void setLat(Double lat) {
 		this.lat = lat;
-	}
-
-	public void setLog(Double log) {
-		this.log = log;
 	}
 
 	public PlaceSpatialTO getSpatialTO() {
@@ -202,6 +198,22 @@ public class PlaceTO implements Serializable {
 
 	public Double getDeposit() {
 		return deposit;
+	}
+
+	public Double getRent() {
+		return rent;
+	}
+
+	public void setRent(Double rent) {
+		this.rent = rent;
+	}
+
+	public Integer getContract_time() {
+		return contract_time;
+	}
+
+	public void setContract_time(Integer contract_time) {
+		this.contract_time = contract_time;
 	}
 
 	public void setDeposit(Double deposit) {
@@ -288,14 +300,7 @@ public class PlaceTO implements Serializable {
 		this.cellphone2 = cellphone2;
 	}
 
-	public String getCellphone3() {
-		return cellphone3;
-	}
-
-	public void setCellphone3(String cellphone3) {
-		this.cellphone3 = cellphone3;
-	}
-
+	
 	public Integer getBedroom() {
 		return bedroom;
 	}
@@ -378,6 +383,14 @@ public class PlaceTO implements Serializable {
 
 	public void setIdImages(List<Long> idImages) {
 		this.idImages = idImages;
+	}
+
+	public Double getLng() {
+		return lng;
+	}
+
+	public void setLng(Double lng) {
+		this.lng = lng;
 	}
 
 }

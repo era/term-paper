@@ -75,7 +75,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 		try {
 
 			Double lat = place.getLat();
-			Double log = place.getLog();
+			Double log = place.getLng();
 			GeometryFactory geoFactory = new GeometryFactory();
 			Coordinate coord = new Coordinate();
 			coord.x = lat;
@@ -86,7 +86,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			place.setSpatialTO(new PlaceSpatialTO());
 			place.getSpatialTO().setGeom(point);
 			place.getSpatialTO().setLat(lat);
-			place.getSpatialTO().setLon(log);			
+			place.getSpatialTO().setLon(log);
 
 			// String alias = place.getCity().getRegion().getAlias();
 			// Region region = regionDAO.findByAlias(alias);
@@ -130,11 +130,20 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 					sellTypes.add(type);
 				}
 			}
-
+//			Long idFacilities = null;
+//			if (place.getFacilities() != null) {
+//				idFacilities = facilitiesDAO.create(ConverterTO
+//						.converter(place.getFacilities()));
+//
+//			}
+//			
+//			if(idFacilities != null){
+//				place.getFacilities().setId(idFacilities);
+//			}
 			Long id = placeDAO.create(ConverterTO.converter(place));
-			//PlaceSpatialTO spatialTO = place.getSpatialTO();
-			//spatialTO.setPlace(findPlaceById(id));
-			//Long fid = spatialDAO.create(ConverterTO.converter(spatialTO));
+			// PlaceSpatialTO spatialTO = place.getSpatialTO();
+			// spatialTO.setPlace(findPlaceById(id));
+			// Long fid = spatialDAO.create(ConverterTO.converter(spatialTO));
 
 			return this.findPlaceById(id);
 		} catch (Exception e) {

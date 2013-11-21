@@ -8,16 +8,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_TOWNHOUSE")
+@SequenceGenerator(name = "facilities_seq", sequenceName = "facilities_id_seq")  
 public class Facilities extends BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column
@@ -36,7 +38,7 @@ public class Facilities extends BaseEntity implements Serializable {
 	private boolean gasTubing;
 	
 	@Column
-	private boolean laudry;
+	private boolean laundry;
 	
 	@Column
 	private boolean townPool;
@@ -144,12 +146,12 @@ public class Facilities extends BaseEntity implements Serializable {
 		this.gasTubing = gasTubing;
 	}
 
-	public boolean isLaudry() {
-		return laudry;
+	public boolean isLaundry() {
+		return laundry;
 	}
 
-	public void setLaudry(boolean laudry) {
-		this.laudry = laudry;
+	public void setLaundry(boolean laundry) {
+		this.laundry = laundry;
 	}
 
 	public boolean isTownPool() {

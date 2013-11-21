@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ import org.hibernate.annotations.Type;
 import br.com.findplaces.jpa.entity.BaseEntity;
 import br.com.findplaces.jpa.entity.Place;
 
+import com.google.gson.annotations.Until;
 import com.vividsolutions.jts.geom.Geometry;
 
 @NamedQueries({
@@ -38,9 +40,6 @@ public class PlaceSpatial extends BaseEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="feature_seq")
 	private Long id;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "place_id")
-	private Place place;
 	
 	@Column
 	@Type(type="org.hibernate.spatial.GeometryType")
@@ -54,13 +53,7 @@ public class PlaceSpatial extends BaseEntity implements Serializable{
 		this.id = id;
 	}
 
-	public Place getPlace() {
-		return place;
-	}
-
-	public void setPlace(Place place) {
-		this.place = place;
-	}
+	
 
 	public Geometry getGeom() {
 		return geom;

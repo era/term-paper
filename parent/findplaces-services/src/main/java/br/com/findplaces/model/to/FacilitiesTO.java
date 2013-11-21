@@ -24,7 +24,7 @@ public class FacilitiesTO implements Serializable {
 	
 	private boolean gasTubing;
 	
-	private boolean laudry;
+	private boolean laundry;
 	
 	private boolean townPool;
 	
@@ -61,6 +61,8 @@ public class FacilitiesTO implements Serializable {
 	private boolean pool;
 	
 	private boolean terrace;
+	
+	private Double price;
 	
 	
 	public static FacilitiesTO fromString(String json) {
@@ -116,12 +118,12 @@ public class FacilitiesTO implements Serializable {
 		this.gasTubing = gasTubing;
 	}
 
-	public boolean isLaudry() {
-		return laudry;
+	public boolean isLaundry() {
+		return laundry;
 	}
 
-	public void setLaudry(boolean laudry) {
-		this.laudry = laudry;
+	public void setLaundry(boolean laundry) {
+		this.laundry = laundry;
 	}
 
 	public boolean isTownPool() {
@@ -267,5 +269,14 @@ public class FacilitiesTO implements Serializable {
 	public void setTerrace(boolean terrace) {
 		this.terrace = terrace;
 	}
+	
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
 
 }
