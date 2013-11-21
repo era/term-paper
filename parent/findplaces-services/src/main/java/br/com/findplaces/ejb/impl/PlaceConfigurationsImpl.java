@@ -156,16 +156,18 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	public List<PlaceTO> findPlaceByLatLogDistance(Double lat, Double log,
 			Double distance) {
 
-		List<Place> places = spatialDAO.findPlaceByLatLogDistance(lat, log,
+		List<PlaceSpatial> placesf = spatialDAO.findPlaceByLatLogDistance(lat, log,
 				distance);
 
-		if (places == null) {
+		if (placesf == null) {
 			logger.info("Não foi encontrado o lugar pela latitude e longitude ");
 			return null;
 		}
 
 		List<PlaceTO> placesTO = new ArrayList<PlaceTO>();
-		for (Place place : places) {
+		for (PlaceSpatial spatial : placesf) {
+			Place place = placeDAO.findBySpatial(spatial);
+			
 			PlaceTO to = ConverterTO.converter(place);
 			placesTO.add(to);
 		}

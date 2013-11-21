@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import br.com.findplaces.jpa.dao.interfaces.PlaceDAO;
 import br.com.findplaces.jpa.entity.Coment;
 import br.com.findplaces.jpa.entity.Place;
+import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Stateless
@@ -53,6 +54,15 @@ public class PlaceDAOImpl extends BaseDAOImpl<Place, Long> implements PlaceDAO {
 	@Override
 	public Coment findComentById(Long id) {
 		return em.find(Coment.class, id);
+	}
+
+	@Override
+	public Place findBySpatial(PlaceSpatial spatial) {
+		String sql = "SELECT * FROM tb_place p WHERE p.spatial_id = ?";
+		Query query = getEntityManager().createNativeQuery(sql, Place.class);	
+		query.setParameter(1, spatial.getId());
+		Place result = (Place) query.getSingleResult();
+		return result;
 	}
 
 

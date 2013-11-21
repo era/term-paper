@@ -7,8 +7,8 @@ import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 
 public interface PlaceSpatialDAO extends BaseSpatialDAO<PlaceSpatial, Long> {
 	
-	List<Place> findPlaceByLatLogDistance(Double lat, Double log, Double distance);
+	List<PlaceSpatial> findPlaceByLatLogDistance(Double lat, Double log, Double distance);
 
-	List<Place> findPlaceByFilterBasic();
+	List<PlaceSpatial> findPlaceByFilterBasic();
 
 }

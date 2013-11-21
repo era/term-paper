@@ -43,23 +43,21 @@ public class PlaceSpatialDAOImpl extends BaseSpatialDAOImpl<PlaceSpatial, Long>
 	}
 
 	@Override
-	public List<Place> findPlaceByLatLogDistance(Double lat, Double log,
+	public List<PlaceSpatial> findPlaceByLatLogDistance(Double lat, Double log,
 			Double distance) {
-		List<Place> places = new ArrayList<Place>();	
+		List<PlaceSpatial> places = new ArrayList<PlaceSpatial>();	
 		String sql = "SELECT * FROM tb_place_f s WHERE ST_DWithin(Geography(s.geom), Geography(ST_MakePoint(?, ?, 4326)), ?)";
 		Query query = getEntitySpatialManager().createNativeQuery(sql, PlaceSpatial.class);				
 		query.setParameter(1, lat);
 		query.setParameter(2, log);
 		query.setParameter(3, distance);
 		List<PlaceSpatial> resultList = query.getResultList();
+		
 
 		if (resultList.isEmpty()) {
 			return null;
 		} else {
-//			for(PlaceSpatial spt : resultList){
-//				places.add(spt.getPlace());
-//			}
-//			
+			places.addAll(resultList);
 			return places;
 		}
 	}
@@ -67,8 +65,9 @@ public class PlaceSpatialDAOImpl extends BaseSpatialDAOImpl<PlaceSpatial, Long>
 	
 	
 	@Override
-	public List<Place> findPlaceByFilterBasic() {
-		List<Place> places = new ArrayList<Place>();	
+	public List<PlaceSpatial> findPlaceByFilterBasic() {
+		//FIX FILTRO BASICO
+		List<PlaceSpatial> places = new ArrayList<PlaceSpatial>();	
 		String sql = "SELECT * FROM tb_place_f s WHERE ST_DWithin(Geography(s.geom), Geography(ST_MakePoint(?, ?, 4326)), ?)";
 		Query query = getEntitySpatialManager().createNativeQuery(sql, PlaceSpatial.class);				
 	
@@ -77,10 +76,7 @@ public class PlaceSpatialDAOImpl extends BaseSpatialDAOImpl<PlaceSpatial, Long>
 		if (resultList.isEmpty()) {
 			return null;
 		} else {
-//			for(PlaceSpatial spt : resultList){
-//				places.add(spt.getPlace());
-//			}
-			
+			places.addAll(resultList);
 			return places;
 		}
 	}

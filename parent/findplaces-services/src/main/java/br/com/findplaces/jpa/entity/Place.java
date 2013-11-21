@@ -15,22 +15,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import br.com.findplaces.jpa.entity.geographic.City;
-import br.com.findplaces.jpa.entity.geographic.Neighborhood;
-import br.com.findplaces.jpa.entity.geographic.Street;
 import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 
+@NamedQueries({ @NamedQuery(name = "FindBySpatial", query = "SELECT p FROM Place p where p.spatial.id = :spatial_id") })
 @Entity
 @Table(name = "TB_PLACE") //TODO Refact this, we have more than one entity here.
 public class Place extends BaseEntity implements Serializable {
 	
 	/** Default value included to remove warning. Remove or modify at will. **/
 	private static final long serialVersionUID = 1L;
+	
+	public static final String findBySpatial = "FindBySpatial";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
