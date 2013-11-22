@@ -439,6 +439,7 @@ INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('470580662953557',175
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,470580662953557,175);
 
 
+ALTER SEQUENCE hibernate_sequence  INCREMENT 50  MINVALUE 5000  MAXVALUE 9223372036854775807  START 5001  RESTART 5000  CACHE 1;
 --fakes sem likes
 INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(8,'41','joeytribianni@gmail.com','Joey Tribianne',null,'Married','11101485880931','UNIP',1);
 INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(9,'38','rachelgreen@gmail.com','Rachel Green',null,'Married','12101485880931','UNIP',1);
@@ -452,5 +453,48 @@ INSERT INTO tb_seller(id,user_id) VALUES(3,3);
 INSERT INTO tb_seller(id,user_id) VALUES(4,4);
 
 
+--Facilities
+INSERT INTO tb_townhouse(id, air, automaticdoor, barbecue, bathboxglass, bathroomcloset, bathtub, bedroomcloset, gasshower, gastubing, gatekeeper, gym, internet, kitchencabinet, laundry, name, partyroom, playground, pool, price, roofing, sauna, sportarea, terrace, townbarbecue,townpool)VALUES (500, false, true, false, true, true, false, true, false, true, true, false, false, false, true, 'Ed. Andrea', true, true, false, 400, false, false, false, false, false, false);
+
+INSERT INTO tb_townhouse(id, air, automaticdoor, barbecue, bathboxglass, bathroomcloset, bathtub, bedroomcloset, gasshower, gastubing, gatekeeper, gym, internet, kitchencabinet, laundry, name, partyroom, playground, pool, price, roofing, sauna, sportarea, terrace, townbarbecue,townpool)VALUES (501, false, true, false, true, true, true, true, false, true, true, false, false, false, true, 'Ed. Cambui', true, true, false, 700, false, false, false, false, false, false);
+
+INSERT INTO tb_townhouse(id, air, automaticdoor, barbecue, bathboxglass, bathroomcloset, bathtub, bedroomcloset, gasshower, gastubing, gatekeeper, gym, internet, kitchencabinet, laundry, name, partyroom, playground, pool, price, roofing, sauna, sportarea, terrace, townbarbecue,townpool)VALUES (502, false, true, false, true, true, true, true, false, true, true, false, false, false, true, 'Ed. Lamana', true, true, false, 350, false, false, false, false, false, false);
+
+INSERT INTO tb_townhouse(id, air, automaticdoor, barbecue, bathboxglass, bathroomcloset, bathtub, bedroomcloset, gasshower, gastubing, gatekeeper, gym, internet, kitchencabinet, laundry, name, partyroom, playground, pool, price, roofing, sauna, sportarea, terrace, townbarbecue,townpool)VALUES (503, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 'Casa', false, false, false, 0, false, false, false, false, false, false);
+
+INSERT INTO tb_townhouse(id, air, automaticdoor, barbecue, bathboxglass, bathroomcloset, bathtub, bedroomcloset, gasshower, gastubing, gatekeeper, gym, internet, kitchencabinet, laundry, name, partyroom, playground, pool, price, roofing, sauna, sportarea, terrace, townbarbecue,townpool)VALUES (504, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 'Casa', false, false, false, 0, false, false, false, false, false, false);
 
 
+--Espaciais
+
+--Barao de Jaguara 141
+INSERT INTO tb_place_f(id, geom) VALUES (3000, ST_GeomFromText('POINT(-22.912438 -47.055014)', 4326));
+
+--Padre almeida 278
+INSERT INTO tb_place_f(id, geom) VALUES (3001, ST_GeomFromText('POINT(-22.89732 -47.049932)', 4326));
+
+--Av. Francisco Glicério, 1357
+INSERT INTO tb_place_f(id, geom) VALUES (3002, ST_GeomFromText('POINT(-22.903465 -47.060464)', 4326));
+
+--R. Benedito Otávio, 2-112 - Vila Industrial
+INSERT INTO tb_place_f(id, geom) VALUES (3003, ST_GeomFromText('POINT(-22.909486 -47.075164)', 4326));
+
+--R. Tabira, 122 - Jardim Amazonas
+INSERT INTO tb_place_f(id, geom) VALUES (3004, ST_GeomFromText('POINT(-22.94305 -47.036989)', 4326));
+
+--Places
+
+--Barao de Jaguara
+INSERT INTO tb_place(id, address, bathroom, bedroom, cellphone, cellphone2, code, condominiumprice, contract_time, deposit, description, garage, internet, iptu, m2, packtime, placefloor, price, qtdplacefloor, rent, rentmonths, room, suite, totalprice, tv, facilities_id, seller_id, spatial_id, type_id, user_id) VALUES (1, 'Rua Barao de Jaguara n 141 Ap 34, Jd. Bosque, Campinas, São Paulo', 1, 3, '1111-2222', '2222-1111', 'APC1', 400, 12, 800, 'Apartamento com otima localizacao.', 1, 0, 200, 140, 3, 3, 800, 3, 800, 12, 1, 1,  1200, 0, 500, 4 , 3000 , 1 , 4);
+
+--Padre almeida
+INSERT INTO tb_place(id, address, bathroom, bedroom, cellphone, cellphone2, code, condominiumprice, contract_time, deposit, description, garage, internet, iptu, m2, packtime, placefloor, price, qtdplacefloor, rent, rentmonths, room, suite, totalprice, tv, facilities_id, seller_id, spatial_id, type_id, user_id) VALUES (2, 'Rua Padre almeida n 278 Ap 56, Cambui, Campinas, São Paulo', 1, 2, '1111-2222', '2222-1111', 'APC2', 600, 12, 1000, 'Apartamento com otima vista, reformado, e otimo bairro.', 1, 0, 180, 130, 3, 5, 800, 3, 800, 12, 1, 1, 1600, 0, 501, 4 , 3001 , 1 , 4);
+
+--Francisco Glicerio
+INSERT INTO tb_place(id, address, bathroom, bedroom, cellphone, cellphone2, code, condominiumprice, contract_time, deposit, description, garage, internet, iptu, m2, packtime, placefloor, price, qtdplacefloor, rent, rentmonths, room, suite, totalprice, tv, facilities_id, seller_id, spatial_id, type_id, user_id) VALUES (3, 'Av. Francisco Glicério, AP 31 1357 Centro, Campinas, São Paulo', 1, 2, '1111-2222', '2222-1111', 'APC3', 350, 12, 900, 'Apartamento novo.', 1, 0, 220, 160, 3, 3, 800, 3, 800, 12, 1, 1,  1250, 0, 502, 4 , 3002 , 1 , 4);
+
+--R. Benedito Otávio, 2-112 - Vila Industrial
+INSERT INTO tb_place(id, address, bathroom, bedroom, cellphone, cellphone2, code, condominiumprice, contract_time, deposit, description, garage, internet, iptu, m2, packtime, placefloor, price, qtdplacefloor, rent, rentmonths, room, suite, totalprice, tv, facilities_id, seller_id, spatial_id, type_id, user_id) VALUES (4, 'R. Benedito Otávio, 100, Vila Industrial, Campinas, São Paulo', 0, 2, '1111-2222', '2222-1111', 'CAC31', 0, 12, 750, 'Casa Reformada.', 1, 0, 90, 140, 3, 0, 800, 3, 800, 12, 1, 1,  750, 0, 503, 4 , 3003 , 2 , 4);
+
+--R. Tabira, 122 - Jardim Amazonas
+INSERT INTO tb_place(id, address, bathroom, bedroom, cellphone, cellphone2, code, condominiumprice, contract_time, deposit, description, garage, internet, iptu, m2, packtime, placefloor, price, qtdplacefloor, rent, rentmonths, room, suite, totalprice, tv, facilities_id, seller_id, spatial_id, type_id, user_id) VALUES (5, 'R. Tabira, 122 - Jardim Amazonas, Campinas, São Paulo', 1, 2, '1111-2222', '2222-1111', 'CAC31', 0, 12, 750, 'Casa Reformada.', 1, 0, 140, 100, 3, 0, 800, 3, 800, 12, 1, 1,  1200, 0, 504, 1 , 3004 , 2 , 1);
