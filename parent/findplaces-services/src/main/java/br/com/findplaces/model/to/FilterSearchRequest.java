@@ -47,7 +47,7 @@ public class FilterSearchRequest implements Serializable {
 
 	private Double lat;
 
-	private Double log;
+	private Double lng;
 
 	private Double m2;
 
