@@ -78,12 +78,20 @@ $(document).ready(function () {
     // Verifica se é uma edição, adicionar aqui validação imóvel x id_usuario
     var id = $.getUrlParam('id', location.href);
     if ($.IsNullOrEmpty(id, null) !== null) {
-        $('#tabs-2-title').show();
-        $('#tabs-3-title').show();
-        $.placeChart();
-        $.neighborhoodChart();
-        $.ageOfUsersChart();
-        $.placeQuestions();
+        $.ajax({
+            url: "findplaces-web/rest/place/" + id,
+            //data: place,
+            method: 'GET',
+            success: function (result) {
+                console.log(result);
+                $('#tabs-2-title').show();
+                $('#tabs-3-title').show();
+                $.placeChart();
+                $.neighborhoodChart();
+                $.ageOfUsersChart();
+                $.placeQuestions();
+            }
+        });        
     } else {
         $('#tabs-2-title').hide();
         $('#tabs-3-title').hide();
@@ -197,8 +205,8 @@ $(document).ready(function () {
                 placetype: 'required',
                 address1: 'required',
                 phone1: 'required',
-                price: 'required'
-                //rent: 'required'
+                price: 'required',
+                rent: 'required'
             },
             submitHandler: function () {
                 var jsonForm = $('#form_property').serializeObject();
