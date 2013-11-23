@@ -284,7 +284,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 				Coordinate coord = new Coordinate();
 				GeometryFactory geoFactory = new GeometryFactory();
 				coord.x = filter.getLat();
-				coord.y = filter.getLog();
+				coord.y = filter.getLng();
 				// Point = Geometry (extends)
 				Point point = geoFactory.createPoint(coord);
 

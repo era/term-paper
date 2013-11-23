@@ -183,12 +183,12 @@ public class FilterSearchRequest implements Serializable {
 		this.lat = lat;
 	}
 
-	public Double getLog() {
-		return log;
+	public Double getLng() {
+		return lng;
 	}
 
-	public void setLog(Double log) {
-		this.log = log;
+	public void setLng(Double lng) {
+		this.lng = lng;
 	}
 
 	public Double getM2() {
