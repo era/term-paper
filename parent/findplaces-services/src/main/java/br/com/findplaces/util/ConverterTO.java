@@ -262,7 +262,7 @@ public class ConverterTO {
 	private static PlaceSpatialTO converter(PlaceSpatial spatial) {
 		PlaceSpatialTO to = new PlaceSpatialTO();
 		to.setId(spatial.getId());
-		to.setGeom(spatial.getGeom());
+		to.setGeom(null);
 		return to;
 	}
 
