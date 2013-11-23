@@ -23,7 +23,8 @@ import javax.persistence.Table;
 
 import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 
-@NamedQueries({ @NamedQuery(name = "FindBySpatial", query = "SELECT p FROM Place p where p.spatial.id = :spatial_id") })
+@NamedQueries({ @NamedQuery(name = "FindBySpatial", query = "SELECT p FROM Place p where p.spatial.id = :spatial_id"),
+	@NamedQuery(name = "findBysellerID", query = "SELECT p FROM Place p where p.seller.user.id = :id")})
 @Entity
 @Table(name = "TB_PLACE") //TODO Refact this, we have more than one entity here.
 public class Place extends BaseEntity implements Serializable {
@@ -32,6 +33,8 @@ public class Place extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	public static final String findBySpatial = "FindBySpatial";
+	
+	public static final String findBysellerID = "findBysellerID";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

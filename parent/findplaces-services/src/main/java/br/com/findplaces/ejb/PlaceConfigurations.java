@@ -28,6 +28,8 @@ public interface PlaceConfigurations extends Serializable {
 	
 	List<PlaceTO> findByFilter(FilterSearchRequest filter);
 	
+	List<PlaceTO> findByUserId(Long id);
+	
 	PlaceTO coment(ComentTO coment);
 	
 	ComentTO findComentByID(Long id);

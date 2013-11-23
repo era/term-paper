@@ -15,5 +15,7 @@ public interface PlaceDAO extends BaseDAO<Place, Long> {
 	Coment findComentById(Long id);
 	
 	Place findBySpatial(PlaceSpatial spatial);
+	
+	List<Place> findByUserID(Long id);
 
 }
