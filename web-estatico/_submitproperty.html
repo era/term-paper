@@ -51,27 +51,7 @@
                             <div>
                                 <label for="address1">Endereço:</label>
                                 <input class="inputSizeBig" id="address1" name="address1" placeholder="Ex. Rua Aguapé, 392, Campinas, SP" type="text" />
-                            </div>
-                            <!--<div>
-                                    <label for="number">Número:</label>
-                                    <input class="inputSizeSmaller" id="number" maxlength="10" name="number" type="text" />
-                                </div>
-                                <div>
-                                    <label for="neighborhood">Bairro:</label>
-                                    <input class="inputSizeMedium" id="neighborhood" name="neighborhood" type="text" />
-                                </div>
-                                <div>
-                                    <label for="address2">Complemento:</label>
-                                    <input class="inputSizeBig" id="address2" name="address2" type="text" />
-                                </div>
-                                <div>
-                                    <label for="region_name">Estado:</label>
-                                    <select id="region_name" name="region_name"></select>
-                                </div>
-                                <div>
-                                    <label for="city_name">Cidade:</label>
-                                    <select id="city_name" name="city_name"></select>
-                                </div>-->
+                            </div>                          
                             <div>
                                 <label for="phone1">Telefone 1:</label>
                                 <input class="inputSizeMedium" id="phone1" maxlength="16" name="phone1" placeholder="Ex. (19) 98872-6604" type="text" />
@@ -95,7 +75,7 @@
                             <div class="msg_fieldset">Selecione um tipo de anúncio primeiro.</div>
                             <div>
                                 <label for="value_sale">Valor</label><br />
-                                <input class="inputSizeSmaller" id="value_sale" maxlength="10" name="value_sale" type="text" />
+                                <input class="inputSizeSmaller" id="value_sale" maxlength="10" name="price" type="text" />
                             </div>
                             <div>
                                 <label for="deposit">Depósito de garantia</label><br />
@@ -118,8 +98,8 @@
                                 <input class="inputSizeSmaller" id="iptu" maxlength="10" name="iptu" type="text" />
                             </div>
                             <div>
-                                <label for="condominium">Condomínio</label><br />
-                                <input class="inputSizeSmaller" id="condominium" maxlength="10" name="condominium" type="text" />
+                                <label for="complexPrice">Condomínio</label><br />
+                                <input class="inputSizeSmaller" id="complexPrice" maxlength="10" name="complexPrice" type="text" />
                             </div>
                             <div>
                                 <label for="internet">Banda larga</label><br />
@@ -138,12 +118,12 @@
                             <legend>Detalhes</legend>
                             <div class="msg_fieldset">Selecione um tipo de imóvel primeiro.</div>
                             <div>
-                                <label for="flat_floor">Apartamento por andar</label><br />
-                                <input class="inputSizeSmaller" id="flat_floor" maxlength="2" name="flat_floor" type="text" />
+                                <label for="qtdPlaceFloor">Apartamento por andar</label><br />
+                                <input class="inputSizeSmaller" id="qtdPlaceFloor" maxlength="2" name="qtdPlaceFloor" type="text" />
                             </div>
                             <div>
-                                <label for="floor">Andar em que se localiza</label><br />
-                                <input class="inputSizeSmaller" id="floor" maxlength="2" name="floor" type="text" />
+                                <label for="placeFloor">Andar em que se localiza</label><br />
+                                <input class="inputSizeSmaller" id="placeFloor" maxlength="2" name="placeFloor" type="text" />
                             </div>
                             <div>
                                 <label for="m2">Área útil (m²)</label><br />
@@ -173,12 +153,12 @@
                         <fieldset id="facilities-property" class='default-top-details'>
                             <legend>Informações</legend>
                             <div>
-                                <label for="value_sale">Sobre</label>
+                                <label for="description">Sobre</label>
                                 <textarea cols="53" id="description" name="description" placeholder="Ex. Imóvel novo, pronto para morar, projeto diferenciado e excelente localização, as ruas do bairro..." rows="8"></textarea>
                             </div>
                             <br />
                             <div>
-                                <label for="value_sale">Comodidades</label>
+                                <label>Comodidades</label>
                             </div>
                             <table>
                                 <tr>
@@ -238,7 +218,7 @@
                             </table>
                         </fieldset>
                         <div class="right-button">
-                            <button alt="Salvar" id="save_property" title="Salvar" onclick="" type="submit">Salvar</button>
+                            <button alt="Salvar" id="save_property" title="Salvar" type="submit">Salvar</button>
                         </div>
                         <!--hidden fields-->
                         <input type="hidden" name="lat" id="lat" />
