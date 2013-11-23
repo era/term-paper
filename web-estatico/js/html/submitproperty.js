@@ -80,7 +80,7 @@ $(document).ready(function () {
     if ($.IsNullOrEmpty(id, null) !== null) {
         $.ajax({
             url: "findplaces-web/rest/place/" + id,
-            //data: place,
+            data: { "socialid": "100001401841332" },
             method: 'GET',
             success: function (result) {
                 console.log(result);
