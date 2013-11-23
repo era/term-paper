@@ -65,5 +65,13 @@ public class PlaceDAOImpl extends BaseDAOImpl<Place, Long> implements PlaceDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Place> findByUserID(Long id) {
+		Query query = getEntityManager().createNamedQuery(Place.findBysellerID);
+		query.setParameter("id", id);
+		return query.getResultList();
+	}
+
 
 }

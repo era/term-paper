@@ -242,6 +242,49 @@ public class PlaceService implements Serializable {
 
 		return response;
 	}
+	
+	@POST
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/{id}")
+	public PlaceResponse updatePlace(@FormParam(value = "place") PlaceRequest request, @PathParam("id") Long id)
+			throws NotAuthorizedException, TokenInvalidException, CouldNotFindUserException { //FIXME Shouldn't throw excpetion for the user.
+		
+		//FIXME This method is responsible for more than one thing.
+
+		SellerTO sellerTO = request.getSocialid()!=null && !request.getSocialid().isEmpty() ? getSellerFromFacebook(request)	: getSellerFromEmail(request);
+
+		request.getPlacetype().setId(request.getPlacetype().getId());
+
+		//SellerTO sellerTO = new SellerTO();
+		//sellerTO.setId(1L);
+		request.setSeller(sellerTO);
+		
+		
+		PlaceTO place = ConverterTO.converter(request);
+		place.setId(id);
+
+		place = getPlaceConfiguration().createPlace(place);
+
+		PlaceResponse response = new PlaceResponse();
+		List<PlaceTO> list = new ArrayList<PlaceTO>();
+		list.add(place);
+		response.setPlaces(list);
+		setSuccessResponse(response);
+
+		return response;
+	}
+	
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/listBySeller/{socialid}")
+	public PlaceResponse listBySeller(@PathParam("socialid") String socialID){
+		SellerTO sellerTO = getSellerConfigurations().findBySocialId(socialID);
+		PlaceResponse response = new PlaceResponse();
+		response.setPlaces(getPlaceConfiguration().findByUserId(sellerTO.getUserTO().getId()));
+		setSuccessResponse(response);
+		return response;
+	}
+
 
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
@@ -287,12 +330,6 @@ public class PlaceService implements Serializable {
 		return sellerTO;
 	}
 
-	@PUT
-	@Produces({ MediaType.APPLICATION_JSON })
-	public PlaceResponse updatePlace(
-			@FormParam(value = "place") PlaceRequest request) {
-		return null;
-	}
 
 	private void setSuccessResponse(BaseJSONObject response) {
 		response.setCode(StatusCode.SUCCESS.getCode());

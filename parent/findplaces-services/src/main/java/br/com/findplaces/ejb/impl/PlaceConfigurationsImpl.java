@@ -140,7 +140,14 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 //			if(idFacilities != null){
 //				place.getFacilities().setId(idFacilities);
 //			}
-			Long id = placeDAO.create(ConverterTO.converter(place));
+			Long id = 0l;
+			if(place.getId() !=null){
+				id = place.getId();
+				placeDAO.update(ConverterTO.converter(place));
+			} else {
+				id = placeDAO.create(ConverterTO.converter(place));
+			}
+			 
 			// PlaceSpatialTO spatialTO = place.getSpatialTO();
 			// spatialTO.setPlace(findPlaceById(id));
 			// Long fid = spatialDAO.create(ConverterTO.converter(spatialTO));
@@ -335,6 +342,16 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 	@Override
 	public ComentTO findComentByID(Long id) {
 		return ConverterTO.converter(placeDAO.findComentById(id));
+	}
+
+	@Override
+	public List<PlaceTO> findByUserId(Long id) {
+		List<Place> placesFound = placeDAO.findByUserID(id);
+		List<PlaceTO> placesTO = new ArrayList<PlaceTO>();
+		for(Place place : placesFound){
+			placesTO.add(ConverterTO.converter(place));
+		}
+		return placesTO;
 	}
 
 	/**
