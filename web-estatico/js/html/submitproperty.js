@@ -222,7 +222,7 @@ $(document).ready(function () {
                 jsonPost.rent = jsonForm.rent;
                 jsonPost.contract_time = parseInt(jsonForm.contract_time);
                 jsonPost.iptu = jsonForm.iptu;
-                //jsonPost.internetPrice = jsonForm.internetPrice;
+                jsonPost.internet = jsonForm.internetPrice;
                 jsonPost.tv = jsonForm.tv;
                 jsonPost.room = parseInt(jsonForm.room);
                 jsonPost.suite = parseInt(jsonForm.suite);
