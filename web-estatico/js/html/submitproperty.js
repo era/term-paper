@@ -90,19 +90,19 @@ $(document).ready(function () {
     }
 
     // Seta as máscaras da tela
-    $("#value_sale").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
+    $("#price").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#deposit").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#rent").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#contract_time").maskMoney({ thousands: ".", precision: 0, allowNegative: false });
     $("#pack_time").maskMoney({ thousands: ".", precision: 0, allowNegative: false });
     $("#period").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#iptu").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
-    $("#condominium").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
+    $("#complexPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#internet").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#tv").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#total").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
-    $("#flat_floor").maskMoney({ precision: 0, allowNegative: false });
-    $("#floor").maskMoney({ precision: 0, allowNegative: false });
+    $("#qtdPlaceFloor").maskMoney({ precision: 0, allowNegative: false });
+    $("#placeFloor").maskMoney({ precision: 0, allowNegative: false });
     $("#m2").maskMoney({ precision: 0, allowNegative: false });
     $("#bedroom").maskMoney({ precision: 0, allowNegative: false });
     $("#suite").maskMoney({ precision: 0, allowNegative: false });
@@ -127,10 +127,10 @@ $(document).ready(function () {
         $.hideFields($('#valid_of').parent(), null, null);
         switch ($(this).find(":selected").text()) {
             case 'Venda':
-                $.showFields([$('#value_sale').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
+                $.showFields([$('#price').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
                 break;
             case 'Aluguel':
-                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#condominium').parent(), $('#internet').parent(), $('#tv').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
+                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#complexPrice').parent(), $('#internet').parent(), $('#tv').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
                 break;
             case 'Temporada':
                 $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#pack_time').parent(), $('#total').parent(), $('#valid_of').parent()], null, '#values-details > .msg_fieldset');
@@ -148,7 +148,7 @@ $(document).ready(function () {
                 break;
             case 'Casa':
                 $.showFields(['#details > div'], null, '#details > .msg_fieldset');
-                $.hideFields([$('#flat_floor').parent(), $('#floor').parent()], 'msg_fieldset', null);
+                $.hideFields([$('#qtdPlaceFloor').parent(), $('#placeFloor').parent()], 'msg_fieldset', null);
                 break;
         }
     });
@@ -197,84 +197,80 @@ $(document).ready(function () {
                 placetype: 'required',
                 address1: 'required',
                 phone1: 'required',
-                value_sale: 'required',
-                rent: 'required'
+                price: 'required'
+                //rent: 'required'
             },
             submitHandler: function () {
                 var jsonForm = $('#form_property').serializeObject();
                 var jsonPost = {};
 
-                jsonPost.place = {};
-                jsonPost.place.address = jsonForm.address1;
-                jsonPost.place.seller = {};
-                jsonPost.place.seller.id = 1;
-                jsonPost.place.placetype = {};
-                jsonPost.place.placetype.id = parseInt(jsonForm.placetype);
-                jsonPost.place.lat = jsonForm.lat;
-                jsonPost.place.lng = jsonForm.lng;
-                jsonPost.place.bathroom = parseInt(jsonForm.bathroom);
-                jsonPost.place.bedroom = parseInt(jsonForm.bedroom);
-                jsonPost.place.complexPrice = jsonForm.condominium;
-                jsonPost.place.description = jsonForm.description;
-                jsonPost.place.garage = parseInt(jsonForm.garage);
-                jsonPost.place.m2 = parseInt(jsonForm.m2);
-                jsonPost.place.price = jsonForm.value_sale;
-                jsonPost.place.deposit = jsonForm.deposit;
-                jsonPost.place.rent = jsonForm.rent;
-                jsonPost.place.contract_time = parseInt(jsonForm.contract_time);
-                jsonPost.place.iptu = jsonForm.iptu;
-                jsonPost.place.condominiumPrice = jsonForm.condominium;
-                jsonPost.place.internet = jsonForm.internet;
-                jsonPost.place.tv = jsonForm.tv;
-                jsonPost.place.room = parseInt(jsonForm.room);
-                jsonPost.place.suite = parseInt(jsonForm.suite);
-                jsonPost.place.placeFloor = parseInt(jsonForm.floor);
-                jsonPost.place.qtdPlaceFloor = parseInt(jsonForm.flat_floor);
-                jsonPost.place.socialid = '';
-                jsonPost.place.token = '';
-                jsonPost.place.facilities = {};
-                jsonPost.place.facilities.name = '';
-                jsonPost.place.facilities.gatekeeper = $('#chkConcierge').is(':checked');
-                jsonPost.place.facilities.gym = false;
-                jsonPost.place.facilities.townBarbecue = $('#chkGrill').is(':checked');
-                jsonPost.place.facilities.gasTubing = $('#chkGasChanneled').is(':checked');
-                jsonPost.place.facilities.laundry = false;
-                jsonPost.place.facilities.townPool = $('#chkPool').is(':checked');
-                jsonPost.place.facilities.playground = false;
-                jsonPost.place.facilities.automaticDoor = $('#chkAutoGate').is(':checked');
-                jsonPost.place.facilities.sportArea = false;
-                jsonPost.place.facilities.partyRoom = false;
-                jsonPost.place.facilities.sauna = false;
-                jsonPost.place.facilities.internet = $('#chkInternet').is(':checked');
-                jsonPost.place.facilities.air = false;
-                jsonPost.place.facilities.kitchenCabinet = $('#chkClosetsKitchen').is(':checked');
-                jsonPost.place.facilities.bedroomCloset = $('#chkClosetsBedroom').is(':checked');
-                jsonPost.place.facilities.bathroomCloset = false;
-                jsonPost.place.facilities.bathBoxGlass = false;
-                jsonPost.place.facilities.barbecue = false;
-                jsonPost.place.facilities.gasShower = false;
-                jsonPost.place.facilities.roofing = false;
-                jsonPost.place.facilities.pool = false;
-                jsonPost.place.facilities.terrace = $('#chkBalcony').is(':checked');
+                jsonPost.address = jsonForm.address1;
+                jsonPost.seller = {};
+                jsonPost.seller.id = 2;
+                jsonPost.placetype = {};
+                jsonPost.placetype.id = parseInt(jsonForm.placetype);
+                jsonPost.lat = jsonForm.lat;
+                jsonPost.lng = jsonForm.lng;
+                jsonPost.bathroom = parseInt(jsonForm.bathroom);
+                jsonPost.bedroom = parseInt(jsonForm.bedroom);
+                jsonPost.complexPrice = $.IsNullOrEmpty(jsonForm.complexPrice, null);
+                jsonPost.description = jsonForm.description;
+                jsonPost.garage = parseInt(jsonForm.garage);
+                jsonPost.m2 = parseInt(jsonForm.m2);
+                jsonPost.price = jsonForm.price;
+                //jsonPost.deposit = jsonForm.deposit;
+                //jsonPost.rent = jsonForm.rent;
+                //jsonPost.contract_time = parseInt(jsonForm.contract_time);
+                //jsonPost.iptu = jsonForm.iptu;
+                //jsonPost.complexPricePrice = jsonForm.complexPrice;
+                //jsonPost.internet = jsonForm.internet;
+                //jsonPost.tv = jsonForm.tv;
+                jsonPost.room = parseInt(jsonForm.room);
+                jsonPost.suite = parseInt(jsonForm.suite);
+                jsonPost.placeFloor = parseInt(jsonForm.placeFloor);
+                jsonPost.qtdPlaceFloor = parseInt(jsonForm.qtdPlaceFloor);
+                jsonPost.socialid = '100001401841332';
+                jsonPost.token = 'CAACEdEose0cBAOfZAdDRNMiLXMa6H2fqDAJJVvYaTQ02CZBaL2Rod6psRdu3wDDbJjZBzk7PDjMP9tZAvwF3Op0RIcX1ihAX7ZAns4s9qjO8GqusylmZCdm7vTfIzwhqQfMlxQbnMywE9D6yNiZAURokiBErgy9u6fx4MCWE0OnUrv4DOULY2ti7UsFqZA2qS1iSMmQHWnWTZBgZDZD';
+                // jsonPost.facilities = {};
+                // jsonPost.facilities.name = '';
+                // jsonPost.facilities.gatekeeper = $('#chkConcierge').is(':checked');
+                // jsonPost.facilities.gym = false;
+                // jsonPost.facilities.townBarbecue = $('#chkGrill').is(':checked');
+                // jsonPost.facilities.gasTubing = $('#chkGasChanneled').is(':checked');
+                // jsonPost.facilities.laundry = false;
+                // jsonPost.facilities.townPool = $('#chkPool').is(':checked');
+                // jsonPost.facilities.playground = false;
+                // jsonPost.facilities.automaticDoor = $('#chkAutoGate').is(':checked');
+                // jsonPost.facilities.sportArea = false;
+                // jsonPost.facilities.partyRoom = false;
+                // jsonPost.facilities.sauna = false;
+                // jsonPost.facilities.internet = $('#chkInternet').is(':checked');
+                // jsonPost.facilities.air = false;
+                // jsonPost.facilities.kitchenCabinet = $('#chkClosetsKitchen').is(':checked');
+                // jsonPost.facilities.bedroomCloset = $('#chkClosetsBedroom').is(':checked');
+                // jsonPost.facilities.bathroomCloset = false;
+                // jsonPost.facilities.bathBoxGlass = false;
+                // jsonPost.facilities.barbecue = false;
+                // jsonPost.facilities.gasShower = false;
+                // jsonPost.facilities.roofing = false;
+                // jsonPost.facilities.pool = false;
+                // jsonPost.facilities.terrace = $('#chkBalcony').is(':checked');
 
-                console.log(JSON.stringify(jsonPost));
+                console.log('place = ' + JSON.stringify(jsonPost));
 
                 $.ajax({
-                    type: "POST",
-                    url: "http://www.findplaces.com.br/findplaces-web/rest/place",
-                    data: jsonPost,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    async: false,
+                    url: "findplaces-web/rest/place/",
+                    data: 'place=' + JSON.stringify(jsonPost),
+                    method: 'POST',
                     success: function (json) {
                         console.log(JSON.parse(json));
+                        return false;
                     },
                     error: function (json) {
                         console.log(JSON.parse(json));
+                        return false;
                     }
                 });
-
-                return false;
             }
         });
     });
