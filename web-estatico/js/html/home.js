@@ -1,5 +1,14 @@
 ﻿// Carga dinâmica dos slides
 $.homeSlide = function (json) {
+    $.ajax({
+        url: "findplaces-web/rest/place/search/bylatlong/",
+        data: { "lat": "-22.907131", "lng": "-47.063253", "distance": "100000" },
+        method: 'GET',
+        success: function (result) {
+            console.log(result);
+        }
+    });
+
     var li = '',
         onclick = '',
         marker = '[';
