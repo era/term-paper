@@ -23,8 +23,8 @@ public class PlaceSpatialTO implements Serializable{
 	@XmlTransient
 	private Double lon;
 	
-	@XmlTransient
-	private Geometry geom;
+//	@XmlTransient
+//	private Geometry geom;
 
 	public Long getId() {
 		return id;
@@ -38,9 +38,9 @@ public class PlaceSpatialTO implements Serializable{
 		return lon;
 	}
 
-	public Geometry getGeom() {
-		return geom;
-	}
+//	public Geometry getGeom() {
+//		return geom;
+//	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -55,8 +55,8 @@ public class PlaceSpatialTO implements Serializable{
 		this.lon = lon;
 	}
 
-	public void setGeom(Geometry geom) {
-		this.geom = geom;
-	}
+//	public void setGeom(Geometry geom) {
+//		this.geom = geom;
+//	}
 
 }
