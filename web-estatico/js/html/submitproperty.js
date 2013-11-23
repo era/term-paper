@@ -98,7 +98,7 @@ $(document).ready(function () {
     $("#period").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#iptu").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#complexPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
-    $("#internet").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
+    $("#internetPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#tv").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#total").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#qtdPlaceFloor").maskMoney({ precision: 0, allowNegative: false });
@@ -130,7 +130,7 @@ $(document).ready(function () {
                 $.showFields([$('#price').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
                 break;
             case 'Aluguel':
-                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#complexPrice').parent(), $('#internet').parent(), $('#tv').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
+                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#complexPrice').parent(), $('#internetPrice').parent(), $('#tv').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
                 break;
             case 'Temporada':
                 $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#pack_time').parent(), $('#total').parent(), $('#valid_of').parent()], null, '#values-details > .msg_fieldset');
@@ -230,31 +230,32 @@ $(document).ready(function () {
                 jsonPost.placeFloor = parseInt(jsonForm.placeFloor);
                 jsonPost.qtdPlaceFloor = parseInt(jsonForm.qtdPlaceFloor);
                 jsonPost.socialid = '100001401841332';
-                jsonPost.token = 'CAACEdEose0cBAOfZAdDRNMiLXMa6H2fqDAJJVvYaTQ02CZBaL2Rod6psRdu3wDDbJjZBzk7PDjMP9tZAvwF3Op0RIcX1ihAX7ZAns4s9qjO8GqusylmZCdm7vTfIzwhqQfMlxQbnMywE9D6yNiZAURokiBErgy9u6fx4MCWE0OnUrv4DOULY2ti7UsFqZA2qS1iSMmQHWnWTZBgZDZD';
-                // jsonPost.facilities = {};
-                // jsonPost.facilities.name = '';
-                // jsonPost.facilities.gatekeeper = $('#chkConcierge').is(':checked');
-                // jsonPost.facilities.gym = false;
-                // jsonPost.facilities.townBarbecue = $('#chkGrill').is(':checked');
-                // jsonPost.facilities.gasTubing = $('#chkGasChanneled').is(':checked');
-                // jsonPost.facilities.laundry = false;
-                // jsonPost.facilities.townPool = $('#chkPool').is(':checked');
-                // jsonPost.facilities.playground = false;
-                // jsonPost.facilities.automaticDoor = $('#chkAutoGate').is(':checked');
-                // jsonPost.facilities.sportArea = false;
-                // jsonPost.facilities.partyRoom = false;
-                // jsonPost.facilities.sauna = false;
-                // jsonPost.facilities.internet = $('#chkInternet').is(':checked');
-                // jsonPost.facilities.air = false;
-                // jsonPost.facilities.kitchenCabinet = $('#chkClosetsKitchen').is(':checked');
-                // jsonPost.facilities.bedroomCloset = $('#chkClosetsBedroom').is(':checked');
-                // jsonPost.facilities.bathroomCloset = false;
-                // jsonPost.facilities.bathBoxGlass = false;
-                // jsonPost.facilities.barbecue = false;
-                // jsonPost.facilities.gasShower = false;
-                // jsonPost.facilities.roofing = false;
-                // jsonPost.facilities.pool = false;
-                // jsonPost.facilities.terrace = $('#chkBalcony').is(':checked');
+                jsonPost.token = 'CAACEdEose0cBAETrZCHumQqXvIqWux4ukLERccMkSEQ8fmw8nsmxkadyFwE702CmHS6ZAqKU2mTKn7e8G9y7LVqsHTAK7RKSb0WCfBuJCJmDojPcxVwKHv0MPXKqjI2fO8mWBK1ZCYrnfTyZBgpx4MwKvuyLUrAZCD2ZCNQxtpFE86dhUPQNZB6UbevBxuFSjR7GX6Gy5yPlwZDZD';
+                jsonPost.facilities = {};
+                jsonPost.facilities.name = '';
+                jsonPost.facilities.gatekeeper = $('#gatekeeper').is(':checked');
+                jsonPost.facilities.gym = false;
+                jsonPost.facilities.townBarbecue = $('#townBarbecue').is(':checked');
+                jsonPost.facilities.gasTubing = $('#gasTubing').is(':checked');
+                jsonPost.facilities.laundry = false;
+                jsonPost.facilities.townPool = $('#townPool').is(':checked');
+                jsonPost.facilities.playground = false;
+                jsonPost.facilities.automaticDoor = $('#automaticDoor').is(':checked');
+                jsonPost.facilities.sportArea = false;
+                jsonPost.facilities.partyRoom = false;
+                jsonPost.facilities.sauna = false;
+                jsonPost.facilities.internet = $('#internet').is(':checked');
+                jsonPost.facilities.air = false;
+                jsonPost.facilities.kitchenCabinet = $('#kitchenCabinet').is(':checked');
+                jsonPost.facilities.hidromassage = $('#hidromassage').is(':checked');
+                jsonPost.facilities.bedroomCloset = $('#bedroomCloset').is(':checked');
+                jsonPost.facilities.bathroomCloset = false;
+                jsonPost.facilities.bathBoxGlass = false;
+                jsonPost.facilities.barbecue = false;
+                jsonPost.facilities.gasShower = false;
+                jsonPost.facilities.roofing = false;
+                jsonPost.facilities.pool = false;
+                jsonPost.facilities.terrace = $('#terrace').is(':checked');
 
                 console.log('place = ' + JSON.stringify(jsonPost));
 
@@ -263,11 +264,11 @@ $(document).ready(function () {
                     data: 'place=' + JSON.stringify(jsonPost),
                     method: 'POST',
                     success: function (json) {
-                        console.log(JSON.parse(json));
+                        console.log(JSON.stringify(json));
                         return false;
                     },
                     error: function (json) {
-                        console.log(JSON.parse(json));
+                        console.log(JSON.stringify(json));
                         return false;
                     }
                 });
