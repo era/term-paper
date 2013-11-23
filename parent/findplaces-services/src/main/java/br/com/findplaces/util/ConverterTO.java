@@ -262,7 +262,7 @@ public class ConverterTO {
 	private static PlaceSpatialTO converter(PlaceSpatial spatial) {
 		PlaceSpatialTO to = new PlaceSpatialTO();
 		to.setId(spatial.getId());
-		to.setGeom(spatial.getGeom());
+//		to.setGeom(null);
 		return to;
 	}
 
@@ -289,7 +289,7 @@ public class ConverterTO {
 		PlaceSpatial entity = new PlaceSpatial();
 		entity.setId(to.getId());
 		// entity.setPlace(converter(to.getPlace()));
-		entity.setGeom(to.getGeom());
+//		entity.setGeom(to.getGeom());
 		return entity;
 	}
 

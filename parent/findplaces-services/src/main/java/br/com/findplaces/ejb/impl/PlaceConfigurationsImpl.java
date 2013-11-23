@@ -84,7 +84,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			point.setSRID(SRID);
 
 			place.setSpatialTO(new PlaceSpatialTO());
-			place.getSpatialTO().setGeom(point);
+//			place.getSpatialTO().setGeom(point);
 			place.getSpatialTO().setLat(lat);
 			place.getSpatialTO().setLon(log);
 
