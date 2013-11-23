@@ -111,9 +111,9 @@ $(document).ready(function () {
     $("#garage").maskMoney({ precision: 0, allowNegative: false });
 
     // Esconde todos os campos do grupo Valores e Detalhes que dependem de um valor de seleção antes (Tipo de anúnio e imóvel)
-    //$.hideFields('#values-details > div', 'msg_fieldset', null);
-    //$.hideFields([$('#valid_of').parent()], null, null);
-    //$.hideFields('#details > div', 'msg_fieldset', null);
+    $.hideFields('#values-details > div', 'msg_fieldset', null);
+    $.hideFields([$('#valid_of').parent()], null, null);
+    $.hideFields('#details > div', 'msg_fieldset', null);
 
     // Habilita a dica para o id informado
     $('#help_valid_of').tooltip();
