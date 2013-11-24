@@ -327,8 +327,12 @@ $(document).ready(function () {
                     data: 'place=' + JSON.stringify(jsonPost),
                     method: 'POST',
                     success: function (json) {
-                        alert("Propriedade " + (jsonPost.id === null ? "inserida" : "atualizada") + " com sucesso!");
-                        $('#form_property').get(0).reset();
+                        if(jsonPost.id ==null) {
+                            alert("Propriedade inserida com sucesso!");
+                            $('#form_property').get(0).reset();
+                        } else {
+                            alert("Propriedade atualizada com sucesso!");
+                        }
                         console.log(JSON.stringify(json));
                         return false;
                     },
