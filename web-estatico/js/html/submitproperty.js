@@ -78,20 +78,20 @@ $(document).ready(function () {
     // Verifica se é uma edição, adicionar aqui validação imóvel x id_usuario
     var id = $.getUrlParam('id', location.href);
     if ($.IsNullOrEmpty(id, null) !== null) {
-        //$.ajax({
-        //    url: "findplaces-web/rest/place/" + id,
-        //    data: { "socialid": "100001401841332" },
-        //    method: 'GET',
-        //    success: function (result) {
-                //console.log(result);
+        $.ajax({
+            url: "findplaces-web/rest/place/" + id,
+            data: { "socialid": "100001401841332" },
+            method: 'GET',
+            success: function (result) {
+                console.log(result);
                 $('#tabs-2-title').show();
                 $('#tabs-3-title').show();
                 $.placeChart();
                 $.neighborhoodChart();
                 $.ageOfUsersChart();
                 $.placeQuestions();
-        //    }
-        //});        
+            }
+        });        
     } else {
         $('#tabs-2-title').hide();
         $('#tabs-3-title').hide();

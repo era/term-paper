@@ -26,8 +26,6 @@ $.homeSlide = function (json, lat, lng) {
 
     $('#map').after('<div class="flexslider"><ul class="homeSlides">' + li + '</ul></div>');
     
-    //$('.flexslider ul').empty().append(li);
-
     // Flexslider
     $('.flexslider').flexslider({
         selector: ".homeSlides > li",
