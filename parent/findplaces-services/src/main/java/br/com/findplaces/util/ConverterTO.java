@@ -183,6 +183,8 @@ public class ConverterTO {
 		entity.setTv(place.getTv());
 		entity.setInternet(place.getInternet());
 		entity.setCondominiumPrice(place.getCondominiumPrice());
+		entity.setIptu(place.getIptu());
+		entity.setPlaceFloor(place.getPlaceFloor());
 		if (place.getSpatialTO() != null) {
 			entity.setSpatial(converter(place.getSpatialTO()));
 		}
@@ -529,7 +531,8 @@ public class ConverterTO {
 		to.setIptu(re.getIptu());
 		to.setTv(re.getTv());
 		to.setCondominiumPrice(re.getCondominiumPrice());
-
+		to.setPlaceFloor(re.getPlaceFloor());
+		
 		ArrayList<Long> sellTypes = new ArrayList<Long>();
 
 		if (re.getSellType() != null) {
