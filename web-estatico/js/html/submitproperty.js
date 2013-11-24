@@ -248,8 +248,8 @@ $(document).ready(function () {
                 jsonPost.placeFloor = parseInt(jsonForm.placeFloor);
                 jsonPost.qtdPlaceFloor = parseInt(jsonForm.qtdPlaceFloor);
                 jsonPost.totalPrice = jsonForm.totalPrice;
-                jsonPost.cellphone = jsonForm.phone1;
-                jsonPost.cellphone2 = jsonForm.phone2;
+                jsonPost.cellphone = jsonForm.cellphone;
+                jsonPost.cellphone2 = jsonForm.cellphone2;
                 jsonPost.socialid = '100001401841332';
                 jsonPost.token = 'CAACEdEose0cBACv8zPk2H8YKFUYZCwhKZCfZAeiFfZCYU3Al0qI5ZBnJuNBqYUtZAynVnIkOQJCBWB7bfr2Bu0n28eoJqaE6sEP5HM9HeVhoNTXYpewn9OOQ4dnsEV7aZCWEb3NVwezPiUoTdTnWrm7OV7JRBnB2rvh9fOxGnLZAWG9IpzSiLUZCLZBukG5ZCxQbjrlF4djUBu6ZBAZDZD';
                 jsonPost.facilities = {};
