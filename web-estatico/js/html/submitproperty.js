@@ -100,7 +100,7 @@ $(document).ready(function () {
                 $('#rent').val(places.rent).maskMoney('mask').trigger("blur");
                 $('#contract_time').val(places.contract_time).trigger("blur");
                 $('#iptu').val(places.iptu).maskMoney('mask').trigger("blur");
-                $('#condominiumPrice').val(places.complexPrice).maskMoney('mask').trigger("blur");
+                $('#condominiumPrice').val(places.condominiumPrice).maskMoney('mask').trigger("blur");
                 $('#internetPrice').val(places.internet).maskMoney('mask').trigger("blur");
                 $('#tv').val(places.tv).maskMoney('mask').trigger("blur");
 
@@ -128,11 +128,11 @@ $(document).ready(function () {
                 $('#townPool').prop('checked', places.facilities.townPool);
                 $('#terrace').prop('checked', places.facilities.terrace);
                 $('#automaticDoor').prop('checked', places.facilities.automaticDoor);
-                
+
                 //Hidden
                 $('#lat').val(places.lat);
                 $('#lng').val(places.lng);
-                
+
                 // Mostra as abas e atualiza os gráficos
                 $('#tabs-2-title').show();
                 $('#tabs-3-title').show();
@@ -323,7 +323,7 @@ $(document).ready(function () {
                 console.log('place = ' + JSON.stringify(jsonPost));
 
                 $.ajax({
-                    url: "findplaces-web/rest/place/",
+                    url: jsonPost.id === null ? "findplaces-web/rest/place/" : "findplaces-web/rest/place/" + jsonPost.id,
                     data: 'place=' + JSON.stringify(jsonPost),
                     method: 'POST',
                     success: function (json) {
