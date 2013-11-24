@@ -212,7 +212,7 @@ $(document).ready(function () {
                 var jsonForm = $('#form_property').serializeObject();
                 var jsonPost = {};
 
-                jsonForm.id = $.IsNullOrEmpty(id, null);
+                jsonPost.id = $.IsNullOrEmpty(id, null);
                 jsonPost.address = jsonForm.address1;
                 jsonPost.seller = {};
                 jsonPost.seller.id = 2;
