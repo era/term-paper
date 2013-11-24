@@ -87,9 +87,27 @@ $(document).ready(function () {
                 var places = result.places[0];
 
                 console.log(JSON.stringify(places));
-                $('#sellType').val(places.sellType[0]).trigger("change");
+                //$('#sellType').val(places.sellType[0]).trigger("change");
                 $('#placetype').val(places.type.id).trigger("change");
                 $('#address1').val(places.address);
+                $('#cellphone').val(places.cellphone);
+                $('#cellphone1').val(places.cellphone1);
+
+                //Detalhes
+                $('#m2').val(places.m2)
+                $('#bedroom').val(places.bedroom)
+                $('#suite').val(places.suite)
+                $('#room').val(places.room)
+                $('#bathroom').val(places.bathroom)
+                $('#garage').val(places.garage)
+
+                //Informações
+                $('#description').val(places.description)
+
+                //Comodidades
+                $('#internet').prop('checked', places.facilities.internet);
+
+
 
                 // Mostra as abas e atualiza os gráficos
                 $('#tabs-2-title').show();
@@ -251,7 +269,7 @@ $(document).ready(function () {
                 jsonPost.cellphone = jsonForm.cellphone;
                 jsonPost.cellphone2 = jsonForm.cellphone2;
                 jsonPost.socialid = '100001401841332';
-                jsonPost.token = 'CAACEdEose0cBACv8zPk2H8YKFUYZCwhKZCfZAeiFfZCYU3Al0qI5ZBnJuNBqYUtZAynVnIkOQJCBWB7bfr2Bu0n28eoJqaE6sEP5HM9HeVhoNTXYpewn9OOQ4dnsEV7aZCWEb3NVwezPiUoTdTnWrm7OV7JRBnB2rvh9fOxGnLZAWG9IpzSiLUZCLZBukG5ZCxQbjrlF4djUBu6ZBAZDZD';
+                jsonPost.token = 'CAACEdEose0cBAGIGeIUHgyaoB6XK4ZAZBdUF07NZBYBCYxnFUguRgVgQKxDHZCehj79lHZB8XcCUj4NNntAmRyLy6XJwSfZCbWp2GfdQyypsQazHMJQ1zxyXIcKHRnjjVZBpvZBVX9XCBmCvGD8wtMVa4fmLNubZAxgeuUqX5cxUeNvqfKTa1bNZA1h0p7ppXkUiCuFhLC2XFc5QZDZD';
                 jsonPost.facilities = {};
                 jsonPost.facilities.name = null;
                 jsonPost.facilities.gatekeeper = $('#gatekeeper').is(':checked');
