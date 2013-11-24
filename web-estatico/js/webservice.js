@@ -23,14 +23,14 @@ findplaces.webservice.user.createUserByEmail = function (user) {
         }
     });
 };
-findplaces.webservice.user.loginUserWithEmail = function(user) {
+findplaces.webservice.user.loginUserWithEmail = function (user) {
     user.type = "EMAIL";
     $.ajax({
         url: findplaces.webservice.url + 'user/email', //fixme
         data: user, //{name:"+user.name+"}",//:user.name}},
         //dataType: "json",
         method: 'GET',
-        success: function(result) {
+        success: function (result) {
             console.log(result); //FIXME to be more responsible by errors
             var resultJSON = eval(result);
             if (resultJSON.code == 0) {
@@ -41,8 +41,8 @@ findplaces.webservice.user.loginUserWithEmail = function(user) {
         }
     });
 };
-findplaces.webservice.user.createUserByFacebook = function(id, token) {
-    var user = { };
+findplaces.webservice.user.createUserByFacebook = function (id, token) {
+    var user = {};
     user.userFacebookID = id;
     user.token = token;
     user.type = "FB";
@@ -51,7 +51,7 @@ findplaces.webservice.user.createUserByFacebook = function(id, token) {
         data: "user=" + JSON.stringify(user), //{name:"+user.name+"}",//:user.name}},
         //dataType: "json",
         method: 'POST',
-        success: function(result) {
+        success: function (result) {
             console.log(result); //FIXME to be more responsible by errors
             var resultJSON = eval(result);
             if (resultJSON.code == 0) {
@@ -87,7 +87,7 @@ findplaces.webservice.user.loginSuccess = function (user, token) {
     //$("#menuLoginTopo").html(user.name); FIXME
     //$.openURLContent('#content', 'home', null);
 };
-findplaces.webservice.user.setToken = function(token, user) {
+findplaces.webservice.user.setToken = function (token, user) {
     $('#tokenLoginUser').val(token);
     $('#userID').val(user);
 };
@@ -107,19 +107,17 @@ findplaces.webservice.user.seller = function (socialID, token) {
         }
     });
 };
-
-findplaces.webservice.user.createSeller = function(){
-    findplaces.webservice.user.seller($('#userID').val(),$('#tokenLoginUser').val());
-}
-
+findplaces.webservice.user.createSeller = function () {
+    findplaces.webservice.user.seller($('#userID').val(), $('#tokenLoginUser').val());
+};
 findplaces.webservice.places = {};
-findplaces.webservice.places.insert = function(place, callback) {
+findplaces.webservice.places.insert = function (place, callback) {
     $.ajax({
         url: findplaces.webservice.url + 'place/',
         data: 'place=' + JSON.stringify(place), //{name:"+user.name+"}",//:user.name}},
         //dataType: "json",
         method: 'POST',
-        success: function(result) {
+        success: function (result) {
             console.log(result); //FIXME to be more responsible by errors
             var resultJSON = eval(result);
             callback(resultJSON);
@@ -128,8 +126,8 @@ findplaces.webservice.places.insert = function(place, callback) {
 
     //{'token':'CAAFNSdzc4IkBANloQM9dSmmFheN9EkEA0CKJfpe2QuEaoxwgPvfEKHxEi99PLj5A2oX4eQdPha0yoyJ7JDQvA6VTWvUSwmZCD5eTepQSSdyqLqbJtc52T5TFg1kHI1CytVlbBcpi7lN8EAvNlwY93bHUne5S8R2i2RAezt8BZCvmxWI6P3E8oUf3cZCsZA2FzhpEvrfoWgZDZD', 'socialid':"1750315906", 'address': "rua do bosque",  'lat': "-22.913051",  'log': "-47.054745", 'city':{'name':'Monte Santo', 'region':{'alias':'MG'}}, 'street':{'name':'bla bla'}, 'country':{'name':'Brazil'}, 'neighborhood':{'name':'Centro'}, 'placetype':{'id':'1'}}
 };
-findplaces.webservice.places.get = function(id, callback, socialID, token) {
-    var place = { };
+findplaces.webservice.places.get = function (id, callback, socialID, token) {
+    var place = {};
     place.socialID = socialID;
     place.token = token;
     $.ajax({
@@ -137,7 +135,7 @@ findplaces.webservice.places.get = function(id, callback, socialID, token) {
         data: place, //{name:"+user.name+"}",//:user.name}},
         //dataType: "json",
         method: 'GET',
-        success: function(result) {
+        success: function (result) {
             console.log(result); //FIXME to be more responsible by errors
             var resultJSON = eval(result);
             callback(resultJSON);
@@ -162,50 +160,47 @@ findplaces.webservice.places.searchByLatLong = function (lat, lng, distance, soc
         }
     });
 };
-
-findplaces.webservice.tratarFormulariosComUnderline = function(key,value){
+findplaces.webservice.tratarFormulariosComUnderline = function (key, value) {
     var jsonARetornar = {};
-    var antipenultimo =  undefined;
+    var antipenultimo = undefined;
     var penultimo = "";
     var profundidade = 0;
     var ultimo = "";
-    $.each(key, function(k,v){
+    $.each(key, function (k, v) {
         console.log(v);
-        if(antipenultimo){
-            if(jsonARetornar[antipenultimo]){
-                jsonARetornar[antipenultimo][v] = {};    
+        if (antipenultimo) {
+            if (jsonARetornar[antipenultimo]) {
+                jsonARetornar[antipenultimo][v] = {};
                 profundidade = 2;
             } else {
                 jsonARetornar[penultimo][antipenultimo][v] = {};
                 profundidade = 3;
             }
-            
+
         } else {
-            jsonARetornar[v] = {};    
+            jsonARetornar[v] = {};
         }
         ultimo = penultimo;
         penultimo = antipenultimo;
         antipenultimo = v;
     });
-    if(profundidade==2){
-        jsonARetornar[penultimo][antipenultimo] = value;    
-    } else if(profundidade==3){
-        jsonARetornar[ultimo][penultimo][antipenultimo] = value;    
+    if (profundidade == 2) {
+        jsonARetornar[penultimo][antipenultimo] = value;
+    } else if (profundidade == 3) {
+        jsonARetornar[ultimo][penultimo][antipenultimo] = value;
     }
 
-    
 
     return jsonARetornar;
-}
-
-findplaces.webservice.places.criarJsonDoFormularioCadastrar = function(){
-    var formulario = $('#submeterImovel').serializeObject();      
+};
+findplaces.webservice.places.criarJsonDoFormularioCadastrar = function () {
+    var formulario = $('#submeterImovel').serializeObject();
     var jsonASubmeter = {};
-    $.each(formulario, function(key, value){
-        if(key.indexOf('_')!=-1){
+    $.each(formulario, function (key, value) {
+        if (key.indexOf('_') != -1) {
             var arrayKeys = key.split('_');
-           $.extend(jsonASubmeter,findplaces.webservice.tratarFormulariosComUnderline(arrayKeys,value));
-            console.log(jsonASubmeter)
+            $.extend(jsonASubmeter, findplaces.webservice.tratarFormulariosComUnderline(arrayKeys, value));
+            console.log(jsonASubmeter);
         } else {
             jsonASubmeter[key] = value;
         }
