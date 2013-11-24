@@ -35,6 +35,14 @@ import br.com.findplaces.model.to.UserTO;
 import br.com.findplaces.model.to.UserTypeTO;
 
 import com.restfb.types.Photo;
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.CoordinateFilter;
+import com.vividsolutions.jts.geom.CoordinateSequenceComparator;
+import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
+import com.vividsolutions.jts.geom.Envelope;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryComponentFilter;
+import com.vividsolutions.jts.geom.GeometryFilter;
 
 public class ConverterTO {
 
@@ -175,7 +183,6 @@ public class ConverterTO {
 		entity.setTv(place.getTv());
 		entity.setInternet(place.getInternet());
 		entity.setCondominiumPrice(place.getCondominiumPrice());
-		
 		if (place.getSpatialTO() != null) {
 			entity.setSpatial(converter(place.getSpatialTO()));
 		}
@@ -216,7 +223,7 @@ public class ConverterTO {
 		to.setM2(place.getM2());
 		// to.setNeighborhood(converter(place.getNeighborhood()));
 		to.setPrice(place.getPrice());
-		if (place.getSpatial() != null) {
+		if (place.getSpatial() != null && place.getSpatial().getGeom() !=null) {
 			to.setLat(place.getSpatial().getGeom().getCoordinate().x);
 			to.setLng(place.getSpatial().getGeom().getCoordinate().y);
 		}

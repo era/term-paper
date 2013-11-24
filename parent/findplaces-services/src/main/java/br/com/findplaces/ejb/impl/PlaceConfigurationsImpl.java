@@ -74,19 +74,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 												// create in the same method!
 		try {
 
-			Double lat = place.getLat();
-			Double log = place.getLng();
-			GeometryFactory geoFactory = new GeometryFactory();
-			Coordinate coord = new Coordinate();
-			coord.x = lat;
-			coord.y = log;
-			Point point = geoFactory.createPoint(coord);
-			point.setSRID(SRID);
-
-			place.setSpatialTO(new PlaceSpatialTO());
-//			place.getSpatialTO().setGeom(point);
-			place.getSpatialTO().setLat(lat);
-			place.getSpatialTO().setLon(log);
+			
 
 			// String alias = place.getCity().getRegion().getAlias();
 			// Region region = regionDAO.findByAlias(alias);
@@ -141,11 +129,23 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 //				place.getFacilities().setId(idFacilities);
 //			}
 			Long id = 0l;
+			Place place2save = ConverterTO.converter(place);
+			
+			GeometryFactory geoFactory = new GeometryFactory();
+			Coordinate coord = new Coordinate();
+			coord.x = place.getLat();
+			coord.y = place.getLng();
+			Point point = geoFactory.createPoint(coord);
+			point.setSRID(SRID);
+
+			place2save.setSpatial(new PlaceSpatial());
+			place2save.getSpatial().setGeom(point);
+			
 			if(place.getId() !=null){
 				id = place.getId();
-				placeDAO.update(ConverterTO.converter(place));
+				placeDAO.update(place2save);
 			} else {
-				id = placeDAO.create(ConverterTO.converter(place));
+				id = placeDAO.create(place2save);
 			}
 			 
 			// PlaceSpatialTO spatialTO = place.getSpatialTO();
