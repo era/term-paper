@@ -179,7 +179,7 @@ $(document).ready(function () {
             element.mask("(99) 9999-9999?9");
         }
     }).trigger('focusout');
-    
+
     $('#cellphone2').focusout(function () {
         var phone, element;
         element = $(this);
@@ -254,13 +254,13 @@ $(document).ready(function () {
             var selectedFile = e.target.files[0];
             var reader = new FileReader();
             var imageName = $(this).val().split('.')[0];
+            var imageExt = $(this).val().split('.')[1];
             var imageSize = this.files[0].size;
 
             if ($('#img_' + imageName).length === 0 && imageSize < 1000000) {
                 reader.onload = function (e) {
-                    $('#div_link_photo').before($.StringFormat('<img alt="Clique para remover" src="{0}" class="img_upload" id="img_{1}" onclick="{2}" title="Clique para remover">', e.target.result, imageName, '$(this).remove();'));
+                    $('#div_link_photo').before($.StringFormat('<img alt="Clique para remover" src="{0}" class="img_upload" id="img_{1}" onclick="{2}" title="Clique para remover" ext="{3}">', e.target.result, imageName, '$(this).remove();', imageExt));
                 };
-
                 reader.readAsDataURL(selectedFile);
             } else {
                 alert("Verifique se a imagem não é maior que 1Mb ou se já não foi adicionada.");
@@ -350,15 +350,27 @@ $(document).ready(function () {
                     url: jsonPost.id === null ? "findplaces-web/rest/place/" : "findplaces-web/rest/place/" + jsonPost.id,
                     data: 'place=' + JSON.stringify(jsonPost),
                     method: 'POST',
-                    success: function (json) {
-                        if(jsonPost.id ==null) {
-                            alert("Propriedade inserida com sucesso!");
-                            $('#form_property').get(0).reset();
-                        } else {
-                            alert("Propriedade atualizada com sucesso!");
-                        }
-                        console.log(JSON.stringify(json));
-                        return false;
+                    success: function (place) {
+                        $('#place-images img').each(function (i, img) {
+                            console.log($(img).attr('src'));
+                            $.ajax({
+                                url: '/findplaces-web/rest/images/',
+                                data: $.StringFormat('image = {userID: {0}, token: {1}, base64IMG: {2}, format: {3}}', jsonPost.socialid, jsonPost.token, $(img).attr('ext'), $(img).attr('src')),
+                                method: 'POST',
+                                success: function (imagem) {
+                                    if (jsonPost.id == null) {
+                                        alert("Propriedade inserida com sucesso!");
+                                        $('#form_property').get(0).reset();
+                                    } else {
+                                        alert("Propriedade atualizada com sucesso!");
+                                    }
+                                    console.log(JSON.stringify(place));
+                                    return false;
+                                },
+                                error: function (imagem) {
+                                }
+                            });
+                        });
                     },
                     error: function (json) {
                         alert("Erro ao  " + (jsonPost.id === null ? "inserir" : "atualizar") + " propriedade!");
