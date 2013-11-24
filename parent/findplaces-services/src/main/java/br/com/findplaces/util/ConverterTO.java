@@ -243,12 +243,12 @@ public class ConverterTO {
 		to.setTotalPrice(place.getTotalPrice());
 		to.setType(converter(place.getType()));
 		ArrayList<Long> sellType = new ArrayList<Long>();
-//		if (place.getSellType() != null) {
-//			for (SellType sell : place.getSellType()) {
-//				sellType.add(sell.getId());
-//			}
-//			to.setSellType(sellType);
-//		} // fixme
+		if (place.getSellType() != null) {
+			for (SellType sell : place.getSellType()) {
+				sellType.add(sell.getId());
+			}
+			to.setSellType(sellType);
+		} // fixme
 
 		List<ComentTO> coments = new ArrayList<ComentTO>();
 		if (place.getComents() != null) {
