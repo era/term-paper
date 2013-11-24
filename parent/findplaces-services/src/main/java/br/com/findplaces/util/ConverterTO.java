@@ -251,7 +251,7 @@ public class ConverterTO {
 		} // fixme
 
 		List<ComentTO> coments = new ArrayList<ComentTO>();
-		if (place.getComents() != null) {
+		if (place.getComents() != null && !place.getComents().isEmpty()) {
 			for (Coment coment : place.getComents()) {
 				coments.add(converter(coment));
 			}
