@@ -137,7 +137,7 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			coord.y = place.getLng();
 			Point point = geoFactory.createPoint(coord);
 			point.setSRID(SRID);
-
+			place2save.setSellType(sellTypes);
 			place2save.setSpatial(new PlaceSpatial());
 			place2save.getSpatial().setGeom(point);
 			
