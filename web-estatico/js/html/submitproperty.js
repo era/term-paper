@@ -78,20 +78,20 @@ $(document).ready(function () {
     // Verifica se é uma edição, adicionar aqui validação imóvel x id_usuario
     var id = $.getUrlParam('id', location.href);
     if ($.IsNullOrEmpty(id, null) !== null) {
-        $.ajax({
-            url: "findplaces-web/rest/place/" + id,
-            data: { "socialid": "100001401841332" },
-            method: 'GET',
-            success: function (result) {
-                console.log(result);
+        //$.ajax({
+        //    url: "findplaces-web/rest/place/" + id,
+        //    data: { "socialid": "100001401841332" },
+        //    method: 'GET',
+        //    success: function (result) {
+                //console.log(result);
                 $('#tabs-2-title').show();
                 $('#tabs-3-title').show();
                 $.placeChart();
                 $.neighborhoodChart();
                 $.ageOfUsersChart();
                 $.placeQuestions();
-            }
-        });        
+        //    }
+        //});        
     } else {
         $('#tabs-2-title').hide();
         $('#tabs-3-title').hide();
@@ -212,6 +212,7 @@ $(document).ready(function () {
                 var jsonForm = $('#form_property').serializeObject();
                 var jsonPost = {};
 
+                jsonForm.id = $.IsNullOrEmpty(id, null);
                 jsonPost.address = jsonForm.address1;
                 jsonPost.seller = {};
                 jsonPost.seller.id = 2;
@@ -237,7 +238,7 @@ $(document).ready(function () {
                 jsonPost.placeFloor = parseInt(jsonForm.placeFloor);
                 jsonPost.qtdPlaceFloor = parseInt(jsonForm.qtdPlaceFloor);
                 jsonPost.socialid = '100001401841332';
-                jsonPost.token = 'CAACEdEose0cBAETrZCHumQqXvIqWux4ukLERccMkSEQ8fmw8nsmxkadyFwE702CmHS6ZAqKU2mTKn7e8G9y7LVqsHTAK7RKSb0WCfBuJCJmDojPcxVwKHv0MPXKqjI2fO8mWBK1ZCYrnfTyZBgpx4MwKvuyLUrAZCD2ZCNQxtpFE86dhUPQNZB6UbevBxuFSjR7GX6Gy5yPlwZDZD';
+                jsonPost.token = 'CAACEdEose0cBANhZAH9VpkHAGYjxmKMnZBioY7Q3NxEoZBYpvIOney8x23HCQLERXLBzy7p7160Bo5DmKQiAoosoOM4aQe1ieHTzp7zmhGcjjAljWLmopLDncoI80zlmmYCanw5zzFERlce9SYq1O7ZBavrZAc5K4SfHWhrYvrK6gGdY41tF0B2Gfmd99Cs7yPU3HqYKVngZDZD';
                 jsonPost.facilities = {};
                 jsonPost.facilities.name = null;
                 jsonPost.facilities.gatekeeper = $('#gatekeeper').is(':checked');
