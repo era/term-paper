@@ -96,15 +96,17 @@ $(document).ready(function () {
                 $('#cellphone2').val(places.cellphone2);
 
                 //Valores
-                $('#deposit').val(places.deposit * 1000).maskMoney('mask').trigger("blur");
-                $('#rent').val(places.rent * 1000).maskMoney('mask').trigger("blur");
+                $('#deposit').val(places.deposit).maskMoney('mask').trigger("blur");
+                $('#rent').val(places.rent).maskMoney('mask').trigger("blur");
                 $('#contract_time').val(places.contract_time).trigger("blur");
-                $('#iptu').val(places.iptu * 1000).maskMoney('mask').trigger("blur");
-                $('#complexPrice').val(places.complexPrice * 1000).maskMoney('mask').trigger("blur");
-                $('#internetPrice').val(places.internetPrice * 1000).maskMoney('mask').trigger("blur");
-                $('#tv').val(places.tv * 1000).maskMoney('mask').trigger("blur");
+                $('#iptu').val(places.iptu).maskMoney('mask').trigger("blur");
+                $('#condominiumPrice').val(places.complexPrice).maskMoney('mask').trigger("blur");
+                $('#internetPrice').val(places.internet).maskMoney('mask').trigger("blur");
+                $('#tv').val(places.tv).maskMoney('mask').trigger("blur");
 
                 //Detalhes
+                $('#qtdPlaceFloor').val(places.qtdPlaceFloor);
+                $('#placeFloor').val(places.placeFloor);
                 $('#m2').val(places.m2);
                 $('#bedroom').val(places.bedroom);
                 $('#suite').val(places.suite);
@@ -126,7 +128,11 @@ $(document).ready(function () {
                 $('#townPool').prop('checked', places.facilities.townPool);
                 $('#terrace').prop('checked', places.facilities.terrace);
                 $('#automaticDoor').prop('checked', places.facilities.automaticDoor);
-
+                
+                //Hidden
+                $('#lat').val(places.lat);
+                $('#lng').val(places.lng);
+                
                 // Mostra as abas e atualiza os gráficos
                 $('#tabs-2-title').show();
                 $('#tabs-3-title').show();
@@ -149,7 +155,7 @@ $(document).ready(function () {
     $("#pack_time").maskMoney({ thousands: ".", precision: 0, allowNegative: false });
     $("#period").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#iptu").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
-    $("#complexPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
+    $("#condominiumPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#internetPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#tv").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#totalPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
@@ -182,7 +188,7 @@ $(document).ready(function () {
                 $.showFields([$('#price').parent(), $('#totalPrice').parent()], null, '#values-details > .msg_fieldset');
                 break;
             case 'Aluguel':
-                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#complexPrice').parent(), $('#internetPrice').parent(), $('#tv').parent(), $('#totalPrice').parent()], null, '#values-details > .msg_fieldset');
+                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#condominiumPrice').parent(), $('#internetPrice').parent(), $('#tv').parent(), $('#totalPrice').parent()], null, '#values-details > .msg_fieldset');
                 break;
             case 'Temporada':
                 $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#pack_time').parent(), $('#totalPrice').parent(), $('#valid_of').parent()], null, '#values-details > .msg_fieldset');
@@ -268,17 +274,17 @@ $(document).ready(function () {
                 jsonPost.lng = jsonForm.lng;
                 jsonPost.bathroom = parseInt(jsonForm.bathroom);
                 jsonPost.bedroom = parseInt(jsonForm.bedroom);
-                jsonPost.complexPrice = $.IsNullOrEmpty(jsonForm.complexPrice, null);
+                jsonPost.condominiumPrice = $.IsNullOrEmpty(jsonForm.condominiumPrice.replace('.', ''), null);
                 jsonPost.description = jsonForm.description;
                 jsonPost.garage = parseInt(jsonForm.garage);
                 jsonPost.m2 = parseInt(jsonForm.m2);
-                jsonPost.price = $.IsNullOrEmpty(jsonForm.price, null);
-                jsonPost.deposit = $.IsNullOrEmpty(jsonForm.deposit, null);
-                jsonPost.rent = $.IsNullOrEmpty(jsonForm.rent, null);
+                jsonPost.price = $.IsNullOrEmpty(jsonForm.price.replace('.', ''), null);
+                jsonPost.deposit = $.IsNullOrEmpty(jsonForm.deposit.replace('.', ''), null);
+                jsonPost.rent = $.IsNullOrEmpty(jsonForm.rent.replace('.', ''), null);
                 jsonPost.contract_time = $.IsNullOrEmpty(jsonForm.contract_time, null);
-                jsonPost.iptu = $.IsNullOrEmpty(jsonForm.iptu, null);
-                jsonPost.internet = $.IsNullOrEmpty(jsonForm.internetPrice, null);
-                jsonPost.tv = $.IsNullOrEmpty(jsonForm.tv, null);
+                jsonPost.iptu = $.IsNullOrEmpty(jsonForm.iptu.replace('.', ''), null);
+                jsonPost.internet = $.IsNullOrEmpty(jsonForm.internetPrice.replace('.', ''), null);
+                jsonPost.tv = $.IsNullOrEmpty(jsonForm.tv.replace('.', ''), null);
                 jsonPost.room = parseInt(jsonForm.room);
                 jsonPost.suite = parseInt(jsonForm.suite);
                 jsonPost.placeFloor = parseInt(jsonForm.placeFloor);
@@ -287,7 +293,7 @@ $(document).ready(function () {
                 jsonPost.cellphone = jsonForm.cellphone;
                 jsonPost.cellphone2 = jsonForm.cellphone2;
                 jsonPost.socialid = '100001401841332';
-                jsonPost.token = 'CAACEdEose0cBAGIGeIUHgyaoB6XK4ZAZBdUF07NZBYBCYxnFUguRgVgQKxDHZCehj79lHZB8XcCUj4NNntAmRyLy6XJwSfZCbWp2GfdQyypsQazHMJQ1zxyXIcKHRnjjVZBpvZBVX9XCBmCvGD8wtMVa4fmLNubZAxgeuUqX5cxUeNvqfKTa1bNZA1h0p7ppXkUiCuFhLC2XFc5QZDZD';
+                jsonPost.token = 'CAACEdEose0cBAI2fPxGOhJtaCALTn5NXre2f7rHgvCAIIbGQqkKHnJK8jcUkyxHbcXzf9K933XmMZBTFCaKDHFQbW1txEhxtE2lERhDsh4fZAoo9x1zggNy7MeGeKldjp11qPu6ePZABJZABog8KltjmH4iZBMOTFBd6x6WgfbnEqtdYLEkjTn9e9JbHhwk4ZAMZAoNYuWhMAZDZD';
                 jsonPost.facilities = {};
                 jsonPost.facilities.name = null;
                 jsonPost.facilities.gatekeeper = $('#gatekeeper').is(':checked');
@@ -321,14 +327,13 @@ $(document).ready(function () {
                     data: 'place=' + JSON.stringify(jsonPost),
                     method: 'POST',
                     success: function (json) {
-                        alert("Propriedade " + jsonPost.id === null ? "inserida" : "atualizada" + " com sucesso!");
+                        alert("Propriedade " + (jsonPost.id === null ? "inserida" : "atualizada") + " com sucesso!");
                         $('#form_property').get(0).reset();
                         console.log(JSON.stringify(json));
                         return false;
                     },
                     error: function (json) {
-                        alert("Erro ao  " + jsonPost.id === null ? "inserir" : "atualizar" + " propriedade!");
-                        $('#form_property').get(0).reset();
+                        alert("Erro ao  " + (jsonPost.id === null ? "inserir" : "atualizar") + " propriedade!");
                         console.log(JSON.stringify(json));
                         return false;
                     }
