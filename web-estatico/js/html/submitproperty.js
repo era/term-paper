@@ -93,16 +93,16 @@ $(document).ready(function () {
                 $('#placetype').val(places.type.id).trigger("change");
                 $('#address1').val(places.address);
                 $('#cellphone').val(places.cellphone);
-                $('#cellphone1').val(places.cellphone1);
+                $('#cellphone2').val(places.cellphone2);
 
                 //Valores
-                $('#deposit').val((places.deposit * 1000)).maskMoney('mask');
-                $('#rent').val(places.rent).maskMoney('mask');
-                $('#contract_time').val(places.contract_time);
-                $('#iptu').val(places.iptu).maskMoney('mask');
-                $('#complexPrice').val(places.complexPrice).maskMoney('mask');
-                $('#internetPrice').val(places.internetPrice).maskMoney('mask');
-                $('#tv').val(places.tv).maskMoney('mask').trigger("blur");
+                $('#deposit').val(places.deposit * 1000).maskMoney('mask').trigger("blur");
+                $('#rent').val(places.rent * 1000).maskMoney('mask').trigger("blur");
+                $('#contract_time').val(places.contract_time).trigger("blur");
+                $('#iptu').val(places.iptu * 1000).maskMoney('mask').trigger("blur");
+                $('#complexPrice').val(places.complexPrice * 1000).maskMoney('mask').trigger("blur");
+                $('#internetPrice').val(places.internetPrice * 1000).maskMoney('mask').trigger("blur");
+                $('#tv').val(places.tv * 1000).maskMoney('mask').trigger("blur");
 
                 //Detalhes
                 $('#m2').val(places.m2);
