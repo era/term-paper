@@ -267,6 +267,9 @@ public class ConverterTO {
 		}
 		to.setContract_time(place.getContract_time());
 		to.setRent(place.getRent());
+		to.setIptu(place.getIptu());
+		to.setInternet(place.getInternet());
+		to.setTv(place.getTv());
 		// SPATIAL
 		return to;
 	}
@@ -523,6 +526,7 @@ public class ConverterTO {
 		to.setRent(re.getRent());
 		to.setContract_time(re.getContract_time());
 		to.setInternet(re.getInternet());
+		to.setIptu(re.getIptu());
 		to.setTv(re.getTv());
 		to.setCondominiumPrice(re.getCondominiumPrice());
 
