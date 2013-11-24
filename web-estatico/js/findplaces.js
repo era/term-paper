@@ -20,7 +20,7 @@ $.hideFields = function (e, t, n) { if (e.length > 0) { $(e).each(function (r, i
 //Método para exibir um grupo de objetos ou arrays de fields (id ou class) [a variável t é um id ou classe que não deve ser exibido (exceção)] [a variável n é um id ou classe que deve ser oculto]
 $.showFields = function (e, t, n) { if (e.length > 0) { $(e).each(function (r, i) { if (!$(i).attr("id") === t || !$(i).hasClass(t)) $(i).show(); }); } if ($.IsNullOrEmpty(n, null) !== null) { $(n).hide(); } };
 //Método para calcular o valor de um grupo de objetos ou arrays de fields (id ou class) [a variável t é um grupo de arrays de fields que deve ser ignorado na soma]
-$.sumInputGroup = function (e, t) { var n; var r = []; $(e).each(function (i, s) { r.push(s.id); }); $(t).each(function (o, u) { n = r.indexOf(u); r.splice(n, 1); }); var a; var f = 0; $(r).each(function (l, c) { a = $("#" + c).val(); if ($.IsNullOrEmpty(a, null) !== null) { if (a.indexOf("R$ ") >= 0) a = a.replace("R$ ", ""); if (a.indexOf(".") >= 0) a = a.replace(".", ""); f += parseFloat(a); } }); $("#total").val(f).maskMoney("mask"); };
+$.sumInputGroup = function (e, t) { var n; var r = []; $(e).each(function (i, s) { r.push(s.id); }); $(t).each(function (o, u) { n = r.indexOf(u); r.splice(n, 1); }); var a; var f = 0; $(r).each(function (l, c) { a = $("#" + c).val(); if ($.IsNullOrEmpty(a, null) !== null) { if (a.indexOf("R$ ") >= 0) a = a.replace("R$ ", ""); if (a.indexOf(".") >= 0) a = a.replace(".", ""); f += parseFloat(a); } }); $("#totalPrice").val(f).maskMoney("mask"); };
 /* ## MÉTODOS MINIMIFICADOS ## */
 
 //Remover e utilizar google

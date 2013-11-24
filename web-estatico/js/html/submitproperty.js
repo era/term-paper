@@ -86,9 +86,10 @@ $(document).ready(function () {
                 //console.log(result);
                 var places = result.places[0];
 
-                //console.log(places.type.id);
-                $('#sellType').val(places.sellType.id);
-                $('#placetype').val(places.type.id);
+                console.log(JSON.stringify(places));
+                $('#sellType').val(places.sellType[0]).trigger("change");
+                $('#placetype').val(places.type.id).trigger("change");
+                $('#address1').val(places.address);
 
                 // Mostra as abas e atualiza os gráficos
                 $('#tabs-2-title').show();
@@ -115,7 +116,7 @@ $(document).ready(function () {
     $("#complexPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#internetPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#tv").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
-    $("#total").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
+    $("#totalPrice").maskMoney({ symbol: "R$ ", thousands: ".", precision: 0, allowNegative: false });
     $("#qtdPlaceFloor").maskMoney({ precision: 0, allowNegative: false });
     $("#placeFloor").maskMoney({ precision: 0, allowNegative: false });
     $("#m2").maskMoney({ precision: 0, allowNegative: false });
@@ -142,13 +143,13 @@ $(document).ready(function () {
         $.hideFields($('#valid_of').parent(), null, null);
         switch ($(this).find(":selected").text()) {
             case 'Venda':
-                $.showFields([$('#price').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
+                $.showFields([$('#price').parent(), $('#totalPrice').parent()], null, '#values-details > .msg_fieldset');
                 break;
             case 'Aluguel':
-                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#complexPrice').parent(), $('#internetPrice').parent(), $('#tv').parent(), $('#total').parent()], null, '#values-details > .msg_fieldset');
+                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#contract_time').parent(), $('#iptu').parent(), $('#complexPrice').parent(), $('#internetPrice').parent(), $('#tv').parent(), $('#totalPrice').parent()], null, '#values-details > .msg_fieldset');
                 break;
             case 'Temporada':
-                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#pack_time').parent(), $('#total').parent(), $('#valid_of').parent()], null, '#values-details > .msg_fieldset');
+                $.showFields([$('#deposit').parent(), $('#rent').parent(), $('#pack_time').parent(), $('#totalPrice').parent(), $('#valid_of').parent()], null, '#values-details > .msg_fieldset');
                 $.showFields($('#valid_of').parent(), null, null);
                 break;
         }
@@ -170,7 +171,7 @@ $(document).ready(function () {
 
     // Observa a saída do campo informado e executa a soma de seus valores
     $('#values-details > div > input').blur(function () {
-        $.sumInputGroup('#values-details > div > input', ['deposit', 'contract_time', 'total']);
+        $.sumInputGroup('#values-details > div > input', ['deposit', 'contract_time', 'totalPrice']);
     });
 
     // Lista os estados
@@ -221,8 +222,8 @@ $(document).ready(function () {
 
                 jsonPost.id = $.IsNullOrEmpty(id, null) !== null ? parseInt(id) : null;
                 jsonPost.address = jsonForm.address1;
-                jsonPost.sellType = {};
-                jsonPost.sellType.id = parseInt(jsonForm.sellType);
+                jsonPost.sellType = [];
+                jsonPost.sellType.push(parseInt(jsonForm.sellType));
                 jsonPost.seller = {};
                 jsonPost.seller.id = 2;
                 jsonPost.placetype = {};
@@ -246,6 +247,9 @@ $(document).ready(function () {
                 jsonPost.suite = parseInt(jsonForm.suite);
                 jsonPost.placeFloor = parseInt(jsonForm.placeFloor);
                 jsonPost.qtdPlaceFloor = parseInt(jsonForm.qtdPlaceFloor);
+                jsonPost.totalPrice = jsonForm.totalPrice;
+                jsonPost.cellphone = jsonForm.cellphone;
+                jsonPost.cellphone2 = jsonForm.cellphone2;
                 jsonPost.socialid = '100001401841332';
                 jsonPost.token = 'CAACEdEose0cBACv8zPk2H8YKFUYZCwhKZCfZAeiFfZCYU3Al0qI5ZBnJuNBqYUtZAynVnIkOQJCBWB7bfr2Bu0n28eoJqaE6sEP5HM9HeVhoNTXYpewn9OOQ4dnsEV7aZCWEb3NVwezPiUoTdTnWrm7OV7JRBnB2rvh9fOxGnLZAWG9IpzSiLUZCLZBukG5ZCxQbjrlF4djUBu6ZBAZDZD';
                 jsonPost.facilities = {};
