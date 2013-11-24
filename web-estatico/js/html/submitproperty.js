@@ -87,27 +87,45 @@ $(document).ready(function () {
                 var places = result.places[0];
 
                 console.log(JSON.stringify(places));
-                //$('#sellType').val(places.sellType[0]).trigger("change");
+
+                //Anuncio
+                $('#sellType').val(places.sellType[0]).trigger("change");
                 $('#placetype').val(places.type.id).trigger("change");
                 $('#address1').val(places.address);
                 $('#cellphone').val(places.cellphone);
                 $('#cellphone1').val(places.cellphone1);
 
+                //Valores
+                $('#deposit').val((places.deposit * 1000)).maskMoney('mask');
+                $('#rent').val(places.rent).maskMoney('mask');
+                $('#contract_time').val(places.contract_time);
+                $('#iptu').val(places.iptu).maskMoney('mask');
+                $('#complexPrice').val(places.complexPrice).maskMoney('mask');
+                $('#internetPrice').val(places.internetPrice).maskMoney('mask');
+                $('#tv').val(places.tv).maskMoney('mask').trigger("blur");
+
                 //Detalhes
-                $('#m2').val(places.m2)
-                $('#bedroom').val(places.bedroom)
-                $('#suite').val(places.suite)
-                $('#room').val(places.room)
-                $('#bathroom').val(places.bathroom)
-                $('#garage').val(places.garage)
+                $('#m2').val(places.m2);
+                $('#bedroom').val(places.bedroom);
+                $('#suite').val(places.suite);
+                $('#room').val(places.room);
+                $('#bathroom').val(places.bathroom);
+                $('#garage').val(places.garage);
 
                 //Informações
-                $('#description').val(places.description)
+                $('#description').val(places.description);
 
                 //Comodidades
                 $('#internet').prop('checked', places.facilities.internet);
-
-
+                $('#gatekeeper').prop('checked', places.facilities.gatekeeper);
+                $('#bedroomCloset').prop('checked', places.facilities.bedroomCloset);
+                $('#townBarbecue').prop('checked', places.facilities.townBarbecue);
+                $('#kitchenCabinet').prop('checked', places.facilities.kitchenCabinet);
+                $('#gasTubing').prop('checked', places.facilities.gasTubing);
+                $('#hidromassage').prop('checked', places.facilities.hidromassage);
+                $('#townPool').prop('checked', places.facilities.townPool);
+                $('#terrace').prop('checked', places.facilities.terrace);
+                $('#automaticDoor').prop('checked', places.facilities.automaticDoor);
 
                 // Mostra as abas e atualiza os gráficos
                 $('#tabs-2-title').show();
@@ -303,13 +321,13 @@ $(document).ready(function () {
                     data: 'place=' + JSON.stringify(jsonPost),
                     method: 'POST',
                     success: function (json) {
-                        alert("Propriedade inserida com sucesso!");
+                        alert("Propriedade " + jsonPost.id === null ? "inserida" : "atualizada" + " com sucesso!");
                         $('#form_property').get(0).reset();
                         console.log(JSON.stringify(json));
                         return false;
                     },
                     error: function (json) {
-                        alert("Erro ao inserir propriedade!");
+                        alert("Erro ao  " + jsonPost.id === null ? "inserir" : "atualizar" + " propriedade!");
                         $('#form_property').get(0).reset();
                         console.log(JSON.stringify(json));
                         return false;
