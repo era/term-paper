@@ -265,6 +265,8 @@ public class ConverterTO {
 		if(place.getFacilities()!=null){
 			to.setFacilities(converter(place.getFacilities()));
 		}
+		to.setContract_time(place.getContract_time());
+		to.setRent(place.getRent());
 		// SPATIAL
 		return to;
 	}
