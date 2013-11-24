@@ -20,7 +20,13 @@ $.homeSlide = function (json, lat, lng) {
 
     marker += ']';
 
-    $('.flexslider ul').empty().append(li);
+    if ($('.flexslider').length > 0) {
+        $('.flexslider').remove();
+    }
+
+    $('#map').after('<div class="flexslider"><ul class="homeSlides">' + li + '</ul></div>');
+    
+    //$('.flexslider ul').empty().append(li);
 
     // Flexslider
     $('.flexslider').flexslider({
