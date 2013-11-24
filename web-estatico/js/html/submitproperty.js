@@ -83,7 +83,14 @@ $(document).ready(function () {
             data: { "socialid": "100001401841332" },
             method: 'GET',
             success: function (result) {
-                console.log(result);
+                //console.log(result);
+                var places = result.places[0];
+
+                //console.log(places.type.id);
+                $('#sellType').val(places.sellType.id);
+                $('#placetype').val(places.type.id);
+
+                // Mostra as abas e atualiza os gráficos
                 $('#tabs-2-title').show();
                 $('#tabs-3-title').show();
                 $.placeChart();
@@ -130,7 +137,7 @@ $(document).ready(function () {
     $("#tabs").tabs();
 
     // Observa a seleção Tipo de anúncio, esconde todos os campos e exibe com base no tipo de seleção. Em caso de troca de seleção os valores dos campos são limpos.
-    $('#adtype').change(function () {
+    $('#sellType').change(function () {
         $.hideFields('#values-details > div', null, '#values-details > .msg_fieldset');
         $.hideFields($('#valid_of').parent(), null, null);
         switch ($(this).find(":selected").text()) {
@@ -214,6 +221,8 @@ $(document).ready(function () {
 
                 jsonPost.id = $.IsNullOrEmpty(id, null) !== null ? parseInt(id) : null;
                 jsonPost.address = jsonForm.address1;
+                jsonPost.sellType = {};
+                jsonPost.sellType.id = parseInt(jsonForm.sellType);
                 jsonPost.seller = {};
                 jsonPost.seller.id = 2;
                 jsonPost.placetype = {};
@@ -272,10 +281,14 @@ $(document).ready(function () {
                     data: 'place=' + JSON.stringify(jsonPost),
                     method: 'POST',
                     success: function (json) {
+                        alert("Propriedade inserida com sucesso!");
+                        $('#form_property').get(0).reset();
                         console.log(JSON.stringify(json));
                         return false;
                     },
                     error: function (json) {
+                        alert("Erro ao inserir propriedade!");
+                        $('#form_property').get(0).reset();
                         console.log(JSON.stringify(json));
                         return false;
                     }
