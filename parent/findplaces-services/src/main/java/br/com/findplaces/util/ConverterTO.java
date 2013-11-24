@@ -243,6 +243,7 @@ public class ConverterTO {
 		to.setRentMonths(place.getRentMonths());
 		// to.setTv(place.getTv());
 		to.setTotalPrice(place.getTotalPrice());
+		to.setPlaceFloor(place.getPlaceFloor());
 		to.setType(converter(place.getType()));
 		ArrayList<Long> sellType = new ArrayList<Long>();
 		if (place.getSellType() != null && !place.getSellType().isEmpty()) {
