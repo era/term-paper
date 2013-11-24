@@ -91,7 +91,7 @@ $(document).ready(function () {
                 $.ageOfUsersChart();
                 $.placeQuestions();
             }
-        });        
+        });
     } else {
         $('#tabs-2-title').hide();
         $('#tabs-3-title').hide();
@@ -222,7 +222,7 @@ $(document).ready(function () {
                 jsonPost.lng = jsonForm.lng;
                 jsonPost.bathroom = parseInt(jsonForm.bathroom);
                 jsonPost.bedroom = parseInt(jsonForm.bedroom);
-                jsonPost.complexPrice = jsonForm.complexPrice;
+                jsonPost.complexPrice = $.IsNullOrEmpty(jsonForm.complexPrice, null);
                 jsonPost.description = jsonForm.description;
                 jsonPost.garage = parseInt(jsonForm.garage);
                 jsonPost.m2 = parseInt(jsonForm.m2);
