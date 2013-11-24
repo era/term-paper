@@ -243,7 +243,7 @@ public class ConverterTO {
 		to.setTotalPrice(place.getTotalPrice());
 		to.setType(converter(place.getType()));
 		ArrayList<Long> sellType = new ArrayList<Long>();
-		if (place.getSellType() != null) {
+		if (place.getSellType() != null && !place.getSellType().isEmpty()) {
 			for (SellType sell : place.getSellType()) {
 				sellType.add(sell.getId());
 			}

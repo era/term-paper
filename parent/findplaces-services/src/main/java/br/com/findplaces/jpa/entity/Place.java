@@ -21,6 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 
 @NamedQueries({ @NamedQuery(name = "FindBySpatial", query = "SELECT p FROM Place p where p.spatial.id = :spatial_id"),
@@ -136,6 +139,7 @@ public class Place extends BaseEntity implements Serializable {
 	private List<Image> photos;
 	
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<SellType> sellType;
 	
 	//TODO PLEASE WE SHOULD REALLY REFACT THIS WHEN WE HAVE TIME
