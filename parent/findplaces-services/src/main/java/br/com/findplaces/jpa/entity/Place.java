@@ -43,7 +43,8 @@ public class Place extends BaseEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name="TB_PLACE_COMMENTS", joinColumns={@JoinColumn(name="PLACE_ID", referencedColumnName="id")}, inverseJoinColumns={@JoinColumn(name="COMMENT_ID", referencedColumnName="id")})
 	private List<Coment> coments;
 	

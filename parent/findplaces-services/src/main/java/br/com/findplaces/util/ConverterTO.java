@@ -251,7 +251,7 @@ public class ConverterTO {
 		} // fixme
 
 		List<ComentTO> coments = new ArrayList<ComentTO>();
-		if (place.getComents() != null) {
+		if (place.getComents() != null && !place.getComents().isEmpty()) {
 			for (Coment coment : place.getComents()) {
 				coments.add(converter(coment));
 			}
@@ -262,8 +262,41 @@ public class ConverterTO {
 		if (place.getSpatial() != null) {
 //			to.setSpatialTO(converter(place.getSpatial()));
 		}
+		if(place.getFacilities()!=null){
+			to.setFacilities(converter(place.getFacilities()));
+		}
 		// SPATIAL
 		return to;
+	}
+
+	private static FacilitiesTO converter(Facilities to) {
+		FacilitiesTO entity = new FacilitiesTO();
+		entity.setAir(to.isAir());
+		entity.setAutomaticDoor(to.isAutomaticDoor());
+		entity.setBarbecue(to.isBarbecue());
+		entity.setBathBoxGlass(to.isBathBoxGlass());
+		entity.setBathroomCloset(to.isBathroomCloset());
+		entity.setBedroomCloset(to.isBedroomCloset());
+		entity.setGasShower(to.isGasShower());	
+		entity.setGasTubing(to.isGasTubing());
+		entity.setGatekeeper(to.isGatekeeper());
+		entity.setGym(to.isGym());
+		entity.setHidromassage(to.isHidromassage());
+		entity.setInternet(to.isInternet());
+		entity.setKitchenCabinet(to.isKitchenCabinet());
+		entity.setLaundry(to.isLaundry());
+		entity.setName(to.getName());
+		entity.setPartyRoom(to.isPartyRoom());
+		entity.setPlayground(to.isPlayground());
+		entity.setPool(to.isPool());
+		entity.setPrice(to.getPrice());
+		entity.setRoofing(to.isRoofing());
+		entity.setSauna(to.isSauna());
+		entity.setSportArea(to.isSportArea());
+		entity.setTerrace(to.isTerrace());
+		entity.setTownBarbecue(to.isTownBarbecue());		
+		entity.setTownPool(to.isTownPool());
+		return entity;
 	}
 
 	private static PlaceSpatialTO converter(PlaceSpatial spatial) {
