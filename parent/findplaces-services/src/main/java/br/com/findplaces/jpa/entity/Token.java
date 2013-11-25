@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @NamedQueries({
-	@NamedQuery(name=Token.FIND_TOKEN, query="SELECT t FROM Token t where t.token = :token and t.user.id = :userID"),
+	@NamedQuery(name=Token.FIND_TOKEN, query="SELECT t FROM Token t where t.token = :token and t.user.id = :userID")
 })
 @Entity
 @Table(name="TB_TOKEN")
