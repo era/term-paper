@@ -1004,7 +1004,7 @@ div#detailsProperty > #tabs > #tabs-1 > div#imovel-valor-titulo > span
 div#detailsProperty > #tabs > #tabs-1 > div.imovel-valor-outros
 {
 	font-size:15px;
-	line-height:35px;
+	line-height:5px;
 	padding:10px;
 	width:95%;
 }
@@ -1017,7 +1017,7 @@ div#detailsProperty > #tabs > #tabs-1 > div.imovel-valor-outros > span
 	font-weight:700;
 }
  
-div#detailsProperty > #tabs > #tabs-2 > div#imovel-detalhes
+div#detailsProperty > #tabs > #tabs-2 > div#imovel-detalhes, div#detailsProperty > #tabs > #tabs-3 > div#imovel-detalhes
 {
 	font-size:12px;
 	padding:10px;

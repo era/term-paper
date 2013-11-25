@@ -39,62 +39,9 @@
                         <li id="show-map-details"><a href="#tabs-3">Localização</a></li>
                         <li><a href="#tabs-4">Perguntas</a></li>
                     </ul>
-                    <div id="tabs-1">
-                        <div id="imovel-valor-titulo">Valor total<span>R$ 3.000</span></div>
-                        <div class="imovel-valor-outros">Aluguel<span>R$ 2.500</span></div>
-                        <div class="imovel-valor-outros">IPTU<span>R$ 250</span></div>
-                        <div class="imovel-valor-outros">Condomínio<span>R$ 250</span></div>
-                        <br class="clr" />
-                    </div>
-                    <div id="tabs-2">
-                        <div id="imovel-detalhes">
-                            Imóvel novo, pronto para morar, projeto diferenciado e excelente localização, as ruas do bairro são de circulação local, ótima oportunidade. A casa tem sistema de aquecimento solar com água quente nos banheiros e cozinha além de portão eletrônico.                            
-                        </div>
-                        <span>Comodidades</span>
-                        <table id="lista-comodidades">
-                            <tr>
-                                <th>Do imóvel</th>
-                            </tr>
-                            <tr>
-                                <td class="list-ok">Acesso à internet incluso</td>
-                            </tr>
-                            <tr>
-                                <td class="list-ok">Armários embutido no quarto</td>
-                            </tr>
-                            <tr>
-                                <td class="list-ok">Armários na cozinha</td>
-                            </tr>
-                            <tr>
-                                <td class="list-no-ok">Banheira hidromassagem</td>
-                            </tr>
-                            <tr>
-                                <td class="list-ok">Varanda</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <th>Do condomínio</th>
-                            </tr>
-                            <tr>
-                                <td class="list-ok">Porteiro</td>
-                            </tr>
-                            <tr>
-                                <td class="list-ok">Churrasqueira</td>
-                            </tr>
-                            <tr>
-                                <td class="list-no-ok">Gás encanado</td>
-                            </tr>
-                            <tr>
-                                <td class="list-ok">Piscina</td>
-                            </tr>
-                            <tr>
-                                <td class="list-ok">Portão automático</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="tabs-3">
-                        <div id="map-details"></div>
-                    </div>
+                    <div id="tabs-1"></div>
+                    <div id="tabs-2"></div>
+                    <div id="tabs-3"></div>
                     <div id="tabs-4">
                         <p>Assunto: <span>Pergunta sobre imóvel</span></p>
                         <p>
@@ -110,23 +57,8 @@
             </div>
         </div>
     </div>
-    <div id="account-actions" class="account-actions-alt-size">
-        <div>
-            DETALHES
-        </div>
-        <ul>
-            <li>Anúncio renovado em: 09/10/2013</li>
-            <li>Tipo de imóvel: Apartamento</li>
-            <li>Apartamentos por andar: 6</li>
-            <li>Andar em que se localiza: 4º andar</li>
-            <li>Área útil: 63 m²</li>
-            <li>Dormitórios: 3</li>
-            <li>Suítes: 1</li>
-            <li>Sala: 1</li>
-            <li>Banheiros: 2</li>
-            <li>Vagas de Garagem: 2</li>
-        </ul>
-        <ul class="details-promotion">
+    <div id="account-actions" class="account-actions-alt-size">        
+        <!-- <ul class="details-promotion">
             <li class="details-promotion">
                 <div class="details-promotion-img"><img src="img/photography/1_0.jpg" /></div>
                 <div class="details-promotion-text">
@@ -155,7 +87,7 @@
                     Apartamento no Cambuí em condomínio fechado com churrasqueira...
                 </div>
             </li>
-        </ul>
+        </ul> -->
     </div>
     <br class="clr" />
 </div>
@@ -169,17 +101,7 @@
 
     $("#tabs").tabs();
 
-    $('#show-map-details').click(function () {
-        $('#map-details').width('390px').height('300px').gmap3({
-            map: {
-                options: {
-                    center: ['-22.892662', '-47.045438'],
-                    zoom: 15,
-                    scrollwheel: false
-                }
-            }
-        });
-    });
+    
 
     //alert($.getUrlParam('id', location.href));
 </script>
