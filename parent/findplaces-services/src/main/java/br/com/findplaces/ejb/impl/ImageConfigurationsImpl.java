@@ -64,7 +64,9 @@ public class ImageConfigurationsImpl implements ImageConfigurations,
 			
 			Long create = imageDAO.create(image);
 			
-			return ConverterTO.converter(imageDAO.findById(create));
+			
+			
+			return ConverterTO.converter(new Image());
 			
 		} catch (Exception e) {
 			logger.error(e);
