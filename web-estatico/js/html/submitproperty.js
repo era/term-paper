@@ -316,7 +316,7 @@ $(document).ready(function () {
                 jsonPost.cellphone = jsonForm.cellphone;
                 jsonPost.cellphone2 = jsonForm.cellphone2;
                 jsonPost.socialid = '100001401841332';
-                jsonPost.token = 'CAACEdEose0cBAHmsfKnMnb7dOTWZBebH6Cg1No5Sk7wyNxiFkm4ACrJjUx7ZCoQpp3gJM9EgMr8bJPpSOtD8bnteVAq9eCElUj70ZCQJJTo3ueCro8kOxZAoOZBvOTp233WrslHLk1VrYWjZAag93ynzzZBdUXyP80Ax0WtZCUfRuj5KhTwCAFocsZCeZBZA7eL6lgZD';
+                jsonPost.token = 'CAACEdEose0cBAB9ZCueng6dBpGlbXAZC0olGrw7Y8yuKUZCu3gcXb8giJye49WM8JcJ22y53Ne0kZAzJQQCQEY6hZC2AKA5DNqF7vCUIHHXRLqgRAYLcFRzaB0PLn6D6UCUXq7NOkZCpDExe3mZC0c7nz0ZAPrifNybb8sMeUInErcVJTJ1xXYCLQUisy7Tre58ZD';
                 jsonPost.facilities = {};
                 jsonPost.facilities.name = null;
                 jsonPost.facilities.gatekeeper = $('#gatekeeper').is(':checked');
@@ -343,12 +343,19 @@ $(document).ready(function () {
                 jsonPost.facilities.pool = false;
                 jsonPost.facilities.terrace = $('#terrace').is(':checked');
 
+                var imgList = [];
+                var totalImg = $('#place-images img').length;
+
                 $.successCallBack = function(result) {                    
-                    console.log(JSON.stringify(result));
+                    //console.log(JSON.stringify(result));
+                    alert("Propriedade salva com sucesso!");
                 }
 
                 $.errorCallBack = function(result) {
-                    console.log(JSON.stringify(result));
+                    console.log('ERRO[PLACE]: ' + JSON.stringify(result));
+                    imgList = [];
+                    totalImg = 0;                    
+                    alert("Erro ao salvar propriedade!");
                 }
 
                 $.ajaxPost = function(url, data, successCallBack, errorCallBack) {
@@ -359,19 +366,59 @@ $(document).ready(function () {
                         success: $.successCallBack,
                         error: $.errorCallBack
                     });
-                };
+                };                
 
-                //console.log(JSON.stringify(jsonPost));
+                $.successCallBackImg = function(result) {                    
+                    if($.IsNullOrEmpty(result.imageID, null) !== null) {
+                        imgList.push(result.imageID)
+                    }
+
+                    if(totalImg == imgList.length) {
+                        //console.log(JSON.stringify(jsonPost));
+                        jsonPost.idImages = imgList; 
+
+                        if (jsonPost.id === null) {
+                            $.ajaxPost('findplaces-web/rest/place/', 'place=' + JSON.stringify(jsonPost));
+                        } else {
+                            $.ajaxPost('findplaces-web/rest/place/' + jsonPost.id, 'place=' + JSON.stringify(jsonPost));
+                        }
+                    }
+                }
+
+                $.errorCallBackImg = function(result) {
+                    console.log('ERRO[IMAGE]: ' + JSON.stringify(result));
+                    imgList = [];
+                    totalImg = 0;
+                    alert("Erro ao salvar propriedade!");
+                }
+
+                $.ajaxPostImg = function(url, data, successCallBackImg, errorCallBackImg) {
+                    $.ajax({
+                        url: url,
+                        data: data,
+                        method: 'POST',
+                        success: $.successCallBackImg,
+                        error: $.errorCallBackImg
+                    });
+                };
 
                 if ($('#place-images img').length > 0) {
                     $('#place-images img').each(function (i, img) {
-                        console.log($.StringFormat('image = {"userID": "{0}", "token": "{1}", "base64IMG": "{2}", "format": "{3}"}', jsonPost.socialid, jsonPost.token, $(img).attr('src').split(',')[1], $(img).attr('ext')));
-                        $.ajaxPost('findplaces-web/rest/image/', $.StringFormat('image = {userID: {0}, token: "{1}", base64IMG: "{2}", format: "{3}"}', jsonPost.socialid, jsonPost.token, $(img).attr('src').split(',')[1], $(img).attr('ext')));
-                    });
-                }
-                
+                        jsonImg = {};
+                        jsonImg.userID = jsonPost.socialid;
+                        jsonImg.token = jsonPost.token;
+                        jsonImg.base64IMG = $(img).attr('src').split(',')[1];
+                        jsonImg.format = $(img).attr('ext')
 
-                //$.ajaxPost('findplaces-web/rest/place/', 'place=' + JSON.stringify(jsonPost));                
+                        $.ajaxPostImg('findplaces-web/rest/image/', 'image=' + JSON.stringify(jsonImg));
+                    });
+                } else {
+                    if (jsonPost.id === null) {
+                        $.ajaxPost('findplaces-web/rest/place/', 'place=' + JSON.stringify(jsonPost));
+                    } else {
+                        $.ajaxPost('findplaces-web/rest/place/' + jsonPost.id, 'place=' + JSON.stringify(jsonPost));
+                    }
+                }
 
                 return false;
 

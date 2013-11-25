@@ -25,22 +25,22 @@
 <body>
     <div id="fb-root"></div>
     <script type="text/javascript">
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=366454610124937";
-            fjs.parentNode.insertBefore(js, fjs);
-            window.fbAsyncInit = function () {
+        // (function (d, s, id) {
+        //     var js, fjs = d.getElementsByTagName(s)[0];
+        //     if (d.getElementById(id)) return;
+        //     js = d.createElement(s); js.id = id;
+        //     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=366454610124937";
+        //     fjs.parentNode.insertBefore(js, fjs);
+        //     window.fbAsyncInit = function () {
                 //$('.fb-login-button').click($.initLogin);
-                FB.Event.subscribe('auth.authResponseChange', function (response) {
-                    console.log(response);
-                    if (response.status === 'connected') {
-                        findplaces.webservice.user.loginWithFacebook(response.authResponse.accessToken, response.authResponse.userID);
-                    }
-                });
-            };
-        }(document, 'script', 'facebook-jssdk'));
+        //         FB.Event.subscribe('auth.authResponseChange', function (response) {
+        //             console.log(response);
+        //             if (response.status === 'connected') {
+        //                 findplaces.webservice.user.loginWithFacebook(response.authResponse.accessToken, response.authResponse.userID);
+        //             }
+        //         });
+        //     };
+        // }(document, 'script', 'facebook-jssdk'));
     </script>
     <header>
         <div class="wrapper">
