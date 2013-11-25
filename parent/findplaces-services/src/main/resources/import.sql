@@ -16,9 +16,9 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
-INSERT INTO tb_user_type (id, name) VALUES (1, 'FACEBOOK_USER');
+INSERT INTO tb_user_type (id, name) VALUES (9000, 'FACEBOOK_USER');
 
-INSERT INTO tb_user_type (id, name) VALUES (2, 'COMMON_USER');
+INSERT INTO tb_user_type (id, name) VALUES (9001, 'COMMON_USER');
 
 INSERT INTO TB_PLACE_TYPE (id, name) VALUES (1, 'APARTMENT');
 
@@ -61,7 +61,7 @@ INSERT INTO TB_SELL_TYPE(id,name) VALUES(2,'RENT');
 INSERT INTO TB_SELL_TYPE(id,name) VALUES(3,'RENT TEMPORARY');
 
 -- Elias user
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(1,'21','eliasojrs@gmail.com','Elias Granja',null,'In a Relationship','1750315906','UNIP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(1,'21','eliasojrs@gmail.com','Elias Granja',null,'In a Relationship','1750315906','UNIP',9000);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('218624958315883',1,'Node JS São Paulo',1);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (1,218624958315883,1);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('224471551037461',2,'IFind Platform',1);
@@ -118,7 +118,7 @@ INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (
 
 --Paulo User
 
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(2,'30','maxjuniorbr@gmail.com','Paulo Dianin',null,'Married','100001401841332','UNIP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(2,'30','maxjuniorbr@gmail.com','Paulo Dianin',null,'Married','100001401841332','UNIP',9000);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('72493026282',26,'CounterStrike',2);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (2,72493026282,26);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('215459165171017',27,'Temple Run',2);
@@ -172,7 +172,7 @@ INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (
 
 
 --Eduardo user
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(3,'23','eduardo@gmail.com','Eduardo Botelho',null,'Single','100001396002138','UNIP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(3,'23','eduardo@gmail.com','Eduardo Botelho',null,'Single','100001396002138','UNIP',9000);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('411615882230084',51,'Gui Rebustini',3);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (3,411615882230084,51);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('226246694196893',52,'Este é alguém',3);
@@ -227,7 +227,7 @@ INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (
 
 
 --Mateus user
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(4,'21','mateus@gmail.com','Mateus Coradini',null,'Single','100000485880931','UNIP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(4,'21','mateus@gmail.com','Mateus Coradini',null,'Single','100000485880931','UNIP',9000);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('229899403738458',76,'Call of Duty',4);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (4,229899403738458,76);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('406433779383',77,'Dwayne The Rock Johnson',4);
@@ -281,7 +281,7 @@ INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (
 
 
 --Fake 1
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(5,'21','ricardo@gmail.com','Ricardo da Silva',null,'Single','110000485880931','USP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(5,'21','ricardo@gmail.com','Ricardo da Silva',null,'Single','110000485880931','USP',9000);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('1394081697499186',101,'Feel more',5);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (5,1394081697499186,101);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('720745557938669',102,'Citei Frases',5);
@@ -335,7 +335,7 @@ INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (
 
 
 --fake 2
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(6,'21','js@gmail.com','José da Silva',null,'Single','110100485880931','USP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(6,'21','js@gmail.com','José da Silva',null,'Single','110100485880931','USP',9000);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('199483006752626',127,'El Cabriton',6);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,199483006752626,127);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('5718758966',128,'Gizmodo',6);
@@ -386,7 +386,7 @@ INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('112170668795185',150
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (6,112170668795185,150)
 
 --fake 3
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(7,'41','breakingbad@gmail.com','Walter White',null,'Married','10100485880931','Unicamp',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(7,'41','breakingbad@gmail.com','Walter White',null,'Married','10100485880931','Unicamp',9000);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('286857427988',151,'Henri Cartier-Bresson',7);
 INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (7,286857427988,151);
 INSERT INTO tb_user_likes(socialid,id,name,user_id) VALUES('180176758708116',152,'Grass: The History of Marijuana',7);
@@ -441,10 +441,10 @@ INSERT INTO tb_user_tb_user_likes(tb_user_id, likes_socialid, likes_id) VALUES (
 
 ALTER SEQUENCE hibernate_sequence  INCREMENT 50  MINVALUE 5000  MAXVALUE 9223372036854775807  START 5001  RESTART 5000  CACHE 1;
 --fakes sem likes
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(8,'41','joeytribianni@gmail.com','Joey Tribianne',null,'Married','11101485880931','UNIP',1);
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(9,'38','rachelgreen@gmail.com','Rachel Green',null,'Married','12101485880931','UNIP',1);
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(10,'21','monica@gmail.com','Monica Green',null,'Married','12101485880921','UNIP',1);
-INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(11,'22','ross@gmail.com','Ross Green',null,'Married','111051485880921','UNIP',1);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(8,'41','joeytribianni@gmail.com','Joey Tribianne',null,'Married','11101485880931','UNIP',9000);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(9,'38','rachelgreen@gmail.com','Rachel Green',null,'Married','12101485880931','UNIP',9000);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(10,'21','monica@gmail.com','Monica Green',null,'Married','12101485880921','UNIP',9000);
+INSERT INTO tb_user(id,age,email,name,password,relationship,socialid,studyat,type_id) VALUES(11,'22','ross@gmail.com','Ross Green',null,'Married','111051485880921','UNIP',9000);
 
 --seller configurations
 INSERT INTO tb_seller(id,user_id) VALUES(1,1);
