@@ -7,9 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import src.main.java.br.com.findplaces.jpa.entity.spatial.SequenceGenerator;
+
 
 @Entity
 @Table(name="TB_USER_TYPE")
+@SequenceGenerator(name = "seq_user_type", sequenceName = "seq_user_type")  
 public class UserType extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
