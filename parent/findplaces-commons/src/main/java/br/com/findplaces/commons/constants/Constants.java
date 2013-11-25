@@ -37,7 +37,7 @@ public class Constants {
 	}
 	
 	public String pathToImageFolder(){
-		return "/home/elias/findplaces/"; //prop.getProperty("photos.folder");
+		return "/home/normaluser/"; //prop.getProperty("photos.folder");
 	}
 
 }

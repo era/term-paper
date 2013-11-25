@@ -36,7 +36,7 @@ public class ImageService implements Serializable {
 	
 	@POST
 	@Produces({MediaType.APPLICATION_JSON })
-	public ImageResponse saveImage(@FormParam(value="image")ImageServiceRequest request){
+	public ImageResponse saveImage(@FormParam(value="image")ImageServiceRequest request) throws Exception{
 		
 		ImageResponse response = new ImageResponse();
 		
@@ -46,15 +46,13 @@ public class ImageService implements Serializable {
 			
 			PhotoTO photoTO = new PhotoTO();
 			photoTO.setFile(request.getBase64IMG());
-			
+			imgEJB.savePhoto(photoTO, request.getFormat());
 			response.setImageID(imgEJB.savePhoto(photoTO, request.getFormat()).getId());
 			
 			setSuccessResponse(response);
 		} catch (NotAuthorizedException e) {
 			setErrorResponse(response, StatusCode.NOT_ALLOWED);
-		} catch (Exception e) {
-			setErrorResponse(response, StatusCode.ERROR);
-		}
+		} 
 
 		return response;
 	}
