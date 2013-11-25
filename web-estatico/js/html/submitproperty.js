@@ -346,38 +346,61 @@ $(document).ready(function () {
 
                 console.log('place = ' + JSON.stringify(jsonPost));
 
-                $.ajax({
-                    url: jsonPost.id === null ? "findplaces-web/rest/place/" : "findplaces-web/rest/place/" + jsonPost.id,
-                    data: 'place=' + JSON.stringify(jsonPost),
-                    method: 'POST',
-                    success: function (place) {
-                        $('#place-images img').each(function (i, img) {
-                            console.log($(img).attr('src'));
-                            $.ajax({
-                                url: '/findplaces-web/rest/images/',
-                                data: $.StringFormat('image = {userID: {0}, token: {1}, base64IMG: {2}, format: {3}}', jsonPost.socialid, jsonPost.token, $(img).attr('ext'), $(img).attr('src')),
-                                method: 'POST',
-                                success: function (imagem) {
-                                    if (jsonPost.id == null) {
-                                        alert("Propriedade inserida com sucesso!");
-                                        $('#form_property').get(0).reset();
-                                    } else {
-                                        alert("Propriedade atualizada com sucesso!");
-                                    }
-                                    console.log(JSON.stringify(place));
-                                    return false;
-                                },
-                                error: function (imagem) {
-                                }
-                            });
-                        });
-                    },
-                    error: function (json) {
-                        alert("Erro ao  " + (jsonPost.id === null ? "inserir" : "atualizar") + " propriedade!");
-                        console.log(JSON.stringify(json));
-                        return false;
-                    }
-                });
+                if (jsonPost.id === null) {
+                    $.ajax({
+                        url: "findplaces-web/rest/place/",
+                        data: 'place=' + JSON.stringify(jsonPost),
+                        method: 'POST',
+                        success: function (place) {
+                            if ($('#place-images img').each > 0) {
+                                $('#place-images img').each(function (i, img) {
+                                    $.ajax({
+                                        url: '/findplaces-web/rest/images/',
+                                        data: $.StringFormat('image = {userID: {0}, token: {1}, base64IMG: {2}, format: {3}}', jsonPost.socialid, jsonPost.token, $(img).attr('ext'), $(img).attr('src')),
+                                        method: 'POST',
+                                        //async: false,
+                                        success: function (imagem) {
+                                            console.log(JSON.stringify(imagem));
+                                            return false;
+                                        },
+                                        error: function (imagem) {
+                                            alert("Erro ao inserir imagens da propriedade!");
+                                            console.log(JSON.stringify(json));
+                                            return false;
+                                        }
+                                    });
+                                });
+                            }
+                            alert("Propriedade inserida com sucesso!");
+                            $('#form_property').get(0).reset();
+                            console.log(JSON.stringify(place));
+                            return false;
+                        },
+                        error: function (json) {
+                            alert("Erro ao inserir propriedade!");
+                            console.log(JSON.stringify(json));
+                            return false;
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: "findplaces-web/rest/place/" + jsonPost.id,
+                        data: 'place=' + JSON.stringify(jsonPost),
+                        method: 'POST',
+                        success: function (place) {
+                            alert("Propriedade atualizada com sucesso!");
+                            console.log(JSON.stringify(place));
+                            return false;
+                        },
+                        error: function (json) {
+                            alert("Erro ao atualizar propriedade!");
+                            console.log(JSON.stringify(json));
+                            return false;
+                        }
+                    });
+                }
+
+
             }
         });
     });
