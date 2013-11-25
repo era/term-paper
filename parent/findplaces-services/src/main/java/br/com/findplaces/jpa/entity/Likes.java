@@ -12,9 +12,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@NamedQueries({ @NamedQuery(name = "FindLikesByUserSocialID", query = "SELECT l FROM Likes l where l.user.socialID = :socialID") })
 @Entity
 @Table(name = "TB_USER_LIKES")
+@NamedQueries({ @NamedQuery(name = "FindLikesByUserSocialID", query = "SELECT l FROM Likes l where l.user.socialID = :socialID") })
 public class Likes extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 6555240534112708730L;
@@ -23,6 +23,7 @@ public class Likes extends BaseEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column
 	private Long id;
 
 	@OneToOne

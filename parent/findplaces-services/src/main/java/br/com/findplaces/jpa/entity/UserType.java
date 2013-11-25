@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.SequenceGenerator;
 
-import src.main.java.br.com.findplaces.jpa.entity.spatial.SequenceGenerator;
 
 
 @Entity
