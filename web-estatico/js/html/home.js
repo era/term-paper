@@ -2,8 +2,7 @@
 $.homeSlide = function (lat, lng) {
     var json = { slides: [{ id: "slide1", target: "#content", partial: "detailsproperty", img: "img/photography/1_0.jpg", placetype: "APARTAMENTO", neighborhood: "Cambuí", details: "Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...", lat: -22.892799, lng: -47.049557 }, { id: "slide2", target: "#content", partial: "detailsproperty", img: "img/photography/2_0.jpg", placetype: "APARTAMENTO", neighborhood: "Centro", details: "Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...", lat: -22.902044, lng: -47.060871 }, { id: "slide3", target: "#content", partial: "detailsproperty", img: "img/photography/3_0.jpg", placetype: "APARTAMENTO", neighborhood: "Nova Campinas", details: "Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...", lat: -22.900161, lng: -47.041736 }, { id: "slide4", target: "#content", partial: "detailsproperty", img: "img/photography/4_0.jpg", placetype: "CASA", neighborhood: "Alphavile", details: "Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...", lat: -22.82772, lng: -47.030369 }, { id: "slide5", target: "#content", partial: "detailsproperty", img: "img/photography/5_0.jpg", placetype: "CASA", neighborhood: "Valinhos", details: "Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...", lat: -22.970114, lng: -46.99682 }, { id: "slide6", target: "#content", partial: "detailsproperty", img: "img/photography/6_0.jpg", placetype: "APARTAMENTO", neighborhood: "Sumaré", details: "Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...", lat: -22.82059, lng: -47.270378 }, { id: "slide7", target: "#content", partial: "detailsproperty", img: "img/photography/7_0.jpg", placetype: "APARTAMENTO", neighborhood: "Valinhos", details: "Condomínio fechado, com piscina, academia e churrasqueira a 10 minutos do centro...", lat: -22.968736, lng: -46.994567 }] };
 
-    jsonFind = {};
-    jsonFind.token = 'CAACEdEose0cBAAZAnD9sZCjqxMhPweg2YO8nETSY1R43xN9SMs5wH97D9XRgCdzF0q6ad2xHwVnLb0OsE7qKtyqz5LSt8AjmdGOInOwA3tf1R2yD6OXKR2kyCQis60HaoUVRwWTQC1RmUM0mui0ChWJplsSwZC8Y6CsATcYJ8csCdhoYs40kNahvevEC60ZD'
+    var jsonFind = {};
     jsonFind.lat = lat;
     jsonFind.lng = lng;
     jsonFind.distance = 30000;
@@ -19,6 +18,7 @@ $.homeSlide = function (lat, lng) {
     var li = '',
         onclick = '',
         marker = '[';
+    
     $.each(json.slides, function (i, key) {
         onclick = $.StringFormat("$.openURLContent('{0}', '{1}', 'id={2}');", key.target, key.partial, key.id);
         li += $.StringFormat('<li id="{0}" onclick="{1}"><img src="{2}" /><span>{3}</span><h3>{4}</h3><p>{5}</p></li>', key.id, onclick, key.img, key.placetype, key.neighborhood, key.details);
@@ -32,7 +32,7 @@ $.homeSlide = function (lat, lng) {
     }
 
     $('#map').after('<div class="flexslider"><ul class="homeSlides">' + li + '</ul></div>');
-    
+
     // Flexslider
     $('.flexslider').flexslider({
         selector: ".homeSlides > li",
@@ -46,23 +46,10 @@ $.homeSlide = function (lat, lng) {
         move: 1
     });
 
-    //lat = -22.977281;
-    //lng = -47.14822;
-
-    //if (navigator.geolocation) {
-    //    navigator.geolocation.getCurrentPosition(function (position) {
-    //        lat = position.coords.latitude;
-    //        lng = position.coords.longitude;
-    //    });
-    //}
-
-    //console.log(lat);
-    //console.log(lng);
-
     $.consultaMapa(lat, lng, "#map", marker);
 };
 
-$(document).ready(function () {    
+$(document).ready(function () {
     $.homeSlide(-22.9071048, -47.06323910000003);
 
     // Autocomplete google places
@@ -153,4 +140,4 @@ $(document).ready(function () {
     }).blur(function () {
         $(this).removeClass('inputSizeMedium').addClass('inputSizeMediumSmaller');
     });
-}); 
+});

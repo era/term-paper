@@ -71,6 +71,65 @@ $.responseQuestion = function (fieldName) {
         $(fieldName).parent().parent().after($.StringFormat('<tr style="background-color: #D7FCDD;"><td colspan="5" style="text-align: left;">{0}{1}{2}</td></tr>', _input, _responseButton, _cancelResponseButton));
 };
 
+// Salvar e Atualizar
+var imgList = [];
+var totalImg = $('#place-images img').length;
+$.ajaxPost = function (url, data, successCallBack, errorCallBack) {
+    $.ajax({
+        url: url,
+        data: data,
+        method: 'POST',
+        success: $.successCallBack,
+        error: $.errorCallBack
+    });
+};
+
+$.successCallBack = function (result) {
+    //console.log('SUCESSO[PLACE]: ' + JSON.stringify(result));
+    alert("Propriedade salva com sucesso!");
+};
+
+$.errorCallBack = function (result) {
+    console.log('ERRO[PLACE]: ' + JSON.stringify(result));
+    imgList = [];
+    totalImg = 0;
+    alert("Erro ao salvar propriedade!");
+};
+
+$.ajaxPostImg = function (url, data, successCallBackImg, errorCallBackImg) {
+    $.ajax({
+        url: url,
+        data: data,
+        method: 'POST',
+        success: $.successCallBackImg,
+        error: $.errorCallBackImg
+    });
+};
+
+$.successCallBackImg = function (result) {
+    //console.log('SUCESSO[IMAGE]: ' + JSON.stringify(result));
+    if ($.IsNullOrEmpty(result.imageID, null) !== null) {
+        imgList.push(result.imageID);
+    }
+
+    if (totalImg == imgList.length) {
+        jsonPost.idImages = imgList;
+
+        if (jsonPost.id === null) {
+            $.ajaxPost('findplaces-web/rest/place/', 'place=' + JSON.stringify(jsonPost));
+        } else {
+            $.ajaxPost('findplaces-web/rest/place/' + jsonPost.id, 'place=' + JSON.stringify(jsonPost));
+        }
+    }
+};
+
+$.errorCallBackImg = function (result) {
+    console.log('ERRO[IMAGE]: ' + JSON.stringify(result));
+    imgList = [];
+    totalImg = 0;
+    alert("Erro ao salvar propriedade!");
+};
+
 $(document).ready(function () {
     // Autocomplete google places
     $.searchPlace('address1');
@@ -83,7 +142,7 @@ $(document).ready(function () {
             data: { "socialid": "100001401841332" },
             method: 'GET',
             success: function (result) {
-                //console.log(result);
+                //console.log('SUCESSO[EDIT]: ' + JSON.stringify(result));
                 var places = result.places[0];
 
                 //Anuncio
@@ -139,6 +198,10 @@ $(document).ready(function () {
                 $.neighborhoodChart();
                 $.ageOfUsersChart();
                 $.placeQuestions();
+            },
+            error: function (result) {
+                console.log('ERRO[EDIT]: ' + JSON.stringify(result));
+                return false;
             }
         });
     } else {
@@ -343,72 +406,13 @@ $(document).ready(function () {
                 jsonPost.facilities.pool = false;
                 jsonPost.facilities.terrace = $('#terrace').is(':checked');
 
-                var imgList = [];
-                var totalImg = $('#place-images img').length;
-
-                $.successCallBack = function(result) {                    
-                    //console.log(JSON.stringify(result));
-                    alert("Propriedade salva com sucesso!");
-                }
-
-                $.errorCallBack = function(result) {
-                    console.log('ERRO[PLACE]: ' + JSON.stringify(result));
-                    imgList = [];
-                    totalImg = 0;                    
-                    alert("Erro ao salvar propriedade!");
-                }
-
-                $.ajaxPost = function(url, data, successCallBack, errorCallBack) {
-                    $.ajax({
-                        url: url,
-                        data: data,
-                        method: 'POST',
-                        success: $.successCallBack,
-                        error: $.errorCallBack
-                    });
-                };                
-
-                $.successCallBackImg = function(result) {                    
-                    if($.IsNullOrEmpty(result.imageID, null) !== null) {
-                        imgList.push(result.imageID)
-                    }
-
-                    if(totalImg == imgList.length) {
-                        //console.log(JSON.stringify(jsonPost));
-                        jsonPost.idImages = imgList; 
-
-                        if (jsonPost.id === null) {
-                            $.ajaxPost('findplaces-web/rest/place/', 'place=' + JSON.stringify(jsonPost));
-                        } else {
-                            $.ajaxPost('findplaces-web/rest/place/' + jsonPost.id, 'place=' + JSON.stringify(jsonPost));
-                        }
-                    }
-                }
-
-                $.errorCallBackImg = function(result) {
-                    console.log('ERRO[IMAGE]: ' + JSON.stringify(result));
-                    imgList = [];
-                    totalImg = 0;
-                    alert("Erro ao salvar propriedade!");
-                }
-
-                $.ajaxPostImg = function(url, data, successCallBackImg, errorCallBackImg) {
-                    $.ajax({
-                        url: url,
-                        data: data,
-                        method: 'POST',
-                        success: $.successCallBackImg,
-                        error: $.errorCallBackImg
-                    });
-                };
-
                 if ($('#place-images img').length > 0) {
                     $('#place-images img').each(function (i, img) {
-                        jsonImg = {};
+                        var jsonImg = {};
                         jsonImg.userID = jsonPost.socialid;
                         jsonImg.token = jsonPost.token;
                         jsonImg.base64IMG = $(img).attr('src').split(',')[1];
-                        jsonImg.format = $(img).attr('ext')
+                        jsonImg.format = $(img).attr('ext');
 
                         $.ajaxPostImg('findplaces-web/rest/image/', 'image=' + JSON.stringify(jsonImg));
                     });
@@ -421,63 +425,6 @@ $(document).ready(function () {
                 }
 
                 return false;
-
-                // if (jsonPost.id === null) {
-                //     $.ajax({
-                //         url: "findplaces-web/rest/place/",
-                //         data: 'place=' + JSON.stringify(jsonPost),
-                //         method: 'POST',
-                //         async: false,
-                //         success: function (place) {
-                //             // if ($('#place-images img').length > 0) {
-                //             //     $('#place-images img').each(function (i, img) {
-                //             //         $.ajax({
-                //             //             url: '/findplaces-web/rest/images/',
-                //             //             data: $.StringFormat('image = {userID: {0}, token: {1}, base64IMG: {2}, format: {3}}', jsonPost.socialid, jsonPost.token, $(img).attr('src'), $(img).attr('ext')),
-                //             //             method: 'POST',
-                //             //             async: false,
-                //             //             success: function (imagem) {
-                //             //                 console.log(JSON.stringify(imagem));
-                //             //                 return false;
-                //             //             },
-                //             //             error: function (imagem) {
-                //             //                 alert("Erro ao inserir imagens da propriedade!");
-                //             //                 console.log("imagem = " + JSON.stringify(json));
-                //             //                 return false;
-                //             //             }
-                //             //         });
-                //             //     });
-                //             // }
-                //             alert("Propriedade inserida com sucesso!");
-                //             $('#form_property').get(0).reset();
-                //             console.log("place = " + JSON.stringify(place));
-                //             return false;
-                //         },
-                //         error: function (json) {
-                //             alert("Erro ao inserir propriedade!");
-                //             console.log(JSON.stringify(json));
-                //             return false;
-                //         }
-                //     });
-                // } else {
-                //     $.ajax({
-                //         url: "findplaces-web/rest/place/" + jsonPost.id,
-                //         data: 'place=' + JSON.stringify(jsonPost),
-                //         method: 'POST',
-                //         success: function (place) {
-                //             alert("Propriedade atualizada com sucesso!");
-                //             console.log(JSON.stringify(place));
-                //             return false;
-                //         },
-                //         error: function (json) {
-                //             alert("Erro ao atualizar propriedade!");
-                //             console.log(JSON.stringify(json));
-                //             return false;
-                //         }
-                //     });
-                // }
-
-
             }
         });
     });

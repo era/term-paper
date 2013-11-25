@@ -14,23 +14,7 @@
             </h1>
         </div>
         <div id="default-top-triangle" class="default-top-triangle-yellow"></div>
-        <div id="default-top-form">
-            <div id="detailsAlbum" class="flexslider">
-                <ul class="slides">
-                    <li data-thumb="img/photography/1_1.jpg">
-                        <img src="img/photography/1_1.jpg" alt="" />
-                    </li>
-                    <li data-thumb="img/photography/1_2.jpg">
-                        <img src="img/photography/1_2.jpg" alt="" />
-                    </li>
-                    <li data-thumb="img/photography/1_3.jpg">
-                        <img src="img/photography/1_3.jpg" alt="" />
-                    </li>
-                    <li data-thumb="img/photography/1_4.jpg">
-                        <img src="img/photography/1_4.jpg" alt="" />
-                    </li>
-                </ul>
-            </div>
+        <div id="default-top-form">            
             <div id="detailsProperty">
                 <div id="tabs">
                     <ul>
@@ -46,10 +30,10 @@
                         <p>Assunto: <span>Pergunta sobre imóvel</span></p>
                         <p>
                             Mensagem: <span>
-                                <textarea cols="50" maxlength="1000" placeholder="(exemplo) Olá, menu nome é (...) e estou procurando um imóvel na região..." rows="10" /></span>
+                                <textarea cols="50" maxlength="1000" placeholder="(exemplo) Olá, menu nome é (...) e estou procurando um imóvel na região..." rows="7" /></span>
                         </p>
                         <div>
-                            <button alt="Salvar" onclick="return false;" title="Salvar" type="submit">Enviar</button>
+                            <button alt="Salvar" id="save_comment_user" onclick="return false;" title="Salvar" type="submit">Enviar</button>
                         </div>
                         <br class="clr" />
                     </div>
@@ -57,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div id="account-actions" class="account-actions-alt-size">        
+    <div id="account-actions" class="account-actions-alt-size">
         <!-- <ul class="details-promotion">
             <li class="details-promotion">
                 <div class="details-promotion-img"><img src="img/photography/1_0.jpg" /></div>
@@ -91,17 +75,3 @@
     </div>
     <br class="clr" />
 </div>
-
-<script type="text/javascript">
-    $('.flexslider').flexslider({
-        animation: "slide",
-        controlNav: "thumbnails",
-        slideshow: false
-    });
-
-    $("#tabs").tabs();
-
-    
-
-    //alert($.getUrlParam('id', location.href));
-</script>
