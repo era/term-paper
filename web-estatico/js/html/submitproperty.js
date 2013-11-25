@@ -96,6 +96,7 @@ $(document).ready(function () {
                 $('#cellphone2').val(places.cellphone2);
 
                 //Valores
+                $('#price').val(places.price).maskMoney('mask').trigger("blur");
                 $('#deposit').val(places.deposit).maskMoney('mask').trigger("blur");
                 $('#rent').val(places.rent).maskMoney('mask').trigger("blur");
                 $('#contract_time').val(places.contract_time).trigger("blur");
@@ -317,7 +318,7 @@ $(document).ready(function () {
                 jsonPost.cellphone = jsonForm.cellphone;
                 jsonPost.cellphone2 = jsonForm.cellphone2;
                 jsonPost.socialid = '100001401841332';
-                jsonPost.token = 'CAACEdEose0cBAI2fPxGOhJtaCALTn5NXre2f7rHgvCAIIbGQqkKHnJK8jcUkyxHbcXzf9K933XmMZBTFCaKDHFQbW1txEhxtE2lERhDsh4fZAoo9x1zggNy7MeGeKldjp11qPu6ePZABJZABog8KltjmH4iZBMOTFBd6x6WgfbnEqtdYLEkjTn9e9JbHhwk4ZAMZAoNYuWhMAZDZD';
+                jsonPost.token = 'CAACEdEose0cBAGjns7t912k45wqTjPPGSRtBZBO4RhCfxAZBvn6q6skRclZBdeUM3OZCn2wjMrR7hkYd6gHiiSUQL7AzUTsbISCnAmN5NIyDHZAnIvZBakF5rW3n46Wp6fpGpFiPb0gJtkrhUDB2VIZAsw2L9NaZArctZA1pgyPDZC8zMrEYswZBY8tRDpS0rpnKbT4ZCcpMhsKvZCAZDZD';
                 jsonPost.facilities = {};
                 jsonPost.facilities.name = null;
                 jsonPost.facilities.gatekeeper = $('#gatekeeper').is(':checked');
@@ -344,36 +345,37 @@ $(document).ready(function () {
                 jsonPost.facilities.pool = false;
                 jsonPost.facilities.terrace = $('#terrace').is(':checked');
 
-                console.log('place = ' + JSON.stringify(jsonPost));
+                //console.log('place = ' + JSON.stringify(jsonPost));
 
                 if (jsonPost.id === null) {
                     $.ajax({
                         url: "findplaces-web/rest/place/",
                         data: 'place=' + JSON.stringify(jsonPost),
                         method: 'POST',
+                        async: false,
                         success: function (place) {
-                            if ($('#place-images img').each > 0) {
-                                $('#place-images img').each(function (i, img) {
-                                    $.ajax({
-                                        url: '/findplaces-web/rest/images/',
-                                        data: $.StringFormat('image = {userID: {0}, token: {1}, base64IMG: {2}, format: {3}}', jsonPost.socialid, jsonPost.token, $(img).attr('ext'), $(img).attr('src')),
-                                        method: 'POST',
-                                        //async: false,
-                                        success: function (imagem) {
-                                            console.log(JSON.stringify(imagem));
-                                            return false;
-                                        },
-                                        error: function (imagem) {
-                                            alert("Erro ao inserir imagens da propriedade!");
-                                            console.log(JSON.stringify(json));
-                                            return false;
-                                        }
-                                    });
-                                });
-                            }
+                            // if ($('#place-images img').length > 0) {
+                            //     $('#place-images img').each(function (i, img) {
+                            //         $.ajax({
+                            //             url: '/findplaces-web/rest/images/',
+                            //             data: $.StringFormat('image = {userID: {0}, token: {1}, base64IMG: {2}, format: {3}}', jsonPost.socialid, jsonPost.token, $(img).attr('src'), $(img).attr('ext')),
+                            //             method: 'POST',
+                            //             async: false,
+                            //             success: function (imagem) {
+                            //                 console.log(JSON.stringify(imagem));
+                            //                 return false;
+                            //             },
+                            //             error: function (imagem) {
+                            //                 alert("Erro ao inserir imagens da propriedade!");
+                            //                 console.log("imagem = " + JSON.stringify(json));
+                            //                 return false;
+                            //             }
+                            //         });
+                            //     });
+                            // }
                             alert("Propriedade inserida com sucesso!");
                             $('#form_property').get(0).reset();
-                            console.log(JSON.stringify(place));
+                            console.log("place = " + JSON.stringify(place));
                             return false;
                         },
                         error: function (json) {
