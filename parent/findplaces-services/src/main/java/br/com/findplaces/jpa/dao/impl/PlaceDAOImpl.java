@@ -61,8 +61,19 @@ public class PlaceDAOImpl extends BaseDAOImpl<Place, Long> implements PlaceDAO {
 		String sql = "SELECT * FROM tb_place p WHERE p.spatial_id = ?";
 		Query query = getEntityManager().createNativeQuery(sql, Place.class);	
 		query.setParameter(1, spatial.getId());
-		Place result = (Place) query.getSingleResult();
-		return result;
+		List<Place> places = query.getResultList();
+		if(places != null && places.isEmpty()){
+			return null;
+		} if(places == null){
+			return null;
+		}else{
+			for(Place result: places){
+				return result;
+			}
+		}
+		return null;
+		
+		
 	}
 
 	@SuppressWarnings("unchecked")
