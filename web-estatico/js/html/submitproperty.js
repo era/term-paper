@@ -86,8 +86,6 @@ $(document).ready(function () {
                 //console.log(result);
                 var places = result.places[0];
 
-                console.log(JSON.stringify(places));
-
                 //Anuncio
                 $('#sellType').val(places.sellType[0]).trigger("change");
                 $('#placetype').val(places.type.id).trigger("change");
@@ -276,12 +274,12 @@ $(document).ready(function () {
         $('#form_property').validate({
             errorElement: "span",
             rules: {
-                adtype: 'required',
-                placetype: 'required',
-                address1: 'required',
-                phone1: 'required',
-                price: 'required',
-                rent: 'required'
+                // adtype: 'required',
+                // placetype: 'required',
+                // address1: 'required',
+                // phone1: 'required',
+                // price: 'required',
+                // rent: 'required'
             },
             submitHandler: function () {
                 var jsonForm = $('#form_property').serializeObject();
@@ -318,7 +316,7 @@ $(document).ready(function () {
                 jsonPost.cellphone = jsonForm.cellphone;
                 jsonPost.cellphone2 = jsonForm.cellphone2;
                 jsonPost.socialid = '100001401841332';
-                jsonPost.token = 'CAACEdEose0cBAGjns7t912k45wqTjPPGSRtBZBO4RhCfxAZBvn6q6skRclZBdeUM3OZCn2wjMrR7hkYd6gHiiSUQL7AzUTsbISCnAmN5NIyDHZAnIvZBakF5rW3n46Wp6fpGpFiPb0gJtkrhUDB2VIZAsw2L9NaZArctZA1pgyPDZC8zMrEYswZBY8tRDpS0rpnKbT4ZCcpMhsKvZCAZDZD';
+                jsonPost.token = 'CAACEdEose0cBAHmsfKnMnb7dOTWZBebH6Cg1No5Sk7wyNxiFkm4ACrJjUx7ZCoQpp3gJM9EgMr8bJPpSOtD8bnteVAq9eCElUj70ZCQJJTo3ueCro8kOxZAoOZBvOTp233WrslHLk1VrYWjZAag93ynzzZBdUXyP80Ax0WtZCUfRuj5KhTwCAFocsZCeZBZA7eL6lgZD';
                 jsonPost.facilities = {};
                 jsonPost.facilities.name = null;
                 jsonPost.facilities.gatekeeper = $('#gatekeeper').is(':checked');
@@ -345,62 +343,92 @@ $(document).ready(function () {
                 jsonPost.facilities.pool = false;
                 jsonPost.facilities.terrace = $('#terrace').is(':checked');
 
-                //console.log('place = ' + JSON.stringify(jsonPost));
+                $.successCallBack = function(result) {                    
+                    console.log(JSON.stringify(result));
+                }
 
-                if (jsonPost.id === null) {
+                $.errorCallBack = function(result) {
+                    console.log(JSON.stringify(result));
+                }
+
+                $.ajaxPost = function(url, data, successCallBack, errorCallBack) {
                     $.ajax({
-                        url: "findplaces-web/rest/place/",
-                        data: 'place=' + JSON.stringify(jsonPost),
+                        url: url,
+                        data: data,
                         method: 'POST',
-                        async: false,
-                        success: function (place) {
-                            // if ($('#place-images img').length > 0) {
-                            //     $('#place-images img').each(function (i, img) {
-                            //         $.ajax({
-                            //             url: '/findplaces-web/rest/images/',
-                            //             data: $.StringFormat('image = {userID: {0}, token: {1}, base64IMG: {2}, format: {3}}', jsonPost.socialid, jsonPost.token, $(img).attr('src'), $(img).attr('ext')),
-                            //             method: 'POST',
-                            //             async: false,
-                            //             success: function (imagem) {
-                            //                 console.log(JSON.stringify(imagem));
-                            //                 return false;
-                            //             },
-                            //             error: function (imagem) {
-                            //                 alert("Erro ao inserir imagens da propriedade!");
-                            //                 console.log("imagem = " + JSON.stringify(json));
-                            //                 return false;
-                            //             }
-                            //         });
-                            //     });
-                            // }
-                            alert("Propriedade inserida com sucesso!");
-                            $('#form_property').get(0).reset();
-                            console.log("place = " + JSON.stringify(place));
-                            return false;
-                        },
-                        error: function (json) {
-                            alert("Erro ao inserir propriedade!");
-                            console.log(JSON.stringify(json));
-                            return false;
-                        }
+                        success: $.successCallBack,
+                        error: $.errorCallBack
                     });
-                } else {
-                    $.ajax({
-                        url: "findplaces-web/rest/place/" + jsonPost.id,
-                        data: 'place=' + JSON.stringify(jsonPost),
-                        method: 'POST',
-                        success: function (place) {
-                            alert("Propriedade atualizada com sucesso!");
-                            console.log(JSON.stringify(place));
-                            return false;
-                        },
-                        error: function (json) {
-                            alert("Erro ao atualizar propriedade!");
-                            console.log(JSON.stringify(json));
-                            return false;
-                        }
+                };
+
+                //console.log(JSON.stringify(jsonPost));
+
+                if ($('#place-images img').length > 0) {
+                    $('#place-images img').each(function (i, img) {
+                        console.log($.StringFormat('image = {"userID": "{0}", "token": "{1}", "base64IMG": "{2}", "format": "{3}"}', jsonPost.socialid, jsonPost.token, $(img).attr('src').split(',')[1], $(img).attr('ext')));
+                        $.ajaxPost('findplaces-web/rest/image/', $.StringFormat('image = {userID: {0}, token: "{1}", base64IMG: "{2}", format: "{3}"}', jsonPost.socialid, jsonPost.token, $(img).attr('src').split(',')[1], $(img).attr('ext')));
                     });
                 }
+                
+
+                //$.ajaxPost('findplaces-web/rest/place/', 'place=' + JSON.stringify(jsonPost));                
+
+                return false;
+
+                // if (jsonPost.id === null) {
+                //     $.ajax({
+                //         url: "findplaces-web/rest/place/",
+                //         data: 'place=' + JSON.stringify(jsonPost),
+                //         method: 'POST',
+                //         async: false,
+                //         success: function (place) {
+                //             // if ($('#place-images img').length > 0) {
+                //             //     $('#place-images img').each(function (i, img) {
+                //             //         $.ajax({
+                //             //             url: '/findplaces-web/rest/images/',
+                //             //             data: $.StringFormat('image = {userID: {0}, token: {1}, base64IMG: {2}, format: {3}}', jsonPost.socialid, jsonPost.token, $(img).attr('src'), $(img).attr('ext')),
+                //             //             method: 'POST',
+                //             //             async: false,
+                //             //             success: function (imagem) {
+                //             //                 console.log(JSON.stringify(imagem));
+                //             //                 return false;
+                //             //             },
+                //             //             error: function (imagem) {
+                //             //                 alert("Erro ao inserir imagens da propriedade!");
+                //             //                 console.log("imagem = " + JSON.stringify(json));
+                //             //                 return false;
+                //             //             }
+                //             //         });
+                //             //     });
+                //             // }
+                //             alert("Propriedade inserida com sucesso!");
+                //             $('#form_property').get(0).reset();
+                //             console.log("place = " + JSON.stringify(place));
+                //             return false;
+                //         },
+                //         error: function (json) {
+                //             alert("Erro ao inserir propriedade!");
+                //             console.log(JSON.stringify(json));
+                //             return false;
+                //         }
+                //     });
+                // } else {
+                //     $.ajax({
+                //         url: "findplaces-web/rest/place/" + jsonPost.id,
+                //         data: 'place=' + JSON.stringify(jsonPost),
+                //         method: 'POST',
+                //         success: function (place) {
+                //             alert("Propriedade atualizada com sucesso!");
+                //             console.log(JSON.stringify(place));
+                //             return false;
+                //         },
+                //         error: function (json) {
+                //             alert("Erro ao atualizar propriedade!");
+                //             console.log(JSON.stringify(json));
+                //             return false;
+                //         }
+                //     });
+                // }
 
 
             }
