@@ -46,8 +46,8 @@ public class ImageService implements Serializable {
 			
 			PhotoTO photoTO = new PhotoTO();
 			photoTO.setFile(request.getBase64IMG());
-			
-			response.setImageID(imgEJB.savePhoto(photoTO, request.getFormat()).getId());
+			imgEJB.savePhoto(photoTO, request.getFormat());
+			response.setImageID(1);//imgEJB.savePhoto(photoTO, request.getFormat()).getId()
 			
 			setSuccessResponse(response);
 		} catch (NotAuthorizedException e) {
