@@ -136,7 +136,8 @@ public class Place extends BaseEntity implements Serializable {
 	@Column
 	private Integer garage;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Image> photos;
 	
 	@ManyToMany

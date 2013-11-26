@@ -97,6 +97,8 @@ public class PlaceRequest implements Serializable {
 	private Double tv;
 	
 	private Double condominiumPrice;
+	
+	private List<Long> idImages;
 
 	public String getToken() {
 		return token;
@@ -409,6 +411,14 @@ public class PlaceRequest implements Serializable {
 
 	public void setTv(Double tv) {
 		this.tv = tv;
+	}
+
+	public List<Long> getIdImages() {
+		return idImages;
+	}
+
+	public void setIdImages(List<Long> idImages) {
+		this.idImages = idImages;
 	}
 	
 }

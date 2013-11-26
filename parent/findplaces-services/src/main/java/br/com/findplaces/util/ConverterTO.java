@@ -268,6 +268,14 @@ public class ConverterTO {
 		if(place.getFacilities()!=null){
 			to.setFacilities(converter(place.getFacilities()));
 		}
+		//image
+		ArrayList<Long> photos = new ArrayList<Long>();
+		if(place.getPhotos()!=null){
+			for(Image photo: place.getPhotos()){
+				photos.add(photo.getId());
+			}
+			to.setIdImages(photos);
+		}
 		to.setContract_time(place.getContract_time());
 		to.setRent(place.getRent());
 		to.setIptu(place.getIptu());
@@ -542,6 +550,14 @@ public class ConverterTO {
 			}
 
 			to.setSellType(sellTypes);
+		}
+		
+		ArrayList<Long> images = new ArrayList<Long>();
+		if(re.getIdImages()!=null){
+			for(Long idImage : re.getIdImages()){
+				images.add(idImage);
+			}
+			to.setIdImages(images);
 		}
 
 		return to;

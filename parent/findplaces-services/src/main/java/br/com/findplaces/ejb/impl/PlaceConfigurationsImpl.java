@@ -8,27 +8,28 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
+import apple.laf.JRSUIUtils.Images;
 import br.com.findplaces.ejb.PlaceConfigurations;
 import br.com.findplaces.jpa.dao.interfaces.CityDAO;
 import br.com.findplaces.jpa.dao.interfaces.FacilitiesDAO;
+import br.com.findplaces.jpa.dao.interfaces.ImageDAO;
 import br.com.findplaces.jpa.dao.interfaces.NeighborhoodDAO;
 import br.com.findplaces.jpa.dao.interfaces.PlaceDAO;
 import br.com.findplaces.jpa.dao.interfaces.RegionDAO;
 import br.com.findplaces.jpa.dao.interfaces.StreetDAO;
 import br.com.findplaces.jpa.dao.spatial.interfaces.PlaceSpatialDAO;
 import br.com.findplaces.jpa.entity.Coment;
+import br.com.findplaces.jpa.entity.Image;
 import br.com.findplaces.jpa.entity.Place;
 import br.com.findplaces.jpa.entity.SellType;
 import br.com.findplaces.jpa.entity.geographic.City;
 import br.com.findplaces.jpa.entity.geographic.Neighborhood;
-import br.com.findplaces.jpa.entity.geographic.Region;
 import br.com.findplaces.jpa.entity.geographic.Street;
 import br.com.findplaces.jpa.entity.spatial.PlaceSpatial;
 import br.com.findplaces.jpa.exception.DAOException;
 import br.com.findplaces.model.geographic.to.CityTO;
 import br.com.findplaces.model.geographic.to.NeighborhoodTO;
 import br.com.findplaces.model.geographic.to.StreetTO;
-import br.com.findplaces.model.spatial.to.PlaceSpatialTO;
 import br.com.findplaces.model.to.ComentTO;
 import br.com.findplaces.model.to.FilterSearchRequest;
 import br.com.findplaces.model.to.PlaceTO;
@@ -69,6 +70,9 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 
 	@EJB
 	private RegionDAO regionDAO;
+	
+	@EJB
+	private ImageDAO imageDAO;
 
 	public PlaceTO createPlace(PlaceTO place) { // FIXME Should not convert and
 												// create in the same method!
@@ -140,6 +144,14 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			place2save.setSellType(sellTypes);
 			place2save.setSpatial(new PlaceSpatial());
 			place2save.getSpatial().setGeom(point);
+			
+			ArrayList<Image> images = new ArrayList<Image>();
+			if(place2save.getPhotos()!=null){
+				for(Image image: place2save.getPhotos()){
+					images.add((Image)imageDAO.findById(image.getId()));
+				}
+				place2save.setPhotos(images);
+			}
 			
 			if(place.getId() !=null){
 				id = place.getId();
@@ -352,6 +364,14 @@ public class PlaceConfigurationsImpl implements PlaceConfigurations {
 			placesTO.add(ConverterTO.converter(place));
 		}
 		return placesTO;
+	}
+
+	public ImageDAO getImageDAO() {
+		return imageDAO;
+	}
+
+	public void setImageDAO(ImageDAO imageDAO) {
+		this.imageDAO = imageDAO;
 	}
 
 	/**
