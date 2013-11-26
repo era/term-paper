@@ -74,22 +74,22 @@ $.responseQuestion = function (fieldName) {
 // Salvar e Atualizar
 var imgList = [];
 var totalImg = $('#place-images img').length;
-$.ajaxPost = function (url, data, successCallBack, errorCallBack) {
+$.ajaxPost = function (url, data, successCallBackPost, errorCallBackPost) {
     $.ajax({
         url: url,
         data: data,
         method: 'POST',
-        success: $.successCallBack,
-        error: $.errorCallBack
+        success: $.successCallBackPost,
+        error: $.errorCallBackPost
     });
 };
 
-$.successCallBack = function (result) {
+$.successCallBackPost = function (result) {
     //console.log('SUCESSO[PLACE]: ' + JSON.stringify(result));
     alert("Propriedade salva com sucesso!");
 };
 
-$.errorCallBack = function (result) {
+$.errorCallBackPost = function (result) {
     console.log('ERRO[PLACE]: ' + JSON.stringify(result));
     imgList = [];
     totalImg = 0;
@@ -130,6 +130,104 @@ $.errorCallBackImg = function (result) {
     alert("Erro ao salvar propriedade!");
 };
 
+$.ajaxGet = function (url, data, successCallBackPost, errorCallBackPost) {
+    $.ajax({
+        url: url,
+        data: data,
+        method: 'POST',
+        success: $.successCallBackPost,
+        error: $.errorCallBackPost
+    });
+};
+
+$.successCallBackGet = function (result) {
+    //console.log('SUCESSO[GET_PLACE]: ' + JSON.stringify(result));
+    var places = result.places[0];
+
+    //Anuncio
+    $('#sellType').val(places.sellType[0]).trigger("change");
+    $('#placetype').val(places.type.id).trigger("change");
+    $('#address1').val(places.address);
+    $('#cellphone').val(places.cellphone);
+    $('#cellphone2').val(places.cellphone2);
+
+    //Valores
+    $('#price').val(places.price).maskMoney('mask').trigger("blur");
+    $('#deposit').val(places.deposit).maskMoney('mask').trigger("blur");
+    $('#rent').val(places.rent).maskMoney('mask').trigger("blur");
+    $('#contract_time').val(places.contract_time).trigger("blur");
+    $('#iptu').val(places.iptu).maskMoney('mask').trigger("blur");
+    $('#condominiumPrice').val(places.condominiumPrice).maskMoney('mask').trigger("blur");
+    $('#internetPrice').val(places.internet).maskMoney('mask').trigger("blur");
+    $('#tv').val(places.tv).maskMoney('mask').trigger("blur");
+
+    //Detalhes
+    $('#qtdPlaceFloor').val(places.qtdPlaceFloor);
+    $('#placeFloor').val(places.placeFloor);
+    $('#m2').val(places.m2);
+    $('#bedroom').val(places.bedroom);
+    $('#suite').val(places.suite);
+    $('#room').val(places.room);
+    $('#bathroom').val(places.bathroom);
+    $('#garage').val(places.garage);
+
+    //Informações
+    $('#description').val(places.description);
+
+    //Comodidades
+    $('#internet').prop('checked', places.facilities.internet);
+    $('#gatekeeper').prop('checked', places.facilities.gatekeeper);
+    $('#bedroomCloset').prop('checked', places.facilities.bedroomCloset);
+    $('#townBarbecue').prop('checked', places.facilities.townBarbecue);
+    $('#kitchenCabinet').prop('checked', places.facilities.kitchenCabinet);
+    $('#gasTubing').prop('checked', places.facilities.gasTubing);
+    $('#hidromassage').prop('checked', places.facilities.hidromassage);
+    $('#townPool').prop('checked', places.facilities.townPool);
+    $('#terrace').prop('checked', places.facilities.terrace);
+    $('#automaticDoor').prop('checked', places.facilities.automaticDoor);
+
+    //Hidden
+    $('#lat').val(places.lat);
+    $('#lng').val(places.lng);
+
+    // Mostra as abas e atualiza os gráficos
+    $('#tabs-2-title').show();
+    $('#tabs-3-title').show();
+    $.placeChart();
+    $.neighborhoodChart();
+    $.ageOfUsersChart();
+    $.placeQuestions();
+
+    //var idImages = ['1_1.jpg', '1_2.jpg', '1_3.jpg', '1_4.jpg'];
+
+    //$(idImages).each(function (i, img) {
+    //    $.ajaxGetImg($.StringFormat('http://www.findplaces.com.br/findplaces-web/rest/images/{0}', img), null);
+    //});
+};
+
+$.errorCallBackGet = function (result) {
+    console.log('ERRO[EDIT]: ' + JSON.stringify(result));
+    alert("Erro ao carregar propriedade!");
+};
+
+$.ajaxGetImg = function (url, data, successCallBackGetImg, errorCallBackGetImg) {
+    $.ajax({
+        url: url,
+        data: data,
+        method: 'GET',
+        success: $.successCallBackGetImg,
+        error: $.errorCallBackGetImg
+    });
+};
+
+$.successCallBackGetImg = function (result) {
+    console.log('SUCESSO[IMAGE]: ' + JSON.stringify(result));
+};
+
+$.errorCallBackGetImg = function (result) {
+    console.log('ERRO[IMAGE]: ' + JSON.stringify(result));
+};
+
 $(document).ready(function () {
     // Autocomplete google places
     $.searchPlace('address1');
@@ -137,73 +235,7 @@ $(document).ready(function () {
     // Verifica se é uma edição, adicionar aqui validação imóvel x id_usuario
     var id = $.getUrlParam('id', location.href);
     if ($.IsNullOrEmpty(id, null) !== null) {
-        $.ajax({
-            url: "findplaces-web/rest/place/" + id,
-            data: { "socialid": "100001401841332" },
-            method: 'GET',
-            success: function (result) {
-                //console.log('SUCESSO[EDIT]: ' + JSON.stringify(result));
-                var places = result.places[0];
-
-                //Anuncio
-                $('#sellType').val(places.sellType[0]).trigger("change");
-                $('#placetype').val(places.type.id).trigger("change");
-                $('#address1').val(places.address);
-                $('#cellphone').val(places.cellphone);
-                $('#cellphone2').val(places.cellphone2);
-
-                //Valores
-                $('#price').val(places.price).maskMoney('mask').trigger("blur");
-                $('#deposit').val(places.deposit).maskMoney('mask').trigger("blur");
-                $('#rent').val(places.rent).maskMoney('mask').trigger("blur");
-                $('#contract_time').val(places.contract_time).trigger("blur");
-                $('#iptu').val(places.iptu).maskMoney('mask').trigger("blur");
-                $('#condominiumPrice').val(places.condominiumPrice).maskMoney('mask').trigger("blur");
-                $('#internetPrice').val(places.internet).maskMoney('mask').trigger("blur");
-                $('#tv').val(places.tv).maskMoney('mask').trigger("blur");
-
-                //Detalhes
-                $('#qtdPlaceFloor').val(places.qtdPlaceFloor);
-                $('#placeFloor').val(places.placeFloor);
-                $('#m2').val(places.m2);
-                $('#bedroom').val(places.bedroom);
-                $('#suite').val(places.suite);
-                $('#room').val(places.room);
-                $('#bathroom').val(places.bathroom);
-                $('#garage').val(places.garage);
-
-                //Informações
-                $('#description').val(places.description);
-
-                //Comodidades
-                $('#internet').prop('checked', places.facilities.internet);
-                $('#gatekeeper').prop('checked', places.facilities.gatekeeper);
-                $('#bedroomCloset').prop('checked', places.facilities.bedroomCloset);
-                $('#townBarbecue').prop('checked', places.facilities.townBarbecue);
-                $('#kitchenCabinet').prop('checked', places.facilities.kitchenCabinet);
-                $('#gasTubing').prop('checked', places.facilities.gasTubing);
-                $('#hidromassage').prop('checked', places.facilities.hidromassage);
-                $('#townPool').prop('checked', places.facilities.townPool);
-                $('#terrace').prop('checked', places.facilities.terrace);
-                $('#automaticDoor').prop('checked', places.facilities.automaticDoor);
-
-                //Hidden
-                $('#lat').val(places.lat);
-                $('#lng').val(places.lng);
-
-                // Mostra as abas e atualiza os gráficos
-                $('#tabs-2-title').show();
-                $('#tabs-3-title').show();
-                $.placeChart();
-                $.neighborhoodChart();
-                $.ageOfUsersChart();
-                $.placeQuestions();
-            },
-            error: function (result) {
-                console.log('ERRO[EDIT]: ' + JSON.stringify(result));
-                return false;
-            }
-        });
+        $.ajaxGet("findplaces-web/rest/place/" + id, { "socialid": "100001401841332" });
     } else {
         $('#tabs-2-title').hide();
         $('#tabs-3-title').hide();
